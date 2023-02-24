@@ -10,6 +10,10 @@ jobs:
         with:
           java-version: 17
           distribution: 'adopt'
+      - name: Install gradle
+        run: brew install gradle
+      - name: generate wrapper
+        run: gradle wrapper
       - name: Change permissions
         run: chmod +x gradlew
       - name: Build with Gradle
