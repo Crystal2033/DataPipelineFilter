@@ -10,12 +10,6 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.apache.kafka:kafka-clients:3.4.0'
-    implementation 'org.testcontainers:testcontainers:1.17.6'
-    implementation "org.testcontainers:junit-jupiter:1.17.6"
-    implementation "org.testcontainers:kafka:1.17.6"
-    implementation "org.testcontainers:postgresql:1.17.6"
-
     // logging
     implementation 'ch.qos.logback:logback-classic:1.4.5'
 
