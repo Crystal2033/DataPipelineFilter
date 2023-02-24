@@ -34,7 +34,6 @@ dependencies {
     // json
     implementation 'com.fasterxml.jackson.core:jackson-core:2.14.2'
 
-
     // test
     testImplementation 'org.testcontainers:testcontainers:1.17.6'
     testImplementation "org.testcontainers:junit-jupiter:1.17.6"
