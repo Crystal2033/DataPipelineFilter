@@ -29,7 +29,6 @@ public class ServiceFiltering implements Service {
         );
         try {
             kafkaProducer.send(new ProducerRecord<>("test_topic_out","{\"name\":\"alexander\", \"age\":18, \"sex\":\"M\"}")).get();
-//            kafkaProducer.send(new ProducerRecord<>("test_topic_out","{\"name\":\"alexander_pushkin\", \"age\":18, \"sex\":\"M\"}")).get();
             kafkaProducer.flush();
             kafkaProducer.close();
         } catch (InterruptedException e) {
