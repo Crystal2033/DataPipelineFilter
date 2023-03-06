@@ -25,6 +25,7 @@ dependencies {
     implementation 'com.zaxxer:HikariCP:5.0.1'
     implementation 'org.jooq:jooq:3.17.8'
 
+
     // json
     implementation 'com.fasterxml.jackson.core:jackson-core:2.14.2'
 
@@ -43,3 +44,4 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+

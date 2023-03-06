@@ -1,7 +1,9 @@
 package ru.mai.lessons.rpks.model;
 
 
-public class Rule {
+import org.jooq.Record;
+
+public class Rule{
     private Long filterId; // id фильтра
     private Long ruleId; // id правила
     private String fieldName; // поле сообщения, по которому выполняем фильтрацию { "name": "Jhonas"}, fieldName = "name", Jhon

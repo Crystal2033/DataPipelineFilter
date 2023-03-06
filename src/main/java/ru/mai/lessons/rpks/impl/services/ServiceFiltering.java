@@ -2,6 +2,8 @@ package ru.mai.lessons.rpks.impl.services;
 
 import com.typesafe.config.Config;
 import lombok.extern.slf4j.Slf4j;
+import org.jooq.Record;
+import org.jooq.Result;
 import ru.mai.lessons.rpks.Service;
 import ru.mai.lessons.rpks.impl.repository.DataBaseReader;
 
@@ -18,16 +20,21 @@ public class ServiceFiltering implements Service {
                     .userName(configDB.getString("user"))
                     .password(configDB.getString("password"))
                     .driver(configDB.getString("driver"))
+                    .additionalDBConfig(configDB.getConfig("additional_info"))
                     .build();
         }
         return dataBaseReader;
+    }
+
+    private void readDataFromDatabase(){
+        dataBaseReader.readRulesFromDB();
     }
     @Override
     public void start(Config config) {
         dataBaseReader = initOrGetExistingDBReader(config.getConfig("db"));
         try{
             if(dataBaseReader.connectToDataBase()){
-                //TODO: implement in future
+                readDataFromDatabase();
             }
             else{
                 log.error("There is a problem with database.");

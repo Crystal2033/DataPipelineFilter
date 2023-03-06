@@ -29,7 +29,7 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.shaded.com.google.common.collect.ImmutableMap;
 import org.testcontainers.utility.DockerImageName;
-import ru.mai.lessons.rpks.impl.ServiceFiltering;
+import ru.mai.lessons.rpks.impl.services.ServiceFiltering;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
