@@ -1,8 +1,10 @@
 package ru.mai.lessons.rpks.model;
 
 
+import lombok.Builder;
 import org.jooq.Record;
 
+@Builder
 public class Rule{
     private Long filterId; // id фильтра
     private Long ruleId; // id правила

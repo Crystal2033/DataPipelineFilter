@@ -5,8 +5,9 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
-import org.jooq.Record;
-import org.jooq.*;
+import org.jooq.DSLContext;
+import org.jooq.PlainSQL;
+import org.jooq.SQLDialect;
 import org.jooq.impl.DSL;
 import ru.mai.lessons.rpks.DbReader;
 import ru.mai.lessons.rpks.model.Rule;
@@ -61,13 +62,20 @@ public class DataBaseReader implements DbReader {
 
     @Override
     public Rule[] readRulesFromDB() {
-        log.info(additionalDBConfig.getString("table_name"));
-        Result<Record> queryResults = dslContext.select()
+        return dslContext.select()
                 .from(additionalDBConfig.getString("table_name"))
-                .where(field("id").eq(additionalDBConfig.getInt("filter_id")))
-                .fetch();
-
-
-        return new Rule[0];
+                .where(field(additionalDBConfig.getString("filter_column_name"))
+                        .eq(additionalDBConfig.getInt(
+                                additionalDBConfig.getString("filter_column_name"))))
+                .fetch()
+                .stream()
+                .map(note -> Rule.builder()
+                        .filterId((Long) note.get("filter_id"))
+                        .ruleId((Long) note.get("rule_id"))
+                        .fieldName(note.get("field_name").toString())
+                        .filterFunctionName(note.get("filter_function_name").toString())
+                        .filterValue(note.get("filter_value").toString())
+                        .build())
+                .toList().toArray(new Rule[0]);
     }
 }

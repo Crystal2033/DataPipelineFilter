@@ -6,6 +6,7 @@ import org.jooq.Record;
 import org.jooq.Result;
 import ru.mai.lessons.rpks.Service;
 import ru.mai.lessons.rpks.impl.repository.DataBaseReader;
+import ru.mai.lessons.rpks.model.Rule;
 
 import java.sql.SQLException;
 
@@ -27,7 +28,7 @@ public class ServiceFiltering implements Service {
     }
 
     private void readDataFromDatabase(){
-        dataBaseReader.readRulesFromDB();
+        Rule[] rules = dataBaseReader.readRulesFromDB();
     }
     @Override
     public void start(Config config) {
