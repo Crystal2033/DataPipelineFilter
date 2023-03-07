@@ -16,48 +16,42 @@ import java.util.concurrent.Executors;
 
 @Slf4j
 public class ServiceFiltering implements Service {
-    /**
-     *
-     * Мб, есть смысл вообще убрать dataBaseReader и сделать try() with resources
-     */
-    private DataBaseReader dataBaseReader;
     private final ConcurrentHashMap<String, Rule> rulesConcurrentMap = new ConcurrentHashMap<>();
 
-    private DataBaseReader initOrGetExistingDBReader(Config configDB){
-        if(dataBaseReader == null){
-            dataBaseReader = DataBaseReader.builder()
-                    .url(configDB.getString("jdbcUrl"))
-                    .userName(configDB.getString("user"))
-                    .password(configDB.getString("password"))
-                    .driver(configDB.getString("driver"))
-                    .additionalDBConfig(configDB.getConfig("additional_info"))
-                    .build();
-        }
-        return dataBaseReader;
+    private DataBaseReader initExistingDBReader(Config configDB){
+        return DataBaseReader.builder()
+                .url(configDB.getString("jdbcUrl"))
+                .userName(configDB.getString("user"))
+                .password(configDB.getString("password"))
+                .driver(configDB.getString("driver"))
+                .additionalDBConfig(configDB.getConfig("additional_info"))
+                .build();
     }
 
-    /**
-     * rules is a NEW rules.
-     * If something exists, it will be replaced.
-     */
+    private void connectToDBAndWork(ExecutorService threadPool, DataBaseReader dataBaseReader){
+        try{
+            if(dataBaseReader.connectToDataBase()){
+                threadPool.submit(new RulesUpdaterThread(rulesConcurrentMap, dataBaseReader));
+            }
+            else{
+                log.error("There is a problem with connection to database.");
+            }
+        }
+        catch(SQLException exc){
+            log.error("There is a problem with getConnection from Hikari.");
+            threadPool.shutdown();
+        }
+    }
 
     @Override
     public void start(Config config) {
-        try(ExecutorService threadPool = Executors.newFixedThreadPool(1)){
-            dataBaseReader = initOrGetExistingDBReader(config.getConfig("db"));
+        try(ExecutorService threadPool = Executors.newFixedThreadPool(1);
+            DataBaseReader dataBaseReader = initExistingDBReader(config.getConfig("db")))
+        {
+            connectToDBAndWork(threadPool, dataBaseReader);
 
-            try{
-                if(dataBaseReader.connectToDataBase()){
-                    threadPool.submit(new RulesUpdaterThread(rulesConcurrentMap, dataBaseReader));
-                }
-                else{
-                    log.error("There is a problem with database.");
-                }
-            }
-            catch(SQLException exc){
-                log.error("There is a problem with database.");
-                threadPool.shutdown();
-            }
+        } catch (SQLException e) {
+            log.error("There is a problem with initializing database.");
         }
 
     }

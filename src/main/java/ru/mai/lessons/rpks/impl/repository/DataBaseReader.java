@@ -20,7 +20,7 @@ import static org.jooq.impl.DSL.field;
 @PlainSQL
 @Slf4j
 @Builder
-public class DataBaseReader implements DbReader {
+public class DataBaseReader implements DbReader, AutoCloseable {
     private final String url;
     private final String userName;
     private final String password;
@@ -79,6 +79,7 @@ public class DataBaseReader implements DbReader {
                 .toList().toArray(new Rule[0]);
     }
 
+    @Override
     public void close() throws SQLException {
         dataSourceConnection.close();
         dataSource.close();
