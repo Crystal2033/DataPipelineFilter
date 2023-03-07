@@ -78,4 +78,9 @@ public class DataBaseReader implements DbReader {
                         .build())
                 .toList().toArray(new Rule[0]);
     }
+
+    public void close() throws SQLException {
+        dataSourceConnection.close();
+        dataSource.close();
+    }
 }
