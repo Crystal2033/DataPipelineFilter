@@ -21,9 +21,8 @@ public class RulesUpdaterThread implements Runnable{
         for(var rule : rules){
             rulesConcurrentMap.put(rule.getFieldName(), rule);
         }
-
-        rulesConcurrentMap.entrySet().stream()
-                .forEach(value -> log.debug(value.getValue().getFieldName()));
+//        rulesConcurrentMap.entrySet().stream()
+//                .forEach(value -> log.debug(value.getValue().toString()));
     }
     @Override
     public void run() {
@@ -34,7 +33,7 @@ public class RulesUpdaterThread implements Runnable{
                 insertNewRulesInMap(rules);
                 log.info("Tick");
                 Thread.sleep(config.getConfig("application")
-                        .getLong("updateIntervalSec") * 20); //TODO: 100
+                        .getLong("updateIntervalSec") * 100);
 
             } catch (InterruptedException e) {
                 log.error("Trouble with sleep of thread. " + e);

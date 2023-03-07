@@ -32,6 +32,7 @@ public class ServiceFiltering implements Service {
         try{
             if(dataBaseReader.connectToDataBase()){
                 threadPool.submit(new RulesUpdaterThread(rulesConcurrentMap, dataBaseReader));
+                Thread.sleep(Long.MAX_VALUE);
             }
             else{
                 log.error("There is a problem with connection to database.");
@@ -40,13 +41,15 @@ public class ServiceFiltering implements Service {
         catch(SQLException exc){
             log.error("There is a problem with getConnection from Hikari.");
             threadPool.shutdown();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 
     @Override
     public void start(Config config) {
-        try(ExecutorService threadPool = Executors.newFixedThreadPool(1);
-            DataBaseReader dataBaseReader = initExistingDBReader(config.getConfig("db")))
+        ExecutorService threadPool = Executors.newFixedThreadPool(1);
+        try(DataBaseReader dataBaseReader = initExistingDBReader(config.getConfig("db")))
         {
             connectToDBAndWork(threadPool, dataBaseReader);
 
