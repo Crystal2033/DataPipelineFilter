@@ -13,6 +13,7 @@ import ru.mai.lessons.rpks.DbReader;
 import ru.mai.lessons.rpks.model.Rule;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import static org.jooq.impl.DSL.field;

@@ -10,13 +10,14 @@ import ru.mai.lessons.rpks.impl.repository.RulesUpdaterThread;
 import ru.mai.lessons.rpks.model.Rule;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Slf4j
 public class ServiceFiltering implements Service {
-    private final ConcurrentHashMap<String, Rule> rulesConcurrentMap = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, List<Rule>> rulesConcurrentMap = new ConcurrentHashMap<>();
 
     private DataBaseReader initExistingDBReader(Config configDB){
         return DataBaseReader.builder()
