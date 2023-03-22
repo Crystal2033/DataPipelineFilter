@@ -2,6 +2,7 @@ package ru.mai.lessons.rpks;
 
 import lombok.extern.slf4j.Slf4j;
 import ru.mai.lessons.rpks.impl.ConfigurationReader;
+import ru.mai.lessons.rpks.impl.MyDbReader;
 import ru.mai.lessons.rpks.impl.ServiceFiltering;
 
 @Slf4j
