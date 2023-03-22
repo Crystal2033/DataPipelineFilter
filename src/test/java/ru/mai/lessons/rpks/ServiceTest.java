@@ -1047,7 +1047,7 @@ class ServiceTest {
 
             for (ConsumerRecord<String, String> consumerRecord : consumerRecordsOther) {
                 assertNotNull(consumerRecord.value());
-                assertEquals(expectedJson, consumerRecord.value());
+                assertEquals(expectedJsonOther, consumerRecord.value());
             }
 
             executor.shutdown();
@@ -1060,8 +1060,8 @@ class ServiceTest {
     }
 
     /**
-     * Тест проверяет следующее правило фильтрации: field1 equals value1,
-     * а затем добавляет ещё одно правило фильтрации: field1 contains value2
+     * Тест проверяет следующее правило фильтрации: field1 contains value1,
+     * а затем добавляет ещё одно правило фильтрации: field1 equals value2
      * Выполняется вставка правил в базу PostgreSQL.
      * Запускается приложение с тестовыми конфигурациями в test/resources/application.conf.
      * Отправляется несколько сообщений во входной топик - одно из них подходит под правило.
@@ -1154,7 +1154,7 @@ class ServiceTest {
 
             for (ConsumerRecord<String, String> consumerRecord : consumerRecordsOther) {
                 assertNotNull(consumerRecord.value());
-                assertEquals(expectedJson, consumerRecord.value());
+                assertEquals(expectedJsonOther, consumerRecord.value());
             }
 
             executor.shutdown();
@@ -1304,9 +1304,9 @@ class ServiceTest {
     private Config replaceConfigForTest(Config config) {
         return config.withValue("kafka.consumer.bootstrap.servers", ConfigValueFactory.fromAnyRef(kafka.getBootstrapServers()))
                 .withValue("db.jdbcUrl", ConfigValueFactory.fromAnyRef(postgreSQL.getJdbcUrl()))
-                .withValue("db.user", ConfigValueFactory.fromAnyRef(postgreSQL.getJdbcUrl()))
-                .withValue("db.password", ConfigValueFactory.fromAnyRef(postgreSQL.getJdbcUrl()))
-                .withValue("db.driver", ConfigValueFactory.fromAnyRef(postgreSQL.getJdbcUrl()))
+                .withValue("db.user", ConfigValueFactory.fromAnyRef(postgreSQL.getUsername()))
+                .withValue("db.password", ConfigValueFactory.fromAnyRef(postgreSQL.getPassword()))
+                .withValue("db.driver", ConfigValueFactory.fromAnyRef(postgreSQL.getDriverClassName()))
                 .withValue("application.updateIntervalSec", ConfigValueFactory.fromAnyRef(10));
     }
 }
