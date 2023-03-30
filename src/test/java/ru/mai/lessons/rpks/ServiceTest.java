@@ -49,7 +49,6 @@ import static org.testcontainers.shaded.org.awaitility.Awaitility.await;
 @Slf4j
 @Testcontainers
 class ServiceTest {
-
     @Container
     private final KafkaContainer kafka = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka"));
 
