@@ -7,10 +7,14 @@ import org.jooq.*;
 import org.jooq.Record;
 import org.jooq.impl.DSL;
 import ru.mai.lessons.rpks.DbReader;
+import ru.mai.lessons.rpks.jooq.model.Tables;
+import ru.mai.lessons.rpks.jooq.model.tables.FilterRules;
+import ru.mai.lessons.rpks.jooq.model.tables.records.FilterRulesRecord;
 import ru.mai.lessons.rpks.model.Rule;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 
 public final class DbReaderImpl implements DbReader {
@@ -42,6 +46,16 @@ public final class DbReaderImpl implements DbReader {
     private Rule[] tryToReadRulesFromDB() throws SQLException {
         Connection connection = this.hikariDataSource.getConnection();
         DSLContext dslContext = DSL.using(connection, SQLDialect.POSTGRES);
+
+        List<FilterRules> result = dslContext
+                .select()
+                .from(Tables.FILTER_RULES)
+                .fetchInto(FilterRules.class);
+
+        for (FilterRules rules : result) {
+            System.out.println(rules.FIELD_NAME);
+        }
+
 
         return new Rule[0];
     }

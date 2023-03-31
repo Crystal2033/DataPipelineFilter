@@ -1,15 +1,14 @@
 package ru.mai.lessons.rpks.impl;
 
 import lombok.Builder;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import ru.mai.lessons.rpks.DbReader;
 import ru.mai.lessons.rpks.KafkaReader;
-import ru.mai.lessons.rpks.KafkaWriter;
 import ru.mai.lessons.rpks.model.Message;
 
 import java.time.Duration;
@@ -21,7 +20,7 @@ import java.util.UUID;
 @Slf4j
 @Builder
 public final class KafkaReaderImpl implements KafkaReader {
-    private final KafkaWriter kafkaWriter;
+    private final DbReader.KafkaWriter kafkaWriter;
     private final String topic;
     private final String bootstrapServers;
 

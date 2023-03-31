@@ -1,7 +1,7 @@
 package ru.mai.lessons.rpks.impl;
 
 import lombok.Builder;
-import ru.mai.lessons.rpks.KafkaWriter;
+import ru.mai.lessons.rpks.DbReader;
 import ru.mai.lessons.rpks.RuleProcessor;
 import ru.mai.lessons.rpks.model.Message;
 import ru.mai.lessons.rpks.model.Rule;
@@ -9,7 +9,7 @@ import ru.mai.lessons.rpks.model.Rule;
 import java.util.function.Supplier;
 
 @Builder
-public final class KafkaWriterImpl implements KafkaWriter {
+public final class KafkaWriterImpl implements DbReader.KafkaWriter {
     private final RuleProcessor ruleProcessor;
     private final Supplier<Rule[]> rulesGetter;
     private final String topic;

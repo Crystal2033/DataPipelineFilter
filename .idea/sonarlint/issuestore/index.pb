@@ -11,3 +11,17 @@ c
 gradlew,5\b\5bbfa66edb4db3c7c33c5181f43510990d3307f9
 X
 (gradle/wrapper/gradle-wrapper.properties,f\b\fbe448ebfc3eb2d4e308f6b8b043666f5b57235e
+b
+2src/test/java/ru/mai/lessons/rpks/ServiceTest.java,0\1\013917df0bc9067734233ebb221e5d86f83a7212
+a
+1src/main/java/ru/mai/lessons/rpks/model/Rule.java,1\8\18062bf50ae937e2bc5df53c64b13687f1d60ab2
+i
+9src/main/java/ru/mai/lessons/rpks/tables/FilterRules.java,4\e\4eadbcbf6902e6bb71914fd644fb4a8cf6707e55
+b
+2src/main/java/ru/mai/lessons/rpks/tables/Keys.java,d\9\d92c68bed58ad427bde7715bff89c0a141abad03
+l
+<src/main/java/ru/mai/lessons/rpks/tables/records/Public.java,d\e\deefadc0febe9d8741dbfe16ee9c097d45e932ed
+w
+Gsrc/main/java/ru/mai/lessons/rpks/tables/records/FilterRulesRecord.java,b\d\bdd5003e886c13169f48a885c26f91317b472dbe
+d
+4src/main/java/ru/mai/lessons/rpks/tables/Tables.java,2\c\2c0981147d18ce49ac81b6f014fa32aca85dd45f

@@ -26,20 +26,20 @@ public final class ServiceFiltering implements Service {
         dbReader = new DbReaderImpl(config.getConfig(DATA_BASE_CONFIG_NAME));
         initScheduledExecutorServiceForRuleUpdate(config.getConfig(RULE_INTERVAL_CONFIG_NAME));
 
-        KafkaWriter kafkaWriter = KafkaWriterImpl.builder()
-                .ruleProcessor(ruleProcessor)
-                .rulesGetter(this::getRules)
-                .topic(TOPIC)
-                .bootstrapServers(BOOTSTRAP_SERVICES)
-                .build();
+//        DbReader.KafkaWriter kafkaWriter = KafkaWriterImpl.builder()
+//                .ruleProcessor(ruleProcessor)
+//                .rulesGetter(this::getRules)
+//                .topic(TOPIC)
+//                .bootstrapServers(BOOTSTRAP_SERVICES)
+//                .build();
+//
+//        KafkaReader kafkaReader = KafkaReaderImpl.builder()
+//                .kafkaWriter(kafkaWriter)
+//                .bootstrapServers(TOPIC)
+//                .topic(BOOTSTRAP_SERVICES)
+//                .build();
 
-        KafkaReader kafkaReader = KafkaReaderImpl.builder()
-                .kafkaWriter(kafkaWriter)
-                .bootstrapServers(TOPIC)
-                .topic(BOOTSTRAP_SERVICES)
-                .build();
-
-        kafkaReader.processing();
+        //kafkaReader.processing();
     }
 
     private void initScheduledExecutorServiceForRuleUpdate(Config ruleIntervalConfig) {
