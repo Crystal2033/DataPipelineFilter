@@ -3,8 +3,9 @@ package ru.mai.lessons.rpks.impl;
 import com.typesafe.config.Config;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import lombok.Builder;
-import lombok.RequiredArgsConstructor;
+import org.jooq.*;
+import org.jooq.Record;
+import org.jooq.impl.DSL;
 import ru.mai.lessons.rpks.DbReader;
 import ru.mai.lessons.rpks.model.Rule;
 
@@ -13,38 +14,34 @@ import java.sql.SQLException;
 
 
 public final class DbReaderImpl implements DbReader {
-    private final Config config;
-    private HikariDataSource ds;
-    private final HikariConfig dataBaseConfig;
-    private Connection connection;
+    private HikariDataSource hikariDataSource;
 
-    public DbReaderImpl(Config config)  {
-        this.config = config;
+    public DbReaderImpl(Config dbConfig)  {
+        String url = dbConfig.getString("jdbcUrl");
+        String user = dbConfig.getString("user");
+        String password = dbConfig.getString("password");
+        String driver = dbConfig.getString("driver");
 
-        String url = config.getString("jdbcUrl");
-        String user = config.getString("user");
-        String password = config.getString("password");
-        String driver = config.getString("driver");
-
-        dataBaseConfig = new HikariConfig();
+        HikariConfig dataBaseConfig = new HikariConfig();
         dataBaseConfig.setJdbcUrl(url);
+        dataBaseConfig.setUsername(user);
         dataBaseConfig.setPassword(password);
         dataBaseConfig.setDriverClassName(driver);
-        dataBaseConfig.addDataSourceProperty( "cachePrepStmts" , "true" );
-        dataBaseConfig.addDataSourceProperty( "prepStmtCacheSize" , "250" );
-        dataBaseConfig.addDataSourceProperty( "prepStmtCacheSqlLimit" , "2048" );
 
-
-        try {
-            ds = new HikariDataSource(dataBaseConfig);
-            connection = ds.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        this.hikariDataSource = new HikariDataSource(dataBaseConfig);
     }
 
     @Override
     public Rule[] readRulesFromDB() {
+        try {
+            return tryToReadRulesFromDB();
+        } catch (SQLException e) {
+            throw new IllegalStateException("Can't get rules from DB!");
+        }
+    }
+    private Rule[] tryToReadRulesFromDB() throws SQLException {
+        Connection connection = this.hikariDataSource.getConnection();
+        DSLContext dslContext = DSL.using(connection, SQLDialect.POSTGRES);
 
         return new Rule[0];
     }

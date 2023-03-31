@@ -22,17 +22,23 @@ public class MyTest {
 
         HikariConfig dataBaseConfig = new HikariConfig();
         dataBaseConfig.setJdbcUrl(url);
+        dataBaseConfig.setUsername(user);
         dataBaseConfig.setPassword(password);
         dataBaseConfig.setDriverClassName(driver);
 
-        try {
-            HikariDataSource ds = new HikariDataSource(dataBaseConfig);
-            Connection connection = ds.getConnection();
-            assert(true);
+        try (
+                HikariDataSource ds = new HikariDataSource(dataBaseConfig);
+                Connection connection = ds.getConnection();
+        ) {
+            assert (true);
         } catch (SQLException e) {
             e.printStackTrace();
-            assert(false);
+            assert (false);
         }
     }
+
+
+
+
 
 }

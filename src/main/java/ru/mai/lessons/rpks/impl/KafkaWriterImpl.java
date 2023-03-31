@@ -1,7 +1,6 @@
 package ru.mai.lessons.rpks.impl;
 
-import lombok.RequiredArgsConstructor;
-import ru.mai.lessons.rpks.DbReader;
+import lombok.Builder;
 import ru.mai.lessons.rpks.KafkaWriter;
 import ru.mai.lessons.rpks.RuleProcessor;
 import ru.mai.lessons.rpks.model.Message;
@@ -9,16 +8,22 @@ import ru.mai.lessons.rpks.model.Rule;
 
 import java.util.function.Supplier;
 
-@RequiredArgsConstructor
+@Builder
 public final class KafkaWriterImpl implements KafkaWriter {
     private final RuleProcessor ruleProcessor;
-    private final Supplier<Rule[]> rulesProducer;
+    private final Supplier<Rule[]> rulesGetter;
+    private final String topic;
+    private final String bootstrapServers;
 
     @Override
     public void processing(Message message) {
-        Message checkedMessage = ruleProcessor.processing(message, rulesProducer.get());
+        Message checkedMessage = ruleProcessor.processing(message, rulesGetter.get());
         if (checkedMessage.isFilterState()) {
-            // sent
+            send(message);
         }
+    }
+
+    private void send(Message message) {
+
     }
 }
