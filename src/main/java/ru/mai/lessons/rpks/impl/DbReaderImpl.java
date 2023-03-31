@@ -47,16 +47,10 @@ public final class DbReaderImpl implements DbReader {
         Connection connection = this.hikariDataSource.getConnection();
         DSLContext dslContext = DSL.using(connection, SQLDialect.POSTGRES);
 
-        List<FilterRules> result = dslContext
+        return dslContext
                 .select()
                 .from(Tables.FILTER_RULES)
-                .fetchInto(FilterRules.class);
-
-        for (FilterRules rules : result) {
-            System.out.println(rules.FIELD_NAME);
-        }
-
-
-        return new Rule[0];
+                .fetchInto(Rule.class)
+                .toArray(Rule[]::new);
     }
 }
