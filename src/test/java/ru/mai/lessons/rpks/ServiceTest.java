@@ -48,6 +48,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @Slf4j
 @Testcontainers
 class ServiceTest {
+
     @Container
     private final KafkaContainer kafka = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka"));
 
@@ -1168,6 +1169,8 @@ class ServiceTest {
     }
 
     private KafkaConsumer<String, String> createConsumer() {
+        log.info("create test consumer. Bootstrap:" + kafka.getBootstrapServers());
+
         return new KafkaConsumer<>(
                 ImmutableMap.of(
                         ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafka.getBootstrapServers(),
@@ -1180,6 +1183,8 @@ class ServiceTest {
     }
 
     private KafkaProducer<String, String> createProducer() {
+        log.info("create test producer. Bootstrap:" + kafka.getBootstrapServers());
+
         return new KafkaProducer<>(
                 ImmutableMap.of(
                         ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafka.getBootstrapServers(),

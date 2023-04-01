@@ -7,8 +7,8 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
-import ru.mai.lessons.rpks.DbReader;
 import ru.mai.lessons.rpks.KafkaReader;
+import ru.mai.lessons.rpks.KafkaWriter;
 import ru.mai.lessons.rpks.model.Message;
 
 import java.time.Duration;
@@ -20,8 +20,10 @@ import java.util.UUID;
 @Slf4j
 @Builder
 public final class KafkaReaderImpl implements KafkaReader {
-    private final DbReader.KafkaWriter kafkaWriter;
+    private final KafkaWriter kafkaWriter;
     private final String topic;
+    private final String kafkaOffset;
+    private final String groupId;
     private final String bootstrapServers;
 
     private boolean isExit;
@@ -30,15 +32,17 @@ public final class KafkaReaderImpl implements KafkaReader {
     public void processing() {
         KafkaConsumer<String, String> kafkaConsumer = new KafkaConsumer<>(
                 Map.of(
-                        ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers,
+                        ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, this.bootstrapServers,
                         ConsumerConfig.GROUP_ID_CONFIG, "tc-" + UUID.randomUUID(),
-                        ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest"
+                        ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, this.kafkaOffset
                 ),
                 new StringDeserializer(),
                 new StringDeserializer()
         );
 
         kafkaConsumer.subscribe(Collections.singletonList(topic));
+
+        log.info("init readerImpl");
 
         try (kafkaConsumer) {
             while (!isExit) {

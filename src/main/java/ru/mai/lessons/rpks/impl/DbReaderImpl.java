@@ -3,24 +3,23 @@ package ru.mai.lessons.rpks.impl;
 import com.typesafe.config.Config;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import org.jooq.*;
-import org.jooq.Record;
+import lombok.extern.slf4j.Slf4j;
+import org.jooq.DSLContext;
+import org.jooq.SQLDialect;
 import org.jooq.impl.DSL;
 import ru.mai.lessons.rpks.DbReader;
 import ru.mai.lessons.rpks.jooq.model.Tables;
-import ru.mai.lessons.rpks.jooq.model.tables.FilterRules;
-import ru.mai.lessons.rpks.jooq.model.tables.records.FilterRulesRecord;
 import ru.mai.lessons.rpks.model.Rule;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
 
 
+@Slf4j
 public final class DbReaderImpl implements DbReader {
-    private HikariDataSource hikariDataSource;
+    private final HikariDataSource hikariDataSource;
 
-    public DbReaderImpl(Config dbConfig)  {
+    public DbReaderImpl(Config dbConfig) {
         String url = dbConfig.getString("jdbcUrl");
         String user = dbConfig.getString("user");
         String password = dbConfig.getString("password");
@@ -43,14 +42,15 @@ public final class DbReaderImpl implements DbReader {
             throw new IllegalStateException("Can't get rules from DB!");
         }
     }
-    private Rule[] tryToReadRulesFromDB() throws SQLException {
-        Connection connection = this.hikariDataSource.getConnection();
-        DSLContext dslContext = DSL.using(connection, SQLDialect.POSTGRES);
 
-        return dslContext
-                .select()
-                .from(Tables.FILTER_RULES)
-                .fetchInto(Rule.class)
-                .toArray(Rule[]::new);
+    private Rule[] tryToReadRulesFromDB() throws SQLException {
+        try (Connection connection = this.hikariDataSource.getConnection()) {
+            DSLContext dslContext = DSL.using(connection, SQLDialect.POSTGRES);
+            return dslContext
+                    .select()
+                    .from(Tables.FILTER_RULES)
+                    .fetchInto(Rule.class)
+                    .toArray(Rule[]::new);
+        }
     }
 }

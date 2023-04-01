@@ -1,18 +1,21 @@
 package ru.mai.lessons.rpks.impl;
 
 import com.typesafe.config.Config;
+import lombok.extern.slf4j.Slf4j;
 import ru.mai.lessons.rpks.*;
 import ru.mai.lessons.rpks.model.Rule;
 
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 public final class ServiceFiltering implements Service {
     private static final String DATA_BASE_CONFIG_NAME = "db";
+    private static final String KAFKA_CONFIG_NAME = "kafka";
     private static final String RULE_INTERVAL_CONFIG_NAME = "application";
-    private static final String TOPIC = "";
-    private static final String BOOTSTRAP_SERVICES = "";
+    private static final String TOPIC = "test_topic";
 
     private Rule[] rules;
     private DbReader dbReader;
@@ -25,26 +28,11 @@ public final class ServiceFiltering implements Service {
     public void start(Config config) {
         dbReader = new DbReaderImpl(config.getConfig(DATA_BASE_CONFIG_NAME));
         initScheduledExecutorServiceForRuleUpdate(config.getConfig(RULE_INTERVAL_CONFIG_NAME));
-
-//        DbReader.KafkaWriter kafkaWriter = KafkaWriterImpl.builder()
-//                .ruleProcessor(ruleProcessor)
-//                .rulesGetter(this::getRules)
-//                .topic(TOPIC)
-//                .bootstrapServers(BOOTSTRAP_SERVICES)
-//                .build();
-//
-//        KafkaReader kafkaReader = KafkaReaderImpl.builder()
-//                .kafkaWriter(kafkaWriter)
-//                .bootstrapServers(TOPIC)
-//                .topic(BOOTSTRAP_SERVICES)
-//                .build();
-
-        //kafkaReader.processing();
+        startKafka(config.getConfig(KAFKA_CONFIG_NAME));
     }
 
     private void initScheduledExecutorServiceForRuleUpdate(Config ruleIntervalConfig) {
-        final String updateIntervalFiledName = "updateIntervalSec";
-        String interval = ruleIntervalConfig.getString(updateIntervalFiledName);
+        String interval = ruleIntervalConfig.getString("updateIntervalSec");
 
         executorService.scheduleAtFixedRate(
                 this::updateRules,
@@ -54,10 +42,41 @@ public final class ServiceFiltering implements Service {
         );
     }
 
+    private void startKafka(Config kafkaConfig) {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.submit(() -> {
+            Config producerConfig = kafkaConfig.getConfig("producer");
+            Config consumerConfig = kafkaConfig.getConfig("consumer");
+
+            log.info("create producerImpl. Bootstrap:" + producerConfig.getString("bootstrap.servers"));
+            log.info("create consumerImpl. Bootstrap:" + consumerConfig.getString("bootstrap.servers"));
+
+
+            KafkaWriter kafkaWriter = KafkaWriterImpl.builder()
+                    .ruleProcessor(ruleProcessor)
+                    .rulesGetter(this::getRules)
+                    .topic(producerConfig.getString("topic"))
+                    .bootstrapServers(producerConfig.getString("bootstrap.servers"))
+                    .build();
+
+            KafkaReader kafkaReader = KafkaReaderImpl.builder()
+                    .kafkaWriter(kafkaWriter)
+                    .topic(consumerConfig.getString("topic"))
+                    .groupId(consumerConfig.getString("group.id"))
+                    .kafkaOffset(consumerConfig.getString("auto.offset.reset"))
+                    .bootstrapServers(consumerConfig.getString("bootstrap.servers"))
+                    .build();
+
+            kafkaReader.processing();
+        });
+    }
+
     private void updateRules() {
+        log.info("Start reading rules from DB");
         synchronized (lock) {
             rules = dbReader.readRulesFromDB();
         }
+        log.info("End reading rules from DB");
     }
 
     private Rule[] getRules() {

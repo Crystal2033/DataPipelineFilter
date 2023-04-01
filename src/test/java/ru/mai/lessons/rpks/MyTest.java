@@ -8,6 +8,7 @@ import org.jooq.SQLDialect;
 import org.jooq.impl.DSL;
 import org.junit.jupiter.api.Test;
 import ru.mai.lessons.rpks.impl.ConfigReaderImpl;
+import ru.mai.lessons.rpks.impl.KafkaWriterImpl;
 import ru.mai.lessons.rpks.jooq.model.Tables;
 import ru.mai.lessons.rpks.jooq.model.tables.FilterRules;
 import ru.mai.lessons.rpks.model.Rule;
@@ -19,8 +20,6 @@ import java.util.List;
 public class MyTest {
     @Test
     void myTestTryToParseConfigAndRunDB() throws SQLException {
-
-
         ConfigReader configReader = new ConfigReaderImpl();
         Config config = configReader.loadConfig().getConfig("db");
 
@@ -50,7 +49,12 @@ public class MyTest {
                 System.out.println(rule.getFieldName());
             }
         }
+    }
+
+    @Test
+    void sendMsg() {
 
     }
+
 
 }
