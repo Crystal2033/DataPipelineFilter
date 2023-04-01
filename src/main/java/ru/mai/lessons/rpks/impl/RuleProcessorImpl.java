@@ -14,18 +14,10 @@ import java.util.function.BiPredicate;
 @RequiredArgsConstructor
 public final class RuleProcessorImpl implements RuleProcessor {
     private static final Map<String, BiPredicate<String, String>> functionNameAndItsBiPredicate = Map.of(
-            "equals", (fieldValue, filterValue) -> {
-                return filterValue.equals(fieldValue);
-            },
-            "contains", (fieldValue, filterValue) -> {
-                return fieldValue != null && fieldValue.contains(filterValue);
-            },
-            "not_equals", (fieldValue, filterValue) -> {
-                return !filterValue.equals("") && !filterValue.equals(fieldValue);
-            },
-            "not_contains", (fieldValue, filterValue) -> {
-                return !fieldValue.equals("") || !fieldValue.contains(filterValue);
-            }
+            "equals", (fieldValue, filterValue) -> filterValue.equals(fieldValue),
+            "contains", (fieldValue, filterValue) -> fieldValue != null && fieldValue.contains(filterValue),
+            "not_equals", (fieldValue, filterValue) -> fieldValue != null && !fieldValue.equals("") && !filterValue.equals(fieldValue),
+            "not_contains", (fieldValue, filterValue) -> fieldValue != null && !fieldValue.equals("") && !fieldValue.contains(filterValue)
     );
 
     @Override
@@ -60,7 +52,10 @@ public final class RuleProcessorImpl implements RuleProcessor {
         try {
             Object object = new JSONParser().parse(jsonString);
             JSONObject jsonObject = (JSONObject) object;
-            return (String) jsonObject.get(fieldName);
+
+            return (jsonObject.get(fieldName) == null)
+                    ? ""
+                    : jsonObject.get(fieldName).toString();
         } catch (ParseException e) {
             return "";
         }

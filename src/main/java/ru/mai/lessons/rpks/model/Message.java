@@ -1,6 +1,5 @@
 package ru.mai.lessons.rpks.model;
 
-import lombok.Builder;
 import lombok.Data;
 
 @Data

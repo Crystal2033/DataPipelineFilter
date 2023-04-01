@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import ru.mai.lessons.rpks.*;
 import ru.mai.lessons.rpks.model.Rule;
 
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -15,7 +14,6 @@ public final class ServiceFiltering implements Service {
     private static final String DATA_BASE_CONFIG_NAME = "db";
     private static final String KAFKA_CONFIG_NAME = "kafka";
     private static final String RULE_INTERVAL_CONFIG_NAME = "application";
-    private static final String TOPIC = "test_topic";
 
     private Rule[] rules;
     private DbReader dbReader;

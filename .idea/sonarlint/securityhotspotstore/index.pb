@@ -1,33 +1,11 @@
 
 7
 gradlew,5\b\5bbfa66edb4db3c7c33c5181f43510990d3307f9
-d
-4src/main/java/ru/mai/lessons/rpks/model/Message.java,7\6\76fa569d290029216e6010d8fcc02d733fb21523
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 ?
 jooq-config.xml,5\1\5100a967881b0f45dd147785f4d5db7ea2f9fc52
-l
-<src/main/java/ru/mai/lessons/rpks/impl/ConfigReaderImpl.java,c\5\c5d911d1d539e7ec475a9c102882c099e7991711
-h
-8src/main/java/ru/mai/lessons/rpks/jooq/model/Tables.java,9\a\9af7177eb2429e0cc3d5780a8cfe9f02e2ed8a2d
-t
-Dsrc/main/java/ru/mai/lessons/rpks/jooq/model/tables/FilterRules.java,a\e\ae76a0c5a879a60465271ce6790a324d1f63457a
 X
 (gradle/wrapper/gradle-wrapper.properties,f\b\fbe448ebfc3eb2d4e308f6b8b043666f5b57235e
-‚
-Rsrc/main/java/ru/mai/lessons/rpks/jooq/model/tables/records/FilterRulesRecord.java,6\4\64e3947713f46e039dfde08b36cc6060a6a9aea1
-p
-@src/main/java/ru/mai/lessons/rpks/jooq/model/DefaultCatalog.java,e\a\eab52651c964bcad1c2c2eb62e169035b5459fc6
-f
-6src/main/java/ru/mai/lessons/rpks/jooq/model/Keys.java,7\d\7db0fea9b21e87d71f7ab309f573e9ac5839c7a1
-h
-8src/main/java/ru/mai/lessons/rpks/jooq/model/Public.java,a\9\a986708f366547e04a70e80ff17d4dcbdfd883ea
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
-_
-/src/main/java/ru/mai/lessons/rpks/DbReader.java,6\f\6f0142a0881a68180c4fddb66eb92c7bc9df8a2f
-b
-2src/main/java/ru/mai/lessons/rpks/KafkaWriter.java,6\7\67fb83b0c62ce1a45e1b4c0c0f68e80f8a68e515
-]
--src/test/java/ru/mai/lessons/rpks/MyTest.java,0\2\02d4123034d725ccfd6f6d50be8811efae6137ca
