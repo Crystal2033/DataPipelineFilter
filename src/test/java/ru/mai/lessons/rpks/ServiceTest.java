@@ -174,7 +174,9 @@ class ServiceTest {
             String expectedJson = "{\"name\":\"alex\", \"age\":18, \"sex\":\"M\"}";
             producer.send(new ProducerRecord<>(topicIn, "expected", expectedJson)).get();
 
-            Future<ConsumerRecords<String, String>> result = executor.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
+            Future<ConsumerRecords<String, String>> result = executor.submit(() ->
+                    getConsumerRecordsOutputTopic(consumer, 10, 1)
+            );
 
             var consumerRecords = result.get(60, TimeUnit.SECONDS);
 

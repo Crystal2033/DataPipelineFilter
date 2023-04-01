@@ -14,7 +14,8 @@ import ru.mai.lessons.rpks.model.Message;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.Map;
-import java.util.UUID;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 @Slf4j
@@ -27,24 +28,28 @@ public final class KafkaReaderImpl implements KafkaReader {
     private final String bootstrapServers;
 
     private boolean isExit;
+    private KafkaConsumer<String, String> kafkaConsumer;
+    private ExecutorService executor;
 
     @Override
     public void processing() {
-        KafkaConsumer<String, String> kafkaConsumer = new KafkaConsumer<>(
+        kafkaConsumer = new KafkaConsumer<>(
                 Map.of(
                         ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, this.bootstrapServers,
-                        ConsumerConfig.GROUP_ID_CONFIG, "tc-" + UUID.randomUUID(),
+                        ConsumerConfig.GROUP_ID_CONFIG, this.groupId,
                         ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, this.kafkaOffset
                 ),
                 new StringDeserializer(),
                 new StringDeserializer()
         );
 
+        log.info("consumer topic:" + topic);
         kafkaConsumer.subscribe(Collections.singletonList(topic));
 
         log.info("init readerImpl");
 
-        try (kafkaConsumer) {
+        executor = Executors.newSingleThreadExecutor();
+        executor.submit(() -> {
             while (!isExit) {
                 ConsumerRecords<String, String> consumerRecords = kafkaConsumer.poll(Duration.ofMillis(100));
                 for (ConsumerRecord<String, String> consumerRecord : consumerRecords) {
@@ -57,6 +62,9 @@ public final class KafkaReaderImpl implements KafkaReader {
                 }
             }
             log.info("Read is done!");
-        }
+
+            kafkaConsumer.close();
+            executor.shutdown();
+        });
     }
 }

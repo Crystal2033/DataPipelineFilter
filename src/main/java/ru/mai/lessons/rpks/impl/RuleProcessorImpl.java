@@ -8,17 +8,24 @@ import ru.mai.lessons.rpks.RuleProcessor;
 import ru.mai.lessons.rpks.model.Message;
 import ru.mai.lessons.rpks.model.Rule;
 
-import java.util.Arrays;
 import java.util.Map;
 import java.util.function.BiPredicate;
 
 @RequiredArgsConstructor
 public final class RuleProcessorImpl implements RuleProcessor {
     private static final Map<String, BiPredicate<String, String>> functionNameAndItsBiPredicate = Map.of(
-            "equals", (fieldValue, filterValue) -> filterValue.equals(fieldValue),
-            "contains", (fieldValue, filterValue) -> filterValue.contains(fieldValue),
-            "not_equals", (fieldValue, filterValue) -> !filterValue.equals(fieldValue),
-            "not_contains", (fieldValue, filterValue) -> !filterValue.contains(fieldValue)
+            "equals", (fieldValue, filterValue) -> {
+                return filterValue.equals(fieldValue);
+            },
+            "contains", (fieldValue, filterValue) -> {
+                return fieldValue != null && fieldValue.contains(filterValue);
+            },
+            "not_equals", (fieldValue, filterValue) -> {
+                return !filterValue.equals("") && !filterValue.equals(fieldValue);
+            },
+            "not_contains", (fieldValue, filterValue) -> {
+                return !fieldValue.equals("") || !fieldValue.contains(filterValue);
+            }
     );
 
     @Override
@@ -28,13 +35,15 @@ public final class RuleProcessorImpl implements RuleProcessor {
             return message;
         }
 
-        Arrays
-                .stream(rules)
-                .forEach(rule -> checkMessage(message, rule));
+        for (Rule rule : rules) {
+            if (!setMessageState(message, rule)) {
+                break;
+            }
+        }
         return message;
     }
 
-    private void checkMessage(Message message, Rule rule) {
+    private boolean setMessageState(Message message, Rule rule) {
         BiPredicate<String, String> fieldValueChecker
                 = functionNameAndItsBiPredicate.get(rule.getFilterFunctionName());
 
@@ -43,6 +52,8 @@ public final class RuleProcessorImpl implements RuleProcessor {
 
         boolean messageState = fieldValueChecker.test(fieldValue, filterValue);
         message.setFilterState(messageState);
+
+        return messageState;
     }
 
     private String getFieldValueFromJSON(String jsonString, String fieldName) {

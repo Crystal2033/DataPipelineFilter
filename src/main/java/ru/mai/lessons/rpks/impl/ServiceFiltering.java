@@ -43,32 +43,25 @@ public final class ServiceFiltering implements Service {
     }
 
     private void startKafka(Config kafkaConfig) {
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        executor.submit(() -> {
-            Config producerConfig = kafkaConfig.getConfig("producer");
-            Config consumerConfig = kafkaConfig.getConfig("consumer");
+        Config producerConfig = kafkaConfig.getConfig("producer");
+        Config consumerConfig = kafkaConfig.getConfig("consumer");
 
-            log.info("create producerImpl. Bootstrap:" + producerConfig.getString("bootstrap.servers"));
-            log.info("create consumerImpl. Bootstrap:" + consumerConfig.getString("bootstrap.servers"));
+        KafkaWriter kafkaWriter = KafkaWriterImpl.builder()
+                .ruleProcessor(ruleProcessor)
+                .rulesGetter(this::getRules)
+                .topic(producerConfig.getString("topic"))
+                .bootstrapServers(producerConfig.getString("bootstrap.servers"))
+                .build();
 
+        KafkaReader kafkaReader = KafkaReaderImpl.builder()
+                .kafkaWriter(kafkaWriter)
+                .topic(consumerConfig.getString("topic"))
+                .groupId(consumerConfig.getString("group.id"))
+                .kafkaOffset(consumerConfig.getString("auto.offset.reset"))
+                .bootstrapServers(consumerConfig.getString("bootstrap.servers"))
+                .build();
 
-            KafkaWriter kafkaWriter = KafkaWriterImpl.builder()
-                    .ruleProcessor(ruleProcessor)
-                    .rulesGetter(this::getRules)
-                    .topic(producerConfig.getString("topic"))
-                    .bootstrapServers(producerConfig.getString("bootstrap.servers"))
-                    .build();
-
-            KafkaReader kafkaReader = KafkaReaderImpl.builder()
-                    .kafkaWriter(kafkaWriter)
-                    .topic(consumerConfig.getString("topic"))
-                    .groupId(consumerConfig.getString("group.id"))
-                    .kafkaOffset(consumerConfig.getString("auto.offset.reset"))
-                    .bootstrapServers(consumerConfig.getString("bootstrap.servers"))
-                    .build();
-
-            kafkaReader.processing();
-        });
+        kafkaReader.processing();
     }
 
     private void updateRules() {
@@ -88,5 +81,5 @@ public final class ServiceFiltering implements Service {
         }
     }
 
-
 }
+
