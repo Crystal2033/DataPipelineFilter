@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/JavaServiceFiltering.iml" filepath="$PROJECT_DIR$/.idea/JavaServiceFiltering.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/JavaServiceFiltering.iml" filepath="$PROJECT_DIR$/.idea/modules/JavaServiceFiltering.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/JavaServiceFiltering.main.iml" filepath="$PROJECT_DIR$/.idea/modules/JavaServiceFiltering.main.iml" />
     </modules>
   </component>
 </project>

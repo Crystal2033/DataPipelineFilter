@@ -42,7 +42,7 @@ public class RulesUpdaterThread implements Runnable{
                 insertNewRulesInMap(rules);
                 log.info("Tick");
                 Thread.sleep(config.getConfig("application")
-                        .getLong("updateIntervalSec") * 100000);
+                        .getLong("updateIntervalSec") * 1000);
 
             } catch (InterruptedException e) {
                 log.error("Trouble with sleep of thread. " + e);

@@ -7,8 +7,6 @@ w
 G.idea/sonarlint/issuestore/5/b/5bbfa66edb4db3c7c33c5181f43510990d3307f9,f\7\f7819ea138c33fec28e7e536cb2de34db38fc121
 [
 +.idea/modules/JavaServiceFiltering.main.iml,5\b\5b8cded5917c6c1284bb690a29ac65204d0155d7
-\
-,.idea/inspectionProfiles/Project_Default.xml,4\9\496a238a6afa168dbaf6efd37bb459331589579c
 X
 (gradle/wrapper/gradle-wrapper.properties,f\b\fbe448ebfc3eb2d4e308f6b8b043666f5b57235e
 ?
@@ -23,15 +21,7 @@ R
 "src/test/resources/init_script.sql,b\7\b7eb138a3c3bd3c2f38ffcf9416535fba65cb90a
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
-c
-3src/main/java/ru/mai/lessons/rpks/ConfigReader.java,a\6\a63d6f135ac04befd116d8e1f31aa21b752441da
-_
-/src/main/java/ru/mai/lessons/rpks/DbReader.java,6\f\6f0142a0881a68180c4fddb66eb92c7bc9df8a2f
 d
 4src/main/java/ru/mai/lessons/rpks/RuleProcessor.java,4\4\445e26ecac929d5e8d1ebf8b919dce86f17d39ea
-^
-.src/main/java/ru/mai/lessons/rpks/Service.java,d\1\d1a3ea2a4104e7c4b282edebb124a7f189a5c9df
 L
 .github/workflows/gradle.yml,c\3\c36c878e4a824e41b1b476ece36b9a80ca94ffec
-b
-2src/test/java/ru/mai/lessons/rpks/ServiceTest.java,0\1\013917df0bc9067734233ebb221e5d86f83a7212

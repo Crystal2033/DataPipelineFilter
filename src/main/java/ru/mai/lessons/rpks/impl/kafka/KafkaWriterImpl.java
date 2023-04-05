@@ -1,5 +1,7 @@
 package ru.mai.lessons.rpks.impl.kafka;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -18,14 +20,14 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 @Slf4j
-@RequiredArgsConstructor
+@Builder
+@AllArgsConstructor
 public class KafkaWriterImpl implements KafkaWriter {
-    private final String topic;
-    private final String bootstrapServers;
-    @Override
-    public void processing(Message message) {
+
+    private KafkaProducer<String, String> kafkaProducer;
+    public void initKafkaReader() {
         log.info("Start write message in kafka topic {}", topic);
-        KafkaProducer<String, String> kafkaProducer = new KafkaProducer<>(
+        kafkaProducer = new KafkaProducer<>(
                 Map.of(
                         ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers,
                         ConsumerConfig.CLIENT_ID_CONFIG, UUID.randomUUID().toString()
@@ -33,34 +35,21 @@ public class KafkaWriterImpl implements KafkaWriter {
                 new StringSerializer(),
                 new StringSerializer()
         );
+    }
+    private final String topic;
+    private final String bootstrapServers;
+    @Override
+    public void processing(Message message) {
+        Future<RecordMetadata> response = null;
 
-        try (kafkaProducer;
-             Scanner scanner = new Scanner(System.in)) {
-            String inputData;
-            do {
-                inputData = scanner.nextLine();
-                String[] keyValue = inputData.split(":");
-
-                Future<RecordMetadata> response = null;
-
-                if (keyValue.length == 2) {
-                    response = kafkaProducer.send(new ProducerRecord<>(topic, keyValue[0], keyValue[1]));
-                } else if (keyValue.length == 1) {
-                    response = kafkaProducer.send(new ProducerRecord<>(topic, keyValue[0]));
-                } else {
-                    log.error("Invalid input data: {}", inputData);
-                }
-
-                Optional.ofNullable(response).ifPresent(rsp -> {
-                    try {
-                        log.info("Message send {}", rsp.get());
-                    } catch (InterruptedException | ExecutionException e) {
-                        log.error("Error sending message ", e);
-                        Thread.currentThread().interrupt();
-                    }
-                });
-            } while (!inputData.equals("$exit"));
-
-        }
+        response = kafkaProducer.send(new ProducerRecord<>(topic, message.getValue()));
+        Optional.ofNullable(response).ifPresent(rsp -> {
+            try {
+                log.info("Message send {}", rsp.get());
+            } catch (InterruptedException | ExecutionException e) {
+                log.error("Error sending message ", e);
+                Thread.currentThread().interrupt();
+            }
+        });
     }
 }

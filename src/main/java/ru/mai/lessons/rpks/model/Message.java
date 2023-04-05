@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @Builder
 public class Message {
-    private String value; // сообщение из Kafka в формате JSON
+    private String value; // сообщение из Kafka в формате JSON Name:, age:, sex:
 
     private boolean filterState; // true - удовлетворены условиях всех правил (Rule), false - хотя бы одно условие не прошло проверку.
 }

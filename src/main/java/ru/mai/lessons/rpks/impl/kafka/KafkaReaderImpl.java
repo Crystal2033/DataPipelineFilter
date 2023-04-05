@@ -1,8 +1,6 @@
 package ru.mai.lessons.rpks.impl.kafka;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -19,9 +17,12 @@ import java.util.UUID;
 @Slf4j
 @Getter
 @Setter
-@RequiredArgsConstructor
+@Builder
+@AllArgsConstructor
 public class KafkaReaderImpl implements KafkaReader {
     private final String topic;
+    private final String groupId;
+    private final String autoOffsetReset;
     private final String bootstrapServers;
     private boolean isExit;
     @Override
@@ -30,8 +31,8 @@ public class KafkaReaderImpl implements KafkaReader {
         KafkaConsumer<String, String> kafkaConsumer = new KafkaConsumer<>(
                 Map.of(
                         ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers,
-                        ConsumerConfig.GROUP_ID_CONFIG, "tc-" + UUID.randomUUID(),
-                        ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest"
+                        ConsumerConfig.GROUP_ID_CONFIG, "groupId: " + groupId,
+                        ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, autoOffsetReset
                 ),
                 new StringDeserializer(),
                 new StringDeserializer()
