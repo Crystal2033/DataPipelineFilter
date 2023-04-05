@@ -44,7 +44,6 @@ import java.util.stream.Stream;
 import static org.jooq.impl.DSL.field;
 import static org.jooq.impl.DSL.table;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.testcontainers.shaded.org.awaitility.Awaitility.await;
 
 @Slf4j
 @Testcontainers
@@ -1017,7 +1016,7 @@ class ServiceTest {
             clearTable();
             createAndCheckRuleInPostgreSQL(1L, 1L, "name", "contains", "alexander");
             log.info("Wait until application updated rules from DB");
-            await().atMost(config.getLong("application.updateIntervalSec") * 2 + 1, TimeUnit.SECONDS);
+            Thread.sleep(config.getLong("application.updateIntervalSec") * 1000 * 2 + 1);
 
             Set.of("{\"name\":\"alex_ivanov\", \"age\":18, \"sex\":\"M\"}",
                     "{\"name\":\"pushkin\", \"age\":19, \"sex\":\"M\"}",
@@ -1047,7 +1046,7 @@ class ServiceTest {
 
             for (ConsumerRecord<String, String> consumerRecord : consumerRecordsOther) {
                 assertNotNull(consumerRecord.value());
-                assertEquals(expectedJson, consumerRecord.value());
+                assertEquals(expectedJsonOther, consumerRecord.value());
             }
 
             executor.shutdown();
@@ -1060,8 +1059,8 @@ class ServiceTest {
     }
 
     /**
-     * Тест проверяет следующее правило фильтрации: field1 equals value1,
-     * а затем добавляет ещё одно правило фильтрации: field1 contains value2
+     * Тест проверяет следующее правило фильтрации: field1 contains value1,
+     * а затем добавляет ещё одно правило фильтрации: field1 equals value2
      * Выполняется вставка правил в базу PostgreSQL.
      * Запускается приложение с тестовыми конфигурациями в test/resources/application.conf.
      * Отправляется несколько сообщений во входной топик - одно из них подходит под правило.
@@ -1085,7 +1084,6 @@ class ServiceTest {
 
             clearTable();
             createAndCheckRuleInPostgreSQL(1L, 1L, "name", "contains", "alexander");
-
 
             Config config = ConfigFactory.load();
             config = replaceConfigForTest(config);
@@ -1124,7 +1122,7 @@ class ServiceTest {
 
             createAndCheckRuleInPostgreSQL(1L, 2L, "age", "equals", "18");
             log.info("Wait until application updated rules from DB");
-            await().atMost(config.getLong("application.updateIntervalSec") * 2 + 1, TimeUnit.SECONDS);
+            Thread.sleep(config.getLong("application.updateIntervalSec") * 1000 * 2 + 1);
 
             Set.of("{\"name\":\"alex_ivanov\", \"age\":18, \"sex\":\"M\"}",
                     "{\"name\":\"pushkin\", \"age\":19, \"sex\":\"M\"}",
@@ -1154,7 +1152,7 @@ class ServiceTest {
 
             for (ConsumerRecord<String, String> consumerRecord : consumerRecordsOther) {
                 assertNotNull(consumerRecord.value());
-                assertEquals(expectedJson, consumerRecord.value());
+                assertEquals(expectedJsonOther, consumerRecord.value());
             }
 
             executor.shutdown();
@@ -1287,26 +1285,31 @@ class ServiceTest {
 
     private ConsumerRecords<String, String> getConsumerRecordsOutputTopic(KafkaConsumer<String, String> consumer, int retry, int timeoutSeconds) {
         boolean state = false;
-        while (!state && retry > 0) {
-            ConsumerRecords<String, String> consumerRecords = consumer.poll(Duration.ofMillis(100));
-            if (consumerRecords.isEmpty()) {
-                log.info("Remaining attempts {}", retry);
-                retry--;
-                await().atMost(timeoutSeconds, TimeUnit.SECONDS);
-            } else {
-                log.info("Read messages {}", consumerRecords.count());
-                return consumerRecords;
+        try {
+            while (!state && retry > 0) {
+                ConsumerRecords<String, String> consumerRecords = consumer.poll(Duration.ofMillis(100));
+                if (consumerRecords.isEmpty()) {
+                    log.info("Remaining attempts {}", retry);
+                    retry--;
+                    Thread.sleep(timeoutSeconds * 1000L);
+                } else {
+                    log.info("Read messages {}", consumerRecords.count());
+                    return consumerRecords;
+                }
             }
+        } catch (InterruptedException ex) {
+            log.error("Interrupt read messages", ex);
         }
         return ConsumerRecords.empty();
     }
 
     private Config replaceConfigForTest(Config config) {
         return config.withValue("kafka.consumer.bootstrap.servers", ConfigValueFactory.fromAnyRef(kafka.getBootstrapServers()))
+                .withValue("kafka.producer.bootstrap.servers", ConfigValueFactory.fromAnyRef(kafka.getBootstrapServers()))
                 .withValue("db.jdbcUrl", ConfigValueFactory.fromAnyRef(postgreSQL.getJdbcUrl()))
-                .withValue("db.user", ConfigValueFactory.fromAnyRef(postgreSQL.getJdbcUrl()))
-                .withValue("db.password", ConfigValueFactory.fromAnyRef(postgreSQL.getJdbcUrl()))
-                .withValue("db.driver", ConfigValueFactory.fromAnyRef(postgreSQL.getJdbcUrl()))
+                .withValue("db.user", ConfigValueFactory.fromAnyRef(postgreSQL.getUsername()))
+                .withValue("db.password", ConfigValueFactory.fromAnyRef(postgreSQL.getPassword()))
+                .withValue("db.driver", ConfigValueFactory.fromAnyRef(postgreSQL.getDriverClassName()))
                 .withValue("application.updateIntervalSec", ConfigValueFactory.fromAnyRef(10));
     }
 }
