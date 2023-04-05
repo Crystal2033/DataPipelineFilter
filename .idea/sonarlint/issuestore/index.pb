@@ -15,8 +15,6 @@ X
 settings.gradle,0\5\05efc8b1657769a27696d478ded1e95f38737233
 7
 gradlew,5\b\5bbfa66edb4db3c7c33c5181f43510990d3307f9
-<
-build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 ;
 gradlew.bat,2\a\2a45a911a8f1836b0b6c5b758962572012d8f8c3
 S
@@ -29,13 +27,11 @@ c
 3src/main/java/ru/mai/lessons/rpks/ConfigReader.java,a\6\a63d6f135ac04befd116d8e1f31aa21b752441da
 _
 /src/main/java/ru/mai/lessons/rpks/DbReader.java,6\f\6f0142a0881a68180c4fddb66eb92c7bc9df8a2f
-b
-2src/main/java/ru/mai/lessons/rpks/KafkaWriter.java,6\7\67fb83b0c62ce1a45e1b4c0c0f68e80f8a68e515
-b
-2src/main/java/ru/mai/lessons/rpks/KafkaReader.java,a\3\a3f424bbcf25a85c93204d58f0870cf237ddbbd6
 d
 4src/main/java/ru/mai/lessons/rpks/RuleProcessor.java,4\4\445e26ecac929d5e8d1ebf8b919dce86f17d39ea
 ^
 .src/main/java/ru/mai/lessons/rpks/Service.java,d\1\d1a3ea2a4104e7c4b282edebb124a7f189a5c9df
 L
 .github/workflows/gradle.yml,c\3\c36c878e4a824e41b1b476ece36b9a80ca94ffec
+b
+2src/test/java/ru/mai/lessons/rpks/ServiceTest.java,0\1\013917df0bc9067734233ebb221e5d86f83a7212
