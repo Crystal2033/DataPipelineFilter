@@ -2,6 +2,7 @@ package ru.mai.lessons.rpks.impl.repository;
 
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import ru.mai.lessons.rpks.impl.constants.MainNames;
@@ -13,6 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @RequiredArgsConstructor
 @Slf4j
+@Getter
 public class RulesUpdaterThread implements Runnable{
 
     private final ConcurrentHashMap<String, List<Rule>> rulesConcurrentMap;
@@ -24,6 +26,7 @@ public class RulesUpdaterThread implements Runnable{
     public void stopReadingDataBase(){
         isExit = true;
     }
+
     private void insertNewRulesInMap(Rule[] rules){
         rulesConcurrentMap.clear();
         for(var rule : rules){

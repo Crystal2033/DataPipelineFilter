@@ -13,6 +13,9 @@ dependencies {
     // https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients
     implementation 'org.apache.kafka:kafka-clients:3.4.0'
 
+// https://mvnrepository.com/artifact/org.json/json
+    implementation 'org.json:json:20230227'
+
 
     // logging
     implementation 'ch.qos.logback:logback-classic:1.4.5'

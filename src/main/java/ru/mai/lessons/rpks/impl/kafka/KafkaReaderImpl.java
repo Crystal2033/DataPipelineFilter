@@ -2,7 +2,10 @@ package ru.mai.lessons.rpks.impl.kafka;
 
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -11,11 +14,12 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import ru.mai.lessons.rpks.KafkaReader;
 import ru.mai.lessons.rpks.impl.constants.MainNames;
+import ru.mai.lessons.rpks.impl.kafka.dispatchers.DispatcherKafka;
 
 import java.time.Duration;
 import java.util.Collections;
 import java.util.Map;
-import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 @Slf4j
 @Getter
@@ -27,6 +31,8 @@ public class KafkaReaderImpl implements KafkaReader {
     private final String groupId;
     private final String autoOffsetReset;
     private final String bootstrapServers;
+
+    private final DispatcherKafka dispatcherKafka;
     private boolean isExit;
     @Override
     public void processing() {
@@ -53,10 +59,14 @@ public class KafkaReaderImpl implements KafkaReader {
                     } else {
                         //TODO: work with data.
                         log.info("Message from Kafka topic {} : {}", consumerRecord.topic(), consumerRecord.value());
+                        CompletableFuture.runAsync(() -> sendToFilterAsync(consumerRecord.value()));
                     }
                 }
 
             }
         }
+    }
+    private void sendToFilterAsync(String msg){
+        dispatcherKafka.actionWithMessage(msg);
     }
 }

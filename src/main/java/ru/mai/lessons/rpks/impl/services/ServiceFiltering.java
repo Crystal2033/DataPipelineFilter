@@ -7,6 +7,8 @@ import ru.mai.lessons.rpks.Service;
 import ru.mai.lessons.rpks.impl.constants.MainNames;
 import ru.mai.lessons.rpks.impl.kafka.KafkaReaderImpl;
 import ru.mai.lessons.rpks.impl.kafka.KafkaWriterImpl;
+import ru.mai.lessons.rpks.impl.kafka.dispatchers.DispatcherKafka;
+import ru.mai.lessons.rpks.impl.kafka.dispatchers.FilteringDispatcher;
 import ru.mai.lessons.rpks.impl.repository.DataBaseReader;
 import ru.mai.lessons.rpks.impl.repository.RulesUpdaterThread;
 import ru.mai.lessons.rpks.model.Message;
@@ -22,6 +24,60 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ServiceFiltering implements Service {
     private final ConcurrentHashMap<String, List<Rule>> rulesConcurrentMap = new ConcurrentHashMap<>();
 
+
+
+    @Override
+    public void start(Config config) {
+        try(DataBaseReader dataBaseReader = initExistingDBReader(config.getConfig("db")))
+        {
+            connectToDBAndWork(dataBaseReader);
+        } catch (SQLException e) {
+            log.error("There is a problem with initializing database.");
+        }
+
+    }
+
+    private CompletableFuture<?> startKafkaReader(){
+        return CompletableFuture.runAsync(() -> {
+            Config config = ConfigFactory.load(MainNames.CONF_PATH)
+                    .getConfig("kafka").getConfig("consumer");
+
+            KafkaReaderImpl kafkaReader = KafkaReaderImpl.builder()
+                    .topic(config.getConfig("filtering").getString("topic.name"))
+                    .autoOffsetReset(config.getString(("auto.offset.reset")))
+                    .bootstrapServers(config.getString("bootstrap.servers"))
+                    .groupId(config.getString("group.id"))
+                    .build();
+
+            kafkaReader.processing();
+        });
+    }
+
+    private CompletableFuture<?> startKafkaWriter(){
+        return CompletableFuture.runAsync(() -> {
+            Config config = ConfigFactory.load(MainNames.CONF_PATH)
+                    .getConfig("kafka");
+            String exitString = config.getString("exit.string");
+
+            config = config.getConfig("producer");
+
+            KafkaWriterImpl kafkaWriter = KafkaWriterImpl.builder()
+                    .bootstrapServers(config.getString("bootstrap.servers"))
+                    .topic(config.getConfig("filtering").getString("topic.name"))
+                    .build();
+
+            try (Scanner scanner = new Scanner(System.in)) {
+                String inputData;
+                do {
+                    inputData = scanner.nextLine();
+                    kafkaWriter.processing(Message.builder()
+                            .value(inputData)
+                            .build());
+
+                } while (!inputData.equals(exitString));
+            }
+        });
+    }
     private DataBaseReader initExistingDBReader(Config configDB){
         return DataBaseReader.builder()
                 .url(configDB.getString("jdbcUrl"))
@@ -35,50 +91,22 @@ public class ServiceFiltering implements Service {
     private void connectToDBAndWork(DataBaseReader dataBaseReader){
         try{
             if(dataBaseReader.connectToDataBase()){
+                Config config = ConfigFactory.load(MainNames.CONF_PATH).getConfig("kafka")
+                        .getConfig("producer");
                 RulesUpdaterThread rulesDBUpdaterThread = new RulesUpdaterThread(rulesConcurrentMap, dataBaseReader);
-                CompletableFuture<?> readDBFuture = CompletableFuture.runAsync(rulesDBUpdaterThread);
 
-                CompletableFuture<?> kafkaReaderFuture = CompletableFuture.runAsync(() -> {
-                    Config config = ConfigFactory.load(MainNames.CONF_PATH)
-                            .getConfig("kafka").getConfig("filtering").getConfig("consumer");
+                DispatcherKafka filterDispatcher = new FilteringDispatcher(config.getConfig("deduplication")
+                        .getString("topic.name"), config.getString("bootstrap.servers"), rulesDBUpdaterThread);
 
-                    KafkaReaderImpl kafkaReader = KafkaReaderImpl.builder()
-                            .topic(config.getString("topic.name"))
-                            .autoOffsetReset(config.getString(("auto.offset.reset")))
-                            .bootstrapServers(config.getString("bootstrap.servers"))
-                            .groupId(config.getString("group.id"))
-                            .build();
 
-                    kafkaReader.processing();
-                });
+                CompletableFuture.runAsync(rulesDBUpdaterThread);
 
-                CompletableFuture<?> kafkaWriterFuture = CompletableFuture.runAsync(() -> {
-                    Config config = ConfigFactory.load(MainNames.CONF_PATH)
-                            .getConfig("kafka");
-                    String exitString = config.getString("exit.string");
+                CompletableFuture<?> kafkaReaderFuture = startKafkaReader();
 
-                    config = config.getConfig("filtering").getConfig("producer");
-
-                    KafkaWriterImpl kafkaWriter = KafkaWriterImpl.builder()
-                            .bootstrapServers(config.getString("bootstrap.servers"))
-                            .topic(config.getString("topic.name"))
-                            .build();
-                    kafkaWriter.initKafkaReader();
-
-                    try (Scanner scanner = new Scanner(System.in)) {
-                        String inputData;
-                        do {
-                            inputData = scanner.nextLine();
-                            kafkaWriter.processing(Message.builder()
-                                    .value(inputData)
-                                    .build());
-
-                        } while (!inputData.equals(exitString));
-                    }
-                });
+                CompletableFuture<?> kafkaWriterFuture = startKafkaWriter();
 
                 CompletableFuture.anyOf(kafkaReaderFuture, kafkaWriterFuture).join();
-                if(kafkaReaderFuture.isDone() || kafkaWriterFuture.isDone()){
+                if(kafkaReaderFuture.isDone() || kafkaWriterFuture.isDone()){ //safety if
                     rulesDBUpdaterThread.stopReadingDataBase();
                 }
             }
@@ -91,16 +119,5 @@ public class ServiceFiltering implements Service {
         } finally {
             log.info("All threads are done.");
         }
-    }
-
-    @Override
-    public void start(Config config) {
-        try(DataBaseReader dataBaseReader = initExistingDBReader(config.getConfig("db")))
-        {
-            connectToDBAndWork(dataBaseReader);
-        } catch (SQLException e) {
-            log.error("There is a problem with initializing database.");
-        }
-
     }
 }
