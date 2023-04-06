@@ -1,5 +1,7 @@
 package ru.mai.lessons.rpks.impl.kafka;
 
+import com.typesafe.config.Config;
+import com.typesafe.config.ConfigFactory;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -8,6 +10,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import ru.mai.lessons.rpks.KafkaReader;
+import ru.mai.lessons.rpks.impl.constants.MainNames;
 
 import java.time.Duration;
 import java.util.Collections;
@@ -41,18 +44,19 @@ public class KafkaReaderImpl implements KafkaReader {
         kafkaConsumer.subscribe(Collections.singletonList(topic));
 
         try (kafkaConsumer) {
+            Config config = ConfigFactory.load(MainNames.CONF_PATH).getConfig("kafka");
             while (!isExit) {
                 ConsumerRecords<String, String> consumerRecords = kafkaConsumer.poll(Duration.ofMillis(100));
                 for (ConsumerRecord<String, String> consumerRecord : consumerRecords) {
-                    if (consumerRecord.value().equals("$exit")) {
+                    if (consumerRecord.value().equals(config.getString("exit.string"))) {
                         isExit = true;
                     } else {
                         //TODO: work with data.
                         log.info("Message from Kafka topic {} : {}", consumerRecord.topic(), consumerRecord.value());
                     }
                 }
+
             }
-            log.info("Read is done!");
         }
     }
 }

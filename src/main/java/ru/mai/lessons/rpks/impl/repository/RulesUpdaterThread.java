@@ -2,15 +2,16 @@ package ru.mai.lessons.rpks.impl.repository;
 
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import ru.mai.lessons.rpks.impl.constants.MainNames;
 import ru.mai.lessons.rpks.model.Rule;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Slf4j
 public class RulesUpdaterThread implements Runnable{
 
@@ -18,6 +19,11 @@ public class RulesUpdaterThread implements Runnable{
 
     private final DataBaseReader dataBaseReader;
 
+    private boolean isExit = false;
+
+    public void stopReadingDataBase(){
+        isExit = true;
+    }
     private void insertNewRulesInMap(Rule[] rules){
         rulesConcurrentMap.clear();
         for(var rule : rules){
@@ -30,13 +36,12 @@ public class RulesUpdaterThread implements Runnable{
             myList.add(rule);
             rulesConcurrentMap.put(rule.getFieldName(), myList);
         }
-        rulesConcurrentMap.entrySet().stream()
-                .forEach(value -> log.debug(value.getValue().toString()));
+        rulesConcurrentMap.forEach((key, value1) -> log.debug(value1.toString()));
     }
     @Override
     public void run() {
-        Config config = ConfigFactory.load("application.conf");
-        while(!Thread.currentThread().isInterrupted()){
+        Config config = ConfigFactory.load(MainNames.CONF_PATH);
+        while(!isExit){
             try {
                 Rule[] rules = dataBaseReader.readRulesFromDB();
                 insertNewRulesInMap(rules);

@@ -4,6 +4,7 @@ import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 import lombok.extern.slf4j.Slf4j;
 import ru.mai.lessons.rpks.Service;
+import ru.mai.lessons.rpks.impl.constants.MainNames;
 import ru.mai.lessons.rpks.impl.kafka.KafkaReaderImpl;
 import ru.mai.lessons.rpks.impl.kafka.KafkaWriterImpl;
 import ru.mai.lessons.rpks.impl.repository.DataBaseReader;
@@ -13,9 +14,9 @@ import ru.mai.lessons.rpks.model.Rule;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
-import java.util.concurrent.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
 public class ServiceFiltering implements Service {
@@ -31,15 +32,16 @@ public class ServiceFiltering implements Service {
                 .build();
     }
 
-    private void connectToDBAndWork(ExecutorService threadPool, DataBaseReader dataBaseReader){
+    private void connectToDBAndWork(DataBaseReader dataBaseReader){
         try{
             if(dataBaseReader.connectToDataBase()){
-                Future<?> response = threadPool.submit(new RulesUpdaterThread(rulesConcurrentMap, dataBaseReader));
-                response.get();
+                RulesUpdaterThread rulesDBUpdaterThread = new RulesUpdaterThread(rulesConcurrentMap, dataBaseReader);
+                CompletableFuture<?> readDBFuture = CompletableFuture.runAsync(rulesDBUpdaterThread);
 
-                ExecutorService executorService = Executors.newFixedThreadPool(1);
-                executorService.execute(() -> {
-                    Config config = ConfigFactory.load("application.conf").getConfig("consumer");
+                CompletableFuture<?> kafkaReaderFuture = CompletableFuture.runAsync(() -> {
+                    Config config = ConfigFactory.load(MainNames.CONF_PATH)
+                            .getConfig("kafka").getConfig("filtering").getConfig("consumer");
+
                     KafkaReaderImpl kafkaReader = KafkaReaderImpl.builder()
                             .topic(config.getString("topic.name"))
                             .autoOffsetReset(config.getString(("auto.offset.reset")))
@@ -50,30 +52,35 @@ public class ServiceFiltering implements Service {
                     kafkaReader.processing();
                 });
 
-                Config config = ConfigFactory.load("application.conf").getConfig("producer");
+                CompletableFuture<?> kafkaWriterFuture = CompletableFuture.runAsync(() -> {
+                    Config config = ConfigFactory.load(MainNames.CONF_PATH)
+                            .getConfig("kafka");
+                    String exitString = config.getString("exit.string");
 
-                KafkaWriterImpl kafkaWriter = KafkaWriterImpl.builder()
-                        .bootstrapServers(config.getString("bootstrap.servers"))
-                        .topic(config.getString("topic.name"))
-                        .build();
-                kafkaWriter.initKafkaReader();
+                    config = config.getConfig("filtering").getConfig("producer");
 
-                try (Scanner scanner = new Scanner(System.in)) {
-                    String inputData;
-                    do {
-                        inputData = scanner.nextLine();
-                        String[] keyValue = inputData.split(":");
+                    KafkaWriterImpl kafkaWriter = KafkaWriterImpl.builder()
+                            .bootstrapServers(config.getString("bootstrap.servers"))
+                            .topic(config.getString("topic.name"))
+                            .build();
+                    kafkaWriter.initKafkaReader();
 
-                        kafkaWriter.processing(Message.builder()
-                                .value(keyValue[0])
-                                .build());
+                    try (Scanner scanner = new Scanner(System.in)) {
+                        String inputData;
+                        do {
+                            inputData = scanner.nextLine();
+                            kafkaWriter.processing(Message.builder()
+                                    .value(inputData)
+                                    .build());
 
+                        } while (!inputData.equals(exitString));
+                    }
+                });
 
-                    } while (!inputData.equals("$exit"));
-
-                    executorService.shutdown();
+                CompletableFuture.anyOf(kafkaReaderFuture, kafkaWriterFuture).join();
+                if(kafkaReaderFuture.isDone() || kafkaWriterFuture.isDone()){
+                    rulesDBUpdaterThread.stopReadingDataBase();
                 }
-                threadPool.shutdown();
             }
             else{
                 log.error("There is a problem with connection to database.");
@@ -81,20 +88,16 @@ public class ServiceFiltering implements Service {
         }
         catch(SQLException exc){
             log.error("There is a problem with getConnection from Hikari.");
-            threadPool.shutdown();
-        } catch (ExecutionException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        } finally {
+            log.info("All threads are done.");
         }
     }
 
     @Override
     public void start(Config config) {
-        ExecutorService threadPool = Executors.newFixedThreadPool(1);
         try(DataBaseReader dataBaseReader = initExistingDBReader(config.getConfig("db")))
         {
-            connectToDBAndWork(threadPool, dataBaseReader);
+            connectToDBAndWork(dataBaseReader);
         } catch (SQLException e) {
             log.error("There is a problem with initializing database.");
         }
