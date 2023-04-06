@@ -13,6 +13,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import ru.mai.lessons.rpks.KafkaReader;
+import ru.mai.lessons.rpks.exceptions.UndefinedOperationException;
 import ru.mai.lessons.rpks.impl.constants.MainNames;
 import ru.mai.lessons.rpks.impl.kafka.dispatchers.DispatcherKafka;
 
@@ -32,6 +33,7 @@ public class KafkaReaderImpl implements KafkaReader {
     private final String autoOffsetReset;
     private final String bootstrapServers;
 
+//    private final KafkaConsumer kafkaConsumer;
     private final DispatcherKafka dispatcherKafka;
     private boolean isExit;
     @Override
@@ -57,16 +59,23 @@ public class KafkaReaderImpl implements KafkaReader {
                     if (consumerRecord.value().equals(config.getString("exit.string"))) {
                         isExit = true;
                     } else {
-                        //TODO: work with data.
                         log.info("Message from Kafka topic {} : {}", consumerRecord.topic(), consumerRecord.value());
-                        CompletableFuture.runAsync(() -> sendToFilterAsync(consumerRecord.value()));
+                        CompletableFuture future = CompletableFuture.runAsync(() -> sendToFilterAsync(consumerRecord.value()));
+                        //future.join();
                     }
                 }
-
             }
         }
     }
     private void sendToFilterAsync(String msg){
-        dispatcherKafka.actionWithMessage(msg);
+        try{
+            System.out.println("Hello there");
+            dispatcherKafka.actionWithMessage(msg);
+            System.out.println("Hello there2");
+        }
+        catch (UndefinedOperationException ex){
+            log.error("The operation {} not found.", ex.getOperation());
+        }
+
     }
 }

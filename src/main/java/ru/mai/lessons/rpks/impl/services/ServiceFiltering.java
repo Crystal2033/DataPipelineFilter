@@ -37,7 +37,7 @@ public class ServiceFiltering implements Service {
 
     }
 
-    private CompletableFuture<?> startKafkaReader(){
+    private CompletableFuture<?> startKafkaReader(DispatcherKafka dispatcherKafka){
         return CompletableFuture.runAsync(() -> {
             Config config = ConfigFactory.load(MainNames.CONF_PATH)
                     .getConfig("kafka").getConfig("consumer");
@@ -47,6 +47,7 @@ public class ServiceFiltering implements Service {
                     .autoOffsetReset(config.getString(("auto.offset.reset")))
                     .bootstrapServers(config.getString("bootstrap.servers"))
                     .groupId(config.getString("group.id"))
+                    .dispatcherKafka(dispatcherKafka)
                     .build();
 
             kafkaReader.processing();
@@ -72,6 +73,7 @@ public class ServiceFiltering implements Service {
                     inputData = scanner.nextLine();
                     kafkaWriter.processing(Message.builder()
                             .value(inputData)
+                            .filterState(true)
                             .build());
 
                 } while (!inputData.equals(exitString));
@@ -101,7 +103,7 @@ public class ServiceFiltering implements Service {
 
                 CompletableFuture.runAsync(rulesDBUpdaterThread);
 
-                CompletableFuture<?> kafkaReaderFuture = startKafkaReader();
+                CompletableFuture<?> kafkaReaderFuture = startKafkaReader(filterDispatcher);
 
                 CompletableFuture<?> kafkaWriterFuture = startKafkaWriter();
 
