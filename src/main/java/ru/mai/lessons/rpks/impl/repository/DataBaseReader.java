@@ -57,10 +57,17 @@ public class DataBaseReader implements DbReader, AutoCloseable {
         if(dataSource == null){
             initDataSourceAndDSLContext();
         }
+        else{
+            dataSourceConnection.close();
+            //dataSource.close();
+        }
         dataSourceConnection = dataSource.getConnection();
         return dataSourceConnection.isValid(additionalDBConfig.getInt("connect_valid_time"));
     }
 
+    public boolean isConnectedToDataBase() throws SQLException {
+        return dataSourceConnection.isValid(additionalDBConfig.getInt("connect_valid_time"));
+    }
     @Override
     public Rule[] readRulesFromDB() {
         return dslContext.select()

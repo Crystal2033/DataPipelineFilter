@@ -16,11 +16,14 @@ import ru.mai.lessons.rpks.KafkaReader;
 import ru.mai.lessons.rpks.exceptions.UndefinedOperationException;
 import ru.mai.lessons.rpks.impl.constants.MainNames;
 import ru.mai.lessons.rpks.impl.kafka.dispatchers.DispatcherKafka;
+import ru.mai.lessons.rpks.impl.kafka.dispatchers.FilteringDispatcher;
 
 import java.time.Duration;
 import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Slf4j
 @Getter
@@ -33,11 +36,11 @@ public class KafkaReaderImpl implements KafkaReader {
     private final String autoOffsetReset;
     private final String bootstrapServers;
 
-//    private final KafkaConsumer kafkaConsumer;
     private final DispatcherKafka dispatcherKafka;
     private boolean isExit;
     @Override
     public void processing() {
+        ExecutorService executorService = Executors.newCachedThreadPool();
         log.info("Start reading kafka topic {}", topic);
         KafkaConsumer<String, String> kafkaConsumer = new KafkaConsumer<>(
                 Map.of(
@@ -54,14 +57,18 @@ public class KafkaReaderImpl implements KafkaReader {
         try (kafkaConsumer) {
             Config config = ConfigFactory.load(MainNames.CONF_PATH).getConfig("kafka");
             while (!isExit) {
+                //log.info("heeey from kafka");
                 ConsumerRecords<String, String> consumerRecords = kafkaConsumer.poll(Duration.ofMillis(100));
                 for (ConsumerRecord<String, String> consumerRecord : consumerRecords) {
                     if (consumerRecord.value().equals(config.getString("exit.string"))) {
+                        if(dispatcherKafka instanceof FilteringDispatcher filteringDispatcher){
+                            filteringDispatcher.closeReadingThread();
+                            log.info("Closing thread");
+                        }
                         isExit = true;
                     } else {
-                        log.info("Message from Kafka topic {} : {}", consumerRecord.topic(), consumerRecord.value());
-                        CompletableFuture future = CompletableFuture.runAsync(() -> sendToFilterAsync(consumerRecord.value()));
-                        //future.join();
+                        //log.info("Message from Kafka topic {} : {}", consumerRecord.topic(), consumerRecord.value());
+                        executorService.execute(() -> sendToFilterAsync(consumerRecord.value()));
                     }
                 }
             }
@@ -69,9 +76,9 @@ public class KafkaReaderImpl implements KafkaReader {
     }
     private void sendToFilterAsync(String msg){
         try{
-            System.out.println("Hello there");
+            log.info("Before action with message {}", msg);
             dispatcherKafka.actionWithMessage(msg);
-            System.out.println("Hello there2");
+            log.info("After action with message {}", msg);
         }
         catch (UndefinedOperationException ex){
             log.error("The operation {} not found.", ex.getOperation());

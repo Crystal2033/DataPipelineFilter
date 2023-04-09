@@ -43,6 +43,10 @@ public class FilteringDispatcher implements DispatcherKafka{
         sendMessageIfCompatibleWithDBRules(queueConcurrent.poll());
     }
 
+    public void closeReadingThread(){
+        updaterRulesThread.stopReadingDataBase();
+    }
+
     private boolean checkField(String fieldName, JSONObject jsonObject) throws UndefinedOperationException {
         if(rulesConcurrentMap.containsKey(fieldName)){
             String userValue = jsonObject.getString(fieldName);
@@ -75,9 +79,11 @@ public class FilteringDispatcher implements DispatcherKafka{
 
         isCompatible = checkField("sex", jsonObject);
         log.info("compatible after sex: {}", isCompatible);
-        if(isCompatible){
-            kafkaWriter.processing(getMessage(checkingMessage, true));
+        if(!isCompatible){
+            kafkaWriter.processing(getMessage(checkingMessage, false));
+            return;
         }
+        kafkaWriter.processing(getMessage(checkingMessage, true));
 
     }
 
@@ -87,6 +93,7 @@ public class FilteringDispatcher implements DispatcherKafka{
             case "equals" -> expected.equals(userValue);
             case "not equals" -> !expected.equals(userValue);
             case "contains" -> userValue.contains(expected);
+            case "not contains" -> !userValue.contains(expected);
             default -> throw new UndefinedOperationException("Operation was not found.", operation);
         };
     }

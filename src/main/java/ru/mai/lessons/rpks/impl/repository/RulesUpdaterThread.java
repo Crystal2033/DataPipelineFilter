@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import ru.mai.lessons.rpks.impl.constants.MainNames;
 import ru.mai.lessons.rpks.model.Rule;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -49,12 +50,16 @@ public class RulesUpdaterThread implements Runnable{
                 Rule[] rules = dataBaseReader.readRulesFromDB();
                 insertNewRulesInMap(rules);
                 log.info("Tick");
-                Thread.sleep(config.getConfig("application")
-                        .getLong("updateIntervalSec") * 1000);
+                log.info("Is connected to database: {}", dataBaseReader.isConnectedToDataBase());
+                //log.info("heeey from thread");
+               Thread.sleep(config.getConfig("application")
+                       .getLong("updateIntervalSec") * 1000);
 
-            } catch (InterruptedException e) {
+            }catch (InterruptedException e) {
                 log.error("Trouble with sleep of thread. " + e);
                 Thread.currentThread().interrupt();
+            }catch (SQLException e) {
+                log.error("Bad connection to database!", e);
             }
         }
     }
