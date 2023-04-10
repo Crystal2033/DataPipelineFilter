@@ -21,7 +21,6 @@ import ru.mai.lessons.rpks.impl.kafka.dispatchers.FilteringDispatcher;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.Map;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -57,7 +56,6 @@ public class KafkaReaderImpl implements KafkaReader {
         try (kafkaConsumer) {
             Config config = ConfigFactory.load(MainNames.CONF_PATH).getConfig("kafka");
             while (!isExit) {
-                //log.info("heeey from kafka");
                 ConsumerRecords<String, String> consumerRecords = kafkaConsumer.poll(Duration.ofMillis(100));
                 for (ConsumerRecord<String, String> consumerRecord : consumerRecords) {
                     if (consumerRecord.value().equals(config.getString("exit.string"))) {
@@ -67,7 +65,7 @@ public class KafkaReaderImpl implements KafkaReader {
                         }
                         isExit = true;
                     } else {
-                        //log.info("Message from Kafka topic {} : {}", consumerRecord.topic(), consumerRecord.value());
+                        log.info("Message from Kafka topic {} : {}", consumerRecord.topic(), consumerRecord.value());
                         executorService.execute(() -> sendToFilterAsync(consumerRecord.value()));
                     }
                 }

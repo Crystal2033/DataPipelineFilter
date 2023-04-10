@@ -23,12 +23,13 @@ import java.util.concurrent.Executors;
 @Slf4j
 public class ServiceFiltering implements Service {
     private final ConcurrentHashMap<String, List<Rule>> rulesConcurrentMap = new ConcurrentHashMap<>();
-
+    private Config myConfig;
 
 
     @Override
     public void start(Config config) {
-        try(DataBaseReader dataBaseReader = initExistingDBReader(config.getConfig("db")))
+        myConfig = config;
+        try(DataBaseReader dataBaseReader = initExistingDBReader(myConfig.getConfig("db")))
         {
             connectToDBAndWork(dataBaseReader);
         } catch (SQLException e) {
@@ -38,8 +39,7 @@ public class ServiceFiltering implements Service {
 
     private void startKafkaReader(DispatcherKafka dispatcherKafka){
 
-        Config config = ConfigFactory.load(MainNames.CONF_PATH)
-                .getConfig("kafka").getConfig("consumer");
+        Config config = myConfig.getConfig("kafka").getConfig("consumer");
 
         KafkaReaderImpl kafkaReader = KafkaReaderImpl.builder()
                 .topic(config.getConfig("filtering").getString("topic.name"))
@@ -54,8 +54,7 @@ public class ServiceFiltering implements Service {
 
     private CompletableFuture<?> startKafkaWriter(){
         return CompletableFuture.runAsync(() -> {
-            Config config = ConfigFactory.load(MainNames.CONF_PATH)
-                    .getConfig("kafka");
+            Config config = myConfig.getConfig("kafka");
             String exitString = config.getString("exit.string");
 
             config = config.getConfig("producer");
@@ -80,10 +79,11 @@ public class ServiceFiltering implements Service {
         ExecutorService executorService = Executors.newCachedThreadPool();
         try{
             if(dataBaseReader.connectToDataBase()){
-                Config config = ConfigFactory.load(MainNames.CONF_PATH).getConfig("kafka")
-                        .getConfig("producer");
-                RulesUpdaterThread rulesDBUpdaterThread = new RulesUpdaterThread(rulesConcurrentMap, dataBaseReader);
 
+                RulesUpdaterThread rulesDBUpdaterThread = new RulesUpdaterThread(rulesConcurrentMap, dataBaseReader, myConfig);
+
+                Config config = myConfig.getConfig("kafka")
+                        .getConfig("producer");
                 DispatcherKafka filterDispatcher = new FilteringDispatcher(config.getConfig("deduplication")
                         .getString("topic.name"), config.getString("bootstrap.servers"), rulesDBUpdaterThread);
 
@@ -91,7 +91,7 @@ public class ServiceFiltering implements Service {
                 executorService.execute(rulesDBUpdaterThread);
 
                 startKafkaReader(filterDispatcher);
-
+                executorService.shutdown();
                 log.info("Daaaaaamn {}", Thread.currentThread().getName());
             }
             else{

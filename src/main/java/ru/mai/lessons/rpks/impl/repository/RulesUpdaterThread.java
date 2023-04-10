@@ -22,6 +22,7 @@ public class RulesUpdaterThread implements Runnable{
 
     private final DataBaseReader dataBaseReader;
 
+    private final Config myConfig;
     private boolean isExit = false;
 
     public void stopReadingDataBase(){
@@ -44,7 +45,6 @@ public class RulesUpdaterThread implements Runnable{
     }
     @Override
     public void run() {
-        Config config = ConfigFactory.load(MainNames.CONF_PATH);
         while(!isExit){
             try {
                 Rule[] rules = dataBaseReader.readRulesFromDB();
@@ -52,7 +52,7 @@ public class RulesUpdaterThread implements Runnable{
                 log.info("Tick");
                 log.info("Is connected to database: {}", dataBaseReader.isConnectedToDataBase());
                 //log.info("heeey from thread");
-               Thread.sleep(config.getConfig("application")
+               Thread.sleep(myConfig.getConfig("application")
                        .getLong("updateIntervalSec") * 1000);
 
             }catch (InterruptedException e) {
