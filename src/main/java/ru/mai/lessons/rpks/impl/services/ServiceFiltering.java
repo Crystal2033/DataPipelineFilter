@@ -24,13 +24,13 @@ import static ru.mai.lessons.rpks.impl.constants.MainNames.TOPIC_NAME_PATH;
 @Slf4j
 public class ServiceFiltering implements Service {
     private final ConcurrentHashMap<String, List<Rule>> rulesConcurrentMap = new ConcurrentHashMap<>();
-    private Config myConfig;
+    private Config outerConfig;
 
 
     @Override
     public void start(Config config) {
-        myConfig = config;
-        try (DataBaseReader dataBaseReader = initExistingDBReader(myConfig.getConfig("db"))) {
+        outerConfig = config;
+        try (DataBaseReader dataBaseReader = initExistingDBReader(outerConfig.getConfig("db"))) {
             connectToDBAndWork(dataBaseReader);
         } catch (SQLException e) {
             log.error("There is a problem with initializing database.");
@@ -39,7 +39,7 @@ public class ServiceFiltering implements Service {
 
     private void startKafkaReader(DispatcherKafka dispatcherKafka) {
 
-        Config config = myConfig.getConfig(KAFKA_NAME).getConfig("consumer");
+        Config config = outerConfig.getConfig(KAFKA_NAME).getConfig("consumer");
 
         KafkaReaderImpl kafkaReader = KafkaReaderImpl.builder()
                 .topic(config.getConfig("filtering").getString(TOPIC_NAME_PATH))
@@ -47,7 +47,7 @@ public class ServiceFiltering implements Service {
                 .bootstrapServers(config.getString("bootstrap.servers"))
                 .groupId(config.getString("group.id"))
                 .dispatcherKafka(dispatcherKafka)
-                .exitWord(myConfig.getConfig(KAFKA_NAME).getString("exit.string"))
+                .exitWord(outerConfig.getConfig(KAFKA_NAME).getString("exit.string"))
                 .build();
 
         kafkaReader.processing();
@@ -77,9 +77,9 @@ public class ServiceFiltering implements Service {
         try {
             if (dataBaseReader.connectToDataBase()) {
 
-                RulesUpdaterThread rulesDBUpdaterThread = new RulesUpdaterThread(rulesConcurrentMap, dataBaseReader, myConfig);
+                RulesUpdaterThread rulesDBUpdaterThread = new RulesUpdaterThread(rulesConcurrentMap, dataBaseReader, outerConfig);
 
-                Config config = myConfig.getConfig(KAFKA_NAME)
+                Config config = outerConfig.getConfig(KAFKA_NAME)
                         .getConfig("producer");
                 DispatcherKafka filterDispatcher = new FilteringDispatcher(config.getConfig("deduplication")
                         .getString(TOPIC_NAME_PATH), config.getString("bootstrap.servers"), rulesDBUpdaterThread);
