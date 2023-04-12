@@ -16,6 +16,7 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.jooq.DSLContext;
@@ -59,7 +60,7 @@ class ServiceTest {
             .withPassword("password")
             .withInitScript("init_script.sql");
 
-    ExecutorService executorForTest = Executors.newFixedThreadPool(2);
+    ExecutorService executorForTest = Executors.newFixedThreadPool(10);
 
     private DataSource dataSource;
     private final String topicIn = "test_topic_in";
@@ -225,6 +226,8 @@ class ServiceTest {
             Config config = ConfigFactory.load();
             config = replaceConfigForTest(config);
             Future<Boolean> serviceIsWork = testStartService(config);
+
+            Thread.sleep(10000L);
 
             Set.of("{\"name\":\"alex\", \"age\":19, \"sex\":\"M\"}",
                     "{\"name\":\"alex\", \"age\":null}",
@@ -1304,10 +1307,11 @@ class ServiceTest {
                 ConsumerRecords<String, String> consumerRecords = consumer.poll(Duration.ofMillis(100));
                 if (consumerRecords.isEmpty()) {
                     log.info("Remaining attempts {}", retry);
+                    consumer.assignment().forEach(tp -> log.info("Topic assign: {}, {}", tp.topic(), tp.partition()));
                     retry--;
                     Thread.sleep(timeoutSeconds * 1000L);
                 } else {
-                    log.info("Read messages {}", consumerRecords.count());
+                    log.info("Read messages {}, {}", Thread.currentThread().getName(), consumerRecords.count());
                     return consumerRecords;
                 }
             }
