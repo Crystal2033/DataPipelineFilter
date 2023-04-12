@@ -2,7 +2,6 @@ package ru.mai.lessons.rpks.impl.kafka;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.KafkaProducer;
@@ -28,11 +27,11 @@ public class KafkaWriterImpl implements KafkaWriter {
 
     @Override
     public void processing(Message message) {
-        if(kafkaProducer == null){
+        if (kafkaProducer == null) {
             initKafkaReader();
         }
 
-        if(message.isFilterState()){
+        if (message.isFilterState()) {
             Future<RecordMetadata> response = null;
 
             response = kafkaProducer.send(new ProducerRecord<>(topic, message.getValue()));

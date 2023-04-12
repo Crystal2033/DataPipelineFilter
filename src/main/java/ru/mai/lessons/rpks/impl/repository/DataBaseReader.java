@@ -13,7 +13,6 @@ import ru.mai.lessons.rpks.DbReader;
 import ru.mai.lessons.rpks.model.Rule;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import static org.jooq.impl.DSL.field;
@@ -36,17 +35,17 @@ public class DataBaseReader implements DbReader, AutoCloseable {
 
     private Connection dataSourceConnection;
 
-    private void initHikariConfig(){
+    private void initHikariConfig() {
         config.setJdbcUrl(url);
         config.setUsername(userName);
         config.setPassword(password);
         config.setDriverClassName(driver);
-        config.addDataSourceProperty( "cachePrepStmts" , "true" );
-        config.addDataSourceProperty( "prepStmtCacheSize" , "250" );
-        config.addDataSourceProperty( "prepStmtCacheSqlLimit" , "2048" );
+        config.addDataSourceProperty("cachePrepStmts", "true");
+        config.addDataSourceProperty("prepStmtCacheSize", "250");
+        config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
     }
 
-    private void initDataSourceAndDSLContext(){
+    private void initDataSourceAndDSLContext() {
         dataSource = new HikariDataSource(config);
         dslContext = DSL.using(dataSource, SQLDialect.POSTGRES);
     }
@@ -54,12 +53,10 @@ public class DataBaseReader implements DbReader, AutoCloseable {
 
     public boolean connectToDataBase() throws SQLException {
         initHikariConfig();
-        if(dataSource == null){
+        if (dataSource == null) {
             initDataSourceAndDSLContext();
-        }
-        else{
+        } else {
             dataSourceConnection.close();
-            //dataSource.close();
         }
         dataSourceConnection = dataSource.getConnection();
         return dataSourceConnection.isValid(additionalDBConfig.getInt("connect_valid_time"));
@@ -68,6 +65,7 @@ public class DataBaseReader implements DbReader, AutoCloseable {
     public boolean isConnectedToDataBase() throws SQLException {
         return dataSourceConnection.isValid(additionalDBConfig.getInt("connect_valid_time"));
     }
+
     @Override
     public Rule[] readRulesFromDB() {
         return dslContext.select()
