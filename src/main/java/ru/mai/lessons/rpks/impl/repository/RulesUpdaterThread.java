@@ -55,11 +55,6 @@ public class RulesUpdaterThread implements Runnable {
 
             } catch (InterruptedException e) {
                 log.error("Trouble with sleep of thread. " + e);
-                try {
-                    dataBaseReader.close();
-                } catch (SQLException ex) {
-                    log.error("There is an error with closing database sources", ex);
-                }
                 Thread.currentThread().interrupt();
             } catch (SQLException e) {
                 log.error("Bad connection to database!", e);
