@@ -9,8 +9,6 @@ S
 .src/main/java/ru/mai/lessons/rpks/Service.java,d\1\d1a3ea2a4104e7c4b282edebb124a7f189a5c9df
 d
 4src/main/java/ru/mai/lessons/rpks/RuleProcessor.java,4\4\445e26ecac929d5e8d1ebf8b919dce86f17d39ea
-a
-1src/main/java/ru/mai/lessons/rpks/model/Rule.java,1\8\18062bf50ae937e2bc5df53c64b13687f1d60ab2
 l
 <src/main/java/ru/mai/lessons/rpks/impl/ServiceFiltering.java,9\7\97a4aa82a2231676d67354c4c83e9ba0cb80aeb0
 c
