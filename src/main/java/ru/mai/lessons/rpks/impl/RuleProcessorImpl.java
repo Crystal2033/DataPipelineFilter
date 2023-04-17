@@ -24,10 +24,9 @@ public final class RuleProcessorImpl implements RuleProcessor {
             return message;
         }
 
-        for (Rule rule : rules) {
+        for (Rule rule : rules)
             if (!setState(message, rule))
                 break;
-        }
         return message;
     }
 

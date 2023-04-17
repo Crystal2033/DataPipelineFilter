@@ -22,8 +22,13 @@ public class ServiceFiltering implements Service {
 
     private Rule[] getRules() {
         synchronized (dbLock) {
-            if (rules == null)
-                rules = dbReader.readRulesFromDB();
+            if (rules == null) {
+                try {
+                    rules = dbReader.readRulesFromDB();
+                }  catch (IllegalStateException ignored) {
+                    rules = null;
+                }
+            }
             return rules;
         }
     }
@@ -31,7 +36,11 @@ public class ServiceFiltering implements Service {
     private void updateRules() {
         log.info("DB checking is ON");
         synchronized (dbLock) {
-            rules = dbReader.readRulesFromDB();
+            try {
+                rules = dbReader.readRulesFromDB();
+            }  catch (IllegalStateException ignored) {
+                rules = null;
+            }
         }
         log.info("DB checking is OFF");
     }
