@@ -1,6 +1,7 @@
 package ru.mai.lessons.rpks.impl;
 
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +32,8 @@ public class KafkaReaderImpl {
     private final String topic;
     private final String topicOut;
     private final String bootstrapServers;
-    private final Rule[] rules;
+    @NonNull
+    Rule[] rules;
     private boolean isExit;
     ConcurrentLinkedQueue<Message> queue;
 //    KafkaWriterImpl kafkaWriter;
@@ -50,6 +52,7 @@ public class KafkaReaderImpl {
         );
 
         kafkaConsumer.subscribe(Collections.singletonList(topic));
+
 
         try (kafkaConsumer) {
             while (!isExit) {

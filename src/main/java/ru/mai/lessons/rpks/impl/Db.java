@@ -25,9 +25,9 @@ import static org.jooq.impl.DSL.*;
 public class Db {
     private static DataSource dataSource;
     Connection conn;
-        public Rule[] readRulesFromDB(DSLContext context, int updateIntervalSec) {
+    public Rule[] readRulesFromDB(DSLContext context) {
 
-            String tableName = "filter_rules";
+        String tableName = "filter_rules";
 
 
 //            final long interval = updateIntervalSec * 1000;
@@ -44,7 +44,7 @@ public class Db {
 
 
 
-            ArrayList<Rule> array= new ArrayList<>();
+        ArrayList<Rule> array= new ArrayList<>();
 //            DSLContext context = DSL.using(conn, SQLDialect.POSTGRES);
 //            Query query = context.select(field("filter_id"), field("rule_id"),  field("field_name"),
 //                            field("filter_function_name"),
@@ -52,33 +52,33 @@ public class Db {
 //                    .from(table(tableName));
 //
 //            String sql = query.getSQL(ParamType.INLINED);
-            Result<Record5<Object, Object, Object, Object, Object>> result = context.select(
-                            field("filter_id"),
-                            field("rule_id"),
-                            field("field_name"),
-                            field("filter_function_name"),
-                            field("filter_value")
-                    )
-                    .from(table(tableName)).fetch();
-            int numberOfRows = context.fetchCount(context.selectFrom(tableName));
-            Rule[] ruleArray = new Rule[numberOfRows];
+        Result<Record5<Object, Object, Object, Object, Object>> result = context.select(
+                        field("filter_id"),
+                        field("rule_id"),
+                        field("field_name"),
+                        field("filter_function_name"),
+                        field("filter_value")
+                )
+                .from(table(tableName)).fetch();
+        int numberOfRows = context.fetchCount(context.selectFrom(tableName));
+        Rule[] ruleArray = new Rule[numberOfRows];
 //            Rule[] rules = result.toArray();
-            result.forEach(res -> {
-                try {
+        result.forEach(res -> {
+            try {
 
-                    Long filterId = (Long)res.getValue(field("filter_id"));
-                    Long ruleId = (Long)res.getValue(field(name("rule_id")));
-                    String field_name = res.getValue(field(name("field_name"))).toString();
-                    String filter_function_name = res.getValue(field(name("filter_function_name"))).toString();
-                    String filter_value = res.getValue(field(name("filter_value"))).toString();
-                    Rule rule = new Rule(filterId, ruleId, field_name, filter_function_name, filter_value);
+                Long filterId = (Long)res.getValue(field("filter_id"));
+                Long ruleId = (Long)res.getValue(field(name("rule_id")));
+                String field_name = res.getValue(field(name("field_name"))).toString();
+                String filter_function_name = res.getValue(field(name("filter_function_name"))).toString();
+                String filter_value = res.getValue(field(name("filter_value"))).toString();
+                Rule rule = new Rule(filterId, ruleId, field_name, filter_function_name, filter_value);
 //                    ArrayList<String> a = new ArrayList<>();
 //                    a.add(filterId);
 //                    a.add(ruleId);
-                    array.add(rule);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                array.add(rule);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 //                var result = context.select(
 //                        field("filter_id"),
 //                        field("rule_id"),
@@ -91,9 +91,9 @@ public class Db {
 //                String stringResult = result.formatCSV();
 
 
-            });
-            array.toArray(ruleArray);
-            return ruleArray;
+        });
+        array.toArray(ruleArray);
+        return ruleArray;
     }
     static Connection getConnection() throws SQLException {
         return getDataSource().getConnection();

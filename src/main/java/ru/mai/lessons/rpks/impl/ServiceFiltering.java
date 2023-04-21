@@ -18,9 +18,7 @@ import ru.mai.lessons.rpks.model.Rule;
 
 import javax.sql.DataSource;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -33,6 +31,7 @@ public class ServiceFiltering implements Service {
     Rule[] rules;
     int updateIntervalSec;
     ConcurrentLinkedQueue<Message> queue;
+
     @Override
     public void start(Config config) {
         rules = new Rule[1];
@@ -42,16 +41,36 @@ public class ServiceFiltering implements Service {
         ArrayList<ArrayList<String>> arrayLists = new ArrayList<>();
         queue = new ConcurrentLinkedQueue<>();
         db = new Db();
-        try (Connection conn = getConnection()) {
-            DSLContext context = DSL.using(conn, SQLDialect.POSTGRES);
-            rules = db.readRulesFromDB(context, updateIntervalSec);
+        Connection conn = null;
+        try {
+            conn = getConnection();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
+        {
+            DSLContext context = DSL.using(conn, SQLDialect.POSTGRES);
+            rules = db.readRulesFromDB(context);
+
+            updateIntervalSec = config.getConfig("application").getInt("updateIntervalSec");
+            TimerTask task = new TimerTask() {
+                public void run() {
+                    log.info("asdfghj");
+                    rules = db.readRulesFromDB(context);
+                    for (Rule r :
+                            rules) {
+                        log.info(r.toString());
+
+                    }
+                }
+            };
+
+            Timer timer = new Timer(true);
+            timer.schedule(task, 0, 1000 * updateIntervalSec);
+            log.info("delay:" + updateIntervalSec);
 
 
 //        String query = "SELECT * FROM testRules";
-        //Using try-with-resources for auto closing connection, pstmt, and rs.
+            //Using try-with-resources for auto closing connection, pstmt, and rs.
 //        try (Connection connection = getConnection();
 //             PreparedStatement pstmt = connection.prepareStatement(query);
 //             ResultSet rs = pstmt.executeQuery();
@@ -85,34 +104,34 @@ public class ServiceFiltering implements Service {
 //        System.out.println(preDateMap.get("enable"));
 //        System.out.println(preDateMap.get("days"));
 //        System.out.println(preDateMap.get("interval"));
-        String reader = configurationReader.loadConfig().getString("kafka.consumer.bootstrap.servers");
-        String writer = configurationReader.loadConfig().getString("kafka.producer.bootstrap.servers");
-        KafkaReaderImpl kafkaReader = new KafkaReaderImpl("test_topic_in","test_topic_out", reader, rules);
-
-        executorService.execute(() -> {
+            String reader = configurationReader.loadConfig().getString("kafka.consumer.bootstrap.servers");
+            String writer = configurationReader.loadConfig().getString("kafka.producer.bootstrap.servers");
+            KafkaReaderImpl kafkaReader = new KafkaReaderImpl("test_topic_in", "test_topic_out", reader, rules);
+            executorService.execute(() -> {
 //            KafkaReaderImpl kafkaReader = new KafkaReaderImpl("test_topic", reader, rules);
-            queue = kafkaReader.getQueue();
+                queue = kafkaReader.getQueue();
+
 
 //            queue = kafkaReader.getQueue();
-            System.out.println("+++++++"+queue);
-        });
-        KafkaWriterImpl kafkaWriter = new KafkaWriterImpl("test_topic_in", writer);
+                System.out.println("+++++++" + queue);
+            });
+            KafkaWriterImpl kafkaWriter = new KafkaWriterImpl("test_topic_in", writer);
 //        KafkaQueueWriter kafkaQueueWriter = new KafkaQueueWriter("test_topic_out", writer, queue);
 
-        executorService.execute(() -> {
+            executorService.execute(() -> {
 //            KafkaReaderImpl kafkaReader = new KafkaReaderImpl("test_topic", reader, rules);
 //            log.info("ya v potoke");
 //            queue = kafkaReader.getQueue();
-            kafkaReader.processing();
-        });
-
+                kafkaReader.setRules(rules);
+                kafkaReader.processing();
+            });
 
 
 //            queue = kafkaReader.getQueue();
 //            System.out.println("+++++++"+queue);
 
-        System.out.println("queue" + queue);
-        kafkaWriter.processing();
+            System.out.println("queue" + queue);
+            kafkaWriter.processing();
 ////        kafkaWriter.setQueue(queue);
 //        System.out.println("-------------");
 //
@@ -126,7 +145,7 @@ public class ServiceFiltering implements Service {
 //        });
 
 
-
-        // написать код реализации сервиса фильтрации
+            // написать код реализации сервиса фильтрации
+        }
     }
 }

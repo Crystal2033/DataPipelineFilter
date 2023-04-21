@@ -24,7 +24,7 @@ public class RuleProcessorImpl implements RuleProcessor{
 
 // To put all of the JSON in a Map<String, Object>
         try {
-             map = mapper.readValue(message.getValue(), Map.class);
+            map = mapper.readValue(message.getValue(), Map.class);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
@@ -36,7 +36,7 @@ public class RuleProcessorImpl implements RuleProcessor{
 //        System.out.println(preDateMap.get("interval"));
         if (!isExit){
             for (int i = 0; i<rules.length; i++){
-    //            ПРОВЕРКА ПРАВИЛ
+                //            ПРОВЕРКА ПРАВИЛ
                 log.info("CHECKING FIELD {}",rules[i].getFieldName());
                 if (map.containsKey(rules[i].getFieldName())){
                     if (Objects.equals(rules[i].getFilterFunctionName(), "equals")){

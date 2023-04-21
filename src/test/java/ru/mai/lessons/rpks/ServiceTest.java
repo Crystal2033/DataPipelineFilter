@@ -1094,7 +1094,6 @@ class ServiceTest {
             checkAndCreateRequiredTopics(adminClient, topics);
 
             consumer.subscribe(Collections.singletonList(topicOut));
-
             clearTable();
             createAndCheckRuleInPostgreSQL(1L, 1L, "name", "contains", "alexander");
 
