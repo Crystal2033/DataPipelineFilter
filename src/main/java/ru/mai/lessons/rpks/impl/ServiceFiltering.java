@@ -31,13 +31,13 @@ public class ServiceFiltering implements Service {
         rules = new Rule[1];
         ExecutorService executorService = Executors.newFixedThreadPool(1);
         ConfigurationReader configurationReader = new ConfigurationReader();
-        updateIntervalSec = configurationReader.loadConfig().getInt("application.updateIntervalSec");
+        updateIntervalSec = config.getInt("application.updateIntervalSec");
         queue = new ConcurrentLinkedQueue<>();
         db = new Db();
-        Db.setUsername(configurationReader.loadConfig().getString("db.user"));
-        Db.setPassword(configurationReader.loadConfig().getString("db.password"));
-        Db.setJdbcUrl(configurationReader.loadConfig().getString("db.jdbcUrl"));
-        Db.setDriverClassName(configurationReader.loadConfig().getString("db.driver"));
+        Db.setUsername(config.getString("db.user"));
+        Db.setPassword(config.getString("db.password"));
+        Db.setJdbcUrl(config.getString("db.jdbcUrl"));
+        Db.setDriverClassName(config.getString("db.driver"));
         Connection conn = null;
         try {
             conn = getConnection();
@@ -48,7 +48,7 @@ public class ServiceFiltering implements Service {
         DSLContext context = DSL.using(conn, SQLDialect.POSTGRES);
         rules = db.readRulesFromDB(context);
 
-        updateIntervalSec = config.getConfig("application").getInt("updateIntervalSec");
+        updateIntervalSec = config.getInt("updateIntervalSec");
         TimerTask task = new TimerTask() {
             public void run() {
                 rules = db.readRulesFromDB(context);
@@ -71,8 +71,9 @@ public class ServiceFiltering implements Service {
         log.info("delay:" + updateIntervalSec);
 
 
-        String reader = configurationReader.loadConfig().getString("kafka.consumer.bootstrap.servers");
-        KafkaReaderImpl kafkaReader = new KafkaReaderImpl("test_topic_in", "test_topic_out", reader, rules);
+        String reader = config.getString("kafka.consumer.bootstrap.servers");
+        String writer = config.getString("kafka.producer.bootstrap.servers");
+        KafkaReaderImpl kafkaReader = new KafkaReaderImpl("test_topic_in", "test_topic_out", reader, writer, rules);
         executorService.execute(() -> {
             queue = kafkaReader.getQueue();
             log.info("+++++++" + queue);

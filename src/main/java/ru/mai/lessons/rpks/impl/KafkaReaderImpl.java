@@ -34,6 +34,7 @@ public class KafkaReaderImpl implements KafkaReader {
     private final String topic;
     private final String topicOut;
     private final String bootstrapServers;
+    private final String bootstrapServersWriter;
     @NonNull
     Rule[] rules;
     private boolean isExit;
@@ -72,7 +73,7 @@ public class KafkaReaderImpl implements KafkaReader {
                         log.info("Start write message in kafka out topic {}", topicOut);
                         try (KafkaProducer<String, String> kafkaProducer = new KafkaProducer<>(
                                 Map.of(
-                                        ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers,
+                                        ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServersWriter,
                                         ConsumerConfig.CLIENT_ID_CONFIG, UUID.randomUUID().toString()
                                 ),
                                 new StringSerializer(),
