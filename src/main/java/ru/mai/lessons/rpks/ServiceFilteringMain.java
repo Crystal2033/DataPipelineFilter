@@ -12,6 +12,5 @@ public class ServiceFilteringMain {
         ConfigReader configReader = new ConfigurationReader();
         Service service = new ServiceFiltering(); // ваша реализация service
         service.start(configReader.loadConfig());
-        log.info("Terminate service Filtering");
     }
 }

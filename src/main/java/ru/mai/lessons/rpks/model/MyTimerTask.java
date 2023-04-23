@@ -12,14 +12,11 @@ import java.util.TimerTask;
 @Slf4j
 @Getter
 public class MyTimerTask extends TimerTask {
-    //    ArrayList<String> list = new ArrayList<>();
     Db db;
     DSLContext context;
     Rule[] rules;
     boolean isReady = false;
-//    public Rule[] getRules(){
-//        return this.rules;
-//    }
+
     public MyTimerTask(DSLContext context, Db db, Rule[] rules) {
         this.context = context;
         this.db = db;
@@ -29,24 +26,16 @@ public class MyTimerTask extends TimerTask {
 
     @Override
     public void run() {
-        System.out.println("TimerTask начал свое выполнение в:" + new Date());
+        log.info("TimerTask начал свое выполнение в:" + new Date());
         isReady = false;
         completeTask();
-        System.out.println("TimerTask закончил свое выполнение в:" + new Date());
+        log.info("TimerTask закончил свое выполнение в:" + new Date());
     }
 
-    void completeTask() {
-        try {
-            // допустим, выполнение займет 20 секунд
-            Thread.sleep(5000);
-           synchronized (rules) {
-               rules = db.readRulesFromDB(context);
-               log.info("RULES UPDATED {}", rules.length);
-               isReady = true;
-           }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    synchronized void completeTask() {
+            rules = db.readRulesFromDB(context);
+            log.info("RULES UPDATED {}", rules.length);
+            isReady = true;
     }
 
     public boolean getIsReady() {

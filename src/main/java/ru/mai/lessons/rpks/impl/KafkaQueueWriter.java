@@ -2,6 +2,7 @@ package ru.mai.lessons.rpks.impl;
 
 import lombok.NonNull;
 import lombok.Setter;
+import ru.mai.lessons.rpks.KafkaWriter;
 import ru.mai.lessons.rpks.model.Message;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,9 +22,7 @@ import java.util.concurrent.*;
 @RequiredArgsConstructor
 @Setter
 
-public class KafkaQueueWriter {
-
-    //    public void processing(Message message) {
+public class KafkaQueueWriter implements KafkaWriter {
     private final String topic;
     private final String bootstrapServers;
     @NonNull
@@ -31,28 +30,16 @@ public class KafkaQueueWriter {
     boolean isExit = false;
 
     public void processing() {
-//            ExecutorService executorService = Executors.newFixedThreadPool(1);
-//
-//            executorService.execute(() -> {
-//                KafkaReader kafkaReader = new KafkaReader("test_topic", "localhost:9093");
-//                kafkaReader.read();
-//            });
-
-//            KafkaWriterImpl kafkaWriter = new KafkaWriterImpl("test_topic", "localhost:9093");
-//            KafkaWriterImpl.processing();
-
-//            executorService.shutdown();
         log.info("Start queue write message in kafka topic {}", topic);
-        KafkaProducer<String, String> kafkaProducer = new KafkaProducer<>(
+
+        try (KafkaProducer<String, String> kafkaProducer = new KafkaProducer<>(
                 Map.of(
                         ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers,
                         ConsumerConfig.CLIENT_ID_CONFIG, UUID.randomUUID().toString()
                 ),
                 new StringSerializer(),
                 new StringSerializer()
-        );
-
-        try {
+        )) {
             while (!isExit) {
                 if (!queue.isEmpty()) {
                     Message queueElement = queue.peek();
@@ -65,8 +52,6 @@ public class KafkaQueueWriter {
                             break;
                         }
                         response = kafkaProducer.send(new ProducerRecord<>(topic, queueElement.getValue()));
-//                    } else if (keyValue.length == 1) {
-//                        response = kafkaProducer.send(new ProducerRecord<>(topic, keyValue[0]));
                     } else {
                         log.error("Invalid input data: {}", queueElement);
                     }
@@ -81,12 +66,8 @@ public class KafkaQueueWriter {
                     });
                 }
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-    }
-        finally {
-            kafkaProducer.close();
         }
 
 

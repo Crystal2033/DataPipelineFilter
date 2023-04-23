@@ -12,8 +12,10 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
+import org.apache.kafka.common.KafkaException;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
+import ru.mai.lessons.rpks.KafkaReader;
 import ru.mai.lessons.rpks.model.Message;
 import ru.mai.lessons.rpks.model.Rule;
 
@@ -27,7 +29,7 @@ import java.util.concurrent.Future;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class KafkaReaderImpl {
+public class KafkaReaderImpl implements KafkaReader {
 
     private final String topic;
     private final String topicOut;
@@ -36,8 +38,6 @@ public class KafkaReaderImpl {
     Rule[] rules;
     private boolean isExit;
     ConcurrentLinkedQueue<Message> queue;
-//    KafkaWriterImpl kafkaWriter;
-//    KafkaQueueWriter kafkaQueueWriter;
 
     public void processing() {
         log.info("Start reading kafka topic {}", topic);
@@ -65,12 +65,10 @@ public class KafkaReaderImpl {
 
                         log.info(String.valueOf(consumerRecord));
                         queue = new ConcurrentLinkedQueue<>();
-//                        queue.add(consumerRecord.value());
                         Message msg = new Message(consumerRecord.value(), true);
                         RuleProcessorImpl ruleProcessor = new RuleProcessorImpl();
                         queue = new ConcurrentLinkedQueue<>();
                         queue.add(ruleProcessor.processing(msg, rules));
-                        System.out.println("_______________________"+queue);
                         log.info("Start write message in kafka out topic {}", topicOut);
                         try (KafkaProducer<String, String> kafkaProducer = new KafkaProducer<>(
                                 Map.of(
@@ -86,16 +84,12 @@ public class KafkaReaderImpl {
                                 queue.remove();
                                 Future<RecordMetadata> response = null;
 
-                                if (queueElement.getFilterState() == true) {
+                                if (queueElement.getFilterState()) {
                                     if (Objects.equals(queueElement.getValue(), "$exit")) {
                                         isExit = true;
                                         break;
                                     }
                                     response = kafkaProducer.send(new ProducerRecord<>(topicOut, queueElement.getValue()));
-                                    //                    } else if (keyValue.length == 1) {
-                                    //                        response = kafkaProducer.send(new ProducerRecord<>(topic, keyValue[0]));
-
-
                                     Optional.ofNullable(response).ifPresent(rsp -> {
                                         try {
                                             log.info("Message send to out{}", rsp.get());
@@ -106,33 +100,14 @@ public class KafkaReaderImpl {
                                     });
                                 }
                             }
-                        }catch (Exception e) {
+                        }catch (KafkaException e) {
                             e.printStackTrace();
                         }
-//                        for (int i = 0; i< rules.length; i++){
-//                            if (Objects.equals(rules[i].getFilterFunctionName(), "equals")){
-//                                Message msg = new Message(consumerRecord.value(), true);
-//                                if (!Objects.equals(consumerRecord.value(), rules[i].getFilterValue())){
-//                                    msg.setFilterState(false);
-//                                }
-//                            }
-//                            if (Objects.equals(rules[i].getFilterFunctionName(), "not_equals")){
-//                                Message msg = new Message(consumerRecord.value(), true);
-//                                if (Objects.equals(consumerRecord.value(), rules[i].getFilterValue())){
-//                                    msg.setFilterState(false);
-//                                }
-//                            }
-//                            if (Objects.equals(rules[i].getFilterFunctionName(), "contains")){
-//                                Message msg = new Message(consumerRecord.value(), true);
-//                                if (consumerRecord.value(), rules[i].getFilterValue())){
-//                                    msg.setFilterState(false);
-//                                }
-//                            }
-//                        }
                     }
                 }
             }
             log.info("Read is done!");
+
         }
     }
 }
