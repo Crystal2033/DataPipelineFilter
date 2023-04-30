@@ -1,401 +1,524 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ru.mai.lessons.rpks.ServiceTest" tests="18" skipped="0" failures="0" errors="0" timestamp="2023-04-16T15:46:57" hostname="T-LAPTOP" time="238.21">
+<testsuite name="ru.mai.lessons.rpks.ServiceTest" tests="18" skipped="0" failures="0" errors="0" timestamp="2023-04-30T13:41:20" hostname="T-LAPTOP" time="236.783">
   <properties/>
-  <testcase name="testKafkaWriteReadMessage()" classname="ru.mai.lessons.rpks.ServiceTest" time="13.729"/>
-  <testcase name="testServiceFilteringNotEquals()" classname="ru.mai.lessons.rpks.ServiceTest" time="11.219"/>
-  <testcase name="testServiceFilteringNotRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="20.285"/>
-  <testcase name="testServiceFilteringContainsNotEqualsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="10.525"/>
-  <testcase name="testServiceFilteringAddNewRule()" classname="ru.mai.lessons.rpks.ServiceTest" time="30.497"/>
-  <testcase name="testServiceFilteringContainsNotContainsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="10.555"/>
-  <testcase name="testStartPostgreSQL()" classname="ru.mai.lessons.rpks.ServiceTest" time="8.749"/>
-  <testcase name="testServiceFilteringUpdateRule()" classname="ru.mai.lessons.rpks.ServiceTest" time="30.545"/>
-  <testcase name="testServiceFilteringNotContains()" classname="ru.mai.lessons.rpks.ServiceTest" time="10.443"/>
-  <testcase name="testServiceFilteringEqualsNotContainsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="10.507"/>
-  <testcase name="testServiceFilteringContains()" classname="ru.mai.lessons.rpks.ServiceTest" time="10.359"/>
-  <testcase name="testServiceFilteringEqualsContainsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="10.355"/>
-  <testcase name="testServiceFilteringEquals()" classname="ru.mai.lessons.rpks.ServiceTest" time="10.391"/>
-  <testcase name="testPostgreSQLReadValues()" classname="ru.mai.lessons.rpks.ServiceTest" time="8.805"/>
-  <testcase name="testServiceFilteringEqualsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="10.448"/>
-  <testcase name="testServiceFilteringEqualsNotEqualsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="11.408"/>
-  <testcase name="testServiceFilteringContainsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="10.539"/>
-  <testcase name="testStartKafka()" classname="ru.mai.lessons.rpks.ServiceTest" time="8.845"/>
-  <system-out><![CDATA[18:46:57,716 |-INFO in ch.qos.logback.classic.LoggerContext[default] - This is logback-classic version 1.4.6
-18:46:57,734 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.xml]
-18:46:57,736 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Found resource [logback.xml] at [file:/C:/Users/anton/IdeaProjects/JavaServiceFiltering/build/resources/test/logback.xml]
-18:46:57,845 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [CONSOLE]
-18:46:57,845 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
-18:46:57,889 |-WARN in ch.qos.logback.core.ConsoleAppender[CONSOLE] - This appender no longer admits a layout as a sub-component, set an encoder instead.
-18:46:57,889 |-WARN in ch.qos.logback.core.ConsoleAppender[CONSOLE] - To ensure compatibility, wrapping your layout in LayoutWrappingEncoder.
-18:46:57,889 |-WARN in ch.qos.logback.core.ConsoleAppender[CONSOLE] - See also http://logback.qos.ch/codes.html#layoutInsteadOfEncoder for details
-18:46:57,890 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting level of logger [ru.mai.lessons.rpks] to INFO
-18:46:57,892 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting additivity of logger [ru.mai.lessons.rpks] to false
-18:46:57,892 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [CONSOLE] to Logger[ru.mai.lessons.rpks]
-18:46:57,893 |-INFO in ch.qos.logback.classic.model.processor.RootLoggerModelHandler - Setting level of ROOT logger to ERROR
-18:46:57,893 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [CONSOLE] to Logger[ROOT]
-18:46:57,893 |-INFO in ch.qos.logback.core.model.processor.DefaultProcessor@65fe9e33 - End of configuration.
-18:46:57,894 |-INFO in ch.qos.logback.classic.joran.JoranConfigurator@18bc345 - Registering current configuration as safe fallback point
+  <testcase name="testKafkaWriteReadMessage()" classname="ru.mai.lessons.rpks.ServiceTest" time="13.757"/>
+  <testcase name="testServiceFilteringNotEquals()" classname="ru.mai.lessons.rpks.ServiceTest" time="11.102"/>
+  <testcase name="testServiceFilteringNotRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="20.412"/>
+  <testcase name="testServiceFilteringContainsNotEqualsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="10.319"/>
+  <testcase name="testServiceFilteringAddNewRule()" classname="ru.mai.lessons.rpks.ServiceTest" time="30.377"/>
+  <testcase name="testServiceFilteringContainsNotContainsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="10.143"/>
+  <testcase name="testStartPostgreSQL()" classname="ru.mai.lessons.rpks.ServiceTest" time="8.927"/>
+  <testcase name="testServiceFilteringUpdateRule()" classname="ru.mai.lessons.rpks.ServiceTest" time="30.277"/>
+  <testcase name="testServiceFilteringNotContains()" classname="ru.mai.lessons.rpks.ServiceTest" time="10.211"/>
+  <testcase name="testServiceFilteringEqualsNotContainsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="10.286"/>
+  <testcase name="testServiceFilteringContains()" classname="ru.mai.lessons.rpks.ServiceTest" time="9.976"/>
+  <testcase name="testServiceFilteringEqualsContainsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="10.133"/>
+  <testcase name="testServiceFilteringEquals()" classname="ru.mai.lessons.rpks.ServiceTest" time="10.078"/>
+  <testcase name="testPostgreSQLReadValues()" classname="ru.mai.lessons.rpks.ServiceTest" time="10.37"/>
+  <testcase name="testServiceFilteringEqualsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="10.271"/>
+  <testcase name="testServiceFilteringEqualsNotEqualsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="10.455"/>
+  <testcase name="testServiceFilteringContainsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="10.628"/>
+  <testcase name="testStartKafka()" classname="ru.mai.lessons.rpks.ServiceTest" time="9.059"/>
+  <system-out><![CDATA[16:41:20,174 |-INFO in ch.qos.logback.classic.LoggerContext[default] - This is logback-classic version 1.4.6
+16:41:20,193 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.xml]
+16:41:20,195 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Found resource [logback.xml] at [file:/C:/Users/anton/IdeaProjects/JavaServiceFiltering/build/resources/test/logback.xml]
+16:41:20,308 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [CONSOLE]
+16:41:20,308 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
+16:41:20,351 |-WARN in ch.qos.logback.core.ConsoleAppender[CONSOLE] - This appender no longer admits a layout as a sub-component, set an encoder instead.
+16:41:20,351 |-WARN in ch.qos.logback.core.ConsoleAppender[CONSOLE] - To ensure compatibility, wrapping your layout in LayoutWrappingEncoder.
+16:41:20,351 |-WARN in ch.qos.logback.core.ConsoleAppender[CONSOLE] - See also http://logback.qos.ch/codes.html#layoutInsteadOfEncoder for details
+16:41:20,352 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting level of logger [ru.mai.lessons.rpks] to INFO
+16:41:20,354 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting additivity of logger [ru.mai.lessons.rpks] to false
+16:41:20,355 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [CONSOLE] to Logger[ru.mai.lessons.rpks]
+16:41:20,355 |-INFO in ch.qos.logback.classic.model.processor.RootLoggerModelHandler - Setting level of ROOT logger to ERROR
+16:41:20,355 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [CONSOLE] to Logger[ROOT]
+16:41:20,355 |-INFO in ch.qos.logback.core.model.processor.DefaultProcessor@42f8285e - End of configuration.
+16:41:20,356 |-INFO in ch.qos.logback.classic.joran.JoranConfigurator@26bab2f1 - Registering current configuration as safe fallback point
 
-18:47:07.498 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Bootstrap.servers: PLAINTEXT://localhost:63725
-18:47:07.501 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-18:47:07.726 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Creating topics
-18:47:08.305 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Created topics
-18:47:08.305 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Sending message
-18:47:08.405 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Sent message
-18:47:08.406 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Consumer subscribe
-18:47:08.407 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Consumer start reading
-18:47:08.522 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-18:47:09.629 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 9
-18:47:10.677 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-18:47:19.353 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-18:47:20.209 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
-18:47:20.465 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-18:47:20.497 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-18:47:20.602 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:47:20.605 [Test worker] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Init KafkaReaderImpl
-18:47:20.609 [Test worker] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Consumer topic:test_topic_in
-18:47:20.664 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
-18:47:20.809 [pool-3-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-18:47:20.850 [pool-5-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":null}
-18:47:20.856 [pool-5-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "sex":"M"}
-18:47:20.857 [pool-5-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":, "sex":null}
-18:47:20.857 [pool-5-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex"}
-18:47:20.857 [pool-5-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":19, "sex":"M"}
-18:47:20.858 [pool-5-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"no_alex", "age":18, "sex":"M"}
-18:47:20.858 [pool-5-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Init KafkaWriterImpl
-18:47:20.881 [pool-5-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-1@0
-18:47:21.824 [pool-3-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-18:47:30.587 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-18:47:30.605 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
-18:47:30.610 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:47:30.902 [Test worker] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Init KafkaReaderImpl
-18:47:30.902 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:47:30.905 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
-18:47:30.906 [Test worker] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Consumer topic:test_topic_in
-18:47:31.106 [pool-6-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-18:47:31.142 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":null, "sex":"M"}
-18:47:31.142 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : 
-18:47:31.142 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"age":18, "sex":"M"}
-18:47:31.142 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":, "sex":"M"}
-18:47:31.142 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"pushkin", "age":19, "sex":"M"}
-18:47:31.142 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"", "age":"", "sex":"M"}
-18:47:31.142 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "sex":"M"}
-18:47:31.143 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex_ivanov", "age":20, "sex":"M"}
-18:47:32.229 [pool-6-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 9
-18:47:33.353 [pool-6-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 8
-18:47:34.463 [pool-6-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 7
-18:47:35.588 [pool-6-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 6
-18:47:36.704 [pool-6-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 5
-18:47:37.814 [pool-6-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 4
-18:47:38.931 [pool-6-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 3
-18:47:40.054 [pool-6-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 2
-18:47:40.913 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:47:40.925 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
-18:47:41.177 [pool-6-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 1
-18:47:50.912 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:47:50.992 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-18:47:51.009 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
-18:47:51.290 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-18:47:51.305 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-18:47:51.307 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-18:47:51.354 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-18:47:51.373 [Test worker] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Init KafkaReaderImpl
-18:47:51.373 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:47:51.376 [Test worker] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Consumer topic:test_topic_in
-18:47:51.376 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
-18:47:51.583 [pool-9-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-18:47:51.605 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander_pushkin", "age":18, "sex":"M"}
-18:47:51.605 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Init KafkaWriterImpl
-18:47:51.623 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-1@0
-18:47:51.623 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":null, "sex":"M"}
-18:47:51.623 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : 
-18:47:51.623 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"age":18, "sex":"M"}
-18:47:51.623 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":, "sex":"M"}
-18:47:51.624 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"pushkin", "age":19, "sex":"M"}
-18:47:51.624 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"", "age":"", "sex":"M"}
-18:47:51.624 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "sex":"M"}
-18:47:51.624 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex_ivanov", "age":20, "sex":"M"}
-18:47:52.592 [pool-9-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-18:48:01.387 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:48:01.670 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-18:48:01.687 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
-18:48:02.000 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-18:48:02.019 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-18:48:02.037 [Test worker] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Init KafkaReaderImpl
-18:48:02.037 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:48:02.040 [Test worker] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Consumer topic:test_topic_in
-18:48:02.040 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
-18:48:02.256 [pool-12-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-18:48:02.289 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":null, "sex":"M"}
-18:48:02.289 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : 
-18:48:02.289 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex_ivanov", "age":18, "sex":"M"}
-18:48:02.289 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"age":17, "sex":"M"}
-18:48:02.289 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"pushkin", "age":19, "sex":"M"}
-18:48:02.289 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"", "age":"", "sex":"M"}
-18:48:02.290 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":, "age":, "sex":"M"}
-18:48:02.290 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "sex":"M"}
-18:48:02.290 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander", "age":18, "sex":"M"}
-18:48:02.290 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Init KafkaWriterImpl
-18:48:02.311 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-2@0
-18:48:03.262 [pool-12-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-18:48:03.262 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-18:48:03.265 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-18:48:03.268 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Wait until application updated rules from DB
-18:48:12.042 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:48:12.054 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
-18:48:22.038 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:48:22.041 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
-18:48:23.275 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":null, "sex":"M"}
-18:48:23.277 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : 
-18:48:23.282 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex_ivanov", "age":18, "sex":"M"}
-18:48:23.285 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"age":17, "sex":"M"}
-18:48:23.288 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"pushkin", "age":19, "sex":"M"}
-18:48:23.292 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"", "age":"", "sex":"M"}
-18:48:23.297 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":, "age":, "sex":"M"}
-18:48:23.302 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "sex":"M"}
-18:48:23.306 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander", "age":18, "sex":"M"}
-18:48:23.310 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-2@1
-18:48:23.311 [pool-12-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-18:48:32.044 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:48:32.147 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-18:48:32.171 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
-18:48:32.444 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-18:48:32.460 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-18:48:32.463 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-18:48:32.495 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-18:48:32.515 [Test worker] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Init KafkaReaderImpl
-18:48:32.515 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:48:32.518 [Test worker] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Consumer topic:test_topic_in
-18:48:32.519 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
-18:48:32.728 [pool-15-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-18:48:32.762 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander_pushkin", "age":18, "sex":"M"}
-18:48:32.762 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Init KafkaWriterImpl
-18:48:32.780 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-2@0
-18:48:32.780 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"pushkin", "age":18, "sex":"M"}
-18:48:32.780 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"ivanov", "age":18, "sex":"M"}
-18:48:32.780 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : 
-18:48:32.780 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"age":18, "sex":"M"}
-18:48:32.780 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"", "age":18, "sex":"M"}
-18:48:32.780 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander_ivanov", "age":18, "sex":"M"}
-18:48:32.780 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "age":18, "sex":"M"}
-18:48:33.746 [pool-15-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-18:48:42.526 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:48:51.492 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-18:48:51.509 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
-18:48:51.803 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-18:48:51.821 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-18:48:51.840 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:48:51.840 [Test worker] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Init KafkaReaderImpl
-18:48:51.844 [Test worker] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Consumer topic:test_topic_in
-18:48:51.844 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
-18:48:52.071 [pool-20-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-18:48:52.110 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : 
-18:48:52.110 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex_ivanov", "age":18, "sex":"M"}
-18:48:52.110 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"age":17, "sex":"M"}
-18:48:52.110 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"", "age":"", "sex":"M"}
-18:48:52.110 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"pushkin", "age":19, "sex":"M"}
-18:48:52.111 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander", "age":null, "sex":"M"}
-18:48:52.111 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":, "age":, "sex":"M"}
-18:48:52.111 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "sex":"M"}
-18:48:52.111 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":18, "sex":"M"}
-18:48:52.111 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Init KafkaWriterImpl
-18:48:52.130 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-0@0
-18:48:53.084 [pool-20-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-18:48:53.099 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-18:48:53.106 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-18:48:53.111 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Wait until application updated rules from DB
-18:49:01.846 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:49:01.849 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
-18:49:11.841 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:49:11.844 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
-18:49:13.120 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":null, "sex":"M"}
-18:49:13.123 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : 
-18:49:13.126 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex_ivanov", "age":18, "sex":"M"}
-18:49:13.130 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"age":17, "sex":"M"}
-18:49:13.132 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"pushkin", "age":19, "sex":"M"}
-18:49:13.135 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"", "age":"", "sex":"M"}
-18:49:13.138 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":, "age":, "sex":"M"}
-18:49:13.140 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "sex":"M"}
-18:49:13.143 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander", "age":18, "sex":"M"}
-18:49:13.147 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-0@1
-18:49:13.147 [pool-20-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-18:49:21.854 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:49:21.938 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-18:49:21.957 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
-18:49:22.254 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-18:49:22.268 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-18:49:22.284 [Test worker] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Init KafkaReaderImpl
-18:49:22.284 [pool-24-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:49:22.287 [pool-24-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
-18:49:22.287 [Test worker] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Consumer topic:test_topic_in
-18:49:22.473 [pool-23-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-18:49:22.523 [pool-25-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander_pushkin", "sex":"M"}
-18:49:22.524 [pool-25-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander_pushkin", "age":null}
-18:49:22.524 [pool-25-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander_pushkin", "age":19, "sex":"M"}
-18:49:22.524 [pool-25-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander_pushkin"}
-18:49:22.524 [pool-25-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander_pushkin", "age":, "sex":null}
-18:49:22.524 [pool-25-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex_pushkin", "age":18, "sex":"M"}
-18:49:22.524 [pool-25-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Init KafkaWriterImpl
-18:49:22.543 [pool-25-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-0@0
-18:49:23.477 [pool-23-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-18:49:32.288 [pool-24-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:49:32.344 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-18:49:32.361 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
-18:49:32.644 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-18:49:32.658 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-18:49:32.660 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-18:49:32.706 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-18:49:32.725 [Test worker] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Init KafkaReaderImpl
-18:49:32.725 [pool-27-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:49:32.728 [Test worker] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Consumer topic:test_topic_in
-18:49:32.729 [pool-27-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
-18:49:32.930 [pool-26-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-18:49:32.957 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander_pushkin", "age":18, "sex":"M"}
-18:49:32.957 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Init KafkaWriterImpl
-18:49:32.973 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-0@0
-18:49:32.973 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander", "age":, "sex":"M"}
-18:49:32.973 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : 
-18:49:32.973 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex_ivanov", "age":18, "sex":"M"}
-18:49:32.973 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"age":18, "sex":"M"}
-18:49:32.973 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"pushkin", "age":19, "sex":"M"}
-18:49:32.974 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander", "age":null, "sex":"M"}
-18:49:32.974 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"", "age":"", "sex":"M"}
-18:49:32.974 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "sex":"M"}
-18:49:33.945 [pool-26-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-18:49:42.725 [pool-27-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:49:42.803 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-18:49:42.820 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
-18:49:43.099 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-18:49:43.114 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-18:49:43.132 [Test worker] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Init KafkaReaderImpl
-18:49:43.132 [pool-30-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:49:43.136 [pool-30-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
-18:49:43.136 [Test worker] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Consumer topic:test_topic_in
-18:49:43.344 [pool-29-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-18:49:43.414 [pool-31-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : 
-18:49:43.414 [pool-31-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"no_alex", "age":18, "sex":"M"}
-18:49:43.415 [pool-31-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"age":18, "sex":"M"}
-18:49:43.415 [pool-31-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"", "age":18, "sex":"M"}
-18:49:43.415 [pool-31-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "age":18, "sex":"M"}
-18:49:43.415 [pool-31-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander_pushkin", "age":18, "sex":"M"}
-18:49:43.415 [pool-31-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Init KafkaWriterImpl
-18:49:43.433 [pool-31-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-1@0
-18:49:44.362 [pool-29-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-18:49:53.133 [pool-30-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:49:53.154 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-18:49:53.172 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
-18:49:53.486 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-18:49:53.502 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-18:49:53.504 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-18:49:53.538 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-18:49:53.553 [Test worker] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Init KafkaReaderImpl
-18:49:53.553 [pool-33-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:49:53.556 [pool-33-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
-18:49:53.556 [Test worker] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Consumer topic:test_topic_in
-18:49:53.756 [pool-32-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-18:49:53.800 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"", "age":"", "sex":"M"}
-18:49:53.800 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "age":18, "sex":"M"}
-18:49:53.800 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander", "age":null, "sex":"M"}
-18:49:53.800 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"pushkin", "age":18, "sex":"M"}
-18:49:53.800 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : 
-18:49:53.800 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex_ivanov", "age":18, "sex":"M"}
-18:49:53.800 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander", "age":, "sex":"M"}
-18:49:53.800 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander", "age":19, "sex":"M"}
-18:49:53.801 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"ivanov", "age":18, "sex":"M"}
-18:49:53.801 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"age":18, "sex":"M"}
-18:49:53.804 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander_pushkin", "age":18, "sex":"M"}
-18:49:53.804 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Init KafkaWriterImpl
-18:49:53.821 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-1@0
-18:49:54.778 [pool-32-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-18:50:03.569 [pool-33-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:50:03.596 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-18:50:03.613 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
-18:50:03.895 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-18:50:03.911 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-18:50:03.928 [Test worker] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Init KafkaReaderImpl
-18:50:03.928 [pool-36-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:50:03.931 [Test worker] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Consumer topic:test_topic_in
-18:50:03.931 [pool-36-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
-18:50:04.118 [pool-35-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-18:50:04.164 [pool-37-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":18, "sex":"M"}
-18:50:04.164 [pool-37-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Init KafkaWriterImpl
-18:50:04.182 [pool-37-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-1@0
-18:50:04.182 [pool-37-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : 
-18:50:04.183 [pool-37-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"no_alex", "age":18, "sex":"M"}
-18:50:04.183 [pool-37-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"age":18, "sex":"M"}
-18:50:04.183 [pool-37-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"", "age":18, "sex":"M"}
-18:50:04.183 [pool-37-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "age":18, "sex":"M"}
-18:50:05.128 [pool-35-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-18:50:13.935 [pool-36-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:50:13.960 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-18:50:13.975 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-18:50:22.751 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-18:50:22.767 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
-18:50:23.038 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-18:50:23.052 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-18:50:23.054 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-18:50:23.105 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-18:50:23.124 [Test worker] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Init KafkaReaderImpl
-18:50:23.124 [pool-41-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:50:23.126 [Test worker] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Consumer topic:test_topic_in
-18:50:23.126 [pool-41-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
-18:50:23.330 [pool-40-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-18:50:23.390 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":18, "sex":"M"}
-18:50:23.390 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Init KafkaWriterImpl
-18:50:23.410 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-0@0
-18:50:23.410 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : 
-18:50:23.410 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "age":"", "sex":"M"}
-18:50:23.410 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"age":18, "sex":"M"}
-18:50:23.410 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"", "age":-, "sex":"M"}
-18:50:23.410 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "age":null, "sex":"M"}
-18:50:23.410 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":19, "sex":"F"}
-18:50:23.410 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"no_alex", "age":18, "sex":"M"}
-18:50:24.357 [pool-40-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-18:50:33.131 [pool-41-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:50:34.119 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-18:50:34.135 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
-18:50:34.413 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-18:50:34.427 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-18:50:34.429 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-18:50:34.456 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-18:50:34.472 [Test worker] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Init KafkaReaderImpl
-18:50:34.472 [pool-44-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:50:34.474 [Test worker] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Consumer topic:test_topic_in
-18:50:34.474 [pool-44-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
-18:50:34.673 [pool-43-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-18:50:34.694 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : 
-18:50:34.694 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":18, "sex":"M"}
-18:50:34.694 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "age":"", "sex":"M"}
-18:50:34.694 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"age":18, "sex":"M"}
-18:50:34.694 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"", "age":-, "sex":"M"}
-18:50:34.694 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "age":null, "sex":"M"}
-18:50:34.694 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"no_alex", "age":18, "sex":"M"}
-18:50:34.694 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":20, "sex":"M"}
-18:50:34.694 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Init KafkaWriterImpl
-18:50:34.710 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-0@0
-18:50:35.679 [pool-43-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-18:50:44.480 [pool-44-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:50:44.651 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-18:50:44.668 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
-18:50:44.947 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-18:50:44.962 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-18:50:44.963 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-18:50:44.986 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-18:50:45.002 [Test worker] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Init KafkaReaderImpl
-18:50:45.002 [pool-47-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
-18:50:45.004 [Test worker] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Consumer topic:test_topic_in
-18:50:45.005 [pool-47-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
-18:50:45.204 [pool-46-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-18:50:45.244 [pool-48-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander_pushkin", "age":18, "sex":"M"}
-18:50:45.245 [pool-48-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Init KafkaWriterImpl
-18:50:45.262 [pool-48-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-1@0
-18:50:45.262 [pool-48-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"pushkin", "age":18, "sex":"M"}
-18:50:45.262 [pool-48-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander", "age":18, "sex":"M"}
-18:50:45.262 [pool-48-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : 
-18:50:45.262 [pool-48-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"age":18, "sex":"M"}
-18:50:45.262 [pool-48-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "age":18, "sex":"M"}
-18:50:45.262 [pool-48-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"", "age":18, "sex":"M"}
-18:50:46.217 [pool-46-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-18:50:55.009 [pool-47-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:41:30.017 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Bootstrap.servers: PLAINTEXT://localhost:61757
+16:41:30.020 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+16:41:30.235 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Creating topics
+16:41:30.755 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Created topics
+16:41:30.756 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Sending message
+16:41:30.845 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Sent message
+16:41:30.845 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Consumer subscribe
+16:41:30.846 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Consumer start reading
+16:41:30.968 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+16:41:32.090 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 9
+16:41:33.147 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+16:41:41.734 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+16:41:42.597 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+16:41:42.863 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+16:41:42.898 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+16:41:43.010 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:41:43.015 [pool-3-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Init KafkaReaderImpl
+16:41:43.019 [pool-3-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Consumer topic:test_topic_in
+16:41:43.089 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:41:43.200 [pool-3-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+16:41:43.241 [pool-5-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "sex":"M"}
+16:41:43.266 [pool-5-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":null}
+16:41:43.267 [pool-5-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":19, "sex":"M"}
+16:41:43.267 [pool-5-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex"}
+16:41:43.267 [pool-5-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":, "sex":null}
+16:41:43.267 [pool-5-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"no_alex", "age":18, "sex":"M"}
+16:41:43.267 [pool-5-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Init KafkaWriterImpl
+16:41:43.270 [pool-5-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message: Message(value={"name":"no_alex", "age":18, "sex":"M"}, filterState=true)
+16:41:43.288 [pool-5-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-2@0
+16:41:44.211 [pool-3-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+16:41:53.014 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:41:53.076 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+16:41:53.096 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+16:41:53.385 [pool-6-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Init KafkaReaderImpl
+16:41:53.385 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:41:53.388 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:41:53.389 [pool-6-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Consumer topic:test_topic_in
+16:41:53.571 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+16:41:53.584 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : 
+16:41:53.584 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":null, "sex":"M"}
+16:41:53.584 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex_ivanov", "age":20, "sex":"M"}
+16:41:53.584 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "sex":"M"}
+16:41:53.584 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"", "age":"", "sex":"M"}
+16:41:53.584 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"pushkin", "age":19, "sex":"M"}
+16:41:53.584 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":, "sex":"M"}
+16:41:53.584 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"age":18, "sex":"M"}
+16:41:54.689 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 9
+16:41:55.806 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 8
+16:41:56.918 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 7
+16:41:58.042 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 6
+16:41:59.158 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 5
+16:42:00.280 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 4
+16:42:01.396 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 3
+16:42:02.511 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 2
+16:42:03.385 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:42:03.388 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:42:03.634 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 1
+16:42:13.344 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+16:42:13.360 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+16:42:13.392 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:42:13.636 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+16:42:13.652 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+16:42:13.655 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+16:42:13.675 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+16:42:13.698 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:42:13.698 [pool-9-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Init KafkaReaderImpl
+16:42:13.702 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:42:13.703 [pool-9-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Consumer topic:test_topic_in
+16:42:13.891 [pool-9-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+16:42:13.910 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : 
+16:42:13.911 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":null, "sex":"M"}
+16:42:13.911 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex_ivanov", "age":20, "sex":"M"}
+16:42:13.911 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "sex":"M"}
+16:42:13.911 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"", "age":"", "sex":"M"}
+16:42:13.911 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"pushkin", "age":19, "sex":"M"}
+16:42:13.911 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":, "sex":"M"}
+16:42:13.912 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"age":18, "sex":"M"}
+16:42:13.912 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander_pushkin", "age":18, "sex":"M"}
+16:42:13.912 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Init KafkaWriterImpl
+16:42:13.916 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message: Message(value={"name":"alexander_pushkin", "age":18, "sex":"M"}, filterState=true)
+16:42:13.929 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-0@0
+16:42:14.897 [pool-9-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+16:42:23.024 [pool-4-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:42:23.024 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:42:23.024 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:42:23.698 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:42:23.841 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+16:42:23.859 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+16:42:24.134 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+16:42:24.148 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+16:42:24.167 [pool-12-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Init KafkaReaderImpl
+16:42:24.167 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:42:24.171 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:42:24.171 [pool-12-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Consumer topic:test_topic_in
+16:42:24.364 [pool-12-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+16:42:24.407 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex_ivanov", "age":18, "sex":"M"}
+16:42:24.407 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : 
+16:42:24.407 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":null, "sex":"M"}
+16:42:24.407 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "sex":"M"}
+16:42:24.407 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":, "age":, "sex":"M"}
+16:42:24.408 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"", "age":"", "sex":"M"}
+16:42:24.408 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"pushkin", "age":19, "sex":"M"}
+16:42:24.408 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"age":17, "sex":"M"}
+16:42:24.408 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander", "age":18, "sex":"M"}
+16:42:24.408 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Init KafkaWriterImpl
+16:42:24.413 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message: Message(value={"name":"alexander", "age":18, "sex":"M"}, filterState=true)
+16:42:24.428 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-1@0
+16:42:25.378 [pool-12-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+16:42:25.379 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+16:42:25.386 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+16:42:25.388 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Wait until application updated rules from DB
+16:42:34.175 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:42:34.190 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:42:43.406 [pool-7-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:42:43.406 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:42:43.407 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:42:44.167 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:42:44.179 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:42:45.402 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex_ivanov", "age":18, "sex":"M"}
+16:42:45.405 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : 
+16:42:45.407 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":null, "sex":"M"}
+16:42:45.410 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "sex":"M"}
+16:42:45.412 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":, "age":, "sex":"M"}
+16:42:45.416 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"", "age":"", "sex":"M"}
+16:42:45.418 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"pushkin", "age":19, "sex":"M"}
+16:42:45.421 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"age":17, "sex":"M"}
+16:42:45.423 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander", "age":18, "sex":"M"}
+16:42:45.424 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message: Message(value={"name":"alexander", "age":18, "sex":"M"}, filterState=true)
+16:42:45.427 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-1@1
+16:42:45.428 [pool-12-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+16:42:53.033 [pool-4-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:42:53.033 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:42:53.033 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:42:53.709 [pool-10-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:42:53.709 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:42:53.709 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:42:53.976 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+16:42:53.997 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+16:42:54.180 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:42:54.274 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+16:42:54.289 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+16:42:54.292 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+16:42:54.316 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+16:42:54.335 [pool-15-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Init KafkaReaderImpl
+16:42:54.335 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:42:54.339 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:42:54.339 [pool-15-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Consumer topic:test_topic_in
+16:42:54.527 [pool-15-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+16:42:54.561 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : 
+16:42:54.561 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"ivanov", "age":18, "sex":"M"}
+16:42:54.561 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"pushkin", "age":18, "sex":"M"}
+16:42:54.561 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "age":18, "sex":"M"}
+16:42:54.561 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander_ivanov", "age":18, "sex":"M"}
+16:42:54.561 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"", "age":18, "sex":"M"}
+16:42:54.562 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"age":18, "sex":"M"}
+16:42:54.562 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander_pushkin", "age":18, "sex":"M"}
+16:42:54.562 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Init KafkaWriterImpl
+16:42:54.567 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message: Message(value={"name":"alexander_pushkin", "age":18, "sex":"M"}, filterState=true)
+16:42:54.587 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-2@0
+16:42:55.547 [pool-15-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+16:43:04.347 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:43:13.089 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+16:43:13.106 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+16:43:13.378 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+16:43:13.395 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+16:43:13.414 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:43:13.413 [pool-20-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Init KafkaReaderImpl
+16:43:13.416 [pool-7-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:43:13.416 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:43:13.416 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:43:13.418 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:43:13.418 [pool-20-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Consumer topic:test_topic_in
+16:43:13.600 [pool-20-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+16:43:13.634 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":18, "sex":"M"}
+16:43:13.634 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Init KafkaWriterImpl
+16:43:13.638 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message: Message(value={"name":"alex", "age":18, "sex":"M"}, filterState=true)
+16:43:13.653 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-1@0
+16:43:13.653 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex_ivanov", "age":18, "sex":"M"}
+16:43:13.653 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : 
+16:43:13.653 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "sex":"M"}
+16:43:13.653 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":, "age":, "sex":"M"}
+16:43:13.653 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander", "age":null, "sex":"M"}
+16:43:13.653 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"pushkin", "age":19, "sex":"M"}
+16:43:13.654 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"", "age":"", "sex":"M"}
+16:43:13.654 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"age":17, "sex":"M"}
+16:43:14.609 [pool-20-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+16:43:14.625 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+16:43:14.629 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+16:43:14.631 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Wait until application updated rules from DB
+16:43:23.047 [pool-4-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:43:23.047 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:43:23.048 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:43:23.420 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:43:23.432 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:43:23.714 [pool-10-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:43:23.714 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:43:23.714 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:43:24.182 [pool-13-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:43:24.182 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:43:24.182 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:43:33.415 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:43:33.428 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:43:34.355 [pool-16-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:43:34.355 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:43:34.355 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:43:34.640 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex_ivanov", "age":18, "sex":"M"}
+16:43:34.642 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : 
+16:43:34.645 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":null, "sex":"M"}
+16:43:34.648 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "sex":"M"}
+16:43:34.651 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":, "age":, "sex":"M"}
+16:43:34.653 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"", "age":"", "sex":"M"}
+16:43:34.656 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"pushkin", "age":19, "sex":"M"}
+16:43:34.658 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"age":17, "sex":"M"}
+16:43:34.661 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander", "age":18, "sex":"M"}
+16:43:34.662 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message: Message(value={"name":"alexander", "age":18, "sex":"M"}, filterState=true)
+16:43:34.665 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-1@1
+16:43:34.666 [pool-20-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+16:43:43.348 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+16:43:43.365 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+16:43:43.415 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:43:43.430 [pool-7-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:43:43.430 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:43:43.430 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:43:43.637 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+16:43:43.653 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+16:43:43.671 [pool-23-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Init KafkaReaderImpl
+16:43:43.671 [pool-24-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:43:43.676 [pool-24-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:43:43.677 [pool-23-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Consumer topic:test_topic_in
+16:43:43.853 [pool-23-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+16:43:43.869 [pool-25-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander_pushkin", "age":null}
+16:43:43.870 [pool-25-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander_pushkin", "sex":"M"}
+16:43:43.870 [pool-25-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander_pushkin", "age":, "sex":null}
+16:43:43.870 [pool-25-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander_pushkin"}
+16:43:43.870 [pool-25-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander_pushkin", "age":19, "sex":"M"}
+16:43:43.870 [pool-25-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex_pushkin", "age":18, "sex":"M"}
+16:43:43.870 [pool-25-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Init KafkaWriterImpl
+16:43:43.875 [pool-25-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message: Message(value={"name":"alex_pushkin", "age":18, "sex":"M"}, filterState=true)
+16:43:43.890 [pool-25-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-1@0
+16:43:44.866 [pool-23-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+16:43:53.064 [pool-4-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:43:53.064 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:43:53.064 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:43:53.653 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+16:43:53.671 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+16:43:53.686 [pool-24-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:43:53.718 [pool-10-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:43:53.718 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:43:53.718 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:43:53.948 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+16:43:53.963 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+16:43:53.965 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+16:43:53.996 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+16:43:54.015 [pool-26-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Init KafkaReaderImpl
+16:43:54.015 [pool-27-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:43:54.020 [pool-26-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Consumer topic:test_topic_in
+16:43:54.021 [pool-27-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:43:54.186 [pool-13-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:43:54.186 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:43:54.186 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:43:54.201 [pool-26-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+16:43:54.251 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex_ivanov", "age":18, "sex":"M"}
+16:43:54.251 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : 
+16:43:54.252 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander", "age":, "sex":"M"}
+16:43:54.252 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "sex":"M"}
+16:43:54.252 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"", "age":"", "sex":"M"}
+16:43:54.252 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander", "age":null, "sex":"M"}
+16:43:54.252 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"pushkin", "age":19, "sex":"M"}
+16:43:54.252 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"age":18, "sex":"M"}
+16:43:54.252 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander_pushkin", "age":18, "sex":"M"}
+16:43:54.252 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Init KafkaWriterImpl
+16:43:54.256 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message: Message(value={"name":"alexander_pushkin", "age":18, "sex":"M"}, filterState=true)
+16:43:54.271 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-1@0
+16:43:55.213 [pool-26-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+16:44:03.809 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+16:44:03.826 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+16:44:04.029 [pool-27-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:44:04.092 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+16:44:04.106 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+16:44:04.124 [pool-29-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Init KafkaReaderImpl
+16:44:04.124 [pool-30-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:44:04.128 [pool-30-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:44:04.128 [pool-29-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Consumer topic:test_topic_in
+16:44:04.305 [pool-29-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+16:44:04.353 [pool-31-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander_pushkin", "age":18, "sex":"M"}
+16:44:04.353 [pool-31-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Init KafkaWriterImpl
+16:44:04.356 [pool-16-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:44:04.356 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:44:04.356 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:44:04.359 [pool-31-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message: Message(value={"name":"alexander_pushkin", "age":18, "sex":"M"}, filterState=true)
+16:44:04.378 [pool-31-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-0@0
+16:44:04.378 [pool-31-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : 
+16:44:04.378 [pool-31-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "age":18, "sex":"M"}
+16:44:04.378 [pool-31-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"", "age":18, "sex":"M"}
+16:44:04.378 [pool-31-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"age":18, "sex":"M"}
+16:44:04.379 [pool-31-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"no_alex", "age":18, "sex":"M"}
+16:44:05.326 [pool-29-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+16:44:13.418 [pool-21-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:44:13.419 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:44:13.419 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:44:13.434 [pool-7-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:44:13.434 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:44:13.434 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:44:13.810 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+16:44:13.827 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+16:44:14.096 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+16:44:14.112 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+16:44:14.114 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+16:44:14.135 [pool-30-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:44:14.158 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+16:44:14.178 [pool-32-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Init KafkaReaderImpl
+16:44:14.178 [pool-33-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:44:14.181 [pool-32-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Consumer topic:test_topic_in
+16:44:14.182 [pool-33-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:44:14.380 [pool-32-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+16:44:14.406 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander_pushkin", "age":18, "sex":"M"}
+16:44:14.406 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Init KafkaWriterImpl
+16:44:14.409 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message: Message(value={"name":"alexander_pushkin", "age":18, "sex":"M"}, filterState=true)
+16:44:14.427 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-0@0
+16:44:14.428 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : 
+16:44:14.428 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"pushkin", "age":18, "sex":"M"}
+16:44:14.428 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander", "age":null, "sex":"M"}
+16:44:14.428 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "age":18, "sex":"M"}
+16:44:14.428 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"", "age":"", "sex":"M"}
+16:44:14.428 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"age":18, "sex":"M"}
+16:44:14.428 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"ivanov", "age":18, "sex":"M"}
+16:44:14.428 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander", "age":19, "sex":"M"}
+16:44:14.428 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander", "age":, "sex":"M"}
+16:44:14.428 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex_ivanov", "age":18, "sex":"M"}
+16:44:15.400 [pool-32-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+16:44:23.071 [pool-4-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:44:23.071 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:44:23.071 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:44:23.698 [pool-24-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:44:23.698 [pool-24-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:44:23.698 [pool-24-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:44:23.729 [pool-10-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:44:23.729 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:44:23.729 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:44:23.849 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+16:44:23.867 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+16:44:24.138 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+16:44:24.153 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+16:44:24.171 [pool-35-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Init KafkaReaderImpl
+16:44:24.172 [pool-36-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:44:24.174 [pool-35-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Consumer topic:test_topic_in
+16:44:24.175 [pool-36-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:44:24.182 [pool-33-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:44:24.197 [pool-13-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:44:24.197 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:44:24.197 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:44:24.352 [pool-35-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+16:44:24.383 [pool-37-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":18, "sex":"M"}
+16:44:24.383 [pool-37-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Init KafkaWriterImpl
+16:44:24.388 [pool-37-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message: Message(value={"name":"alex", "age":18, "sex":"M"}, filterState=true)
+16:44:24.408 [pool-37-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-1@0
+16:44:24.408 [pool-37-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : 
+16:44:24.408 [pool-37-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "age":18, "sex":"M"}
+16:44:24.408 [pool-37-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"", "age":18, "sex":"M"}
+16:44:24.408 [pool-37-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"age":18, "sex":"M"}
+16:44:24.408 [pool-37-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"no_alex", "age":18, "sex":"M"}
+16:44:25.368 [pool-35-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+16:44:34.035 [pool-27-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:44:34.035 [pool-27-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:44:34.035 [pool-27-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:44:34.176 [pool-36-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:44:34.365 [pool-16-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:44:34.365 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:44:34.365 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:44:35.787 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+16:44:35.805 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+16:44:43.428 [pool-21-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:44:43.428 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:44:43.428 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:44:43.444 [pool-7-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:44:43.444 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:44:43.444 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:44:44.150 [pool-30-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:44:44.150 [pool-30-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:44:44.150 [pool-30-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:44:44.469 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+16:44:44.486 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+16:44:44.756 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+16:44:44.772 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+16:44:44.775 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+16:44:44.800 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+16:44:44.818 [pool-40-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Init KafkaReaderImpl
+16:44:44.818 [pool-41-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:44:44.822 [pool-40-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Consumer topic:test_topic_in
+16:44:44.822 [pool-41-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:44:45.001 [pool-40-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+16:44:45.029 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"", "age":-, "sex":"M"}
+16:44:45.030 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"age":18, "sex":"M"}
+16:44:45.030 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "age":"", "sex":"M"}
+16:44:45.030 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : 
+16:44:45.030 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"no_alex", "age":18, "sex":"M"}
+16:44:45.030 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":19, "sex":"F"}
+16:44:45.030 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "age":null, "sex":"M"}
+16:44:45.030 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":18, "sex":"M"}
+16:44:45.030 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Init KafkaWriterImpl
+16:44:45.032 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message: Message(value={"name":"alex", "age":18, "sex":"M"}, filterState=true)
+16:44:45.045 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-0@0
+16:44:46.014 [pool-40-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+16:44:53.084 [pool-4-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:44:53.084 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:44:53.084 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:44:53.708 [pool-24-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:44:53.708 [pool-24-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:44:53.708 [pool-24-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:44:53.739 [pool-10-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:44:53.739 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:44:53.739 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:44:54.195 [pool-33-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:44:54.195 [pool-33-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:44:54.195 [pool-33-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:44:54.211 [pool-13-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:44:54.211 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:44:54.211 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:44:54.826 [pool-41-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:44:54.952 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+16:44:54.969 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+16:44:55.284 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+16:44:55.301 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+16:44:55.304 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+16:44:55.325 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+16:44:55.348 [pool-43-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Init KafkaReaderImpl
+16:44:55.348 [pool-44-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:44:55.351 [pool-44-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:44:55.351 [pool-43-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Consumer topic:test_topic_in
+16:44:55.533 [pool-43-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+16:44:55.571 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"", "age":-, "sex":"M"}
+16:44:55.571 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"age":18, "sex":"M"}
+16:44:55.571 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "age":"", "sex":"M"}
+16:44:55.572 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":18, "sex":"M"}
+16:44:55.572 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : 
+16:44:55.572 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"no_alex", "age":18, "sex":"M"}
+16:44:55.572 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "age":null, "sex":"M"}
+16:44:55.572 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":20, "sex":"M"}
+16:44:55.572 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Init KafkaWriterImpl
+16:44:55.576 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message: Message(value={"name":"alex", "age":20, "sex":"M"}, filterState=true)
+16:44:55.592 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-1@0
+16:44:56.551 [pool-43-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+16:45:04.042 [pool-27-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:45:04.042 [pool-27-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:45:04.042 [pool-27-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:45:04.182 [pool-36-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:45:04.182 [pool-36-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:45:04.182 [pool-36-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:45:04.370 [pool-16-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:45:04.370 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:45:04.370 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:45:05.356 [pool-44-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:45:05.462 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+16:45:05.480 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+16:45:05.789 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+16:45:05.816 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+16:45:05.819 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+16:45:05.844 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+16:45:05.867 [pool-46-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Init KafkaReaderImpl
+16:45:05.867 [pool-47-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:45:05.871 [pool-46-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Consumer topic:test_topic_in
+16:45:05.871 [pool-47-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:45:06.062 [pool-46-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+16:45:06.114 [pool-48-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander_pushkin", "age":18, "sex":"M"}
+16:45:06.114 [pool-48-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Init KafkaWriterImpl
+16:45:06.117 [pool-48-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message: Message(value={"name":"alexander_pushkin", "age":18, "sex":"M"}, filterState=true)
+16:45:06.132 [pool-48-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-2@0
+16:45:06.132 [pool-48-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : 
+16:45:06.133 [pool-48-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alexander", "age":18, "sex":"M"}
+16:45:06.133 [pool-48-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"pushkin", "age":18, "sex":"M"}
+16:45:06.133 [pool-48-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"", "age":18, "sex":"M"}
+16:45:06.133 [pool-48-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "age":18, "sex":"M"}
+16:45:06.133 [pool-48-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"age":18, "sex":"M"}
+16:45:07.078 [pool-46-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+16:45:13.429 [pool-21-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:45:13.429 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:45:13.429 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:45:13.444 [pool-7-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:45:13.444 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:45:13.444 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:45:14.163 [pool-30-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - DB rules error!
+16:45:14.163 [pool-30-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is OFF
+16:45:14.163 [pool-30-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
+16:45:15.870 [pool-47-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB checking is ON
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

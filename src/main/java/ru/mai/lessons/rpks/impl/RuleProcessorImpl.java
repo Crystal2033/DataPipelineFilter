@@ -2,13 +2,14 @@ package ru.mai.lessons.rpks.impl;
 
 import java.util.Map;
 import java.util.function.BiPredicate;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+
+import com.google.gson.*;
+import lombok.extern.slf4j.Slf4j;
 import ru.mai.lessons.rpks.RuleProcessor;
 import ru.mai.lessons.rpks.model.Rule;
 import ru.mai.lessons.rpks.model.Message;
 
+@Slf4j
 public final class RuleProcessorImpl implements RuleProcessor {
     private static final Map<String, BiPredicate<String, String>> fNameAndPredicate = Map.of(
             "equals", (fieldValue, filterValue) -> filterValue.equals(fieldValue),
@@ -26,15 +27,17 @@ public final class RuleProcessorImpl implements RuleProcessor {
 
         for (Rule rule : rules)
             if (!setState(message, rule))
-                break;
+                return message;
         return message;
     }
 
     private String getFieldFromJSON(String json, String fieldName) {
         try {
-            JSONObject jsonObject = (JSONObject) new JSONParser().parse(json);
-            return ((jsonObject.get(fieldName) != null) ? jsonObject.get(fieldName).toString() : "");
-        } catch (ParseException e) {
+            JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
+            if ((jsonObject.get(fieldName) == null) || jsonObject.get(fieldName).isJsonNull())
+                return "";
+            return jsonObject.get(fieldName).getAsString();
+        } catch (JsonParseException | IllegalStateException e) {
             return "";
         }
     }
