@@ -36,8 +36,7 @@ public final class RuleProcessorImpl implements RuleProcessor {
     }
 
     private boolean setMessageState(Message message, Rule rule) {
-        BiPredicate<String, String> fieldValueChecker
-                = functionNameAndItsBiPredicate.get(rule.getFilterFunctionName());
+        BiPredicate<String, String> fieldValueChecker = functionNameAndItsBiPredicate.get(rule.getFilterFunctionName());
 
         String fieldValue = getFieldValueFromJSON(message.getValue(), rule.getFieldName());
         String filterValue = rule.getFilterValue();

@@ -29,3 +29,15 @@ Rsrc/main/java/ru/mai/lessons/rpks/jooq/model/tables/records/FilterRulesRecord.j
 jooq-config.xml,5\1\5100a967881b0f45dd147785f4d5db7ea2f9fc52
 b
 2src/main/java/ru/mai/lessons/rpks/KafkaReader.java,a\3\a3f424bbcf25a85c93204d58f0870cf237ddbbd6
+h
+8src/main/java/ru/mai/lessons/rpks/impl/DbReaderImpl.java,0\e\0e2d576113f99f68a0c2d3412fc592e54829761d
+l
+<src/main/java/ru/mai/lessons/rpks/impl/ConfigReaderImpl.java,c\5\c5d911d1d539e7ec475a9c102882c099e7991711
+l
+<src/main/java/ru/mai/lessons/rpks/impl/ServiceFiltering.java,9\7\97a4aa82a2231676d67354c4c83e9ba0cb80aeb0
+k
+;src/main/java/ru/mai/lessons/rpks/ServiceFilteringMain.java,9\9\99cce13b400d4e7444974040e44fb08fdae5deb7
+a
+1src/main/java/ru/mai/lessons/rpks/model/Rule.java,1\8\18062bf50ae937e2bc5df53c64b13687f1d60ab2
+b
+2src/test/java/ru/mai/lessons/rpks/ServiceTest.java,0\1\013917df0bc9067734233ebb221e5d86f83a7212
