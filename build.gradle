@@ -14,7 +14,7 @@ dependencies {
     implementation 'org.apache.kafka:kafka-clients:3.4.0'
 
     // logging
-    implementation 'ch.qos.logback:logback-classic:1.4.5'
+    implementation 'ch.qos.logback:logback-classic:1.4.6'
 
     // code generator
     compileOnly 'org.projectlombok:lombok:1.18.26'
@@ -30,8 +30,8 @@ dependencies {
     implementation 'org.jooq:jooq-codegen:3.18.0'
 
     // json
-    implementation 'com.fasterxml.jackson.core:jackson-core:2.14.2'
-    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.1'
+
 
     // test
     testImplementation 'org.testcontainers:testcontainers:1.17.6'

@@ -1,13 +1,13 @@
 package ru.mai.lessons.rpks.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.RequiredArgsConstructor;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import ru.mai.lessons.rpks.RuleProcessor;
 import ru.mai.lessons.rpks.model.Message;
 import ru.mai.lessons.rpks.model.Rule;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.function.BiPredicate;
 
@@ -29,7 +29,7 @@ public final class RuleProcessorImpl implements RuleProcessor {
 
         for (Rule rule : rules) {
             if (!setMessageState(message, rule)) {
-                break;
+                return message;
             }
         }
         return message;
@@ -50,14 +50,13 @@ public final class RuleProcessorImpl implements RuleProcessor {
 
     private String getFieldValueFromJSON(String jsonString, String fieldName) {
         try {
-            Object object = new JSONParser().parse(jsonString);
-            JSONObject jsonObject = (JSONObject) object;
-
-            return (jsonObject.get(fieldName) == null)
-                    ? ""
-                    : jsonObject.get(fieldName).toString();
-        } catch (ParseException e) {
-            return "";
+            ObjectNode node = new ObjectMapper().readValue(jsonString, ObjectNode.class);
+            if (node.has(fieldName)) {
+                return node.get(fieldName).asText();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        return "";
     }
 }
