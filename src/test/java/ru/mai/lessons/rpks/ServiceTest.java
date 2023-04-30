@@ -59,7 +59,7 @@ class ServiceTest {
             .withPassword("password")
             .withInitScript("init_script.sql");
 
-    ExecutorService executor = Executors.newSingleThreadExecutor();
+    ExecutorService executorForTest = Executors.newFixedThreadPool(2);
 
     private DataSource dataSource;
     private final String topicIn = "test_topic_in";
@@ -156,7 +156,7 @@ class ServiceTest {
 
             Config config = ConfigFactory.load();
             config = replaceConfigForTest(config);
-            serviceFiltering.start(config);
+            Future<Boolean> serviceIsWork = testStartService(config);
 
             Set.of("{\"name\":\"no_alex\", \"age\":18, \"sex\":\"M\"}",
                     "{\"name\":\"\", \"age\":18, \"sex\":\"M\"}",
@@ -174,9 +174,7 @@ class ServiceTest {
             String expectedJson = "{\"name\":\"alex\", \"age\":18, \"sex\":\"M\"}";
             producer.send(new ProducerRecord<>(topicIn, "expected", expectedJson)).get();
 
-            Future<ConsumerRecords<String, String>> result = executor.submit(() ->
-                    getConsumerRecordsOutputTopic(consumer, 10, 1)
-            );
+            Future<ConsumerRecords<String, String>> result = executorForTest.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
 
             var consumerRecords = result.get(60, TimeUnit.SECONDS);
 
@@ -188,7 +186,8 @@ class ServiceTest {
                 assertEquals(expectedJson, consumerRecord.value());
             }
 
-            executor.shutdown();
+            serviceIsWork.cancel(true);
+            executorForTest.shutdown();
             clearTable();
 
         } catch (Exception e) {
@@ -225,7 +224,7 @@ class ServiceTest {
 
             Config config = ConfigFactory.load();
             config = replaceConfigForTest(config);
-            serviceFiltering.start(config);
+            Future<Boolean> serviceIsWork = testStartService(config);
 
             Set.of("{\"name\":\"alex\", \"age\":19, \"sex\":\"M\"}",
                     "{\"name\":\"alex\", \"age\":null}",
@@ -243,7 +242,7 @@ class ServiceTest {
             String expectedJson = "{\"name\":\"no_alex\", \"age\":18, \"sex\":\"M\"}";
             producer.send(new ProducerRecord<>(topicIn, "expected", expectedJson)).get();
 
-            Future<ConsumerRecords<String, String>> result = executor.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
+            Future<ConsumerRecords<String, String>> result = executorForTest.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
 
             var consumerRecords = result.get(60, TimeUnit.SECONDS);
 
@@ -255,7 +254,8 @@ class ServiceTest {
                 assertEquals(expectedJson, consumerRecord.value());
             }
 
-            executor.shutdown();
+            serviceIsWork.cancel(true);
+            executorForTest.shutdown();
             clearTable();
 
         } catch (Exception e) {
@@ -292,7 +292,7 @@ class ServiceTest {
 
             Config config = ConfigFactory.load();
             config = replaceConfigForTest(config);
-            serviceFiltering.start(config);
+            Future<Boolean> serviceIsWork = testStartService(config);
 
             Set.of("{\"name\":\"no_alex\", \"age\":18, \"sex\":\"M\"}",
                     "{\"name\":\"\", \"age\":18, \"sex\":\"M\"}",
@@ -310,7 +310,7 @@ class ServiceTest {
             String expectedJson = "{\"name\":\"alexander_pushkin\", \"age\":18, \"sex\":\"M\"}";
             producer.send(new ProducerRecord<>(topicIn, "expected", expectedJson)).get();
 
-            Future<ConsumerRecords<String, String>> result = executor.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
+            Future<ConsumerRecords<String, String>> result = executorForTest.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
 
             var consumerRecords = result.get(60, TimeUnit.SECONDS);
 
@@ -322,7 +322,8 @@ class ServiceTest {
                 assertEquals(expectedJson, consumerRecord.value());
             }
 
-            executor.shutdown();
+            serviceIsWork.cancel(true);
+            executorForTest.shutdown();
             clearTable();
 
         } catch (Exception e) {
@@ -359,7 +360,7 @@ class ServiceTest {
 
             Config config = ConfigFactory.load();
             config = replaceConfigForTest(config);
-            serviceFiltering.start(config);
+            Future<Boolean> serviceIsWork = testStartService(config);
 
             Set.of("{\"name\":\"alexander_pushkin\", \"age\":19, \"sex\":\"M\"}",
                     "{\"name\":\"alexander_pushkin\", \"age\":null}",
@@ -377,7 +378,7 @@ class ServiceTest {
             String expectedJson = "{\"name\":\"alex_pushkin\", \"age\":18, \"sex\":\"M\"}";
             producer.send(new ProducerRecord<>(topicIn, "expected", expectedJson)).get();
 
-            Future<ConsumerRecords<String, String>> result = executor.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
+            Future<ConsumerRecords<String, String>> result = executorForTest.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
 
             var consumerRecords = result.get(60, TimeUnit.SECONDS);
 
@@ -389,7 +390,8 @@ class ServiceTest {
                 assertEquals(expectedJson, consumerRecord.value());
             }
 
-            executor.shutdown();
+            serviceIsWork.cancel(true);
+            executorForTest.shutdown();
             clearTable();
 
         } catch (Exception e) {
@@ -427,7 +429,7 @@ class ServiceTest {
 
             Config config = ConfigFactory.load();
             config = replaceConfigForTest(config);
-            serviceFiltering.start(config);
+            Future<Boolean> serviceIsWork = testStartService(config);
 
             Set.of("{\"name\":\"no_alex\", \"age\":18, \"sex\":\"M\"}",
                     "{\"name\":\"\", \"age\":-, \"sex\":\"M\"}",
@@ -447,7 +449,7 @@ class ServiceTest {
             String expectedJson = "{\"name\":\"alex\", \"age\":18, \"sex\":\"M\"}";
             producer.send(new ProducerRecord<>(topicIn, "expected", expectedJson)).get();
 
-            Future<ConsumerRecords<String, String>> result = executor.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
+            Future<ConsumerRecords<String, String>> result = executorForTest.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
 
             var consumerRecords = result.get(60, TimeUnit.SECONDS);
 
@@ -459,7 +461,8 @@ class ServiceTest {
                 assertEquals(expectedJson, consumerRecord.value());
             }
 
-            executor.shutdown();
+            serviceIsWork.cancel(true);
+            executorForTest.shutdown();
 
             clearTable();
         } catch (Exception e) {
@@ -497,7 +500,7 @@ class ServiceTest {
 
             Config config = ConfigFactory.load();
             config = replaceConfigForTest(config);
-            serviceFiltering.start(config);
+            Future<Boolean> serviceIsWork = testStartService(config);
 
             Set.of("{\"name\":\"no_alex\", \"age\":18, \"sex\":\"M\"}",
                     "{\"name\":\"\", \"age\":-, \"sex\":\"M\"}",
@@ -517,7 +520,7 @@ class ServiceTest {
             String expectedJson = "{\"name\":\"alex\", \"age\":20, \"sex\":\"M\"}";
             producer.send(new ProducerRecord<>(topicIn, "expected", expectedJson)).get();
 
-            Future<ConsumerRecords<String, String>> result = executor.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
+            Future<ConsumerRecords<String, String>> result = executorForTest.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
 
             var consumerRecords = result.get(60, TimeUnit.SECONDS);
 
@@ -529,7 +532,8 @@ class ServiceTest {
                 assertEquals(expectedJson, consumerRecord.value());
             }
 
-            executor.shutdown();
+            serviceIsWork.cancel(true);
+            executorForTest.shutdown();
 
             clearTable();
         } catch (Exception e) {
@@ -567,7 +571,7 @@ class ServiceTest {
 
             Config config = ConfigFactory.load();
             config = replaceConfigForTest(config);
-            serviceFiltering.start(config);
+            Future<Boolean> serviceIsWork = testStartService(config);
 
             Set.of("{\"name\":\"alexander\", \"age\":18, \"sex\":\"M\"}",
                     "{\"name\":\"pushkin\", \"age\":18, \"sex\":\"M\"}",
@@ -586,7 +590,7 @@ class ServiceTest {
             String expectedJson = "{\"name\":\"alexander_pushkin\", \"age\":18, \"sex\":\"M\"}";
             producer.send(new ProducerRecord<>(topicIn, "expected", expectedJson)).get();
 
-            Future<ConsumerRecords<String, String>> result = executor.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
+            Future<ConsumerRecords<String, String>> result = executorForTest.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
 
             var consumerRecords = result.get(60, TimeUnit.SECONDS);
 
@@ -598,7 +602,8 @@ class ServiceTest {
                 assertEquals(expectedJson, consumerRecord.value());
             }
 
-            executor.shutdown();
+            serviceIsWork.cancel(true);
+            executorForTest.shutdown();
             clearTable();
 
         } catch (Exception e) {
@@ -636,7 +641,7 @@ class ServiceTest {
 
             Config config = ConfigFactory.load();
             config = replaceConfigForTest(config);
-            serviceFiltering.start(config);
+            Future<Boolean> serviceIsWork = testStartService(config);
 
             Set.of("{\"name\":\"alexander_ivanov\", \"age\":18, \"sex\":\"M\"}",
                     "{\"name\":\"pushkin\", \"age\":18, \"sex\":\"M\"}",
@@ -656,7 +661,7 @@ class ServiceTest {
             String expectedJson = "{\"name\":\"alexander_pushkin\", \"age\":18, \"sex\":\"M\"}";
             producer.send(new ProducerRecord<>(topicIn, "expected", expectedJson)).get();
 
-            Future<ConsumerRecords<String, String>> result = executor.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
+            Future<ConsumerRecords<String, String>> result = executorForTest.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
 
             var consumerRecords = result.get(60, TimeUnit.SECONDS);
 
@@ -668,7 +673,8 @@ class ServiceTest {
                 assertEquals(expectedJson, consumerRecord.value());
             }
 
-            executor.shutdown();
+            serviceIsWork.cancel(true);
+            executorForTest.shutdown();
             clearTable();
 
         } catch (Exception e) {
@@ -706,7 +712,7 @@ class ServiceTest {
 
             Config config = ConfigFactory.load();
             config = replaceConfigForTest(config);
-            serviceFiltering.start(config);
+            Future<Boolean> serviceIsWork = testStartService(config);
 
             Set.of("{\"name\":\"alex_ivanov\", \"age\":18, \"sex\":\"M\"}",
                     "{\"name\":\"pushkin\", \"age\":18, \"sex\":\"M\"}",
@@ -729,7 +735,7 @@ class ServiceTest {
             String expectedJson = "{\"name\":\"alexander_pushkin\", \"age\":18, \"sex\":\"M\"}";
             producer.send(new ProducerRecord<>(topicIn, "expected", expectedJson)).get();
 
-            Future<ConsumerRecords<String, String>> result = executor.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
+            Future<ConsumerRecords<String, String>> result = executorForTest.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
 
             var consumerRecords = result.get(60, TimeUnit.SECONDS);
 
@@ -741,7 +747,8 @@ class ServiceTest {
                 assertEquals(expectedJson, consumerRecord.value());
             }
 
-            executor.shutdown();
+            serviceIsWork.cancel(true);
+            executorForTest.shutdown();
             clearTable();
 
         } catch (Exception e) {
@@ -779,7 +786,7 @@ class ServiceTest {
 
             Config config = ConfigFactory.load();
             config = replaceConfigForTest(config);
-            serviceFiltering.start(config);
+            Future<Boolean> serviceIsWork = testStartService(config);
 
             Set.of("{\"name\":\"alex_ivanov\", \"age\":18, \"sex\":\"M\"}",
                     "{\"name\":\"pushkin\", \"age\":19, \"sex\":\"M\"}",
@@ -800,7 +807,7 @@ class ServiceTest {
             String expectedJson = "{\"name\":\"alexander_pushkin\", \"age\":18, \"sex\":\"M\"}";
             producer.send(new ProducerRecord<>(topicIn, "expected", expectedJson)).get();
 
-            Future<ConsumerRecords<String, String>> result = executor.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
+            Future<ConsumerRecords<String, String>> result = executorForTest.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
 
             var consumerRecords = result.get(60, TimeUnit.SECONDS);
 
@@ -812,7 +819,8 @@ class ServiceTest {
                 assertEquals(expectedJson, consumerRecord.value());
             }
 
-            executor.shutdown();
+            serviceIsWork.cancel(true);
+            executorForTest.shutdown();
             clearTable();
 
         } catch (Exception e) {
@@ -850,7 +858,7 @@ class ServiceTest {
 
             Config config = ConfigFactory.load();
             config = replaceConfigForTest(config);
-            serviceFiltering.start(config);
+            Future<Boolean> serviceIsWork = testStartService(config);
 
             Set.of("{\"name\":\"alex_ivanov\", \"age\":20, \"sex\":\"M\"}",
                     "{\"name\":\"pushkin\", \"age\":19, \"sex\":\"M\"}",
@@ -871,7 +879,7 @@ class ServiceTest {
             String expectedJson = "{\"name\":\"alexander_pushkin\", \"age\":18, \"sex\":\"M\"}";
             producer.send(new ProducerRecord<>(topicIn, "expected", expectedJson)).get();
 
-            Future<ConsumerRecords<String, String>> result = executor.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
+            Future<ConsumerRecords<String, String>> result = executorForTest.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
 
             var consumerRecords = result.get(60, TimeUnit.SECONDS);
 
@@ -883,7 +891,8 @@ class ServiceTest {
                 assertEquals(expectedJson, consumerRecord.value());
             }
 
-            executor.shutdown();
+            serviceIsWork.cancel(true);
+            executorForTest.shutdown();
             clearTable();
 
         } catch (Exception e) {
@@ -919,7 +928,7 @@ class ServiceTest {
 
             Config config = ConfigFactory.load();
             config = replaceConfigForTest(config);
-            serviceFiltering.start(config);
+            Future<Boolean> serviceIsWork = testStartService(config);
 
             Set.of("{\"name\":\"alex_ivanov\", \"age\":20, \"sex\":\"M\"}",
                     "{\"name\":\"pushkin\", \"age\":19, \"sex\":\"M\"}",
@@ -937,13 +946,14 @@ class ServiceTest {
                 }
             });
 
-            Future<ConsumerRecords<String, String>> result = executor.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
+            Future<ConsumerRecords<String, String>> result = executorForTest.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
 
             var consumerRecords = result.get(60, TimeUnit.SECONDS);
 
             assertTrue(consumerRecords.isEmpty());
 
-            executor.shutdown();
+            serviceIsWork.cancel(true);
+            executorForTest.shutdown();
             clearTable();
 
         } catch (Exception e) {
@@ -982,7 +992,7 @@ class ServiceTest {
 
             Config config = ConfigFactory.load();
             config = replaceConfigForTest(config);
-            serviceFiltering.start(config);
+            Future<Boolean> serviceIsWork = testStartService(config);
 
             Set.of("{\"name\":\"alex_ivanov\", \"age\":18, \"sex\":\"M\"}",
                     "{\"name\":\"pushkin\", \"age\":19, \"sex\":\"M\"}",
@@ -1003,7 +1013,7 @@ class ServiceTest {
             String expectedJson = "{\"name\":\"alex\", \"age\":18, \"sex\":\"M\"}";
             producer.send(new ProducerRecord<>(topicIn, "expected", expectedJson)).get();
 
-            Future<ConsumerRecords<String, String>> result = executor.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
+            Future<ConsumerRecords<String, String>> result = executorForTest.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
 
             var consumerRecords = result.get(60, TimeUnit.SECONDS);
 
@@ -1039,7 +1049,7 @@ class ServiceTest {
             String expectedJsonOther = "{\"name\":\"alexander\", \"age\":18, \"sex\":\"M\"}";
             producer.send(new ProducerRecord<>(topicIn, "expected", expectedJsonOther)).get();
 
-            Future<ConsumerRecords<String, String>> resultOther = executor.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
+            Future<ConsumerRecords<String, String>> resultOther = executorForTest.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
 
             var consumerRecordsOther = resultOther.get(60, TimeUnit.SECONDS);
 
@@ -1051,7 +1061,8 @@ class ServiceTest {
                 assertEquals(expectedJsonOther, consumerRecord.value());
             }
 
-            executor.shutdown();
+            serviceIsWork.cancel(true);
+            executorForTest.shutdown();
             clearTable();
 
         } catch (Exception e) {
@@ -1089,7 +1100,7 @@ class ServiceTest {
 
             Config config = ConfigFactory.load();
             config = replaceConfigForTest(config);
-            serviceFiltering.start(config);
+            Future<Boolean> serviceIsWork = testStartService(config);
 
             Set.of("{\"name\":\"alex_ivanov\", \"age\":18, \"sex\":\"M\"}",
                     "{\"name\":\"pushkin\", \"age\":19, \"sex\":\"M\"}",
@@ -1110,7 +1121,7 @@ class ServiceTest {
             String expectedJson = "{\"name\":\"alexander\", \"age\":18, \"sex\":\"M\"}";
             producer.send(new ProducerRecord<>(topicIn, "expected", expectedJson)).get();
 
-            Future<ConsumerRecords<String, String>> result = executor.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
+            Future<ConsumerRecords<String, String>> result = executorForTest.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
 
             var consumerRecords = result.get(60, TimeUnit.SECONDS);
 
@@ -1145,7 +1156,7 @@ class ServiceTest {
             String expectedJsonOther = "{\"name\":\"alexander\", \"age\":18, \"sex\":\"M\"}";
             producer.send(new ProducerRecord<>(topicIn, "expected", expectedJsonOther)).get();
 
-            Future<ConsumerRecords<String, String>> resultOther = executor.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
+            Future<ConsumerRecords<String, String>> resultOther = executorForTest.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
 
             var consumerRecordsOther = resultOther.get(60, TimeUnit.SECONDS);
 
@@ -1157,7 +1168,8 @@ class ServiceTest {
                 assertEquals(expectedJsonOther, consumerRecord.value());
             }
 
-            executor.shutdown();
+            serviceIsWork.cancel(true);
+            executorForTest.shutdown();
             clearTable();
 
         } catch (Exception e) {
@@ -1171,8 +1183,6 @@ class ServiceTest {
     }
 
     private KafkaConsumer<String, String> createConsumer() {
-        log.info("create test consumer. Bootstrap:" + kafka.getBootstrapServers());
-
         return new KafkaConsumer<>(
                 ImmutableMap.of(
                         ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafka.getBootstrapServers(),
@@ -1185,8 +1195,6 @@ class ServiceTest {
     }
 
     private KafkaProducer<String, String> createProducer() {
-        log.info("create test producer. Bootstrap:" + kafka.getBootstrapServers());
-
         return new KafkaProducer<>(
                 ImmutableMap.of(
                         ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafka.getBootstrapServers(),
@@ -1317,5 +1325,12 @@ class ServiceTest {
                 .withValue("db.password", ConfigValueFactory.fromAnyRef(postgreSQL.getPassword()))
                 .withValue("db.driver", ConfigValueFactory.fromAnyRef(postgreSQL.getDriverClassName()))
                 .withValue("application.updateIntervalSec", ConfigValueFactory.fromAnyRef(10));
+    }
+
+    private Future<Boolean> testStartService(Config config) {
+        return executorForTest.submit(() -> {
+            serviceFiltering.start(config);
+            return true;
+        });
     }
 }
