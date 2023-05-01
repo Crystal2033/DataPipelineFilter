@@ -1,21 +1,27 @@
 package ru.mai.lessons.rpks.impl;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.BiPredicate;
 
 import com.google.gson.*;
-import lombok.extern.slf4j.Slf4j;
 import ru.mai.lessons.rpks.RuleProcessor;
 import ru.mai.lessons.rpks.model.Rule;
 import ru.mai.lessons.rpks.model.Message;
 
-@Slf4j
 public final class RuleProcessorImpl implements RuleProcessor {
-    private static final Map<String, BiPredicate<String, String>> fNameAndPredicate = Map.of(
-            "equals", (fieldValue, filterValue) -> filterValue.equals(fieldValue),
-            "not_equals", (fieldValue, filterValue) -> fieldValue != null && !fieldValue.equals("") && !filterValue.equals(fieldValue),
-            "contains", (fieldValue, filterValue) -> fieldValue != null && fieldValue.contains(filterValue),
-            "not_contains", (fieldValue, filterValue) -> fieldValue != null && !fieldValue.equals("") && !fieldValue.contains(filterValue)
+    public enum RuleMode {
+        EQUALS, NOT_EQUALS, CONTAINS, NOT_CONTAINS
+    }
+
+    private static final Map<RuleMode, BiPredicate<String, String>> fNameAndPredicate = Map.of(
+            RuleMode.EQUALS, (fieldValue, filterValue) -> filterValue.equals(fieldValue),
+            RuleMode.NOT_EQUALS, (fieldValue, filterValue) -> Optional.ofNullable(fieldValue).isPresent() &&
+                    !fieldValue.isBlank() && !filterValue.equals(fieldValue),
+            RuleMode.CONTAINS, (fieldValue, filterValue) -> Optional.ofNullable(fieldValue).isPresent() &&
+                    fieldValue.contains(filterValue),
+            RuleMode.NOT_CONTAINS, (fieldValue, filterValue) -> Optional.ofNullable(fieldValue).isPresent() &&
+                    !fieldValue.isBlank() && !fieldValue.contains(filterValue)
     );
 
     @Override
@@ -31,20 +37,21 @@ public final class RuleProcessorImpl implements RuleProcessor {
         return message;
     }
 
-    private String getFieldFromJSON(String json, String fieldName) {
+    private Optional<String> getFieldFromJSON(String json, String fieldName) {
         try {
-            JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
-            if ((jsonObject.get(fieldName) == null) || jsonObject.get(fieldName).isJsonNull())
-                return "";
-            return jsonObject.get(fieldName).getAsString();
+            JsonElement jsonElement = JsonParser.parseString(json).getAsJsonObject().get(fieldName);
+            if (Optional.ofNullable(jsonElement).isEmpty() || jsonElement.isJsonNull())
+                return Optional.empty();
+            return Optional.of(jsonElement.getAsString());
         } catch (JsonParseException | IllegalStateException e) {
-            return "";
+            return Optional.empty();
         }
     }
 
     private boolean setState(Message message, Rule rule) {
-        BiPredicate<String, String> checker = fNameAndPredicate.get(rule.getFilterFunctionName());
-        boolean messageState = checker.test(getFieldFromJSON(message.getValue(), rule.getFieldName()), rule.getFilterValue());
+        BiPredicate<String, String> checker = fNameAndPredicate.get(RuleMode.valueOf(rule.getFilterFunctionName().toUpperCase()));
+        boolean messageState = (getFieldFromJSON(message.getValue(), rule.getFieldName()).filter(
+                s -> checker.test(s, rule.getFilterValue())).isPresent());
         message.setFilterState(messageState);
         return messageState;
     }
