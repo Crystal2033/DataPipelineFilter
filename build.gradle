@@ -26,7 +26,11 @@ dependencies {
     implementation 'org.jooq:jooq:3.17.8'
 
     // json
+    //implementation 'com.googlecode.json-simple:json-simple:1.1.1'
     implementation 'com.fasterxml.jackson.core:jackson-core:2.14.2'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.10.0'
+
+    implementation 'org.apache.kafka:kafka-clients:3.4.0'
 
     // test
     testImplementation 'org.testcontainers:testcontainers:1.17.6'
