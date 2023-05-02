@@ -36,17 +36,7 @@ public class KafWriter implements KafkaWriter {
         );
 
         try (kafkaProducer) {
-            Future<RecordMetadata> response = null;
-            response = kafkaProducer.send(new ProducerRecord<>(topic, message.getValue()));
-
-            Optional.ofNullable(response).ifPresent(rsp -> {
-                try {
-                    log.info("Message send {}", rsp.get());
-                } catch (InterruptedException | ExecutionException e) {
-                    log.error("Error sending message ", e);
-                    Thread.currentThread().interrupt();
-                }
-            });
+            kafkaProducer.send(new ProducerRecord<>(topic, message.getValue()));
         }
     }
 }

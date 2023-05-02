@@ -19,10 +19,7 @@ import ru.mai.lessons.rpks.model.Message;
 import ru.mai.lessons.rpks.model.Rule;
 
 import java.time.Duration;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 @Slf4j
 @Getter
@@ -33,11 +30,16 @@ public class KafReader implements KafkaReader {
     private final String bootstrapServers;
     private final String group;
     private final String offsetReset;
-    private final Config db;
+    private final Queue<Rule[]> queue;
     private final String producerServers;
+    private final String topicOut;
     private boolean isExit;
 
+
     public void processing() {
+        RuleProcess ruleProcess = new RuleProcess();
+        KafkaWriter kafkaWriter = new KafWriter(topicOut, producerServers);
+
         log.info("Start reading kafka topic {}", topic);
         KafkaConsumer<String, String> kafkaConsumer = new KafkaConsumer<>(
                 Map.of(
@@ -55,25 +57,17 @@ public class KafReader implements KafkaReader {
             while (!isExit) {
                 ConsumerRecords<String, String> consumerRecords = kafkaConsumer.poll(Duration.ofMillis(100));
 
-                // Считываем параметры конфигурации для подключения к базе данных
-                String url = db.getString("jdbcUrl");
-                String user = db.getString("user");
-                String password = db.getString("password");
-                DbReader dbreader = new ReaderDB(url, user, password);
-                Rule[] rules = dbreader.readRulesFromDB();
-
                 for (ConsumerRecord<String, String> consumerRecord : consumerRecords) {
-                    log.info("Message from Kafka topic {} : {}", consumerRecord.topic(), consumerRecord.value());
                     String jsonString =  consumerRecord.value();
-                    if (Objects.equals(jsonString, "")) continue;
+                    if (jsonString.isBlank()) continue;
 
                     Message message = Message.builder().value(jsonString).filterState(false).build();
-                    RuleProcess ruleProcess = new RuleProcess();
+
+                    Rule[] rules = queue.peek();
+                    assert rules != null;
                     message = ruleProcess.processing(message, rules); // проверка сообщения
-                    log.info("Message status {} : {}", message.getValue(), message.isFilterState());
 
                     if(message.isFilterState()){
-                        KafkaWriter kafkaWriter = new KafWriter("test_topic_out", producerServers);
                         kafkaWriter.processing(message);
                     }
                 }
