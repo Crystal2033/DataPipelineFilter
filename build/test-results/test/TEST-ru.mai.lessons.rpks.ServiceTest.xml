@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.mai.lessons.rpks.ServiceTest" tests="18" skipped="0" failures="0" errors="0" timestamp="2023-05-02T21:08:38" hostname="LAPTOP-NB1PJC65" time="467.945">
+  <properties/>
+  <testcase name="testKafkaWriteReadMessage()" classname="ru.mai.lessons.rpks.ServiceTest" time="41.166"/>
+  <testcase name="testServiceFilteringNotEquals()" classname="ru.mai.lessons.rpks.ServiceTest" time="27.207"/>
+  <testcase name="testServiceFilteringNotRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="32.205"/>
+  <testcase name="testServiceFilteringContainsNotEqualsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="22.716"/>
+  <testcase name="testServiceFilteringAddNewRule()" classname="ru.mai.lessons.rpks.ServiceTest" time="41.696"/>
+  <testcase name="testServiceFilteringContainsNotContainsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="22.059"/>
+  <testcase name="testStartPostgreSQL()" classname="ru.mai.lessons.rpks.ServiceTest" time="19.34"/>
+  <testcase name="testServiceFilteringUpdateRule()" classname="ru.mai.lessons.rpks.ServiceTest" time="41.436"/>
+  <testcase name="testServiceFilteringNotContains()" classname="ru.mai.lessons.rpks.ServiceTest" time="22.69"/>
+  <testcase name="testServiceFilteringEqualsNotContainsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="22.082"/>
+  <testcase name="testServiceFilteringContains()" classname="ru.mai.lessons.rpks.ServiceTest" time="21.967"/>
+  <testcase name="testServiceFilteringEqualsContainsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="22.338"/>
+  <testcase name="testServiceFilteringEquals()" classname="ru.mai.lessons.rpks.ServiceTest" time="22.175"/>
+  <testcase name="testPostgreSQLReadValues()" classname="ru.mai.lessons.rpks.ServiceTest" time="20.093"/>
+  <testcase name="testServiceFilteringEqualsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="23.125"/>
+  <testcase name="testServiceFilteringEqualsNotEqualsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="23.405"/>
+  <testcase name="testServiceFilteringContainsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="22.895"/>
+  <testcase name="testStartKafka()" classname="ru.mai.lessons.rpks.ServiceTest" time="19.304"/>
+  <system-out><![CDATA[00:08:38,223 |-INFO in ch.qos.logback.classic.LoggerContext[default] - This is logback-classic version 1.4.5
+00:08:38,271 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.xml]
+00:08:38,278 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Found resource [logback.xml] at [file:/D:/Danon/Documents/Java/JavaServiceFiltering-develop/build/resources/test/logback.xml]
+00:08:38,489 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [CONSOLE]
+00:08:38,489 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
+00:08:38,561 |-WARN in ch.qos.logback.core.ConsoleAppender[CONSOLE] - This appender no longer admits a layout as a sub-component, set an encoder instead.
+00:08:38,561 |-WARN in ch.qos.logback.core.ConsoleAppender[CONSOLE] - To ensure compatibility, wrapping your layout in LayoutWrappingEncoder.
+00:08:38,561 |-WARN in ch.qos.logback.core.ConsoleAppender[CONSOLE] - See also http://logback.qos.ch/codes.html#layoutInsteadOfEncoder for details
+00:08:38,564 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting level of logger [ru.mai.lessons.rpks] to INFO
+00:08:38,570 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting additivity of logger [ru.mai.lessons.rpks] to false
+00:08:38,570 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [CONSOLE] to Logger[ru.mai.lessons.rpks]
+00:08:38,572 |-INFO in ch.qos.logback.classic.model.processor.RootLoggerModelHandler - Setting level of ROOT logger to ERROR
+00:08:38,572 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [CONSOLE] to Logger[ROOT]
+00:08:38,572 |-INFO in ch.qos.logback.core.model.processor.DefaultProcessor@23fb172e - End of configuration.
+00:08:38,574 |-INFO in ch.qos.logback.classic.joran.JoranConfigurator@64ba3208 - Registering current configuration as safe fallback point
+
+00:09:10.828 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Bootstrap.servers: PLAINTEXT://localhost:51874
+00:09:10.838 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+00:09:11.547 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Creating topics
+00:09:13.093 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Created topics
+00:09:13.094 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Sending message
+00:09:13.349 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Sent message
+00:09:13.350 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Consumer subscribe
+00:09:13.352 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Consumer start reading
+00:09:13.477 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+00:09:14.587 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 9
+00:09:15.713 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 8
+00:09:16.835 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 7
+00:09:17.861 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+00:09:40.122 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+00:09:41.976 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+00:09:42.833 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+00:09:42.903 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+00:09:43.527 [pool-3-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+00:09:43.730 [pool-3-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Subscribe to topic test_topic_in
+00:09:43.731 [pool-3-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Consumer group test_group_consumer
+00:09:43.731 [pool-3-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Auto offset reset latest
+00:09:43.731 [pool-3-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Bootstrap servers PLAINTEXT://localhost:51890
+00:09:44.241 [pool-5-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 6 messages
+00:09:44.283 [pool-5-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alex"}
+00:09:44.286 [pool-5-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alex", "sex":"M"}
+00:09:44.287 [pool-5-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alex", "age":null}
+00:09:44.288 [pool-5-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alex", "age":19, "sex":"M"}
+00:09:44.289 [pool-5-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"no_alex", "age":18, "sex":"M"}
+00:09:44.289 [pool-5-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: no_alex
+00:09:44.289 [pool-5-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: not_equals
+00:09:44.289 [pool-5-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: alex
+00:09:44.635 [pool-3-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 9
+00:09:45.687 [pool-3-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+00:10:05.647 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+00:10:05.714 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+00:10:06.556 [pool-6-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Subscribe to topic test_topic_in
+00:10:06.557 [pool-6-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Consumer group test_group_consumer
+00:10:06.558 [pool-6-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Auto offset reset latest
+00:10:06.558 [pool-6-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Bootstrap servers PLAINTEXT://localhost:52050
+00:10:06.976 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+00:10:07.223 [pool-8-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 8 messages
+00:10:08.094 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 9
+00:10:09.218 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 8
+00:10:10.337 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 7
+00:10:11.450 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 6
+00:10:12.560 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 5
+00:10:13.678 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 4
+00:10:14.803 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 3
+00:10:15.914 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 2
+00:10:17.024 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 1
+00:10:23.158 [pool-4-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:10:38.140 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+00:10:38.204 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+00:10:39.056 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+00:10:39.096 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+00:10:39.104 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+00:10:39.137 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+00:10:39.211 [pool-9-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Subscribe to topic test_topic_in
+00:10:39.212 [pool-9-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Consumer group test_group_consumer
+00:10:39.212 [pool-9-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Auto offset reset latest
+00:10:39.212 [pool-9-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Bootstrap servers PLAINTEXT://localhost:52287
+00:10:39.669 [pool-9-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+00:10:39.938 [pool-11-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 9 messages
+00:10:39.940 [pool-11-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"", "age":"", "sex":"M"}
+00:10:39.941 [pool-11-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"pushkin", "age":19, "sex":"M"}
+00:10:39.945 [pool-11-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: 19
+00:10:39.946 [pool-11-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: not_equals
+00:10:39.946 [pool-11-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: 20
+00:10:39.946 [pool-11-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"age":18, "sex":"M"}
+00:10:39.947 [pool-11-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: 18
+00:10:39.947 [pool-11-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: not_equals
+00:10:39.947 [pool-11-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: 20
+00:10:39.948 [pool-11-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: 
+00:10:39.949 [pool-11-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alex", "age":null, "sex":"M"}
+00:10:39.949 [pool-11-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alex_ivanov", "age":20, "sex":"M"}
+00:10:39.950 [pool-11-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":null, "sex":"M"}
+00:10:39.950 [pool-11-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alexander_pushkin", "age":18, "sex":"M"}
+00:10:39.951 [pool-11-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: 18
+00:10:39.951 [pool-11-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: not_equals
+00:10:39.951 [pool-11-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: 20
+00:10:39.951 [pool-11-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: alexander_pushkin
+00:10:39.952 [pool-11-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: contains
+00:10:39.952 [pool-11-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: alexander
+00:10:40.728 [pool-9-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+00:10:53.161 [pool-4-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:10:56.555 [pool-7-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:10:59.874 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+00:10:59.937 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+00:11:00.804 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+00:11:00.840 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+00:11:00.917 [pool-12-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Subscribe to topic test_topic_in
+00:11:00.917 [pool-12-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Consumer group test_group_consumer
+00:11:00.917 [pool-12-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Auto offset reset latest
+00:11:00.918 [pool-12-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Bootstrap servers PLAINTEXT://localhost:52646
+00:11:01.338 [pool-12-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+00:11:01.601 [pool-14-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 9 messages
+00:11:01.603 [pool-14-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"", "age":"", "sex":"M"}
+00:11:01.603 [pool-14-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"pushkin", "age":19, "sex":"M"}
+00:11:01.604 [pool-14-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"age":17, "sex":"M"}
+00:11:01.605 [pool-14-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alex_ivanov", "age":18, "sex":"M"}
+00:11:01.605 [pool-14-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: 
+00:11:01.606 [pool-14-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alex", "age":null, "sex":"M"}
+00:11:01.606 [pool-14-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":null, "sex":"M"}
+00:11:01.607 [pool-14-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alexander", "age":18, "sex":"M"}
+00:11:01.607 [pool-14-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: alexander
+00:11:01.607 [pool-14-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: contains
+00:11:01.607 [pool-14-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: alexander
+00:11:02.375 [pool-12-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+00:11:02.376 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+00:11:02.389 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+00:11:02.397 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Wait until application updated rules from DB
+00:11:19.205 [pool-10-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:11:22.420 [pool-14-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 1 messages
+00:11:22.440 [pool-14-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 1 messages
+00:11:22.441 [pool-14-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"", "age":"", "sex":"M"}
+00:11:22.453 [pool-14-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 1 messages
+00:11:22.454 [pool-14-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"pushkin", "age":19, "sex":"M"}
+00:11:22.462 [pool-14-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 1 messages
+00:11:22.463 [pool-14-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"age":17, "sex":"M"}
+00:11:22.482 [pool-14-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 1 messages
+00:11:22.483 [pool-14-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alex_ivanov", "age":18, "sex":"M"}
+00:11:22.495 [pool-14-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 1 messages
+00:11:22.495 [pool-14-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: 
+00:11:22.502 [pool-14-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 1 messages
+00:11:22.504 [pool-14-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alex", "age":null, "sex":"M"}
+00:11:22.513 [pool-14-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 1 messages
+00:11:22.513 [pool-14-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":null, "sex":"M"}
+00:11:22.523 [pool-14-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 1 messages
+00:11:22.525 [pool-14-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alexander", "age":18, "sex":"M"}
+00:11:22.525 [pool-14-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: alexander
+00:11:22.525 [pool-14-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: contains
+00:11:22.525 [pool-14-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: alexander
+00:11:22.525 [pool-14-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: 18
+00:11:22.527 [pool-14-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: equals
+00:11:22.527 [pool-14-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: 18
+00:11:22.540 [pool-12-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+00:11:23.171 [pool-4-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:11:26.565 [pool-7-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:11:41.921 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+00:11:41.977 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+00:11:42.758 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+00:11:42.793 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+00:11:42.799 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+00:11:42.831 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+00:11:42.913 [pool-15-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Subscribe to topic test_topic_in
+00:11:42.914 [pool-15-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Consumer group test_group_consumer
+00:11:42.915 [pool-15-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Auto offset reset latest
+00:11:42.915 [pool-15-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Bootstrap servers PLAINTEXT://localhost:52972
+00:11:43.365 [pool-15-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+00:11:43.565 [pool-17-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 8 messages
+00:11:43.566 [pool-17-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"", "age":18, "sex":"M"}
+00:11:43.566 [pool-17-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"age":18, "sex":"M"}
+00:11:43.567 [pool-17-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: 
+00:11:43.567 [pool-17-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"ivanov", "age":18, "sex":"M"}
+00:11:43.568 [pool-17-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"pushkin", "age":18, "sex":"M"}
+00:11:43.569 [pool-17-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":null, "age":18, "sex":"M"}
+00:11:43.569 [pool-17-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alexander_ivanov", "age":18, "sex":"M"}
+00:11:43.569 [pool-17-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: alexander_ivanov
+00:11:43.569 [pool-17-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: contains
+00:11:43.569 [pool-17-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: alexander
+00:11:43.569 [pool-17-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alexander_pushkin", "age":18, "sex":"M"}
+00:11:43.569 [pool-17-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: alexander_pushkin
+00:11:43.570 [pool-17-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: contains
+00:11:43.570 [pool-17-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: alexander
+00:11:43.571 [pool-17-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: alexander_pushkin
+00:11:43.571 [pool-17-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: not_contains
+00:11:43.571 [pool-17-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: ivanov
+00:11:44.419 [pool-15-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+00:11:49.220 [pool-10-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:11:53.175 [pool-4-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:11:56.575 [pool-7-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:12:00.907 [pool-13-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:12:19.226 [pool-10-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:12:22.710 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+00:12:22.776 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+00:12:22.904 [pool-16-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:12:23.182 [pool-4-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:12:23.559 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+00:12:23.592 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+00:12:23.665 [pool-20-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Subscribe to topic test_topic_in
+00:12:23.666 [pool-20-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Consumer group test_group_consumer
+00:12:23.666 [pool-20-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Auto offset reset latest
+00:12:23.666 [pool-20-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Bootstrap servers PLAINTEXT://localhost:53462
+00:12:24.134 [pool-20-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+00:12:24.358 [pool-22-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 9 messages
+00:12:24.360 [pool-22-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alexander", "age":null, "sex":"M"}
+00:12:24.360 [pool-22-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"pushkin", "age":19, "sex":"M"}
+00:12:24.361 [pool-22-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"", "age":"", "sex":"M"}
+00:12:24.361 [pool-22-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"age":17, "sex":"M"}
+00:12:24.362 [pool-22-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alex_ivanov", "age":18, "sex":"M"}
+00:12:24.362 [pool-22-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: 
+00:12:24.363 [pool-22-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":null, "sex":"M"}
+00:12:24.363 [pool-22-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alex", "age":18, "sex":"M"}
+00:12:24.364 [pool-22-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: alex
+00:12:24.364 [pool-22-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: equals
+00:12:24.365 [pool-22-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: alex
+00:12:25.176 [pool-20-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+00:12:25.189 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+00:12:25.198 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+00:12:25.203 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Wait until application updated rules from DB
+00:12:26.586 [pool-7-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:12:30.913 [pool-13-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:12:45.223 [pool-22-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 1 messages
+00:12:45.233 [pool-22-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 1 messages
+00:12:45.234 [pool-22-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"", "age":"", "sex":"M"}
+00:12:45.244 [pool-22-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 1 messages
+00:12:45.245 [pool-22-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"pushkin", "age":19, "sex":"M"}
+00:12:45.253 [pool-22-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 1 messages
+00:12:45.254 [pool-22-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"age":17, "sex":"M"}
+00:12:45.263 [pool-22-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 1 messages
+00:12:45.263 [pool-22-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alex_ivanov", "age":18, "sex":"M"}
+00:12:45.278 [pool-22-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 1 messages
+00:12:45.278 [pool-22-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: 
+00:12:45.288 [pool-22-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 1 messages
+00:12:45.288 [pool-22-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alex", "age":null, "sex":"M"}
+00:12:45.300 [pool-22-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 1 messages
+00:12:45.300 [pool-22-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":null, "sex":"M"}
+00:12:45.308 [pool-22-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 1 messages
+00:12:45.310 [pool-22-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alexander", "age":18, "sex":"M"}
+00:12:45.311 [pool-22-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: alexander
+00:12:45.311 [pool-22-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: contains
+00:12:45.311 [pool-22-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: alexander
+00:12:45.328 [pool-20-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+00:12:49.227 [pool-10-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:12:52.916 [pool-16-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:12:53.194 [pool-4-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:12:56.602 [pool-7-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:13:00.914 [pool-13-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:13:05.399 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+00:13:05.453 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+00:13:06.276 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+00:13:06.314 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+00:13:06.392 [pool-23-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Subscribe to topic test_topic_in
+00:13:06.392 [pool-23-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Consumer group test_group_consumer
+00:13:06.393 [pool-23-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Auto offset reset latest
+00:13:06.393 [pool-23-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Bootstrap servers PLAINTEXT://localhost:54166
+00:13:06.899 [pool-23-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+00:13:07.271 [pool-25-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 6 messages
+00:13:07.272 [pool-25-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alexander_pushkin"}
+00:13:07.273 [pool-25-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alexander_pushkin", "age":19, "sex":"M"}
+00:13:07.273 [pool-25-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alexander_pushkin", "age":null}
+00:13:07.274 [pool-25-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alexander_pushkin", "sex":"M"}
+00:13:07.275 [pool-25-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alex_pushkin", "age":18, "sex":"M"}
+00:13:07.275 [pool-25-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: alex_pushkin
+00:13:07.275 [pool-25-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: not_contains
+00:13:07.275 [pool-25-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: alexander
+00:13:07.979 [pool-23-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+00:13:19.238 [pool-10-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:13:22.918 [pool-16-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:13:23.198 [pool-4-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:13:23.644 [pool-21-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:13:26.604 [pool-7-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:13:27.642 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+00:13:27.703 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+00:13:28.465 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+00:13:28.499 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+00:13:28.506 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+00:13:28.548 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+00:13:28.615 [pool-26-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Subscribe to topic test_topic_in
+00:13:28.615 [pool-26-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Consumer group test_group_consumer
+00:13:28.616 [pool-26-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Auto offset reset latest
+00:13:28.616 [pool-26-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Bootstrap servers PLAINTEXT://localhost:54528
+00:13:29.081 [pool-26-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+00:13:29.289 [pool-28-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 9 messages
+00:13:29.290 [pool-28-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"", "age":"", "sex":"M"}
+00:13:29.290 [pool-28-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alexander", "age":null, "sex":"M"}
+00:13:29.291 [pool-28-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"pushkin", "age":19, "sex":"M"}
+00:13:29.291 [pool-28-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"age":18, "sex":"M"}
+00:13:29.291 [pool-28-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: 18
+00:13:29.292 [pool-28-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: equals
+00:13:29.292 [pool-28-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: 18
+00:13:29.292 [pool-28-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alex_ivanov", "age":18, "sex":"M"}
+00:13:29.293 [pool-28-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: 18
+00:13:29.293 [pool-28-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: equals
+00:13:29.293 [pool-28-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: 18
+00:13:29.293 [pool-28-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: 
+00:13:29.294 [pool-28-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":null, "sex":"M"}
+00:13:29.294 [pool-28-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alexander_pushkin", "age":18, "sex":"M"}
+00:13:29.294 [pool-28-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: 18
+00:13:29.294 [pool-28-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: equals
+00:13:29.294 [pool-28-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: 18
+00:13:29.295 [pool-28-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: alexander_pushkin
+00:13:29.295 [pool-28-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: not_contains
+00:13:29.295 [pool-28-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: ivanov
+00:13:30.131 [pool-26-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+00:13:30.918 [pool-13-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:13:46.379 [pool-24-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:13:49.253 [pool-10-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:13:49.628 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+00:13:49.698 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+00:13:50.543 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+00:13:50.576 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+00:13:50.640 [pool-29-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Subscribe to topic test_topic_in
+00:13:50.641 [pool-29-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Consumer group test_group_consumer
+00:13:50.642 [pool-29-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Auto offset reset latest
+00:13:50.643 [pool-29-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Bootstrap servers PLAINTEXT://localhost:54935
+00:13:51.022 [pool-29-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+00:13:51.253 [pool-31-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 6 messages
+00:13:51.254 [pool-31-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alexander_pushkin", "age":18, "sex":"M"}
+00:13:51.254 [pool-31-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: alexander_pushkin
+00:13:51.254 [pool-31-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: contains
+00:13:51.254 [pool-31-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: alexander
+00:13:51.273 [pool-31-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"age":18, "sex":"M"}
+00:13:51.273 [pool-31-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"no_alex", "age":18, "sex":"M"}
+00:13:51.273 [pool-31-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: 
+00:13:51.274 [pool-31-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":null, "age":18, "sex":"M"}
+00:13:51.274 [pool-31-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"", "age":18, "sex":"M"}
+00:13:52.066 [pool-29-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+00:13:52.924 [pool-16-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:13:53.203 [pool-4-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:13:53.646 [pool-21-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:13:56.607 [pool-7-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:14:00.921 [pool-13-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:14:08.617 [pool-27-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:14:11.822 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+00:14:11.876 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+00:14:12.669 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+00:14:12.709 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+00:14:12.716 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+00:14:12.761 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+00:14:12.831 [pool-32-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Subscribe to topic test_topic_in
+00:14:12.831 [pool-32-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Consumer group test_group_consumer
+00:14:12.831 [pool-32-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Auto offset reset latest
+00:14:12.832 [pool-32-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Bootstrap servers PLAINTEXT://localhost:55375
+00:14:13.340 [pool-32-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+00:14:13.488 [pool-34-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 11 messages
+00:14:13.489 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alex_ivanov", "age":18, "sex":"M"}
+00:14:13.490 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: 18
+00:14:13.490 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: equals
+00:14:13.490 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: 18
+00:14:13.490 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: 
+00:14:13.490 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"pushkin", "age":18, "sex":"M"}
+00:14:13.490 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: 18
+00:14:13.491 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: equals
+00:14:13.491 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: 18
+00:14:13.491 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alexander", "age":null, "sex":"M"}
+00:14:13.492 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":null, "age":18, "sex":"M"}
+00:14:13.493 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: 18
+00:14:13.493 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: equals
+00:14:13.493 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: 18
+00:14:13.493 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"", "age":"", "sex":"M"}
+00:14:13.493 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"age":18, "sex":"M"}
+00:14:13.493 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: 18
+00:14:13.493 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: equals
+00:14:13.493 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: 18
+00:14:13.493 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"ivanov", "age":18, "sex":"M"}
+00:14:13.493 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: 18
+00:14:13.493 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: equals
+00:14:13.493 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: 18
+00:14:13.493 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alexander", "age":19, "sex":"M"}
+00:14:13.494 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alexander_pushkin", "age":18, "sex":"M"}
+00:14:13.494 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: 18
+00:14:13.494 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: equals
+00:14:13.495 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: 18
+00:14:13.495 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: alexander_pushkin
+00:14:13.495 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: contains
+00:14:13.495 [pool-34-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: alexander
+00:14:14.397 [pool-32-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+00:14:16.382 [pool-24-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:14:19.255 [pool-10-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:14:22.926 [pool-16-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:14:23.205 [pool-4-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:14:23.655 [pool-21-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:14:26.622 [pool-7-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:14:30.631 [pool-30-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:14:30.928 [pool-13-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:14:34.061 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+00:14:34.120 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+00:14:35.005 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+00:14:35.050 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+00:14:35.134 [pool-35-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Subscribe to topic test_topic_in
+00:14:35.135 [pool-35-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Consumer group test_group_consumer
+00:14:35.135 [pool-35-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Auto offset reset latest
+00:14:35.135 [pool-35-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Bootstrap servers PLAINTEXT://localhost:55865
+00:14:35.583 [pool-35-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+00:14:35.862 [pool-37-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 6 messages
+00:14:35.864 [pool-37-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"age":18, "sex":"M"}
+00:14:35.864 [pool-37-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"no_alex", "age":18, "sex":"M"}
+00:14:35.864 [pool-37-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: 
+00:14:35.864 [pool-37-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":null, "age":18, "sex":"M"}
+00:14:35.864 [pool-37-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"", "age":18, "sex":"M"}
+00:14:35.864 [pool-37-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alex", "age":18, "sex":"M"}
+00:14:35.865 [pool-37-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: alex
+00:14:35.865 [pool-37-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: equals
+00:14:35.865 [pool-37-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: alex
+00:14:36.642 [pool-35-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+00:14:38.623 [pool-27-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:14:46.393 [pool-24-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:14:49.270 [pool-10-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:14:52.820 [pool-33-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:14:52.931 [pool-16-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:14:53.212 [pool-4-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:14:53.663 [pool-21-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:14:56.624 [pool-7-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:14:56.716 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+00:14:56.765 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+00:15:00.633 [pool-30-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:15:00.939 [pool-13-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:15:08.628 [pool-27-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:15:15.131 [pool-36-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:15:16.400 [pool-24-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:15:17.241 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+00:15:17.287 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+00:15:18.060 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+00:15:18.093 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+00:15:18.099 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+00:15:18.139 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+00:15:18.197 [pool-40-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Subscribe to topic test_topic_in
+00:15:18.198 [pool-40-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Consumer group test_group_consumer
+00:15:18.198 [pool-40-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Auto offset reset latest
+00:15:18.198 [pool-40-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Bootstrap servers PLAINTEXT://localhost:56911
+00:15:18.677 [pool-40-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+00:15:18.823 [pool-42-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 8 messages
+00:15:18.824 [pool-42-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alex", "age":19, "sex":"F"}
+00:15:18.824 [pool-42-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: alex
+00:15:18.824 [pool-42-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: equals
+00:15:18.824 [pool-42-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: alex
+00:15:18.824 [pool-42-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":null, "age":null, "sex":"M"}
+00:15:18.837 [pool-42-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"age":18, "sex":"M"}
+00:15:18.837 [pool-42-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":null, "age":"", "sex":"M"}
+00:15:18.837 [pool-42-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: 
+00:15:18.837 [pool-42-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"no_alex", "age":18, "sex":"M"}
+00:15:18.837 [pool-42-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alex", "age":18, "sex":"M"}
+00:15:18.837 [pool-42-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: alex
+00:15:18.837 [pool-42-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: equals
+00:15:18.837 [pool-42-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: alex
+00:15:18.837 [pool-42-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: 18
+00:15:18.837 [pool-42-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: equals
+00:15:18.837 [pool-42-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: 18
+00:15:19.272 [pool-10-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:15:19.727 [pool-40-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+00:15:22.836 [pool-33-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:15:22.945 [pool-16-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:15:23.224 [pool-4-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:15:23.674 [pool-21-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:15:26.626 [pool-7-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:15:30.634 [pool-30-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:15:30.945 [pool-13-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:15:38.633 [pool-27-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:15:40.648 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+00:15:40.704 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+00:15:41.554 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+00:15:41.593 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+00:15:41.599 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+00:15:41.629 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+00:15:41.693 [pool-43-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Subscribe to topic test_topic_in
+00:15:41.693 [pool-43-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Consumer group test_group_consumer
+00:15:41.693 [pool-43-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Auto offset reset latest
+00:15:41.693 [pool-43-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Bootstrap servers PLAINTEXT://localhost:57502
+00:15:42.137 [pool-43-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+00:15:42.340 [pool-45-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 8 messages
+00:15:42.341 [pool-45-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":null, "age":null, "sex":"M"}
+00:15:42.341 [pool-45-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"age":18, "sex":"M"}
+00:15:42.342 [pool-45-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":null, "age":"", "sex":"M"}
+00:15:42.342 [pool-45-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alex", "age":18, "sex":"M"}
+00:15:42.343 [pool-45-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: alex
+00:15:42.343 [pool-45-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: equals
+00:15:42.343 [pool-45-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: alex
+00:15:42.343 [pool-45-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: 
+00:15:42.343 [pool-45-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"no_alex", "age":18, "sex":"M"}
+00:15:42.343 [pool-45-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alex", "age":20, "sex":"M"}
+00:15:42.343 [pool-45-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: alex
+00:15:42.343 [pool-45-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: equals
+00:15:42.343 [pool-45-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: alex
+00:15:42.343 [pool-45-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: 20
+00:15:42.343 [pool-45-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: not_equals
+00:15:42.343 [pool-45-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: 18
+00:15:43.184 [pool-43-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+00:15:45.132 [pool-36-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:15:46.405 [pool-24-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:15:49.275 [pool-10-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:15:52.844 [pool-33-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:15:52.953 [pool-16-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:15:53.234 [pool-4-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:15:53.676 [pool-21-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:15:56.634 [pool-7-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:15:58.193 [pool-41-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:16:00.637 [pool-30-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:16:00.950 [pool-13-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:16:03.609 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+00:16:03.661 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+00:16:04.439 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+00:16:04.474 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+00:16:04.479 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+00:16:04.514 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+00:16:04.579 [pool-46-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Subscribe to topic test_topic_in
+00:16:04.579 [pool-46-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Consumer group test_group_consumer
+00:16:04.579 [pool-46-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Auto offset reset latest
+00:16:04.579 [pool-46-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Bootstrap servers PLAINTEXT://localhost:58186
+00:16:05.056 [pool-46-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+00:16:05.398 [pool-48-thread-1] INFO  r.m.lessons.rpks.impl.MyKafkaReader - READER -- Received 7 messages
+00:16:05.399 [pool-48-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alexander_pushkin", "age":18, "sex":"M"}
+00:16:05.399 [pool-48-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: alexander_pushkin
+00:16:05.399 [pool-48-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: contains
+00:16:05.399 [pool-48-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: alexander
+00:16:05.399 [pool-48-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: alexander_pushkin
+00:16:05.399 [pool-48-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: contains
+00:16:05.400 [pool-48-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: pushkin
+00:16:05.416 [pool-48-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"age":18, "sex":"M"}
+00:16:05.417 [pool-48-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: 
+00:16:05.418 [pool-48-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"alexander", "age":18, "sex":"M"}
+00:16:05.418 [pool-48-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - fieldValue: alexander
+00:16:05.418 [pool-48-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterFunctionName: contains
+00:16:05.418 [pool-48-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - FilterValue: alexander
+00:16:05.418 [pool-48-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"pushkin", "age":18, "sex":"M"}
+00:16:05.418 [pool-48-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":"", "age":18, "sex":"M"}
+00:16:05.418 [pool-48-thread-1] INFO  r.m.l.rpks.impl.MessageRuleProcessor - message: {"name":null, "age":18, "sex":"M"}
+00:16:06.099 [pool-46-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+00:16:08.642 [pool-27-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:16:15.134 [pool-36-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:16:16.409 [pool-24-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:16:19.285 [pool-10-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:16:21.687 [pool-44-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:16:22.848 [pool-33-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:16:22.957 [pool-16-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:16:23.237 [pool-4-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:16:23.688 [pool-21-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+00:16:26.644 [pool-7-thread-1] INFO  r.m.lessons.rpks.impl.DatabaseReader - Something went wrong with DB!
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
