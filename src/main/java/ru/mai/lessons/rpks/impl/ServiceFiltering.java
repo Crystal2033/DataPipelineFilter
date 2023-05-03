@@ -48,7 +48,7 @@ public class ServiceFiltering implements Service {
         DSLContext context = DSL.using(conn, SQLDialect.POSTGRES);
         rules = db.readRulesFromDB(context);
 
-        updateIntervalSec = config.getInt("updateIntervalSec");
+        //FIXME updateIntervalSec = config.getInt("updateIntervalSec"); здесь вылетает ConfigException.Missing, который ты не обрабатываешь. Эта строчка не нужна, так как она есть уже выше. Теперь debug будет работать
         TimerTask task = new TimerTask() {
             public void run() {
                 rules = db.readRulesFromDB(context);
