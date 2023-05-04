@@ -37,7 +37,6 @@ public final class KafkaWriterImpl implements KafkaWriter {
             init();
 
         kafkaProducer.send(new ProducerRecord<>(topic, message.getValue()));
-        log.info("Message send: {}", message);
     }
 
     private void init() {
