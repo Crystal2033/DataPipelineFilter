@@ -37,40 +37,54 @@ public class RuleProcessorImpl implements RuleProcessor{
         try {
 //              jsonNode = mapper.readTree(message.getValue());
             Map<String, Object> map = mapper.readValue(message.getValue(), Map.class);
-            if (!isExit){
+            if (!isExit) {
+                if (rules.length == 0){
+                    message.setFilterState(false);
+                }
                 for (Rule rule : rules) {
                     //            ПРОВЕРКА ПРАВИЛ
+                    log.info("RULES LENGTH {}", rules.length);
                     log.info("CHECKING FIELD {}", rule.getFieldName());
                     if (map.containsKey(rule.getFieldName())) {
-                        if (Objects.equals(rule.getFilterFunctionName(), "equals") && (!Objects.equals(map.get(rule.getFieldName()).toString(), rule.getFilterValue()))) {
-                            message.setFilterState(false);
-                            log.info("set to false - equals {}", map.get(rule.getFieldName()));
-                            return message;
+                        try {
+                            if (Objects.equals(rule.getFilterFunctionName(), "equals") && (!Objects.equals(map.get(rule.getFieldName()).toString(), rule.getFilterValue()))) {
+                                message.setFilterState(false);
+                                log.info("set to false - equals {}", map.get(rule.getFieldName()));
+                                return message;
 
+                            }
+                            if (Objects.equals(rule.getFilterFunctionName(), "not_equals") && (Objects.equals(map.get(rule.getFieldName()).toString(), rule.getFilterValue()))) {
+                                message.setFilterState(false);
+                                log.info("set to false - not equals");
+                                return message;
+
+                            }
+                            if (Objects.equals(rule.getFilterFunctionName(), "contains") && (!map.get(rule.getFieldName()).toString().contains(rule.getFilterValue()))) {
+//                            if (Objects.equals(rule.getFilterFunctionName(), "contains") && (!rule.getFilterValue().contains(map.get(rule.getFieldName()).toString()))) {
+                                message.setFilterState(false);
+                                log.info("set to false - contains");
+                                return message;
+
+                            }
+                            if (Objects.equals(rule.getFilterFunctionName(), "not_contains") && (map.get(rule.getFieldName()).toString().contains(rule.getFilterValue()))) {
+//                            if (Objects.equals(rule.getFilterFunctionName(), "contains") && (rule.getFilterValue().contains(map.get(rule.getFieldName()).toString()))) {
+                                message.setFilterState(false);
+                                log.info("set to false - not contains");
+                                return message;
+
+                            }
                         }
-                        if (Objects.equals(rule.getFilterFunctionName(), "not_equals") && (Objects.equals(map.get(rule.getFieldName()), rule.getFilterValue()))) {
+                        catch (Exception e){
+                            log.info("caught null exception");
                             message.setFilterState(false);
-                            log.info("set to false - not equals");
-                            return message;
-
-                        }
-                        if (Objects.equals(rule.getFilterFunctionName(), "contains") && (!map.get(rule.getFieldName()).toString().contains(rule.getFilterValue()))) {
-                            message.setFilterState(false);
-                            log.info("set to false - contains");
-                            return message;
-
-                        }
-                        if (Objects.equals(rule.getFilterFunctionName(), "not_contains") && (map.get(rule.getFieldName()).toString().contains(rule.getFilterValue()))) {
-                            message.setFilterState(false);
-                            log.info("set to false - not contains");
-                            return message;
-
                         }
                     } else {
+                        message.setFilterState(false);
                         break;
                     }
 
                 }
+
 
             }
             else {

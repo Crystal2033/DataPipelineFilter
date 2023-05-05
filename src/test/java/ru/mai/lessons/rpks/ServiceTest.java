@@ -232,7 +232,9 @@ class ServiceTest {
                     "{\"name\":\"alex\", \"sex\":\"M\"}",
                     "{\"name\":\"alex\"}").forEach(negativeJson -> {
                 try {
-                    producer.send(new ProducerRecord<>(topicIn, negativeJson)).get();
+                    ProducerRecord<String, String> prod = new ProducerRecord<>(topicIn, negativeJson);
+                    producer.send(prod).get();
+                    log.info("SENT TO PRODUCER MESSAGE {}", prod);
                 } catch (InterruptedException | ExecutionException e) {
                     log.error("Error send message to kafka topic", e);
                     fail();
@@ -240,7 +242,9 @@ class ServiceTest {
             });
 
             String expectedJson = "{\"name\":\"no_alex\", \"age\":18, \"sex\":\"M\"}";
-            producer.send(new ProducerRecord<>(topicIn, "expected", expectedJson)).get();
+            ProducerRecord<String, String> prod1 = new ProducerRecord<>(topicIn ,"expected", expectedJson);
+            producer.send(prod1).get();
+            log.info("SENT TO PRODUCER CORRECT JSON {}", prod1);
 
             Future<ConsumerRecords<String, String>> result = executorForTest.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
 
@@ -523,6 +527,10 @@ class ServiceTest {
             Future<ConsumerRecords<String, String>> result = executorForTest.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
 
             var consumerRecords = result.get(60, TimeUnit.SECONDS);
+
+            for (var record: consumerRecords) {
+                log.info("RECORDS OUT {}", record.value());
+            }
 
             assertFalse(consumerRecords.isEmpty());
             assertEquals(1, consumerRecords.count());
@@ -949,6 +957,9 @@ class ServiceTest {
             Future<ConsumerRecords<String, String>> result = executorForTest.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
 
             var consumerRecords = result.get(60, TimeUnit.SECONDS);
+            for (var record : consumerRecords){
+                log.info("RECORD VALUE {}", record.value());
+            }
 
             assertTrue(consumerRecords.isEmpty());
 
@@ -1016,6 +1027,9 @@ class ServiceTest {
             Future<ConsumerRecords<String, String>> result = executorForTest.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
 
             var consumerRecords = result.get(60, TimeUnit.SECONDS);
+            for (var record : consumerRecords){
+                log.info("record message = {}", record.value());
+            }
 
             assertFalse(consumerRecords.isEmpty());
             assertEquals(1, consumerRecords.count());
@@ -1052,6 +1066,9 @@ class ServiceTest {
             Future<ConsumerRecords<String, String>> resultOther = executorForTest.submit(() -> getConsumerRecordsOutputTopic(consumer, 10, 1));
 
             var consumerRecordsOther = resultOther.get(60, TimeUnit.SECONDS);
+            for (var record : consumerRecordsOther){
+                log.info("record message = {}", record.value());
+            }
 
             assertFalse(consumerRecordsOther.isEmpty());
             assertEquals(1, consumerRecordsOther.count());
@@ -1301,6 +1318,7 @@ class ServiceTest {
         try {
             while (!state && retry > 0) {
                 ConsumerRecords<String, String> consumerRecords = consumer.poll(Duration.ofMillis(100));
+                log.info("CONSUMERRECORDS {}",consumerRecords);
                 if (consumerRecords.isEmpty()) {
                     log.info("Remaining attempts {}", retry);
                     retry--;

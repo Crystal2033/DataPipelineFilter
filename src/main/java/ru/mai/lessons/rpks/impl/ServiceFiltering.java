@@ -44,25 +44,34 @@ public class ServiceFiltering implements Service {
         } catch (SQLException e) {
             log.error("Error occurred while getting connection");
         }
-
+        String reader = config.getString("kafka.consumer.bootstrap.servers");
+        String writer = config.getString("kafka.producer.bootstrap.servers");
+        KafkaReaderImpl kafkaReader = new KafkaReaderImpl("test_topic_in", "test_topic_out", reader, writer, rules);
         DSLContext context = DSL.using(conn, SQLDialect.POSTGRES);
         rules = db.readRulesFromDB(context);
 
-        updateIntervalSec = config.getInt("updateIntervalSec");
         TimerTask task = new TimerTask() {
             public void run() {
-                rules = db.readRulesFromDB(context);
-                for (Rule r :
-                        rules) {
-                    log.info(r.toString());
+//                Arrays.fill(rules, null);
+//                try {
+                    rules = db.readRulesFromDB(context);
+                    for (Rule r :
+                            rules) {
+                        log.info(r.toString());
+                        log.info("TIMER");
 
-                }
-                try {
-                    closeConnection();
-                    log.info("CONNECTION IS CLOSED");
-                } catch (SQLException e) {
-                    throw new MyException("Error while closing connection", e);
-                }
+                    }
+                    kafkaReader.setRules(rules);
+//                }
+//                catch (Exception e){
+//                    log.info("got connection exception");
+//                }
+//                try {
+//                    closeConnection();
+//                    log.info("CONNECTION IS CLOSED");
+//                } catch (SQLException e) {
+//                    throw new MyException("Error while closing connection", e);
+//                }
             }
         };
 
@@ -71,9 +80,7 @@ public class ServiceFiltering implements Service {
         log.info("delay:" + updateIntervalSec);
 
 
-        String reader = config.getString("kafka.consumer.bootstrap.servers");
-        String writer = config.getString("kafka.producer.bootstrap.servers");
-        KafkaReaderImpl kafkaReader = new KafkaReaderImpl("test_topic_in", "test_topic_out", reader, writer, rules);
+
         executorService.execute(() -> {
             queue = kafkaReader.getQueue();
             log.info("+++++++" + queue);
@@ -82,6 +89,7 @@ public class ServiceFiltering implements Service {
 
         executorService.execute(() -> {
             kafkaReader.setRules(rules);
+            log.info("NEW RULES SET {}", rules.length);
             kafkaReader.processing();
         });
 
