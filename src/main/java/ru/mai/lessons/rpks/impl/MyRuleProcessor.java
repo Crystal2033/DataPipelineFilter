@@ -35,7 +35,6 @@ public class MyRuleProcessor implements RuleProcessor {
                 }
             }
             default -> {
-                log.error("error with FilterFunctionName");
                 return false;
             }
         }
@@ -58,7 +57,6 @@ public class MyRuleProcessor implements RuleProcessor {
                     message.setFilterState(false);
                     break;
                 }
-                log.info(rule.getFilterFunctionName() + " : " + rule.getFieldName() + " : " + rule.getFilterValue() + " : " + jsonNode.get(rule.getFieldName()).asText());
                 //equals, contains, not_equals, not_contains
                 if(!compare(rule, jsonNode)){
                     message.setFilterState(false);
@@ -66,7 +64,7 @@ public class MyRuleProcessor implements RuleProcessor {
                 }
             }
         } catch (JsonProcessingException e) {
-            log.error("i have exception for you");
+            log.error(e.getMessage());
             message.setFilterState(false);
         }
         return message;

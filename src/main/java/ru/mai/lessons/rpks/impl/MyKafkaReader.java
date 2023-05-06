@@ -17,6 +17,8 @@ import java.util.Collections;
 import java.util.Properties;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Slf4j
 @Data
@@ -24,73 +26,67 @@ public class MyKafkaReader implements KafkaReader {
     private Rule[] rules;
     private Config config;
     private MyDbReader db;
-
+    private ExecutorService executor;
     private String subscribeString;
     private long updateIntervalSec;
+    private Properties properties;
+
+    public MyKafkaReader(Config config) {
+        this.config = config;
+        properties = new Properties();
+        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, config.getConfig("kafka").getConfig("consumer").getConfig("bootstrap").getString("servers"));
+        properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+        properties.put(ConsumerConfig.GROUP_ID_CONFIG, "test_group_consumer");
+    }
+
     @Override
     public void processing() {
-        Properties properties = new Properties();
-        MyKafkaWriter kafkaWriter = new MyKafkaWriter();
+        MyKafkaWriter kafkaWriter = new MyKafkaWriter(config);
         kafkaWriter.setConfig(config);
-        MyRuleProcessor processor = new MyRuleProcessor();
 
+        MyRuleProcessor processor = new MyRuleProcessor();
         db = new MyDbReader(config.getConfig("db"));
         rules = db.readRulesFromDB();
         updateIntervalSec = config.getConfig("application").getInt("updateIntervalSec");
         TimerTask task = new TimerTask() {
             public void run() {
-                log.info("asdfghj");
                 rules = db.readRulesFromDB();
-                for (Rule r:
-                     rules) {
+                for (Rule r :
+                        rules) {
                     log.info(r.toString());
                 }
             }
         };
 
         Timer timer = new Timer(true);
-        timer.schedule(task, 0, 1000*updateIntervalSec);
-        log.info("delay:" + updateIntervalSec);
-
-
-        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, config.getConfig("kafka").getConfig("consumer").getConfig("bootstrap").getString("servers"));
-        log.info(config.getConfig("kafka").getConfig("consumer").getConfig("bootstrap").getString("servers"));
-        properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
-        properties.put(ConsumerConfig.GROUP_ID_CONFIG, "test_group_consumer");
-
+        timer.schedule(task, 0, 1000 * updateIntervalSec);
 
         Message message;
-
-
-        try (KafkaConsumer<String, String> consumer = new KafkaConsumer<>(properties)){
-            consumer.subscribe(Collections.singleton("test_topic_in"));
+        try (KafkaConsumer<String, String> consumer = new KafkaConsumer<>(properties)) {
+            consumer.subscribe(Collections.singleton(config.getConfig("kafka").getConfig("consumer").getString("topic")));
             ConsumerRecords<String, String> records;
-            Thread.sleep(750);
+            executor = Executors.newSingleThreadExecutor();
+            executor.submit(() -> {
 
-            do {
+            });
+            boolean exit = false;
+            while (!exit) {
                 records = consumer.poll(Duration.ofMillis(100));
+                if (!records.isEmpty()) {
+                    for (ConsumerRecord<String, String> consumerRecord : records) {
+                        exit = consumerRecord.value().equals("exit");
+                        message = processor.processing(new Message(consumerRecord.value(), true), rules);
+                        if (message.isFilterState()) {
+                            kafkaWriter.processing(message);
 
-                if (records.isEmpty()) {
-                    continue;
-                } else {
-                    log.info(subscribeString + ": i got some : " + records.count());
-                }
-
-
-                for (ConsumerRecord<String, String> consumerRecord : records) {
-                    message = processor.processing(new Message(consumerRecord.value(), true), rules);
-                    log.info("message is: " + message.getValue() + ":" + message.isFilterState() );
-                    log.info("some8");
-                    if(message.isFilterState()) {
-                        log.info("i try send " + message.getValue());
-                        kafkaWriter.processing(message);
+                        }
                     }
                 }
 
-            } while (true);
-        }catch (InterruptedException e){
+            }
+        } catch (Exception e) {
             log.error(e.getMessage());
             Thread.currentThread().interrupt();
         }

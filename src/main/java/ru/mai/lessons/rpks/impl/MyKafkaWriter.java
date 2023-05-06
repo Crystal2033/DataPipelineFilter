@@ -16,23 +16,25 @@ import java.util.Properties;
 @Data
 public class MyKafkaWriter implements KafkaWriter {
     private Config config;
-    @Override
-    public void processing(Message message) {
-        Properties properties = new Properties();
+    private Properties properties;
+    private KafkaProducer<String, String> producer;
+
+    public MyKafkaWriter(Config configIn) {
+        config = configIn;
+        properties = new Properties();
         properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, config.getConfig("kafka").getConfig("producer").getConfig("bootstrap").getString("servers"));
         properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-        KafkaProducer<String, String> producer = new KafkaProducer<>(properties);
-        ProducerRecord<String, String> producerRecord = new ProducerRecord<>("test_topic_out", "1", message.getValue());
-        producer.send(producerRecord, ((metadata, exception) -> {
-            if (exception == null){
-                log.info("All good");
-            }else{
-                log.error("error with" + message.getValue());
-                log.error("error", exception);
-            }
-        }));
+        producer = new KafkaProducer<>(properties);
+    }
 
-        producer.close();
+    @Override
+    public void processing(Message message) {
+        ProducerRecord<String, String> producerRecord = new ProducerRecord<>(
+                config.getConfig("kafka").getConfig("producer").getString("topic"),
+                message.getValue()
+        );
+
+        producer.send(producerRecord);
     }
 }
