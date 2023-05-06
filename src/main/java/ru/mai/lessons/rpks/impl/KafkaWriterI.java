@@ -10,14 +10,14 @@ import ru.mai.lessons.rpks.model.Message;
 import java.util.Properties;
 
 public class KafkaWriterI implements KafkaWriter {
-    private Properties props = new Properties();
     KafkaProducer<String, String> producer;
     String topic;
 
     public KafkaWriterI(Config conf){
-        props.put("bootstrap.servers", conf.getConfig("kafka").getConfig("producer").getString("bootstrap.servers"));
+        Properties props = new Properties();
+        props.put("bootstrap.servers", conf.getConfig("producer").getString("bootstrap.servers"));
         producer = new KafkaProducer<>(props, new StringSerializer(), new StringSerializer());
-        topic = conf.getConfig("kafka").getConfig("producer").getString("topic");
+        topic = conf.getConfig("producer").getString("topic");
     }
     @Override
     public void processing(Message message) {

@@ -19,8 +19,6 @@ import java.util.concurrent.Executors;
 import java.util.function.Supplier;
 @Slf4j
 public class KafkaReaderI implements KafkaReader {
-
-    private Properties props = new Properties();
     private final KafkaConsumer<String, String> consumer;
     private final KafkaWriter writer;
     private final RuleProcessorI checkerRules;
@@ -29,15 +27,14 @@ public class KafkaReaderI implements KafkaReader {
     public KafkaReaderI(Config conf, KafkaWriter writer, RuleProcessorI checker, Supplier<Rule[]> supplier){
         this.writer = writer;
         this.supplier = supplier;
-        String kafka = "kafka";
+        Properties props = new Properties();
         String consumerStr = "consumer";
-        props.put("bootstrap.servers", conf.getConfig(kafka).getConfig(consumerStr).getString("bootstrap.servers"));
-        props.put("group.id", conf.getConfig(kafka).getConfig(consumerStr).getString("group.id"));
-        //props.put("auto.offset.reset", conf.getConfig(kafka).getConfig(consumerStr).getString("auto.offset.reset"));
-        props.put("auto.offset.reset", "earliest"); //у меня на ноутбуке без этого сообщения улетают и не читаются кафкой..
+        props.put("bootstrap.servers", conf.getConfig(consumerStr).getString("bootstrap.servers"));
+        props.put("group.id", conf.getConfig(consumerStr).getString("group.id"));
+        props.put("auto.offset.reset", conf.getConfig(consumerStr).getString("auto.offset.reset"));
         consumer = new KafkaConsumer<>(props,  new StringDeserializer(),
                 new StringDeserializer());
-        consumer.subscribe(Collections.singletonList(conf.getConfig(kafka).getConfig(consumerStr).getString("topic")));
+        consumer.subscribe(Collections.singletonList(conf.getConfig(consumerStr).getString("topic")));
         checkerRules = checker;
     }
     @Override

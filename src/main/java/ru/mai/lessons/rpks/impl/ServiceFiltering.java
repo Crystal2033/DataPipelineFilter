@@ -19,29 +19,29 @@ public class ServiceFiltering implements Service {
     private Rule[] rules;
 
 
-    private DataBaseReader DBReader;
+    private DataBaseReader dataBaseReader;
     private ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
     final Object locker = new Object();
     @Override
     public void start(Config config) {
         KafkaReader reader;
         KafkaWriter writer;
-        DBReader = new DataBaseReader(config);
+        dataBaseReader = new DataBaseReader(config);
         executor.scheduleAtFixedRate(this::updateRules, 0, config.getConfig("application")
                 .getInt("updateIntervalSec"), TimeUnit.SECONDS);
-        writer = new KafkaWriterI(config);
-        reader = new KafkaReaderI(config, writer, new RuleProcessorI(), this::getRules);
+        writer = new KafkaWriterI(config.getConfig("kafka"));
+        reader = new KafkaReaderI(config.getConfig("kafka"), writer, new RuleProcessorI(), this::getRules);
         reader.processing();
     }
 
     private void updateRules(){
         try {
             synchronized (locker) {
-                rules = DBReader.readRulesFromDB();
+                rules = dataBaseReader.readRulesFromDB();
                 log.info("Rule was readed!");
             }
         } catch (java.sql.SQLException e) {
-            log.info("Can't read rules......");
+            log.error("Can't read rules......");
         }
     }
 

@@ -11,6 +11,9 @@ import ru.mai.lessons.rpks.model.Rule;
 
 @Slf4j
 public class RuleProcessorI implements RuleProcessor {
+    public enum FilterFunction{
+        EQUALS, CONTAINS, NOT_EQUALS, NOT_CONTAINS
+    }
     @Override
     public Message processing(Message message, Rule[] rules) {
         if (rules.length == 0) {
@@ -38,16 +41,17 @@ public class RuleProcessorI implements RuleProcessor {
         return message;
     }
     private boolean check(String value, String ruleVal, String rule){
-        if (rule.equals("equals")){
+        FilterFunction rules = FilterFunction.valueOf(rule.toUpperCase());
+        if (rules.equals(FilterFunction.EQUALS)){
             return value.equals(ruleVal);
         }
-        if (rule.equals("contains")){
+        if (rules.equals(FilterFunction.CONTAINS)){
             return value.contains(ruleVal);
         }
-        if (rule.equals("not_equals")){
+        if (rules.equals(FilterFunction.NOT_EQUALS)){
             return (!value.equals(ruleVal));
         }
-        if (rule.equals("not_contains")){
+        if (rules.equals(FilterFunction.NOT_CONTAINS)){
             return !value.contains(ruleVal);
         }
         return false;
