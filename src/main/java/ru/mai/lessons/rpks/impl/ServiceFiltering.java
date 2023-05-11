@@ -45,5 +45,14 @@ public class ServiceFiltering implements Service {
                 messageHandler);
         executorService.execute(consumer::processing);
 
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            @Override
+            public void run() {
+                log.info("ShutdownHook schedulerExecutorService");
+                schedulerExecutorService.shutdown();
+                executorService.shutdown();
+            }
+        });
+
     }
 }

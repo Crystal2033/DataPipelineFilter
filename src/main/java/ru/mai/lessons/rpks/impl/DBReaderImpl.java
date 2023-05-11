@@ -67,7 +67,6 @@ public class DBReaderImpl implements DbReader, AutoCloseable {
             }
 
             rules.forEach(ruleDb -> {
-                log.info("foreach");
                 Rule rule = new Rule();
 
                 rule.setFilterFunctionName((String) ruleDb.getValue(FIELDDBNAME.FUNCTIONNAME.getNameField()));

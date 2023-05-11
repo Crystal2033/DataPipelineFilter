@@ -14,10 +14,6 @@ public class MessageHandler {
     private final ConcurrentLinkedQueue<Rule> rules;
     private final RulesUpdaterThread rulesUpdaterThread;
 
-    public void stopRulesReading() {
-        rulesUpdaterThread.stopReading();
-    }
-
     void processMessage(Message message) {
         Rule[] ruleArr = new Rule[rules.size()];
         ruleProcessor.processing(message, rules.toArray(ruleArr));

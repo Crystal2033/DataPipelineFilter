@@ -24,7 +24,6 @@ public class KafkaReaderImpl implements KafkaReader {
     private final String bootstrapServers;
     private final String groupId;
     private final MessageHandler messageHandler;
-    private boolean isExit = false;
 
     @Override
     public void processing() {
@@ -35,28 +34,11 @@ public class KafkaReaderImpl implements KafkaReader {
         properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, groupId);
         properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 
-        KafkaConsumer<String, String> consumer = new KafkaConsumer<>(properties);
 
-        final Thread mainThread = Thread.currentThread();
-
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            @Override
-            public void run() {
-                log.info("Detected a shutdown, let's exit by calling consumer.wakeup()...");
-                consumer.wakeup();
-                try {
-                    mainThread.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                    Thread.currentThread().interrupt();
-                }
-            }
-        });
-
-        try {
+        try(KafkaConsumer<String, String> consumer = new KafkaConsumer<>(properties)) {
             consumer.subscribe(List.of(topic));
 
-            while (!isExit) {
+            while (true) {
                 ConsumerRecords<String, String> records =
                         consumer.poll(Duration.ofMillis(100));
 
@@ -70,7 +52,6 @@ public class KafkaReaderImpl implements KafkaReader {
         } catch (Exception e) {
             log.error("Unexpected exception", e);
         } finally {
-            consumer.close(); // this will also commit the offsets if need be.
             log.info("The consumer is now gracefully closed.");
         }
 
