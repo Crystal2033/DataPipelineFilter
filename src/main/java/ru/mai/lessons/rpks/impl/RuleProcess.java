@@ -10,12 +10,13 @@ import java.util.Objects;
 
 @Slf4j
 public class RuleProcess implements RuleProcessor {
+    enum enumFunction {EQUALS, NOT_EQUALS, CONTAINS, NOT_CONTAINS}
+
     public Message processing(Message message, Rule[] rules) throws ParseException {
 
         if (rules.length == 0){
             return message;
         }
-        enum enumFunction {EQUALS, NOT_EQUALS, CONTAINS, NOT_CONTAINS}
 
         String jsonString = message.getValue();
         jsonString =  jsonString.replace(":-", ":null");

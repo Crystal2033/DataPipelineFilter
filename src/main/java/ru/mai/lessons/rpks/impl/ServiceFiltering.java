@@ -21,8 +21,9 @@ public class ServiceFiltering implements Service {
         String url = db.getString("jdbcUrl");
         String user = db.getString("user");
         String password = db.getString("password");
+        String driver = db.getString("driver");
         Long updateIntervalSec = config.getLong("application.updateIntervalSec");
-        DbReader dbreader = new ReaderDB(url, user, password);
+        DbReader dbreader = new ReaderDB(url, user, password, driver);
 
         Queue<Rule[]> queue = new ConcurrentLinkedQueue<>();
         final int[] nRules = {1};
