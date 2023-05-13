@@ -35,6 +35,26 @@ public class MyDbReader implements DbReader {
 
     }
 
+    private Rule.FunctionName getFunctionName(String nameString) {
+        switch (nameString) {
+            case "equals" -> {
+                return Rule.FunctionName.EQUALS;
+            }
+            case "not_equals" -> {
+                return Rule.FunctionName.NOT_EQUALS;
+            }
+            case "contains" -> {
+                return Rule.FunctionName.CONTAINS;
+            }
+            case "not_contains" -> {
+                return Rule.FunctionName.NOT_CONTAINS;
+            }
+            default -> {
+                return null;
+            }
+        }
+    }
+
     @Override
     public Rule[] readRulesFromDB() {
         ArrayList<Rule> result = new ArrayList<>();
@@ -46,7 +66,7 @@ public class MyDbReader implements DbReader {
                 Long filterId = (Long) e.getValue("filter_id");
                 Long ruleId = (Long) e.getValue("rule_id");
                 String fieldName = (String) e.getValue("field_name");
-                String filterFunction = (String) e.getValue("filter_function_name");
+                Rule.FunctionName filterFunction = getFunctionName((String) e.getValue("filter_function_name"));
                 String filterValue = (String) e.getValue("filter_value");
                 Rule rule = new Rule(filterId, ruleId, fieldName, filterFunction, filterValue);
                 result.add(rule);
