@@ -1,11 +1,8 @@
 package ru.mai.lessons.rpks.exceptions;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 @AllArgsConstructor
-@Getter
-public class UndefinedOperationException extends Exception {
+public class ThreadWorkerNotFoundException extends Exception{
     private final String msg;
-    private final String operation;
 }

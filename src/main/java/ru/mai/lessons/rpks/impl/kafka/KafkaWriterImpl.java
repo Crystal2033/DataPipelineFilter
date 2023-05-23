@@ -27,14 +27,14 @@ public class KafkaWriterImpl implements KafkaWriter {
 
     @Override
     public void processing(Message message) {
-        if (kafkaProducer == null) {
-            initKafkaReader();
-        }
+        Optional<KafkaProducer<String, String>> producerOptional = Optional.ofNullable(kafkaProducer);
+        producerOptional.ifPresentOrElse(val->{}, this::initKafkaReader);
 
         if (message.isFilterState()) {
             Future<RecordMetadata> response = null;
-
-            response = kafkaProducer.send(new ProducerRecord<>(topic, message.getValue()));
+            if(producerOptional.isPresent()){
+                response = producerOptional.get().send(new ProducerRecord<>(topic, message.getValue()));
+            }
             Optional.ofNullable(response).ifPresent(rsp -> {
                 try {
                     log.info("Message send {}", rsp.get());

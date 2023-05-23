@@ -23,3 +23,5 @@ w
 G.idea/sonarlint/issuestore/0/5/05efc8b1657769a27696d478ded1e95f38737233,3\c\3c8c56407c35e5f5ebbd6c7250a79af8128a13a6
 [
 +.idea/modules/JavaServiceFiltering.test.iml,2\d\2d10dfe0e96c15670d02f311d4c03d548822d4a7
+\
+,.idea/inspectionProfiles/Project_Default.xml,4\9\496a238a6afa168dbaf6efd37bb459331589579c

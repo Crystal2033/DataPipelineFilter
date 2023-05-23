@@ -8,7 +8,7 @@ import lombok.ToString;
 @Builder
 @Getter
 @ToString
-public class Rule{
+public class Rule {
     private Long filterId; // id фильтра
     private Long ruleId; // id правила
     private String fieldName; // поле сообщения, по которому выполняем фильтрацию { "name": "Jhonas"}, fieldName = "name", Jhon

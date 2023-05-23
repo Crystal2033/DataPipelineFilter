@@ -4,7 +4,6 @@ import com.typesafe.config.Config;
 import lombok.extern.slf4j.Slf4j;
 import ru.mai.lessons.rpks.Service;
 import ru.mai.lessons.rpks.impl.kafka.KafkaReaderImpl;
-import ru.mai.lessons.rpks.impl.kafka.dispatchers.DispatcherKafka;
 import ru.mai.lessons.rpks.impl.kafka.dispatchers.FilteringDispatcher;
 import ru.mai.lessons.rpks.impl.repository.DataBaseReader;
 import ru.mai.lessons.rpks.impl.repository.RulesUpdaterThread;
@@ -18,15 +17,12 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static ru.mai.lessons.rpks.impl.constants.MainNames.KAFKA_NAME;
-import static ru.mai.lessons.rpks.impl.constants.MainNames.TOPIC_NAME_PATH;
-
 @Slf4j
 public class ServiceFiltering implements Service {
     private final ConcurrentHashMap<String, List<Rule>> rulesConcurrentMap = new ConcurrentHashMap<>();
     private Config outerConfig;
-
-
+    public static final String TOPIC_NAME_PATH = "topic.name";
+    public static final String KAFKA_NAME = "kafka";
     @Override
     public void start(Config config) {
         outerConfig = config;
@@ -37,7 +33,7 @@ public class ServiceFiltering implements Service {
         }
     }
 
-    private void startKafkaReader(DispatcherKafka dispatcherKafka) {
+    private void startKafkaReader(FilteringDispatcher dispatcherKafka) {
 
         Config config = outerConfig.getConfig(KAFKA_NAME).getConfig("consumer");
 
@@ -81,7 +77,7 @@ public class ServiceFiltering implements Service {
 
                 Config config = outerConfig.getConfig(KAFKA_NAME)
                         .getConfig("producer");
-                DispatcherKafka filterDispatcher = new FilteringDispatcher(config.getConfig("deduplication")
+                FilteringDispatcher filterDispatcher = new FilteringDispatcher(config.getConfig("deduplication")
                         .getString(TOPIC_NAME_PATH), config.getString("bootstrap.servers"), rulesDBUpdaterThread);
 
 

@@ -11,8 +11,8 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import ru.mai.lessons.rpks.KafkaReader;
+import ru.mai.lessons.rpks.exceptions.ThreadWorkerNotFoundException;
 import ru.mai.lessons.rpks.exceptions.UndefinedOperationException;
-import ru.mai.lessons.rpks.impl.kafka.dispatchers.DispatcherKafka;
 import ru.mai.lessons.rpks.impl.kafka.dispatchers.FilteringDispatcher;
 
 import java.io.Closeable;
@@ -36,21 +36,18 @@ public class KafkaReaderImpl implements KafkaReader {
 
     private final String exitWord;
 
-    private final DispatcherKafka dispatcherKafka;
+    private final FilteringDispatcher dispatcherKafka;
     private boolean isExit;
 
     @Override
     public void processing() {
         ExecutorService executorService = Executors.newCachedThreadPool();
-        try (Closeable executor = executorService::shutdownNow) {
-            KafkaConsumer<String, String> kafkaConsumer = initKafkaConsumer();
+        KafkaConsumer<String, String> kafkaConsumer = initKafkaConsumer();
 
-            kafkaConsumer.subscribe(Collections.singletonList(topic));
+        kafkaConsumer.subscribe(Collections.singletonList(topic));
 
-            listenAndDelegateFiltering(executorService, kafkaConsumer);
-        } catch (IOException e) {
-            log.error("There is a problem with binding closeable object to executor service.");
-        }
+        listenAndDelegateFiltering(executorService, kafkaConsumer);
+        executorService.shutdown();
 
     }
 
@@ -60,10 +57,8 @@ public class KafkaReaderImpl implements KafkaReader {
                 ConsumerRecords<String, String> consumerRecords = kafkaConsumer.poll(Duration.ofMillis(100));
                 for (ConsumerRecord<String, String> consumerRecord : consumerRecords) {
                     if (consumerRecord.value().equals(exitWord)) {
-                        if (dispatcherKafka instanceof FilteringDispatcher filteringDispatcher) {
-                            filteringDispatcher.closeReadingThread();
-                            log.info("Closing thread");
-                        }
+                        dispatcherKafka.closeReadingThread();
+                        log.info("Closing thread");
                         isExit = true;
                     } else {
                         log.info("Message from Kafka topic {} : {}", consumerRecord.topic(), consumerRecord.value());
@@ -88,13 +83,15 @@ public class KafkaReaderImpl implements KafkaReader {
     }
 
     private void sendToFilter(String msg) {
-        try {
-            log.info("Before action with message {}", msg);
-            dispatcherKafka.actionWithMessage(msg);
-            log.info("After action with message {}", msg);
-        } catch (UndefinedOperationException ex) {
-            log.error("The operation {} not found.", ex.getOperation());
+        log.info("Before action with message {}", msg);
+        try{
+            dispatcherKafka.sendMessageIfCompatibleWithDBRules(msg);
         }
-
+        catch (UndefinedOperationException ex) {
+            log.error("The operation {} not found.", ex.getOperation());
+        } catch (ThreadWorkerNotFoundException e) {
+            log.error(e.getMessage());
+        }
+        log.info("After action with message {}", msg);
     }
 }
