@@ -9,13 +9,12 @@ import ru.mai.lessons.rpks.impl.repository.DataBaseReader;
 import ru.mai.lessons.rpks.impl.repository.RulesUpdaterThread;
 import ru.mai.lessons.rpks.model.Rule;
 
-import java.io.Closeable;
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 public class ServiceFiltering implements Service {
@@ -23,13 +22,12 @@ public class ServiceFiltering implements Service {
     private Config outerConfig;
     public static final String TOPIC_NAME_PATH = "topic.name";
     public static final String KAFKA_NAME = "kafka";
+
     @Override
     public void start(Config config) {
         outerConfig = config;
         try (DataBaseReader dataBaseReader = initExistingDBReader(outerConfig.getConfig("db"))) {
             connectToDBAndWork(dataBaseReader);
-        } catch (SQLException e) {
-            log.error("There is a problem with initializing database.");
         }
     }
 
@@ -43,7 +41,6 @@ public class ServiceFiltering implements Service {
                 .bootstrapServers(config.getString("bootstrap.servers"))
                 .groupId(config.getString("group.id"))
                 .dispatcherKafka(dispatcherKafka)
-                .exitWord(outerConfig.getConfig(KAFKA_NAME).getString("exit.string"))
                 .build();
 
         kafkaReader.processing();
@@ -60,31 +57,26 @@ public class ServiceFiltering implements Service {
     }
 
     private void connectToDBAndWork(DataBaseReader dataBaseReader) {
-        ExecutorService executorService = Executors.newCachedThreadPool();
-        try (Closeable service = executorService::shutdownNow) {
-            connectAndRun(dataBaseReader, executorService);
-        } catch (IOException e) {
-            log.error("There is an error with binding Closeable objects");
-        }
-
+        ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
+        connectAndRun(dataBaseReader, scheduledExecutorService);
+        scheduledExecutorService.shutdown();
     }
 
-    private void connectAndRun(DataBaseReader dataBaseReader, ExecutorService executorService) {
+    private void connectAndRun(DataBaseReader dataBaseReader, ScheduledExecutorService executorService) {
         try {
             if (dataBaseReader.connectToDataBase()) {
 
-                RulesUpdaterThread rulesDBUpdaterThread = new RulesUpdaterThread(rulesConcurrentMap, dataBaseReader, outerConfig);
+                RulesUpdaterThread rulesDBUpdaterThread = new RulesUpdaterThread(rulesConcurrentMap, dataBaseReader);
 
                 Config config = outerConfig.getConfig(KAFKA_NAME)
                         .getConfig("producer");
                 FilteringDispatcher filterDispatcher = new FilteringDispatcher(config.getConfig("deduplication")
                         .getString(TOPIC_NAME_PATH), config.getString("bootstrap.servers"), rulesDBUpdaterThread);
 
-
-                executorService.execute(rulesDBUpdaterThread);
+                long delayTimeInSec = outerConfig.getConfig("application").getLong("updateIntervalSec");
+                executorService.scheduleWithFixedDelay(rulesDBUpdaterThread, 0, delayTimeInSec, TimeUnit.SECONDS);
 
                 startKafkaReader(filterDispatcher);
-                executorService.shutdown();
             } else {
                 log.error("There is a problem with connection to database.");
             }

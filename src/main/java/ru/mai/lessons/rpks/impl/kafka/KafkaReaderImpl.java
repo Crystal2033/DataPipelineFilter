@@ -1,5 +1,6 @@
 package ru.mai.lessons.rpks.impl.kafka;
 
+import com.typesafe.config.Config;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,15 +11,17 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import ru.mai.lessons.rpks.ConfigReader;
 import ru.mai.lessons.rpks.KafkaReader;
 import ru.mai.lessons.rpks.exceptions.ThreadWorkerNotFoundException;
 import ru.mai.lessons.rpks.exceptions.UndefinedOperationException;
+import ru.mai.lessons.rpks.impl.ConfigurationReader;
 import ru.mai.lessons.rpks.impl.kafka.dispatchers.FilteringDispatcher;
 
-import java.io.Closeable;
-import java.io.IOException;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -34,43 +37,42 @@ public class KafkaReaderImpl implements KafkaReader {
     private final String autoOffsetReset;
     private final String bootstrapServers;
 
-    private final String exitWord;
-
     private final FilteringDispatcher dispatcherKafka;
-    private boolean isExit;
+
+    private List<KafkaConsumer<String, String>> kafkaConsumers;
 
     @Override
     public void processing() {
-        ExecutorService executorService = Executors.newCachedThreadPool();
-        KafkaConsumer<String, String> kafkaConsumer = initKafkaConsumer();
+        ConfigReader configurationReader = new ConfigurationReader();
+        Config config = configurationReader.loadConfig().getConfig("kafka").getConfig("consumer");
+        int valueOfThreads = config.getInt("threads");
 
-        kafkaConsumer.subscribe(Collections.singletonList(topic));
-
-        listenAndDelegateFiltering(executorService, kafkaConsumer);
+        kafkaConsumers = new ArrayList<>();
+        ExecutorService executorService = Executors.newFixedThreadPool(valueOfThreads);
+        for (int i = 0; i < valueOfThreads; i++) {
+            KafkaConsumer<String, String> kafkaConsumer = initKafkaConsumer();
+            kafkaConsumers.add(kafkaConsumer);
+            kafkaConsumer.subscribe(Collections.singletonList(topic));
+            if (i != valueOfThreads - 1) {
+                executorService.execute(() -> listenAndDelegateFiltering(kafkaConsumer));
+            }
+        }
+        listenAndDelegateFiltering(kafkaConsumers.get(valueOfThreads - 1));
         executorService.shutdown();
-
     }
 
-    private void listenAndDelegateFiltering(ExecutorService executorService, KafkaConsumer<String, String> kafkaConsumer) {
+    private void listenAndDelegateFiltering(KafkaConsumer<String, String> kafkaConsumer) {
         try (kafkaConsumer) {
-            while (!isExit) {
+            while (true) {
                 ConsumerRecords<String, String> consumerRecords = kafkaConsumer.poll(Duration.ofMillis(100));
                 for (ConsumerRecord<String, String> consumerRecord : consumerRecords) {
-                    if (consumerRecord.value().equals(exitWord)) {
-                        dispatcherKafka.closeReadingThread();
-                        log.info("Closing thread");
-                        isExit = true;
-                    } else {
-                        log.info("Message from Kafka topic {} : {}", consumerRecord.topic(), consumerRecord.value());
-                        executorService.execute(() -> sendToFilter(consumerRecord.value()));
-                    }
+                    sendToFilter(consumerRecord.value());
                 }
             }
         }
     }
 
     private KafkaConsumer<String, String> initKafkaConsumer() {
-        log.info("Start reading kafka topic {}", topic);
         return new KafkaConsumer<>(
                 Map.of(
                         ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers,
@@ -84,10 +86,9 @@ public class KafkaReaderImpl implements KafkaReader {
 
     private void sendToFilter(String msg) {
         log.info("Before action with message {}", msg);
-        try{
+        try {
             dispatcherKafka.sendMessageIfCompatibleWithDBRules(msg);
-        }
-        catch (UndefinedOperationException ex) {
+        } catch (UndefinedOperationException ex) {
             log.error("The operation {} not found.", ex.getOperation());
         } catch (ThreadWorkerNotFoundException e) {
             log.error(e.getMessage());

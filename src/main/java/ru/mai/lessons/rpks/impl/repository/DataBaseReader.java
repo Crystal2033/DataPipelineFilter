@@ -55,11 +55,11 @@ public class DataBaseReader implements DbReader, AutoCloseable {
         initHikariConfig();
         if (dataSource == null) {
             initDataSourceAndDSLContext();
-        } else {
+        } else if (dataSourceConnection != null) {
             dataSourceConnection.close();
         }
         dataSourceConnection = dataSource.getConnection();
-        return dataSourceConnection.isValid(additionalDBConfig.getInt("connect_valid_time"));
+        return isConnectedToDataBase();
     }
 
     public boolean isConnectedToDataBase() throws SQLException {
@@ -72,7 +72,8 @@ public class DataBaseReader implements DbReader, AutoCloseable {
                 .from(additionalDBConfig.getString("table_name"))
                 .where(field(additionalDBConfig.getString("filter_column_name"))
                         .eq(additionalDBConfig.getInt(
-                                additionalDBConfig.getString("filter_column_name"))))
+                                additionalDBConfig.getString("filter_column_name")))
+                        )
                 .fetch()
                 .stream()
                 .map(note -> Rule.builder()
@@ -86,8 +87,7 @@ public class DataBaseReader implements DbReader, AutoCloseable {
     }
 
     @Override
-    public void close() throws SQLException {
-        dataSourceConnection.close();
+    public void close() {
         dataSource.close();
     }
 }

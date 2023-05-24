@@ -20,13 +20,6 @@ public class RulesUpdaterThread implements Runnable {
 
     private final DataBaseReader dataBaseReader;
 
-    private final Config myConfig;
-    private boolean isExit = false;
-
-    public void stopReadingDataBase() {
-        isExit = true;
-    }
-
     private void insertNewRulesInMap(Rule[] rules) {
         rulesConcurrentMap.clear();
         for (var rule : rules) {
@@ -44,21 +37,16 @@ public class RulesUpdaterThread implements Runnable {
 
     @Override
     public void run() {
-        while (!isExit) {
-            try {
-                Rule[] rules = dataBaseReader.readRulesFromDB();
-                insertNewRulesInMap(rules);
-                log.info("New rules have been inserted.");
-                log.info("Is connected to database: {}", dataBaseReader.isConnectedToDataBase());
-                Thread.sleep(myConfig.getConfig("application")
-                        .getLong("updateIntervalSec") * 1000);
+        try {
+            Rule[] rules = dataBaseReader.readRulesFromDB();
+            insertNewRulesInMap(rules);
+            log.info("New rules have been inserted.");
+            log.info("Is connected to database: {}", dataBaseReader.isConnectedToDataBase());
 
-            } catch (InterruptedException e) {
-                log.error("Trouble with sleep of thread. " + e);
-                Thread.currentThread().interrupt();
-            } catch (SQLException e) {
-                log.error("Bad connection to database!", e);
-            }
         }
+        catch (SQLException e) {
+            log.error("Bad connection to database!", e);
+        }
+
     }
 }

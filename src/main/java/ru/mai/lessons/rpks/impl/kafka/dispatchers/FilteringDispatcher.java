@@ -19,7 +19,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
 @RequiredArgsConstructor
-public class FilteringDispatcher{
+public class FilteringDispatcher {
     private final String topicToSendMsg;
     private final String bootstrapServers;
 
@@ -29,17 +29,13 @@ public class FilteringDispatcher{
 
     public void updateRules() throws ThreadWorkerNotFoundException {
         rulesConcurrentMap = Optional.ofNullable(updaterRulesThread).
-                orElseThrow(()->new ThreadWorkerNotFoundException("Database updater not found")).getRulesConcurrentMap();
-    }
-
-    public void closeReadingThread() {
-        updaterRulesThread.stopReadingDataBase();
+                orElseThrow(() -> new ThreadWorkerNotFoundException("Database updater not found")).getRulesConcurrentMap();
     }
 
 
     private boolean checkField(String fieldName, JSONObject jsonObject) throws UndefinedOperationException {
         boolean isPassedAllChecks = true;
-        try{
+        try {
             String userValue = jsonObject.get(fieldName).toString();
             List<Rule> rules = rulesConcurrentMap.get(fieldName);
             for (var rule : rules) {
@@ -48,8 +44,7 @@ public class FilteringDispatcher{
                     break;
                 }
             }
-        }
-        catch (JSONException ex){
+        } catch (JSONException ex) {
             return false;
         }
         return isPassedAllChecks;
@@ -64,7 +59,7 @@ public class FilteringDispatcher{
         }
         try {
             JSONObject jsonObject = new JSONObject(checkingMessage);
-            for (String fieldName : rulesConcurrentMap.keySet()){
+            for (String fieldName : rulesConcurrentMap.keySet()) {
                 boolean isCompatible = checkField(fieldName, jsonObject);
                 log.info("compatible after name: {}", isCompatible);
                 if (!isCompatible) {
@@ -80,7 +75,7 @@ public class FilteringDispatcher{
 
     private boolean isCompatibleWithRule(String operation, String expected, String userValue) throws UndefinedOperationException {
         log.info("operation={}, expected={}, userValue={}", operation, expected, userValue);
-        try{
+        try {
             OperationName operationName = OperationName.valueOf(operation.toUpperCase());
             return switch (operationName) {
                 case EQUALS -> expected.equals(userValue);
@@ -88,8 +83,7 @@ public class FilteringDispatcher{
                 case CONTAINS -> userValue.contains(expected);
                 case NOT_CONTAINS -> !userValue.contains(expected);
             };
-        }
-        catch (IllegalArgumentException ex){
+        } catch (IllegalArgumentException ex) {
             throw new UndefinedOperationException("Operation was not found.", operation);
         }
     }
