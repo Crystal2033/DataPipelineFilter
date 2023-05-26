@@ -17,8 +17,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static ru.mai.lessons.rpks.impl.Db.closeConnection;
-import static ru.mai.lessons.rpks.impl.Db.getConnection;
+
 @Slf4j
 public class ServiceFiltering implements Service {
     Db db;
@@ -28,33 +27,19 @@ public class ServiceFiltering implements Service {
 
     @Override
     public void start(Config config) {
+
         rules = new Rule[1];
         ExecutorService executorService = Executors.newFixedThreadPool(1);
-        ConfigurationReader configurationReader = new ConfigurationReader();
         updateIntervalSec = config.getInt("application.updateIntervalSec");
         queue = new ConcurrentLinkedQueue<>();
-        db = new Db();
-        Db.setUsername(config.getString("db.user"));
-        Db.setPassword(config.getString("db.password"));
-        Db.setJdbcUrl(config.getString("db.jdbcUrl"));
-        Db.setDriverClassName(config.getString("db.driver"));
-        Connection conn = null;
-        try {
-            conn = getConnection();
-        } catch (SQLException e) {
-            log.error("Error occurred while getting connection");
-        }
+        db = new Db(config);
+        rules = db.readRulesFromDB();
         String reader = config.getString("kafka.consumer.bootstrap.servers");
         String writer = config.getString("kafka.producer.bootstrap.servers");
         KafkaReaderImpl kafkaReader = new KafkaReaderImpl("test_topic_in", "test_topic_out", reader, writer, rules);
-        DSLContext context = DSL.using(conn, SQLDialect.POSTGRES);
-        rules = db.readRulesFromDB(context);
-
         TimerTask task = new TimerTask() {
             public void run() {
-//                Arrays.fill(rules, null);
-//                try {
-                    rules = db.readRulesFromDB(context);
+                    rules = db.readRulesFromDB();
                     for (Rule r :
                             rules) {
                         log.info(r.toString());
@@ -62,22 +47,19 @@ public class ServiceFiltering implements Service {
 
                     }
                     kafkaReader.setRules(rules);
-//                }
-//                catch (Exception e){
-//                    log.info("got connection exception");
-//                }
-//                try {
-//                    closeConnection();
-//                    log.info("CONNECTION IS CLOSED");
-//                } catch (SQLException e) {
-//                    throw new MyException("Error while closing connection", e);
-//                }
             }
         };
 
-        Timer timer = new Timer(true);
+        Timer timer = new Timer(false);
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            @Override
+            public void run() { task.cancel();
+            timer.cancel();
+            executorService.shutdown();}
+        });
         timer.schedule(task, 0, 1000L * updateIntervalSec);
         log.info("delay:" + updateIntervalSec);
+
 
 
 
@@ -92,6 +74,7 @@ public class ServiceFiltering implements Service {
             log.info("NEW RULES SET {}", rules.length);
             kafkaReader.processing();
         });
+
 
 
     }

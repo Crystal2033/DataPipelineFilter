@@ -1,9 +1,9 @@
 package ru.mai.lessons.rpks;
-
-import org.jooq.DSLContext;
 import ru.mai.lessons.rpks.model.Rule;
+
+import java.sql.SQLException;
 
 
 public interface DbReader {
-    public Rule[] readRulesFromDB(DSLContext context); // метод получает набор правил из БД PostgreSQL. Конфигурация для подключения из файла *.conf. Метод также должен проверять в заданное время с периодом изменения в БД и обновлять правила.
+     public Rule[] readRulesFromDB() throws SQLException; // метод получает набор правил из БД PostgreSQL. Конфигурация для подключения из файла *.conf. Метод также должен проверять в заданное время с периодом изменения в БД и обновлять правила.
 }

@@ -30,7 +30,6 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.shaded.com.google.common.collect.ImmutableMap;
 import org.testcontainers.utility.DockerImageName;
 import ru.mai.lessons.rpks.impl.ServiceFiltering;
-
 import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.time.Duration;
@@ -40,7 +39,6 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.*;
 import java.util.stream.Stream;
-
 import static org.jooq.impl.DSL.field;
 import static org.jooq.impl.DSL.table;
 import static org.junit.jupiter.api.Assertions.*;
