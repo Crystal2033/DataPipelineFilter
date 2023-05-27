@@ -45,35 +45,6 @@ public class RuleProcessorImpl implements RuleProcessor {
                     log.info("CHECKING FIELD {}", rule.getFieldName());
                     if (map.containsKey(rule.getFieldName())) {
                         checkRule(rule, map, message);
-//                        try {
-//                        if (Objects.equals(rule.getFilterFunctionName(), "equals") && (!Objects.equals(map.get(rule.getFieldName()).toString(), rule.getFilterValue()))) {
-//                            message.setFilterState(false);
-//                            log.info("set to false - equals {}", map.get(rule.getFieldName()));
-//                            return message;
-//
-//                        }
-//                        if (Objects.equals(rule.getFilterFunctionName(), "not_equals") && (Objects.equals(map.get(rule.getFieldName()).toString(), rule.getFilterValue()))) {
-//                            message.setFilterState(false);
-//                            log.info("set to false - not equals");
-//                            return message;
-//
-//                        }
-//                        if (Objects.equals(rule.getFilterFunctionName(), "contains") && (!map.get(rule.getFieldName()).toString().contains(rule.getFilterValue()))) {
-//                            message.setFilterState(false);
-//                            log.info("set to false - contains");
-//                            return message;
-//
-//                        }
-//                        if (Objects.equals(rule.getFilterFunctionName(), "not_contains") && (map.get(rule.getFieldName()).toString().contains(rule.getFilterValue()))) {
-//                            message.setFilterState(false);
-//                            log.info("set to false - not contains");
-//                            return message;
-//                        }
-//                        }
-//                        catch (Exception e){
-//                            log.info("caught null exception");
-//                            message.setFilterState(false);
-//                        }
                     } else {
                         message.setFilterState(false);
                         break;

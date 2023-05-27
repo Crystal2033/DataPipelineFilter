@@ -37,7 +37,6 @@ public Rule[] readRulesFromDB() {
             @NotNull SelectJoinStep<Record5<Object, Object, Object, Object, Object>> result2;
             ArrayList<Rule> array = new ArrayList<>();
             String fieldNameFilterId = "filter_id";
-//            try {
             result2 = context.select(
                             field(fieldNameFilterId),
                             field("rule_id"),
@@ -46,21 +45,11 @@ public Rule[] readRulesFromDB() {
                             field("filter_value")
                     )
                     .from(table(tableName));
-//            @NotNull SelectSelectStep<Record1<Object>> filterId;
-//            filterId = context.select(field("filter_id"));
-
-
-
             log.info("RESULT2 {}", result2);
 
             result = result2.fetch();
 
             log.info("RESULT {}", result.getValues(fieldNameFilterId).isEmpty());
-
-//            } catch (Exception e) {
-//                log.info("CAUGHT FETCH EX");
-//                return new Rule[0];
-//            }
 
 
             result.forEach(res -> {

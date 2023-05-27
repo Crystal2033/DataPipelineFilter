@@ -53,9 +53,6 @@ public class KafkaQueueWriter implements KafkaWriter {
                         }
                         response = kafkaProducer.send(new ProducerRecord<>(topic, queueElement.getValue()));
                     }
-//                    else {
-//                        log.error("Invalid input data: {}", queueElement);
-//                    }
 
                     Optional.ofNullable(response).ifPresent(rsp -> {
                         try {

@@ -50,13 +50,8 @@ public class ServiceFiltering implements Service {
             }
         };
 
-        Timer timer = new Timer(false);
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            @Override
-            public void run() { task.cancel();
-            timer.cancel();
-            executorService.shutdown();}
-        });
+        Timer timer = new Timer(true);
+
         timer.schedule(task, 0, 1000L * updateIntervalSec);
         log.info("delay:" + updateIntervalSec);
 
@@ -75,7 +70,13 @@ public class ServiceFiltering implements Service {
             kafkaReader.processing();
         });
 
-
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            @Override
+            public void run() {
+                task.cancel();
+                timer.cancel();
+            }
+        });
 
     }
 }
