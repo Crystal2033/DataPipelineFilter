@@ -60,7 +60,7 @@ class ServiceTest {
             .withPassword("password")
             .withInitScript("init_script.sql");
 
-    ExecutorService executorForTest = Executors.newFixedThreadPool(10);
+    ExecutorService executorForTest = Executors.newFixedThreadPool(2);
 
     private DataSource dataSource;
     private final String topicIn = "test_topic_in";

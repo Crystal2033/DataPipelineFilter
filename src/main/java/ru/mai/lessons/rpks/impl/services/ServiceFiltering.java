@@ -7,18 +7,14 @@ import ru.mai.lessons.rpks.impl.kafka.KafkaReaderImpl;
 import ru.mai.lessons.rpks.impl.kafka.dispatchers.FilteringDispatcher;
 import ru.mai.lessons.rpks.impl.repository.DataBaseReader;
 import ru.mai.lessons.rpks.impl.repository.RulesUpdaterThread;
-import ru.mai.lessons.rpks.model.Rule;
 
 import java.sql.SQLException;
-import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
 public class ServiceFiltering implements Service {
-    private final ConcurrentHashMap<String, List<Rule>> rulesConcurrentMap = new ConcurrentHashMap<>();
     private Config outerConfig;
     public static final String TOPIC_NAME_PATH = "topic.name";
     public static final String KAFKA_NAME = "kafka";
@@ -66,12 +62,9 @@ public class ServiceFiltering implements Service {
         try {
             if (dataBaseReader.connectToDataBase()) {
 
-                RulesUpdaterThread rulesDBUpdaterThread = new RulesUpdaterThread(rulesConcurrentMap, dataBaseReader);
+                RulesUpdaterThread rulesDBUpdaterThread = new RulesUpdaterThread(dataBaseReader);
 
-                Config config = outerConfig.getConfig(KAFKA_NAME)
-                        .getConfig("producer");
-                FilteringDispatcher filterDispatcher = new FilteringDispatcher(config.getConfig("deduplication")
-                        .getString(TOPIC_NAME_PATH), config.getString("bootstrap.servers"), rulesDBUpdaterThread);
+                FilteringDispatcher filterDispatcher = new FilteringDispatcher(outerConfig, rulesDBUpdaterThread);
 
                 long delayTimeInSec = outerConfig.getConfig("application").getLong("updateIntervalSec");
                 executorService.scheduleWithFixedDelay(rulesDBUpdaterThread, 0, delayTimeInSec, TimeUnit.SECONDS);

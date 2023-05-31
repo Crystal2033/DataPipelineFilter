@@ -1,5 +1,6 @@
 package ru.mai.lessons.rpks.impl.kafka.dispatchers;
 
+import com.typesafe.config.Config;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONException;
@@ -14,53 +15,38 @@ import ru.mai.lessons.rpks.model.Rule;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.ConcurrentHashMap;
+
+import static ru.mai.lessons.rpks.impl.services.ServiceFiltering.KAFKA_NAME;
+import static ru.mai.lessons.rpks.impl.services.ServiceFiltering.TOPIC_NAME_PATH;
 
 
 @Slf4j
 @RequiredArgsConstructor
 public class FilteringDispatcher {
-    private final String topicToSendMsg;
-    private final String bootstrapServers;
+
+    private final Config config;
 
     private final RulesUpdaterThread updaterRulesThread;
-    private ConcurrentHashMap<String, List<Rule>> rulesConcurrentMap;
+    private List<Rule> rulesList;
     private KafkaWriterImpl kafkaWriter;
 
     public void updateRules() throws ThreadWorkerNotFoundException {
-        rulesConcurrentMap = Optional.ofNullable(updaterRulesThread).
-                orElseThrow(() -> new ThreadWorkerNotFoundException("Database updater not found")).getRulesConcurrentMap();
-    }
-
-
-    private boolean checkField(String fieldName, JSONObject jsonObject) throws UndefinedOperationException {
-        boolean isPassedAllChecks = true;
-        try {
-            String userValue = jsonObject.get(fieldName).toString();
-            List<Rule> rules = rulesConcurrentMap.get(fieldName);
-            for (var rule : rules) {
-                if (!isCompatibleWithRule(rule.getFilterFunctionName(), rule.getFilterValue(), userValue)) {
-                    isPassedAllChecks = false;
-                    break;
-                }
-            }
-        } catch (JSONException ex) {
-            return false;
-        }
-        return isPassedAllChecks;
+        rulesList = Optional.ofNullable(updaterRulesThread).
+                orElseThrow(() -> new ThreadWorkerNotFoundException("Database updater not found")).getRules();
     }
 
     public void sendMessageIfCompatibleWithDBRules(String checkingMessage) throws UndefinedOperationException, ThreadWorkerNotFoundException {
         kafkaWriter = Optional.ofNullable(kafkaWriter).orElseGet(this::createKafkaWriterForSendingMessage);
         updateRules();
-        if (rulesConcurrentMap.isEmpty()) {
+        if (rulesList.isEmpty()) {
             kafkaWriter.processing(getMessage(checkingMessage, false));
             return;
         }
         try {
             JSONObject jsonObject = new JSONObject(checkingMessage);
-            for (String fieldName : rulesConcurrentMap.keySet()) {
-                boolean isCompatible = checkField(fieldName, jsonObject);
+            for (Rule rule : rulesList) {
+                boolean isCompatible = isCompatibleWithRule(rule.getFilterFunctionName(),
+                        rule.getFilterValue(), jsonObject.get(rule.getFieldName()).toString());
                 log.info("compatible after name: {}", isCompatible);
                 if (!isCompatible) {
                     kafkaWriter.processing(getMessage(checkingMessage, false));
@@ -96,9 +82,10 @@ public class FilteringDispatcher {
     }
 
     private KafkaWriterImpl createKafkaWriterForSendingMessage() {
+        Config producerKafkaConfig = config.getConfig(KAFKA_NAME).getConfig("producer");
         return KafkaWriterImpl.builder()
-                .topic(topicToSendMsg)
-                .bootstrapServers(bootstrapServers)
+                .topic(producerKafkaConfig.getConfig("deduplication").getString(TOPIC_NAME_PATH))
+                .bootstrapServers(producerKafkaConfig.getString("bootstrap.servers"))
                 .build();
     }
 }
