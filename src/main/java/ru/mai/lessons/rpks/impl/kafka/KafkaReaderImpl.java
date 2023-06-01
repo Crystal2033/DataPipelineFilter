@@ -85,7 +85,6 @@ public class KafkaReaderImpl implements KafkaReader {
     }
 
     private void sendToFilter(String msg) {
-        log.info("Before action with message {}", msg);
         try {
             dispatcherKafka.sendMessageIfCompatibleWithDBRules(msg);
         } catch (UndefinedOperationException ex) {
@@ -93,6 +92,5 @@ public class KafkaReaderImpl implements KafkaReader {
         } catch (ThreadWorkerNotFoundException e) {
             log.error(e.getMessage());
         }
-        log.info("After action with message {}", msg);
     }
 }
