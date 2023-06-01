@@ -27,6 +27,7 @@ public class KafkaWriterImpl implements KafkaWriter {
         Optional<KafkaProducer<String, String>> producerOptional = Optional.ofNullable(kafkaProducer);
         producerOptional.ifPresentOrElse(val -> {
         }, this::initKafkaReader);
+        producerOptional = Optional.ofNullable(kafkaProducer);
 
         if (producerOptional.isPresent() && message.isFilterState()) {
             producerOptional.get().send(new ProducerRecord<>(topic, message.getValue()));

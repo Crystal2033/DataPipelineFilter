@@ -4,5 +4,5 @@ import com.typesafe.config.Config;
 
 public interface Service {
 
-    public void start(Config config); // стартует приложение.
+    void start(Config config); // стартует приложение.
 }
