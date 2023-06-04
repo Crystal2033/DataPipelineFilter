@@ -26,55 +26,55 @@ public class Db implements DbReader {
     private DataSource dataSource;
     @NonNull
     Config config;
+    String fieldNameFilterId = "filter_id";
+    String ruleIdStr = "rule_id";
+    String fieldNameStr = "field_name";
+    String filterFunctionNameStr = "filter_function_name";
+    String filterValueStr = "filter_value";
 
 public Rule[] readRulesFromDB() {
     try (Connection connection = getConnection()) {
         DSLContext context = DSL.using(connection, SQLDialect.POSTGRES);
-        String tableName = "filter_rules";
+        String tableName = config.getConfig("db").getString("table");
+
         int numberOfRows = context.fetchCount(context.selectFrom(tableName));
         Rule[] ruleArray = new Rule[numberOfRows];
-            Result<Record5<Object, Object, Object, Object, Object>> result = null;
-            @NotNull SelectJoinStep<Record5<Object, Object, Object, Object, Object>> result2;
+//           there was a @NotNull SelectJoinStep<Record5<Object, Object, Object, Object, Object>> before
             ArrayList<Rule> array = new ArrayList<>();
-            String fieldNameFilterId = "filter_id";
-            result2 = context.select(
+            var result = context.select(
                             field(fieldNameFilterId),
-                            field("rule_id"),
-                            field("field_name"),
-                            field("filter_function_name"),
-                            field("filter_value")
+                            field(ruleIdStr),
+                            field(fieldNameStr),
+                            field(filterFunctionNameStr),
+                            field(filterValueStr)
                     )
-                    .from(table(tableName));
-            log.info("RESULT2 {}", result2);
+                    .from(table(tableName)).fetch();
 
-            result = result2.fetch();
-
-            log.info("RESULT {}", result.getValues(fieldNameFilterId).isEmpty());
-
+//            there was var result = result2.fetch() before
 
             result.forEach(res -> {
                 try {
 
                     Long filterId = (Long) res.getValue(field(fieldNameFilterId));
-                    Long ruleId = (Long) res.getValue(field(name("rule_id")));
-                    String fieldName = res.getValue(field(name("field_name"))).toString();
-                    String filterFunctionName = res.getValue(field(name("filter_function_name"))).toString();
-                    String filterValue = res.getValue(field(name("filter_value"))).toString();
+                    Long ruleId = (Long) res.getValue(field(name(ruleIdStr)));
+                    String fieldName = res.getValue(field(name(fieldNameStr))).toString();
+                    String filterFunctionName = res.getValue(field(name(filterFunctionNameStr))).toString();
+                    String filterValue = res.getValue(field(name(filterValueStr))).toString();
                     Rule rule = new Rule(filterId, ruleId, fieldName, filterFunctionName, filterValue);
                     array.add(rule);
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    log.error("caught rule exception");
                 }
             });
             array.toArray(ruleArray);
             return ruleArray;
         }
      catch (SQLException e) {
-        log.info("DB rules error!");
+        log.error("DB rules error!");
         throw new IllegalStateException("DB rules error");
     }
     catch (Exception e) {
-        log.info("CAUGHT FETCH EX");
+        log.error("CAUGHT FETCH EX");
         return new Rule[0];
     }
 
