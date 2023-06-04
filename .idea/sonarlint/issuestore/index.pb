@@ -83,3 +83,9 @@ _
 /src/main/java/ru/mai/lessons/rpks/DbReader.java,6/f/6f0142a0881a68180c4fddb66eb92c7bc9df8a2f
 k
 ;src/main/java/ru/mai/lessons/rpks/ServiceFilteringMain.java,9/9/99cce13b400d4e7444974040e44fb08fdae5deb7
+<
+build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
+o
+?src/main/java/ru/mai/lessons/rpks/impl/ConfigurationReader.java,b/0/b03a9176534914f90d9ef9a164fcdb3ab753e9b2
+a
+1src/main/java/ru/mai/lessons/rpks/model/Rule.java,1/8/18062bf50ae937e2bc5df53c64b13687f1d60ab2

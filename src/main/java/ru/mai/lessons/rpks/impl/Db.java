@@ -7,7 +7,6 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
 import org.jooq.*;
 import org.jooq.impl.DSL;
 import ru.mai.lessons.rpks.DbReader;
@@ -108,7 +107,7 @@ public Rule[] readRulesFromDB() {
             dataSource = new HikariDataSource(hikariConfig);
         }
         catch (Exception e){
-            e.printStackTrace();
+            log.error("caught datasource exception");
         }
     }
 
@@ -128,7 +127,7 @@ public Rule[] readRulesFromDB() {
             hikaConfig.setDriverClassName(driver);
             return hikaConfig;
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("caught hikaconfig exception");
         }
 
         return hikaConfig;
