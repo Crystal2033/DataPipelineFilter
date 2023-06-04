@@ -158,7 +158,6 @@ class ServiceTest {
             Config config = ConfigFactory.load();
             config = replaceConfigForTest(config);
             Future<Boolean> serviceIsWork = testStartService(config);
-            Thread.sleep(10000L);
             Set.of("{\"name\":\"no_alex\", \"age\":18, \"sex\":\"M\"}",
                     "{\"name\":\"\", \"age\":18, \"sex\":\"M\"}",
                     "{\"name\":null, \"age\":18, \"sex\":\"M\"}",
@@ -227,8 +226,6 @@ class ServiceTest {
             config = replaceConfigForTest(config);
             Future<Boolean> serviceIsWork = testStartService(config);
 
-            Thread.sleep(10000L);
-
             Set.of("{\"name\":\"alex\", \"age\":19, \"sex\":\"M\"}",
                     "{\"name\":\"alex\", \"age\":null}",
                     "{\"name\":\"alex\", \"age\":, \"sex\":null}",
@@ -296,7 +293,6 @@ class ServiceTest {
             Config config = ConfigFactory.load();
             config = replaceConfigForTest(config);
             Future<Boolean> serviceIsWork = testStartService(config);
-            Thread.sleep(10000L);
             Set.of("{\"name\":\"no_alex\", \"age\":18, \"sex\":\"M\"}",
                     "{\"name\":\"\", \"age\":18, \"sex\":\"M\"}",
                     "{\"name\":null, \"age\":18, \"sex\":\"M\"}",
@@ -364,7 +360,6 @@ class ServiceTest {
             Config config = ConfigFactory.load();
             config = replaceConfigForTest(config);
             Future<Boolean> serviceIsWork = testStartService(config);
-            Thread.sleep(10000L);
             Set.of("{\"name\":\"alexander_pushkin\", \"age\":19, \"sex\":\"M\"}",
                     "{\"name\":\"alexander_pushkin\", \"age\":null}",
                     "{\"name\":\"alexander_pushkin\", \"age\":, \"sex\":null}",
@@ -433,7 +428,7 @@ class ServiceTest {
             Config config = ConfigFactory.load();
             config = replaceConfigForTest(config);
             Future<Boolean> serviceIsWork = testStartService(config);
-            Thread.sleep(10000L);
+
             Set.of("{\"name\":\"no_alex\", \"age\":18, \"sex\":\"M\"}",
                     "{\"name\":\"\", \"age\":-, \"sex\":\"M\"}",
                     "{\"name\":null, \"age\":\"\", \"sex\":\"M\"}",
@@ -504,7 +499,7 @@ class ServiceTest {
             Config config = ConfigFactory.load();
             config = replaceConfigForTest(config);
             Future<Boolean> serviceIsWork = testStartService(config);
-            Thread.sleep(10000L);
+
             Set.of("{\"name\":\"no_alex\", \"age\":18, \"sex\":\"M\"}",
                     "{\"name\":\"\", \"age\":-, \"sex\":\"M\"}",
                     "{\"name\":null, \"age\":\"\", \"sex\":\"M\"}",
@@ -575,7 +570,7 @@ class ServiceTest {
             Config config = ConfigFactory.load();
             config = replaceConfigForTest(config);
             Future<Boolean> serviceIsWork = testStartService(config);
-            Thread.sleep(10000L);
+
             Set.of("{\"name\":\"alexander\", \"age\":18, \"sex\":\"M\"}",
                     "{\"name\":\"pushkin\", \"age\":18, \"sex\":\"M\"}",
                     "{\"name\":\"\", \"age\":18, \"sex\":\"M\"}",
@@ -645,7 +640,7 @@ class ServiceTest {
             Config config = ConfigFactory.load();
             config = replaceConfigForTest(config);
             Future<Boolean> serviceIsWork = testStartService(config);
-            Thread.sleep(10000L);
+
             Set.of("{\"name\":\"alexander_ivanov\", \"age\":18, \"sex\":\"M\"}",
                     "{\"name\":\"pushkin\", \"age\":18, \"sex\":\"M\"}",
                     "{\"name\":\"ivanov\", \"age\":18, \"sex\":\"M\"}",
@@ -716,7 +711,7 @@ class ServiceTest {
             Config config = ConfigFactory.load();
             config = replaceConfigForTest(config);
             Future<Boolean> serviceIsWork = testStartService(config);
-            Thread.sleep(10000L);
+
             Set.of("{\"name\":\"alex_ivanov\", \"age\":18, \"sex\":\"M\"}",
                     "{\"name\":\"pushkin\", \"age\":18, \"sex\":\"M\"}",
                     "{\"name\":\"ivanov\", \"age\":18, \"sex\":\"M\"}",
@@ -790,7 +785,7 @@ class ServiceTest {
             Config config = ConfigFactory.load();
             config = replaceConfigForTest(config);
             Future<Boolean> serviceIsWork = testStartService(config);
-            Thread.sleep(10000L);
+
             Set.of("{\"name\":\"alex_ivanov\", \"age\":18, \"sex\":\"M\"}",
                     "{\"name\":\"pushkin\", \"age\":19, \"sex\":\"M\"}",
                     "{\"name\":\"alexander\", \"age\":null, \"sex\":\"M\"}",
@@ -862,7 +857,7 @@ class ServiceTest {
             Config config = ConfigFactory.load();
             config = replaceConfigForTest(config);
             Future<Boolean> serviceIsWork = testStartService(config);
-            Thread.sleep(10000L);
+
             Set.of("{\"name\":\"alex_ivanov\", \"age\":20, \"sex\":\"M\"}",
                     "{\"name\":\"pushkin\", \"age\":19, \"sex\":\"M\"}",
                     "{\"name\":\"alex\", \"age\":null, \"sex\":\"M\"}",
@@ -933,7 +928,7 @@ class ServiceTest {
             config = replaceConfigForTest(config);
             Future<Boolean> serviceIsWork = testStartService(config);
 
-            Thread.sleep(10000L);
+
             Set.of("{\"name\":\"alex_ivanov\", \"age\":20, \"sex\":\"M\"}",
                     "{\"name\":\"pushkin\", \"age\":19, \"sex\":\"M\"}",
                     "{\"name\":\"alex\", \"age\":null, \"sex\":\"M\"}",
@@ -997,7 +992,7 @@ class ServiceTest {
             Config config = ConfigFactory.load();
             config = replaceConfigForTest(config);
             Future<Boolean> serviceIsWork = testStartService(config);
-            Thread.sleep(10000L);
+
             Set.of("{\"name\":\"alex_ivanov\", \"age\":18, \"sex\":\"M\"}",
                     "{\"name\":\"pushkin\", \"age\":19, \"sex\":\"M\"}",
                     "{\"name\":\"alexander\", \"age\":null, \"sex\":\"M\"}",
@@ -1105,7 +1100,7 @@ class ServiceTest {
             Config config = ConfigFactory.load();
             config = replaceConfigForTest(config);
             Future<Boolean> serviceIsWork = testStartService(config);
-            Thread.sleep(10000L);
+
             Set.of("{\"name\":\"alex_ivanov\", \"age\":18, \"sex\":\"M\"}",
                     "{\"name\":\"pushkin\", \"age\":19, \"sex\":\"M\"}",
                     "{\"name\":\"alex\", \"age\":null, \"sex\":\"M\"}",
