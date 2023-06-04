@@ -53,20 +53,17 @@ public class ServiceFiltering implements Service {
         Timer timer = new Timer(true);
 
         timer.schedule(task, 0, 1000L * updateIntervalSec);
-        log.info("delay:" + updateIntervalSec);
 
 
 
 
         executorService.execute(() -> {
             queue = kafkaReader.getQueue();
-            log.info("+++++++" + queue);
         });
 
 
         executorService.execute(() -> {
             kafkaReader.setRules(rules);
-            log.info("NEW RULES SET {}", rules.length);
             kafkaReader.processing();
         });
 

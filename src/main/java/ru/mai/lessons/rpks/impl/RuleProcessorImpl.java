@@ -60,7 +60,7 @@ public class RuleProcessorImpl implements RuleProcessor {
             log.error("exception caught");
             message.setFilterState(false);
         } catch (Exception e) {
-            log.info("caught null exception");
+            log.error("caught null exception");
             message.setFilterState(false);
         }
         return message;

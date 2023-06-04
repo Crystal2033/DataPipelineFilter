@@ -65,7 +65,7 @@ public class KafkaQueueWriter implements KafkaWriter {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("caught exception");
         }
 
 

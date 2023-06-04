@@ -91,7 +91,6 @@ public class KafkaReaderImpl implements KafkaReader {
         )) {
             if (!queue.isEmpty()) {
                 Message queueElement = queue.peek();
-                log.info("Queue element {}", queueElement);
                 queue.remove();
                 Future<RecordMetadata> response = null;
 
@@ -112,7 +111,7 @@ public class KafkaReaderImpl implements KafkaReader {
                 }
             }
         }catch (KafkaException e) {
-            e.printStackTrace();
+            log.error("caught kafka exception");
         }
 
     }
