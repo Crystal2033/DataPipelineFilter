@@ -23,7 +23,6 @@ public class ServiceFiltering implements Service {
     Db db;
     Rule[] rules;
     int updateIntervalSec;
-    ConcurrentLinkedQueue<Message> queue;
 
     @Override
     public void start(Config config) {
@@ -31,12 +30,13 @@ public class ServiceFiltering implements Service {
         rules = new Rule[1];
         ExecutorService executorService = Executors.newFixedThreadPool(1);
         updateIntervalSec = config.getInt("application.updateIntervalSec");
-        queue = new ConcurrentLinkedQueue<>();
         db = new Db(config);
         rules = db.readRulesFromDB();
         String reader = config.getString("kafka.consumer.bootstrap.servers");
         String writer = config.getString("kafka.producer.bootstrap.servers");
-        KafkaReaderImpl kafkaReader = new KafkaReaderImpl("test_topic_in", "test_topic_out", reader, writer, rules);
+        String topicIn = config.getString("kafka.topicIn");
+        String topicOut = config.getString("kafka.topicOut");
+        KafkaReaderImpl kafkaReader = new KafkaReaderImpl(topicIn, topicOut, config, reader, writer, rules);
         TimerTask task = new TimerTask() {
             public void run() {
                     rules = db.readRulesFromDB();
@@ -53,14 +53,6 @@ public class ServiceFiltering implements Service {
         Timer timer = new Timer(true);
 
         timer.schedule(task, 0, 1000L * updateIntervalSec);
-
-
-
-
-        executorService.execute(() -> {
-            queue = kafkaReader.getQueue();
-        });
-
 
         executorService.execute(() -> {
             kafkaReader.setRules(rules);

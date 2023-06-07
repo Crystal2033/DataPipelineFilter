@@ -10,7 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import ru.mai.lessons.rpks.RuleProcessor;
 import ru.mai.lessons.rpks.model.Message;
 import ru.mai.lessons.rpks.model.Rule;
-import ru.mai.lessons.rpks.model.MyException;
 
 import java.util.Map;
 import java.util.Objects;
@@ -27,35 +26,28 @@ public class RuleProcessorImpl implements RuleProcessor {
         mapper.setSerializationInclusion(JsonInclude.Include.NON_ABSENT);
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
         mapper.configure(DeserializationFeature.FAIL_ON_MISSING_CREATOR_PROPERTIES, false);
-        if (Objects.equals(message.getValue(), "$exit")) {
-            isExit = true;
-        }
         message.setFilterState(true);
 
 // To put all of the JSON in a Map<String, Object>
         try {
             Map<String, Object> map = mapper.readValue(message.getValue(), Map.class);
-            if (!isExit) {
-                if (rules.length == 0) {
-                    message.setFilterState(false);
-                }
-                for (Rule rule : rules) {
-                    //            ПРОВЕРКА ПРАВИЛ
-                    log.info("RULES LENGTH {}", rules.length);
-                    log.info("CHECKING FIELD {}", rule.getFieldName());
-                    if (map.containsKey(rule.getFieldName())) {
-                        checkRule(rule, map, message);
-                    } else {
-                        message.setFilterState(false);
-                        break;
-                    }
-
-                }
-
-            } else {
-                message.setValue("$exit");
-                message.setFilterState(true);
+            if (rules.length == 0) {
+                message.setFilterState(false);
             }
+            for (Rule rule : rules) {
+                //            ПРОВЕРКА ПРАВИЛ
+                log.debug("RULES LENGTH {}", rules.length);
+                log.debug("CHECKING FIELD {}", rule.getFieldName());
+                if (map.containsKey(rule.getFieldName())) {
+                    checkRule(rule, map, message);
+                } else {
+                    message.setFilterState(false);
+                    break;
+                }
+
+            }
+
+
         } catch (JsonProcessingException e) {
             log.error("exception caught");
             message.setFilterState(false);
@@ -69,25 +61,25 @@ public class RuleProcessorImpl implements RuleProcessor {
     private Message checkRule(Rule rule, Map<String, Object> map, Message message) {
         if (Objects.equals(rule.getFilterFunctionName(), "equals") && (!Objects.equals(map.get(rule.getFieldName()).toString(), rule.getFilterValue()))) {
             message.setFilterState(false);
-            log.info("set to false - equals {}", map.get(rule.getFieldName()));
+            log.debug("set to false - equals {}", map.get(rule.getFieldName()));
             return message;
 
         }
         if (Objects.equals(rule.getFilterFunctionName(), "not_equals") && (Objects.equals(map.get(rule.getFieldName()).toString(), rule.getFilterValue()))) {
             message.setFilterState(false);
-            log.info("set to false - not equals");
+            log.debug("set to false - not equals");
             return message;
 
         }
         if (Objects.equals(rule.getFilterFunctionName(), "contains") && (!map.get(rule.getFieldName()).toString().contains(rule.getFilterValue()))) {
             message.setFilterState(false);
-            log.info("set to false - contains");
+            log.debug("set to false - contains");
             return message;
 
         }
         if (Objects.equals(rule.getFilterFunctionName(), "not_contains") && (map.get(rule.getFieldName()).toString().contains(rule.getFilterValue()))) {
             message.setFilterState(false);
-            log.info("set to false - not contains");
+            log.debug("set to false - not contains");
             return message;
         }
         return message;

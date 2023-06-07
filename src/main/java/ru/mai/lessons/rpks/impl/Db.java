@@ -85,10 +85,6 @@ public Rule[] readRulesFromDB() {
     Connection getConnection() throws SQLException {
         return getDataSource().getConnection();
     }
-    void closeConnection() throws SQLException {
-        getDataSource().getConnection().close();
-    }
-
     private DataSource getDataSource() {
         if (null == dataSource) {
             log.info("No DataSource is available. We will create a new one.");

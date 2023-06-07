@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">1m21.83s</div>
+<div class="counter">26.495s</div>
 <p>duration</p>
 </div>
 </td>
@@ -78,8 +78,8 @@
 </tr>
 </thead>
 <tr>
-<td class="success">testServiceFilteringNotEquals()</td>
-<td class="success">1m21.83s</td>
+<td class="success">testServiceFilteringEqualsNotContainsTwoRules()</td>
+<td class="success">26.495s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -87,89 +87,46 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>16:08:46,022 |-INFO in ch.qos.logback.classic.LoggerContext[default] - This is logback-classic version 1.4.6
-16:08:46,056 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.xml]
-16:08:46,059 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Found resource [logback.xml] at [file:/Users/polinanesterova/IdeaProjects/JavaServiceFiltering/build/resources/test/logback.xml]
-16:08:46,060 |-WARN in ch.qos.logback.classic.util.DefaultJoranConfigurator@2da59753 - Resource [logback.xml] occurs multiple times on the classpath.
-16:08:46,060 |-WARN in ch.qos.logback.classic.util.DefaultJoranConfigurator@2da59753 - Resource [logback.xml] occurs at [file:/Users/polinanesterova/IdeaProjects/JavaServiceFiltering/build/resources/main/logback.xml]
-16:08:46,060 |-WARN in ch.qos.logback.classic.util.DefaultJoranConfigurator@2da59753 - Resource [logback.xml] occurs at [file:/Users/polinanesterova/IdeaProjects/JavaServiceFiltering/build/resources/test/logback.xml]
-16:08:46,213 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [CONSOLE]
-16:08:46,213 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
-16:08:46,252 |-WARN in ch.qos.logback.core.ConsoleAppender[CONSOLE] - This appender no longer admits a layout as a sub-component, set an encoder instead.
-16:08:46,252 |-WARN in ch.qos.logback.core.ConsoleAppender[CONSOLE] - To ensure compatibility, wrapping your layout in LayoutWrappingEncoder.
-16:08:46,252 |-WARN in ch.qos.logback.core.ConsoleAppender[CONSOLE] - See also http://logback.qos.ch/codes.html#layoutInsteadOfEncoder for details
-16:08:46,252 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting level of logger [ru.mai.lessons.rpks] to INFO
-16:08:46,256 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting additivity of logger [ru.mai.lessons.rpks] to false
-16:08:46,256 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [CONSOLE] to Logger[ru.mai.lessons.rpks]
-16:08:46,257 |-INFO in ch.qos.logback.classic.model.processor.RootLoggerModelHandler - Setting level of ROOT logger to ERROR
-16:08:46,257 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [CONSOLE] to Logger[ROOT]
-16:08:46,257 |-INFO in ch.qos.logback.core.model.processor.DefaultProcessor@5629510 - End of configuration.
-16:08:46,258 |-INFO in ch.qos.logback.classic.joran.JoranConfigurator@4df5bcb4 - Registering current configuration as safe fallback point
+<pre>16:27:47,165 |-INFO in ch.qos.logback.classic.LoggerContext[default] - This is logback-classic version 1.4.6
+16:27:47,195 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.xml]
+16:27:47,199 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Found resource [logback.xml] at [file:/Users/polinanesterova/IdeaProjects/JavaServiceFiltering/build/resources/test/logback.xml]
+16:27:47,200 |-WARN in ch.qos.logback.classic.util.DefaultJoranConfigurator@2da59753 - Resource [logback.xml] occurs multiple times on the classpath.
+16:27:47,200 |-WARN in ch.qos.logback.classic.util.DefaultJoranConfigurator@2da59753 - Resource [logback.xml] occurs at [file:/Users/polinanesterova/IdeaProjects/JavaServiceFiltering/build/resources/main/logback.xml]
+16:27:47,200 |-WARN in ch.qos.logback.classic.util.DefaultJoranConfigurator@2da59753 - Resource [logback.xml] occurs at [file:/Users/polinanesterova/IdeaProjects/JavaServiceFiltering/build/resources/test/logback.xml]
+16:27:47,329 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [CONSOLE]
+16:27:47,330 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
+16:27:47,380 |-WARN in ch.qos.logback.core.ConsoleAppender[CONSOLE] - This appender no longer admits a layout as a sub-component, set an encoder instead.
+16:27:47,380 |-WARN in ch.qos.logback.core.ConsoleAppender[CONSOLE] - To ensure compatibility, wrapping your layout in LayoutWrappingEncoder.
+16:27:47,380 |-WARN in ch.qos.logback.core.ConsoleAppender[CONSOLE] - See also http://logback.qos.ch/codes.html#layoutInsteadOfEncoder for details
+16:27:47,381 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting level of logger [ru.mai.lessons.rpks] to INFO
+16:27:47,384 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting additivity of logger [ru.mai.lessons.rpks] to false
+16:27:47,385 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [CONSOLE] to Logger[ru.mai.lessons.rpks]
+16:27:47,385 |-INFO in ch.qos.logback.classic.model.processor.RootLoggerModelHandler - Setting level of ROOT logger to ERROR
+16:27:47,385 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [CONSOLE] to Logger[ROOT]
+16:27:47,385 |-INFO in ch.qos.logback.core.model.processor.DefaultProcessor@5629510 - End of configuration.
+16:27:47,386 |-INFO in ch.qos.logback.classic.joran.JoranConfigurator@4df5bcb4 - Registering current configuration as safe fallback point
 
-16:09:55.439 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-16:10:01.717 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
-16:10:02.604 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-16:10:02.647 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-16:10:02.824 [pool-1-thread-1] INFO  ru.mai.lessons.rpks.impl.Db - No DataSource is available. We will create a new one.
-16:10:02.825 [pool-1-thread-1] INFO  ru.mai.lessons.rpks.impl.Db - Creating the config with HikariConfig
-16:10:02.825 [pool-1-thread-1] INFO  ru.mai.lessons.rpks.impl.Db - Configuration is ready.
-16:10:02.825 [pool-1-thread-1] INFO  ru.mai.lessons.rpks.impl.Db - Creating the HiKariDataSource and assigning it as the global
-16:10:03.089 [pool-1-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - delay:10
-16:10:03.092 [pool-2-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - +++++++null
-16:10:03.093 [pool-2-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - NEW RULES SET 1
-16:10:03.093 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start reading kafka topic test_topic_in
-16:10:03.130 [Timer-0] INFO  r.m.l.rpks.impl.ServiceFiltering - ru.mai.lessons.rpks.model.Rule@51bf5688
-16:10:03.131 [Timer-0] INFO  r.m.l.rpks.impl.ServiceFiltering - TIMER
-16:10:03.841 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - SENT TO PRODUCER MESSAGE ProducerRecord(topic=test_topic_in, partition=null, headers=RecordHeaders(headers = [], isReadOnly = true), key=null, value={&quot;name&quot;:&quot;alex&quot;, &quot;age&quot;:19, &quot;sex&quot;:&quot;M&quot;}, timestamp=null)
-16:10:03.864 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - SENT TO PRODUCER MESSAGE ProducerRecord(topic=test_topic_in, partition=null, headers=RecordHeaders(headers = [], isReadOnly = true), key=null, value={&quot;name&quot;:&quot;alex&quot;}, timestamp=null)
-16:10:03.876 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - SENT TO PRODUCER MESSAGE ProducerRecord(topic=test_topic_in, partition=null, headers=RecordHeaders(headers = [], isReadOnly = true), key=null, value={&quot;name&quot;:&quot;alex&quot;, &quot;age&quot;:, &quot;sex&quot;:null}, timestamp=null)
-16:10:03.886 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - SENT TO PRODUCER MESSAGE ProducerRecord(topic=test_topic_in, partition=null, headers=RecordHeaders(headers = [], isReadOnly = true), key=null, value={&quot;name&quot;:&quot;alex&quot;, &quot;sex&quot;:&quot;M&quot;}, timestamp=null)
-16:10:03.895 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - SENT TO PRODUCER MESSAGE ProducerRecord(topic=test_topic_in, partition=null, headers=RecordHeaders(headers = [], isReadOnly = true), key=null, value={&quot;name&quot;:&quot;alex&quot;, &quot;age&quot;:null}, timestamp=null)
-16:10:03.909 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - SENT TO PRODUCER CORRECT JSON ProducerRecord(topic=test_topic_in, partition=null, headers=RecordHeaders(headers = [], isReadOnly = true), key=expected, value={&quot;name&quot;:&quot;no_alex&quot;, &quot;age&quot;:18, &quot;sex&quot;:&quot;M&quot;}, timestamp=null)
-16:10:04.011 [pool-1-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - CONSUMERRECORDS org.apache.kafka.clients.consumer.ConsumerRecords@3fa16d3f
-16:10:04.011 [pool-1-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-16:10:04.362 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {&quot;name&quot;:&quot;no_alex&quot;, &quot;age&quot;:18, &quot;sex&quot;:&quot;M&quot;}
-16:10:04.362 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - ConsumerRecord(topic = test_topic_in, partition = 0, leaderEpoch = 0, offset = 0, CreateTime = 1685884203895, serialized key size = 8, serialized value size = 39, headers = RecordHeaders(headers = [], isReadOnly = false), key = expected, value = {&quot;name&quot;:&quot;no_alex&quot;, &quot;age&quot;:18, &quot;sex&quot;:&quot;M&quot;})
-16:10:04.762 [pool-2-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - RULES LENGTH 1
-16:10:04.763 [pool-2-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - CHECKING FIELD name
-16:10:04.763 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start write message in kafka out topic test_topic_out
-16:10:04.778 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Queue element Message(value={&quot;name&quot;:&quot;no_alex&quot;, &quot;age&quot;:18, &quot;sex&quot;:&quot;M&quot;}, filterState=true)
-16:10:04.831 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message send to outtest_topic_out-1@0
-16:10:04.844 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {&quot;name&quot;:&quot;alex&quot;, &quot;age&quot;:19, &quot;sex&quot;:&quot;M&quot;}
-16:10:04.845 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - ConsumerRecord(topic = test_topic_in, partition = 2, leaderEpoch = 0, offset = 0, CreateTime = 1685884202923, serialized key size = -1, serialized value size = 36, headers = RecordHeaders(headers = [], isReadOnly = false), key = null, value = {&quot;name&quot;:&quot;alex&quot;, &quot;age&quot;:19, &quot;sex&quot;:&quot;M&quot;})
-16:10:04.853 [pool-2-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - RULES LENGTH 1
-16:10:04.855 [pool-2-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - CHECKING FIELD name
-16:10:04.858 [pool-2-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - set to false - not equals
-16:10:04.859 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start write message in kafka out topic test_topic_out
-16:10:04.869 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Queue element Message(value={&quot;name&quot;:&quot;alex&quot;, &quot;age&quot;:19, &quot;sex&quot;:&quot;M&quot;}, filterState=false)
-16:10:04.893 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {&quot;name&quot;:&quot;alex&quot;}
-16:10:04.893 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - ConsumerRecord(topic = test_topic_in, partition = 2, leaderEpoch = 0, offset = 1, CreateTime = 1685884203842, serialized key size = -1, serialized value size = 15, headers = RecordHeaders(headers = [], isReadOnly = false), key = null, value = {&quot;name&quot;:&quot;alex&quot;})
-16:10:04.898 [pool-2-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - RULES LENGTH 1
-16:10:04.898 [pool-2-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - CHECKING FIELD name
-16:10:04.898 [pool-2-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - set to false - not equals
-16:10:04.898 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start write message in kafka out topic test_topic_out
-16:10:04.903 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Queue element Message(value={&quot;name&quot;:&quot;alex&quot;}, filterState=false)
-16:10:04.938 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {&quot;name&quot;:&quot;alex&quot;, &quot;age&quot;:, &quot;sex&quot;:null}
-16:10:04.939 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - ConsumerRecord(topic = test_topic_in, partition = 2, leaderEpoch = 0, offset = 2, CreateTime = 1685884203864, serialized key size = -1, serialized value size = 35, headers = RecordHeaders(headers = [], isReadOnly = false), key = null, value = {&quot;name&quot;:&quot;alex&quot;, &quot;age&quot;:, &quot;sex&quot;:null})
-16:10:04.943 [pool-2-thread-1] ERROR r.m.l.rpks.impl.RuleProcessorImpl - exception caught
-16:10:04.944 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start write message in kafka out topic test_topic_out
-16:10:04.952 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Queue element Message(value={&quot;name&quot;:&quot;alex&quot;, &quot;age&quot;:, &quot;sex&quot;:null}, filterState=false)
-16:10:04.967 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {&quot;name&quot;:&quot;alex&quot;, &quot;sex&quot;:&quot;M&quot;}
-16:10:04.968 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - ConsumerRecord(topic = test_topic_in, partition = 2, leaderEpoch = 0, offset = 3, CreateTime = 1685884203876, serialized key size = -1, serialized value size = 26, headers = RecordHeaders(headers = [], isReadOnly = false), key = null, value = {&quot;name&quot;:&quot;alex&quot;, &quot;sex&quot;:&quot;M&quot;})
-16:10:04.969 [pool-2-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - RULES LENGTH 1
-16:10:04.970 [pool-2-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - CHECKING FIELD name
-16:10:04.970 [pool-2-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - set to false - not equals
-16:10:04.970 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start write message in kafka out topic test_topic_out
-16:10:04.976 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Queue element Message(value={&quot;name&quot;:&quot;alex&quot;, &quot;sex&quot;:&quot;M&quot;}, filterState=false)
-16:10:04.995 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {&quot;name&quot;:&quot;alex&quot;, &quot;age&quot;:null}
-16:10:04.996 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - ConsumerRecord(topic = test_topic_in, partition = 2, leaderEpoch = 0, offset = 4, CreateTime = 1685884203887, serialized key size = -1, serialized value size = 27, headers = RecordHeaders(headers = [], isReadOnly = false), key = null, value = {&quot;name&quot;:&quot;alex&quot;, &quot;age&quot;:null})
-16:10:04.998 [pool-2-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - RULES LENGTH 1
-16:10:04.998 [pool-2-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - CHECKING FIELD name
-16:10:04.998 [pool-2-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - set to false - not equals
-16:10:04.998 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start write message in kafka out topic test_topic_out
-16:10:05.010 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Queue element Message(value={&quot;name&quot;:&quot;alex&quot;, &quot;age&quot;:null}, filterState=false)
-16:10:05.066 [pool-1-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - CONSUMERRECORDS org.apache.kafka.clients.consumer.ConsumerRecords@1c29575e
-16:10:05.066 [pool-1-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+16:28:07.346 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+16:28:10.135 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+16:28:11.584 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+16:28:11.614 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+16:28:11.644 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+16:28:11.649 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+16:28:11.714 [pool-1-thread-1] INFO  ru.mai.lessons.rpks.impl.Db - No DataSource is available. We will create a new one.
+16:28:11.715 [pool-1-thread-1] INFO  ru.mai.lessons.rpks.impl.Db - Creating the config with HikariConfig
+16:28:11.715 [pool-1-thread-1] INFO  ru.mai.lessons.rpks.impl.Db - Configuration is ready.
+16:28:11.715 [pool-1-thread-1] INFO  ru.mai.lessons.rpks.impl.Db - Creating the HiKariDataSource and assigning it as the global
+16:28:12.019 [Timer-0] INFO  r.m.l.rpks.impl.ServiceFiltering - ru.mai.lessons.rpks.model.Rule@a5f3f2b
+16:28:12.019 [Timer-0] INFO  r.m.l.rpks.impl.ServiceFiltering - TIMER
+16:28:12.019 [Timer-0] INFO  r.m.l.rpks.impl.ServiceFiltering - ru.mai.lessons.rpks.model.Rule@498d010
+16:28:12.020 [Timer-0] INFO  r.m.l.rpks.impl.ServiceFiltering - TIMER
+16:28:12.233 [pool-1-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - CONSUMERRECORDS org.apache.kafka.clients.consumer.ConsumerRecords@202295a3
+16:28:12.234 [pool-1-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+16:28:12.865 [pool-2-thread-1] ERROR r.m.l.rpks.impl.RuleProcessorImpl - exception caught
+16:28:12.869 [pool-2-thread-1] ERROR r.m.l.rpks.impl.RuleProcessorImpl - caught null exception
+16:28:12.876 [pool-2-thread-1] ERROR r.m.l.rpks.impl.RuleProcessorImpl - exception caught
+16:28:13.317 [pool-1-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - CONSUMERRECORDS org.apache.kafka.clients.consumer.ConsumerRecords@617c063e
+16:28:13.317 [pool-1-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
 </pre>
 </span>
 </div>
@@ -181,7 +138,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.5.1</a> at 4 июн. 2023 г., 16:10:08</p>
+<a href="http://www.gradle.org">Gradle 7.5.1</a> at 7 июн. 2023 г., 16:28:14</p>
 </div>
 </div>
 </body>
