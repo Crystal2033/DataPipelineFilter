@@ -1,6 +1,5 @@
 package ru.mai.lessons.rpks;
 
-import com.zaxxer.hikari.HikariDataSource;
 import ru.mai.lessons.rpks.model.Rule;
 
 
