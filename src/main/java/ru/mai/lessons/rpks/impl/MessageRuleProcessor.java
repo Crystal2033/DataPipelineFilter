@@ -38,7 +38,7 @@ public class MessageRuleProcessor implements RuleProcessor {
             for (var rule: rules) {
                 String fieldValue = jsonNode.path(rule.getFieldName()).asText("");
                 try {
-                    if (fieldValue.isBlank() || !checkMap.get(FilterFunction.valueOf(rule.getFilterFunctionName()))
+                    if (fieldValue.isBlank() || !checkMap.get(FilterFunction.valueOf(rule.getFilterFunctionName().toUpperCase()))
                             .test(fieldValue, rule.getFilterValue())) {
                         message.setFilterState(false);
                         break;
