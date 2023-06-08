@@ -14,11 +14,14 @@ import java.util.function.BiPredicate;
 @Slf4j
 public class MessageRuleProcessor implements RuleProcessor {
     private final ObjectMapper parser = new ObjectMapper();
-    private static final Map<String, BiPredicate<String, String> > checkMap = Map.of(
-        "equals", String::equals
-        , "contains", String::contains
-        , "not_equals", (s1, s2) -> !s1.equals(s2)
-        , "not_contains", (s1, s2) -> !s1.contains(s2)
+    private enum FilterFunction {
+        EQUALS, CONTAINS, NOT_EQUALS, NOT_CONTAINS
+    }
+    private static final Map<FilterFunction, BiPredicate<String, String> > checkMap = Map.of(
+        FilterFunction.EQUALS, String::equals
+        , FilterFunction.CONTAINS, String::contains
+        , FilterFunction.NOT_EQUALS, (s1, s2) -> !s1.equals(s2)
+        , FilterFunction.NOT_CONTAINS, (s1, s2) -> !s1.contains(s2)
     );
     @Override
     public Message processing(Message message, Rule[] rules) {
@@ -30,18 +33,25 @@ public class MessageRuleProcessor implements RuleProcessor {
 
         try {
             JsonNode jsonNode = parser.readTree(value);
-            log.info("message: {}", value);
+            log.debug("message: {}", value);
             message.setFilterState(true);
             for (var rule: rules) {
                 String fieldValue = jsonNode.path(rule.getFieldName()).asText("");
-                if (fieldValue.isBlank() || !checkMap.get(rule.getFilterFunctionName())
-                        .test(fieldValue, rule.getFilterValue())) {
+                try {
+                    if (fieldValue.isBlank() || !checkMap.get(FilterFunction.valueOf(rule.getFilterFunctionName()))
+                            .test(fieldValue, rule.getFilterValue())) {
+                        message.setFilterState(false);
+                        break;
+                    }
+                }
+                catch (IllegalArgumentException e) {
                     message.setFilterState(false);
+                    log.error("Illegal filter function: {}", rule.getFilterFunctionName());
                     break;
                 }
-                log.info("fieldValue: {}", fieldValue);
-                log.info("FilterFunctionName: {}", rule.getFilterFunctionName());
-                log.info("FilterValue: {}", rule.getFilterValue());
+                log.debug("fieldValue: {}", fieldValue);
+                log.debug("FilterFunctionName: {}", rule.getFilterFunctionName());
+                log.debug("FilterValue: {}", rule.getFilterValue());
             }
         }
         catch (JsonProcessingException  e) {

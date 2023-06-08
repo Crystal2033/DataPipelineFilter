@@ -15,7 +15,6 @@ import ru.mai.lessons.rpks.model.Rule;
 
 import java.time.Duration;
 import java.util.Collections;
-import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -32,18 +31,7 @@ public class MyKafkaReader implements KafkaReader {
         Properties properties = new Properties();
         properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, config.getString("bootstrap.servers"));
         properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, config.getString("group.id"));
-        properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
-//        consumer = new KafkaConsumer<>(
-//                Map.of(
-//                        ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, config.getString("bootstrap.servers"),
-//                        ConsumerConfig.GROUP_ID_CONFIG, config.getString("group.id"),
-//                        ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest"
-//                ),
-//                new StringDeserializer(),
-//                new StringDeserializer()
-//        );
-//        log.info("Consumer topic:" + topic);
-//        kafkaConsumer.subscribe(Collections.singletonList(topic));
+        properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, config.getString("auto.offset.reset"));
         consumer = new KafkaConsumer<>(properties, new StringDeserializer(), new StringDeserializer());
         consumer.subscribe(Collections.singletonList(config.getString("topic")));
         log.info("READER -- Subscribe to topic {}", config.getString("topic"));
@@ -62,7 +50,7 @@ public class MyKafkaReader implements KafkaReader {
                 try {
                     ConsumerRecords<String, String> message = consumer.poll(Duration.ofMillis(100));
                     if (!message.isEmpty()) {
-                        log.info("READER -- Received {} messages", message.count());
+                        log.debug("READER -- Received {} messages", message.count());
                     }
                     Rule[] actualMessageRules = rulesSupplier.get();
                     for (var messageConsumerRecord : message) {
