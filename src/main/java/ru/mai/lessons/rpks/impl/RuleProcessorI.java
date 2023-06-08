@@ -26,7 +26,7 @@ public class RuleProcessorI implements RuleProcessor {
             for (Rule rule :rules) {
                 boolean res = false;
                 String msgVal = node.path(rule.getFieldName()).asText();
-                log.info("in: " + msgVal + " ruleval: " + rule.getFilterValue() + " rul: " + rule.getFilterFunctionName() + "\n");
+                log.debug("in: " + msgVal + " ruleval: " + rule.getFilterValue() + " rul: " + rule.getFilterFunctionName() + "\n");
                 if (!msgVal.isBlank()) {
                     res = check(msgVal, rule.getFilterValue(), rule.getFilterFunctionName());
                 }

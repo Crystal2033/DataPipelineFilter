@@ -23,24 +23,24 @@ public class KafkaReaderI implements KafkaReader {
     private final KafkaWriter writer;
     private final RuleProcessorI checkerRules;
     private final Supplier<Rule[]> supplier;
+
+    private final ExecutorService executor = Executors.newSingleThreadExecutor();
     private Rule [] rules;
     public KafkaReaderI(Config conf, KafkaWriter writer, RuleProcessorI checker, Supplier<Rule[]> supplier){
         this.writer = writer;
         this.supplier = supplier;
         Properties props = new Properties();
-        String consumerStr = "consumer";
-        props.put("bootstrap.servers", conf.getConfig(consumerStr).getString("bootstrap.servers"));
-        props.put("group.id", conf.getConfig(consumerStr).getString("group.id"));
-        props.put("auto.offset.reset", conf.getConfig(consumerStr).getString("auto.offset.reset"));
+        Config consumerConfig = conf.getConfig("consumer");
+        props.put("bootstrap.servers", consumerConfig.getString("bootstrap.servers"));
+        props.put("group.id", consumerConfig.getString("group.id"));
+        props.put("auto.offset.reset", consumerConfig.getString("auto.offset.reset"));
         consumer = new KafkaConsumer<>(props,  new StringDeserializer(),
                 new StringDeserializer());
-        consumer.subscribe(Collections.singletonList(conf.getConfig(consumerStr).getString("topic")));
+        consumer.subscribe(Collections.singletonList(consumerConfig.getString("topic")));
         checkerRules = checker;
     }
     @Override
     public void processing() {
-        ExecutorService executor;
-        executor = Executors.newSingleThreadExecutor();
         executor.submit(() -> {
             while(true){
                 ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
