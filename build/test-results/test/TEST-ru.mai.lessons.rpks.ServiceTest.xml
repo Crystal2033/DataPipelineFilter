@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.mai.lessons.rpks.ServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-06-13T09:18:39" hostname="mate14" time="23.751">
+  <properties/>
+  <testcase name="testServiceFilteringEquals()" classname="ru.mai.lessons.rpks.ServiceTest" time="23.751"/>
+  <system-out><![CDATA[12:18:39,165 |-INFO in ch.qos.logback.classic.LoggerContext[default] - This is logback-classic version 1.4.5
+12:18:39,193 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.xml]
+12:18:39,194 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Found resource [logback.xml] at [file:/home/dasha/java/test2Laba_1/JavaServiceFiltering/build/resources/test/logback.xml]
+12:18:39,336 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [CONSOLE]
+12:18:39,337 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
+12:18:39,370 |-WARN in ch.qos.logback.core.ConsoleAppender[CONSOLE] - This appender no longer admits a layout as a sub-component, set an encoder instead.
+12:18:39,370 |-WARN in ch.qos.logback.core.ConsoleAppender[CONSOLE] - To ensure compatibility, wrapping your layout in LayoutWrappingEncoder.
+12:18:39,370 |-WARN in ch.qos.logback.core.ConsoleAppender[CONSOLE] - See also http://logback.qos.ch/codes.html#layoutInsteadOfEncoder for details
+12:18:39,371 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting level of logger [ru.mai.lessons.rpks] to INFO
+12:18:39,376 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting additivity of logger [ru.mai.lessons.rpks] to false
+12:18:39,377 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [CONSOLE] to Logger[ru.mai.lessons.rpks]
+12:18:39,378 |-INFO in ch.qos.logback.classic.model.processor.RootLoggerModelHandler - Setting level of ROOT logger to ERROR
+12:18:39,378 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [CONSOLE] to Logger[ROOT]
+12:18:39,378 |-INFO in ch.qos.logback.core.model.processor.DefaultProcessor@2fc6f97f - End of configuration.
+12:18:39,379 |-INFO in ch.qos.logback.classic.joran.JoranConfigurator@3d2ee678 - Registering current configuration as safe fallback point
+
+12:18:58.259 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+12:18:58.935 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+12:19:00.569 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+12:19:00.608 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+12:19:00.720 [pool-1-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - Hikari config was done
+12:19:00.745 [pool-1-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - Created a new datasource
+12:19:00.745 [pool-1-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - Get datasource successfully
+12:19:00.829 [Timer-0] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - Get datasource successfully
+12:19:00.832 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start reading kafka topic test_topic_in
+12:19:00.846 [Timer-0] INFO  r.m.l.rpks.impl.ServiceFiltering - ru.mai.lessons.rpks.model.Rule@3ba4eb66
+12:19:01.121 [pool-1-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+12:19:01.349 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"no_alex", "age":18, "sex":"M"}
+12:19:01.596 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"age":18, "sex":"M"}
+12:19:01.598 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"", "age":18, "sex":"M"}
+12:19:01.600 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":null, "age":18, "sex":"M"}
+12:19:01.603 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : 
+12:19:01.607 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message from Kafka topic test_topic_in : {"name":"alex", "age":18, "sex":"M"}
+12:19:01.609 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Start write message in kafka topic test_topic_out
+12:19:01.661 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Message send test_topic_out-2@0
+12:19:02.183 [pool-1-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+]]></system-out>
+  <system-err><![CDATA[java.lang.NullPointerException: Cannot invoke "Object.toString()" because the return value of "java.util.Map.get(Object)" is null
+	at ru.mai.lessons.rpks.impl.RuleProcessorImpl.checkRules(RuleProcessorImpl.java:52)
+	at ru.mai.lessons.rpks.impl.RuleProcessorImpl.processing(RuleProcessorImpl.java:30)
+	at ru.mai.lessons.rpks.impl.KafkaReaderImpl.processing(KafkaReaderImpl.java:62)
+	at ru.mai.lessons.rpks.impl.ServiceFiltering.lambda$start$0(ServiceFiltering.java:47)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+com.fasterxml.jackson.databind.exc.MismatchedInputException: No content to map due to end-of-input
+ at [Source: (String)""; line: 1, column: 0]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:59)
+	at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:4821)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4723)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3677)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3645)
+	at ru.mai.lessons.rpks.impl.RuleProcessorImpl.processing(RuleProcessorImpl.java:26)
+	at ru.mai.lessons.rpks.impl.KafkaReaderImpl.processing(KafkaReaderImpl.java:62)
+	at ru.mai.lessons.rpks.impl.ServiceFiltering.lambda$start$0(ServiceFiltering.java:47)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+]]></system-err>
+</testsuite>
