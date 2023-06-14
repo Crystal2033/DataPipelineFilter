@@ -34,6 +34,5 @@ public class KafkaWriterImpl implements KafkaWriter {
 
         producer.send(producerRecord);
         producer.flush();
-        producer.close();
     }
 }
