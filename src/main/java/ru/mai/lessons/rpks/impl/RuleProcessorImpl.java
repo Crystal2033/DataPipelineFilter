@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import lombok.extern.slf4j.Slf4j;
 import ru.mai.lessons.rpks.RuleProcessor;
 import ru.mai.lessons.rpks.model.Message;
 import ru.mai.lessons.rpks.model.Rule;
@@ -12,6 +13,7 @@ import ru.mai.lessons.rpks.model.Rule;
 import java.util.Map;
 import java.util.Objects;
 
+@Slf4j
 public class RuleProcessorImpl implements RuleProcessor {
     @Override
     public Message processing(Message message, Rule[] rules) {
@@ -49,19 +51,20 @@ public class RuleProcessorImpl implements RuleProcessor {
     }
 
     void checkRules(Map<String, Object> msg, Rule rule, Message message) {
-        if (Objects.equals(rule.getFilterFunctionName(), "equals") && !Objects.equals(msg.get(rule.getFieldName()).toString(), rule.getFilterValue())) {
+        NameFunction checkingRule = NameFunction.valueOf(rule.getFilterFunctionName().toUpperCase());
+        if (checkingRule == NameFunction.EQUALS && !Objects.equals(msg.get(rule.getFieldName()).toString(), rule.getFilterValue())) {
             message.setFilterState(false);
             return;
         }
-        if (Objects.equals(rule.getFilterFunctionName(), "contains") && !msg.get(rule.getFieldName()).toString().contains(rule.getFilterValue())) {
+        if (checkingRule == NameFunction.CONTAINS && !msg.get(rule.getFieldName()).toString().contains(rule.getFilterValue())) {
             message.setFilterState(false);
             return;
         }
-        if (Objects.equals(rule.getFilterFunctionName(), "not_equals") && Objects.equals(msg.get(rule.getFieldName()).toString(), rule.getFilterValue())) {
+        if (checkingRule == NameFunction.NOT_EQUALS && Objects.equals(msg.get(rule.getFieldName()).toString(), rule.getFilterValue())) {
             message.setFilterState(false);
             return;
         }
-        if (Objects.equals(rule.getFilterFunctionName(), "not_contains") && msg.get(rule.getFieldName()).toString().contains(rule.getFilterValue())) {
+        if (checkingRule == NameFunction.NOT_CONTAINS && msg.get(rule.getFieldName()).toString().contains(rule.getFilterValue())) {
             message.setFilterState(false);
         }
     }
