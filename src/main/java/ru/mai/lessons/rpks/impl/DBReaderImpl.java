@@ -36,10 +36,6 @@ public class DBReaderImpl implements DbReader, AutoCloseable {
         setConnection();
     }
 
-    public Connection getConnection() throws SQLException {
-        return ds.getConnection();
-    }
-
     private void setConnection() {
         try {
             connection = ds.getConnection();
@@ -58,9 +54,7 @@ public class DBReaderImpl implements DbReader, AutoCloseable {
             }
             context = DSL.using(connection, SQLDialect.POSTGRES);
 
-            log.info("debug " + FIELDDBNAME.FIELDNAME.getNameField());
-
-            Result<Record5<Object, Object, Object, Object, Object>> rules = context.select(field(FIELDDBNAME.FIELDNAME.getNameField()), field(FIELDDBNAME.FUNCTIONNAME.getNameField()), field(FIELDDBNAME.FILTERVALUE.getNameField()), field(FIELDDBNAME.RULEID.getNameField()), field(FIELDDBNAME.FILTERID.getNameField())).from("filter_rules").fetch();
+            var rules = context.select(field(FIELDDBNAME.FIELDNAME.getNameField()), field(FIELDDBNAME.FUNCTIONNAME.getNameField()), field(FIELDDBNAME.FILTERVALUE.getNameField()), field(FIELDDBNAME.RULEID.getNameField()), field(FIELDDBNAME.FILTERID.getNameField())).from("filter_rules").fetch();
 
             if (rules.isEmpty()) {
                 log.info("rules is empty");
@@ -80,7 +74,7 @@ public class DBReaderImpl implements DbReader, AutoCloseable {
             log.info(String.valueOf(rulesRes));
         } catch (SQLException e) {
             e.printStackTrace();
-            log.info("sql exception ");
+            log.error("sql exception ");
         }
 
         return rulesRes.toArray(new Rule[0]);

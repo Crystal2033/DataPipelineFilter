@@ -48,7 +48,7 @@ public class KafkaReaderImpl implements KafkaReader {
             }
 
         } catch (WakeupException e) {
-            log.info("Wake up exception!");
+            log.error("Wake up exception!");
         } catch (Exception e) {
             log.error("Unexpected exception", e);
         } finally {

@@ -20,9 +20,9 @@ public class ServiceFiltering implements Service {
     public void start(Config config) {
         DBReaderImpl dbReaderImpl = new DBReaderImpl(config.getConfig("db"));
 
-        Rule[] buf = dbReaderImpl.readRulesFromDB();
+        Rule[] tempRules = dbReaderImpl.readRulesFromDB();
 
-        rules = Arrays.stream(buf).collect(Collectors.toCollection(ConcurrentLinkedQueue<Rule>::new));
+        rules = Arrays.stream(tempRules).collect(Collectors.toCollection(ConcurrentLinkedQueue<Rule>::new));
 
         ExecutorService executorService = Executors.newFixedThreadPool(2);
         config.getString("kafka.producer.topic.output");
