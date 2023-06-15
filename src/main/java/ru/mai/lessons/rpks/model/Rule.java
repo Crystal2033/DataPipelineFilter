@@ -1,6 +1,15 @@
 package ru.mai.lessons.rpks.model;
 
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Builder
+@ToString
+@Getter
+@Setter
 public class Rule {
     private Long filterId; // id фильтра
     private Long ruleId; // id правила

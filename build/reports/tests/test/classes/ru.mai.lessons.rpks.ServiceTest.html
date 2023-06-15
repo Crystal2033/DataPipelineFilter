@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - ServiceTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>ServiceTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/ru.mai.lessons.rpks.html">ru.mai.lessons.rpks</a> &gt; ServiceTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">1</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">57.556s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox failures" id="successRate">
+<div class="percent">0%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Failed tests</a>
+</li>
+<li>
+<a href="#tab1">Tests</a>
+</li>
+<li>
+<a href="#tab2">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Failed tests</h2>
+<div class="test">
+<a name="testServiceFilteringEquals()"></a>
+<h3 class="failures">testServiceFilteringEquals()</h3>
+<span class="code">
+<pre>org.opentest4j.AssertionFailedError: expected: &lt;false&gt; but was: &lt;true&gt;
+	at app//org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at app//org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at app//org.junit.jupiter.api.AssertFalse.failNotFalse(AssertFalse.java:63)
+	at app//org.junit.jupiter.api.AssertFalse.assertFalse(AssertFalse.java:36)
+	at app//org.junit.jupiter.api.AssertFalse.assertFalse(AssertFalse.java:31)
+	at app//org.junit.jupiter.api.Assertions.assertFalse(Assertions.java:228)
+	at app//ru.mai.lessons.rpks.ServiceTest.testServiceFilteringEquals(ServiceTest.java:181)
+	at java.base@18.0.1.1/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base@18.0.1.1/java.lang.reflect.Method.invoke(Method.java:577)
+	at app//org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:727)
+	at app//org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at app//org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at app//org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at app//org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at app//org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at app//org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at app//org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at app//org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at app//org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:217)
+	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at app//org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at app//org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at app//org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151)
+	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at app//org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base@18.0.1.1/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at app//org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at app//org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base@18.0.1.1/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at app//org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at app//org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at app//org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at app//org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at app//org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:107)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86)
+	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86)
+	at org.junit.platform.launcher.core.SessionPerRequestLauncher.execute(SessionPerRequestLauncher.java:53)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:99)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:79)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:75)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:61)
+	at java.base@18.0.1.1/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base@18.0.1.1/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:94)
+	at jdk.proxy1/jdk.proxy1.$Proxy2.stop(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:193)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:129)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:100)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:60)
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:133)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
+	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+</pre>
+</span>
+</div>
+</div>
+<div id="tab1" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="failures">testServiceFilteringEquals()</td>
+<td class="failures">57.556s</td>
+<td class="failures">failed</td>
+</tr>
+</table>
+</div>
+<div id="tab2" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>01:31:10,461 |-INFO in ch.qos.logback.classic.LoggerContext[default] - This is logback-classic version 1.4.5
+01:31:10,524 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.xml]
+01:31:10,531 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Found resource [logback.xml] at [file:/P:/Projects/JetBrains/IntelliJIDEA/RPKS_2/git_Clone/JavaServiceFiltering/build/resources/test/logback.xml]
+01:31:10,824 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [CONSOLE]
+01:31:10,824 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
+01:31:10,940 |-WARN in ch.qos.logback.core.ConsoleAppender[CONSOLE] - This appender no longer admits a layout as a sub-component, set an encoder instead.
+01:31:10,940 |-WARN in ch.qos.logback.core.ConsoleAppender[CONSOLE] - To ensure compatibility, wrapping your layout in LayoutWrappingEncoder.
+01:31:10,940 |-WARN in ch.qos.logback.core.ConsoleAppender[CONSOLE] - See also http://logback.qos.ch/codes.html#layoutInsteadOfEncoder for details
+01:31:10,942 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting level of logger [ru.mai.lessons.rpks] to INFO
+01:31:10,950 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting additivity of logger [ru.mai.lessons.rpks] to false
+01:31:10,951 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [CONSOLE] to Logger[ru.mai.lessons.rpks]
+01:31:10,953 |-INFO in ch.qos.logback.classic.model.processor.RootLoggerModelHandler - Setting level of ROOT logger to ERROR
+01:31:10,953 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [CONSOLE] to Logger[ROOT]
+01:31:10,954 |-INFO in ch.qos.logback.core.model.processor.DefaultProcessor@44e3a2b2 - End of configuration.
+01:31:10,955 |-INFO in ch.qos.logback.classic.joran.JoranConfigurator@101639ae - Registering current configuration as safe fallback point
+
+01:31:50.237 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+01:31:51.450 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+01:31:54.290 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+01:31:54.353 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+01:31:54.540 [pool-1-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - CONFIG:Config(SimpleConfigObject({&quot;application&quot;:{&quot;updateIntervalSec&quot;:10},&quot;com&quot;:{&quot;zaxxer&quot;:{&quot;hikari&quot;:{&quot;pool_number&quot;:&quot;1&quot;}}},&quot;db&quot;:{&quot;driver&quot;:&quot;org.postgresql.Driver&quot;,&quot;jdbcUrl&quot;:&quot;jdbc:postgresql://localhost:51060/test_db?loggerLevel=OFF&quot;,&quot;password&quot;:&quot;password&quot;,&quot;user&quot;:&quot;user&quot;},&quot;file&quot;:{&quot;encoding&quot;:&quot;windows-1251&quot;,&quot;separator&quot;:&quot;\\&quot;},&quot;java&quot;:{&quot;class&quot;:{&quot;path&quot;:&quot;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\7.5.1\\\\workerMain\\\\gradle-worker.jar;P:\\\\Projects\\\\JetBrains\\\\IntelliJIDEA\\\\RPKS_2\\\\git_Clone\\\\JavaServiceFiltering\\\\build\\\\classes\\\\java\\\\test;P:\\\\Projects\\\\JetBrains\\\\IntelliJIDEA\\\\RPKS_2\\\\git_Clone\\\\JavaServiceFiltering\\\\build\\\\resources\\\\test;P:\\\\Projects\\\\JetBrains\\\\IntelliJIDEA\\\\RPKS_2\\\\git_Clone\\\\JavaServiceFiltering\\\\build\\\\classes\\\\java\\\\main;P:\\\\Projects\\\\JetBrains\\\\IntelliJIDEA\\\\RPKS_2\\\\git_Clone\\\\JavaServiceFiltering\\\\build\\\\resources\\\\main;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\org.apache.kafka\\\\kafka-clients\\\\3.4.0\\\\69aebfca9da335f6617f9e5e7a4b45f16e8c86b5\\\\kafka-clients-3.4.0.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\ch.qos.logback\\\\logback-classic\\\\1.4.5\\\\28e7dc0b208d6c3f15beefd73976e064b4ecfa9b\\\\logback-classic-1.4.5.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\com.typesafe\\\\config\\\\1.4.2\\\\4c40a633e7994cfb0354244efb6d03fcb11c3ecf\\\\config-1.4.2.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\org.postgresql\\\\postgresql\\\\42.5.4\\\\15015a54f15e340a9a8a6a2c5457429cb1176b8\\\\postgresql-42.5.4.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\com.zaxxer\\\\HikariCP\\\\5.0.1\\\\a74c7f0a37046846e88d54f7cb6ea6d565c65f9c\\\\HikariCP-5.0.1.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\org.jooq\\\\jooq\\\\3.17.8\\\\6add040365183a3c0a043e11c6069a46b992df39\\\\jooq-3.17.8.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\org.testcontainers\\\\junit-jupiter\\\\1.17.6\\\\94e9894bc665909e208959390ea6540309ce231e\\\\junit-jupiter-1.17.6.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\org.testcontainers\\\\kafka\\\\1.17.6\\\\1975b93708e99340690690177a9c7bbf5aabc823\\\\kafka-1.17.6.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\org.testcontainers\\\\postgresql\\\\1.17.6\\\\cd8aba02d8d46159ab85535d34a1e4217322f9a5\\\\postgresql-1.17.6.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\org.testcontainers\\\\jdbc\\\\1.17.6\\\\1510482e46f5f70909693fc695a2369751510785\\\\jdbc-1.17.6.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\org.testcontainers\\\\database-commons\\\\1.17.6\\\\8a4cd2cda51c2cc3092b1c22f4ee8148be4db410\\\\database-commons-1.17.6.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\org.testcontainers\\\\testcontainers\\\\1.17.6\\\\11b28972d2d8bddd5a7d3b6e21016fbe13bc8e8b\\\\testcontainers-1.17.6.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\com.github.docker-java\\\\docker-java-api\\\\3.2.13\\\\5817ef8f770cb7e740d590090bf352df9491f3c1\\\\docker-java-api-3.2.13.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\com.fasterxml.jackson.core\\\\jackson-annotations\\\\2.14.2\\\\a7aae9525864930723e3453ab799521fdfd9d873\\\\jackson-annotations-2.14.2.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\com.fasterxml.jackson.core\\\\jackson-core\\\\2.14.2\\\\f804090e6399ce0cf78242db086017512dd71fcc\\\\jackson-core-2.14.2.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\org.junit.jupiter\\\\junit-jupiter-engine\\\\5.9.1\\\\1bf771097bde296c3ab174861954e8aafaaf2e94\\\\junit-jupiter-engine-5.9.1.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\org.junit.platform\\\\junit-platform-engine\\\\1.9.1\\\\83591e5089d6cea5f324aa3ecca9b19d5a275803\\\\junit-platform-engine-1.9.1.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\org.junit.platform\\\\junit-platform-commons\\\\1.9.1\\\\3145f821b5cd10abcdc5f925baa5fffa6f1b628f\\\\junit-platform-commons-1.9.1.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\org.junit.jupiter\\\\junit-jupiter-api\\\\5.9.1\\\\7bb53fbc0173e9f6a9d21d58297af94b1f2f9ce1\\\\junit-jupiter-api-5.9.1.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\com.github.luben\\\\zstd-jni\\\\1.5.2-1\\\\fad786abc1d1b81570e8d9a2fc8a1ef479bc27b6\\\\zstd-jni-1.5.2-1.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\org.lz4\\\\lz4-java\\\\1.8.0\\\\4b986a99445e49ea5fbf5d149c4b63f6ed6c6780\\\\lz4-java-1.8.0.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\org.xerial.snappy\\\\snappy-java\\\\1.1.8.4\\\\66f0d56454509f6e36175f2331572e250e04a6cc\\\\snappy-java-1.1.8.4.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\com.github.docker-java\\\\docker-java-transport-zerodep\\\\3.2.13\\\\4cbc2c09d6c264767a39624066987ed4a152bc68\\\\docker-java-transport-zerodep-3.2.13.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\org.slf4j\\\\slf4j-api\\\\2.0.4\\\\30d5eb5360bd113ce96f9e49e3431993bbf1b247\\\\slf4j-api-2.0.4.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\ch.qos.logback\\\\logback-core\\\\1.4.5\\\\e9bb2ea70f84401314da4300343b0a246c8954da\\\\logback-core-1.4.5.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\org.checkerframework\\\\checker-qual\\\\3.5.0\\\\2f50520c8abea66fbd8d26e481d3aef5c673b510\\\\checker-qual-3.5.0.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\io.r2dbc\\\\r2dbc-spi\\\\0.9.1.RELEASE\\\\689338f54890e6981d9d98d059c1a94007a0b809\\\\r2dbc-spi-0.9.1.RELEASE.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\jakarta.xml.bind\\\\jakarta.xml.bind-api\\\\3.0.0\\\\9275db6e21287df61690989254a0b46d8d31e99a\\\\jakarta.xml.bind-api-3.0.0.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\junit\\\\junit\\\\4.13.2\\\\8ac9e16d933b6fb43bc7f576336b8f4d7eb5ba12\\\\junit-4.13.2.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\org.apache.commons\\\\commons-compress\\\\1.22\\\\691a8b4e6cf4248c3bc72c8b719337d5cb7359fa\\\\commons-compress-1.22.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\org.rnorth.duct-tape\\\\duct-tape\\\\1.0.8\\\\92edc22a9ab2f3e17c9bf700aaee377d50e8b530\\\\duct-tape-1.0.8.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\org.reactivestreams\\\\reactive-streams\\\\1.0.3\\\\d9fb7a7926ffa635b3dcaa5049fb2bfa25b3e7d0\\\\reactive-streams-1.0.3.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\com.sun.activation\\\\jakarta.activation\\\\2.0.0\\\\f4e7519148dee347c7666f336210deedb8aca09d\\\\jakarta.activation-2.0.0.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\org.hamcrest\\\\hamcrest-core\\\\1.3\\\\42a25dc3219429f0e5d060061f71acb49bf010a0\\\\hamcrest-core-1.3.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\org.jetbrains\\\\annotations\\\\17.0.0\\\\8ceead41f4e71821919dbdb7a9847608f1a938cb\\\\annotations-17.0.0.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\com.github.docker-java\\\\docker-java-transport\\\\3.2.13\\\\e9d308d1822181a9d48c99739f5eca014ec89199\\\\docker-java-transport-3.2.13.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\net.java.dev.jna\\\\jna\\\\5.8.0\\\\3551d8d827e54858214107541d3aff9c615cb615\\\\jna-5.8.0.jar;C:\\\\Users\\\\eliza\\\\.gradle\\\\caches\\\\modules-2\\\\files-2.1\\\\org.opentest4j\\\\opentest4j\\\\1.2.0\\\\28c11eb91f9b6d8e200631d46e20a7f407f2a046\\\\opentest4j-1.2.0.jar&quot;,&quot;version&quot;:&quot;62.0&quot;},&quot;home&quot;:&quot;C:\\Users\\eliza\\.jdks\\openjdk-18.0.1.1&quot;,&quot;io&quot;:{&quot;tmpdir&quot;:&quot;C:\\Users\\eliza\\AppData\\Local\\Temp\\&quot;},&quot;library&quot;:{&quot;path&quot;:&quot;C:\\Users\\eliza\\.jdks\\openjdk-18.0.1.1\\bin;C:\\WINDOWS\\Sun\\Java\\bin;C:\\WINDOWS\\system32;C:\\WINDOWS;;;;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\dotnet\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Git\\mingw64\\bin;C:\\Program Files\\Git\\usr\\bin;P:\\Programs\\MySql\\bin;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PowerShell\\7\\;C:\\Program Files\\Docker\\Docker\\resources\\bin;C:\\Users\\eliza\\AppData\\Local\\Programs\\Python\\Python38\\Scripts\\;C:\\Users\\eliza\\AppData\\Local\\Programs\\Python\\Python38\\;C:\\Users\\eliza\\AppData\\Local\\Microsoft\\WindowsApps;P:\\Programs\\JetBrains\\PyCharm 2022.1.3\\Program Files\\JetBrains\\PyCharm 2022.1.3\\bin;;P:\\Programs\\JetBrains\\IntelliJ IDEA 2022.3.2\\bin;;P:\\Programs\\JetBrains\\CLion 2022.2.4\\bin;;C:\\Users\\eliza\\.dotnet\\tools;C:\\texlive\\2022\\bin\\win32;P:\\Programs\\JetBrains\\Rider 2022.2.4\\bin;;C:\\ProgramData\\eliza\\GitHubDesktop\\bin;C:\\Users\\eliza\\AppData\\Local\\GitHubDesktop\\bin;P:\\Programs\\JetBrains\\DataGrip 2022.2.5\\bin;;;P:\\Programs\\JetBrains\\Gateway 2023.1\\JetBrains Gateway 2023.1\\bin;;.&quot;},&quot;runtime&quot;:{&quot;name&quot;:&quot;OpenJDK Runtime Environment&quot;,&quot;version&quot;:&quot;18.0.1.1+2-6&quot;},&quot;specification&quot;:{&quot;name&quot;:&quot;Java Platform API Specification&quot;,&quot;vendor&quot;:&quot;Oracle Corporation&quot;,&quot;version&quot;:&quot;18&quot;},&quot;vendor&quot;:{&quot;url&quot;:{&quot;bug&quot;:&quot;https://bugreport.java.com/bugreport/&quot;}},&quot;version&quot;:&quot;18.0.1.1&quot;,&quot;vm&quot;:{&quot;compressedOopsMode&quot;:&quot;32-bit&quot;,&quot;info&quot;:&quot;mixed mode, sharing&quot;,&quot;name&quot;:&quot;OpenJDK 64-Bit Server VM&quot;,&quot;specification&quot;:{&quot;name&quot;:&quot;Java Virtual Machine Specification&quot;,&quot;vendor&quot;:&quot;Oracle Corporation&quot;,&quot;version&quot;:&quot;18&quot;},&quot;vendor&quot;:&quot;Oracle Corporation&quot;,&quot;version&quot;:&quot;18.0.1.1+2-6&quot;}},&quot;jdk&quot;:{&quot;debug&quot;:&quot;release&quot;},&quot;kafka&quot;:{&quot;consumer&quot;:{&quot;auto&quot;:{&quot;offset&quot;:{&quot;reset&quot;:&quot;latest&quot;}},&quot;bootstrap&quot;:{&quot;servers&quot;:&quot;PLAINTEXT://localhost:51064&quot;},&quot;group&quot;:{&quot;id&quot;:&quot;test_group_consumer&quot;}},&quot;producer&quot;:{&quot;bootstrap&quot;:{&quot;servers&quot;:&quot;PLAINTEXT://localhost:51064&quot;}},&quot;topicIn&quot;:&quot;test_topic_in&quot;,&quot;topicOut&quot;:&quot;test_topic_out&quot;},&quot;line&quot;:{&quot;separator&quot;:&quot;\r\n&quot;},&quot;native&quot;:{&quot;encoding&quot;:&quot;Cp1251&quot;},&quot;org&quot;:{&quot;gradle&quot;:{&quot;internal&quot;:{&quot;worker&quot;:{&quot;tmpdir&quot;:&quot;P:\\Projects\\JetBrains\\IntelliJIDEA\\RPKS_2\\git_Clone\\JavaServiceFiltering\\build\\tmp\\test\\work&quot;}},&quot;native&quot;:&quot;false&quot;,&quot;test&quot;:{&quot;worker&quot;:&quot;29&quot;}}},&quot;os&quot;:{&quot;arch&quot;:&quot;amd64&quot;,&quot;name&quot;:&quot;Windows 11&quot;,&quot;version&quot;:&quot;10.0&quot;},&quot;path&quot;:{&quot;separator&quot;:&quot;;&quot;},&quot;sun&quot;:{&quot;arch&quot;:{&quot;data&quot;:{&quot;model&quot;:&quot;64&quot;}},&quot;boot&quot;:{&quot;library&quot;:{&quot;path&quot;:&quot;C:\\Users\\eliza\\.jdks\\openjdk-18.0.1.1\\bin&quot;}},&quot;cpu&quot;:{&quot;endian&quot;:&quot;little&quot;,&quot;isalist&quot;:&quot;amd64&quot;},&quot;io&quot;:{&quot;unicode&quot;:{&quot;encoding&quot;:&quot;UnicodeLittle&quot;}},&quot;java&quot;:{&quot;command&quot;:&quot;worker.org.gradle.process.internal.worker.GradleWorkerMain 'Gradle Test Executor 29'&quot;,&quot;launcher&quot;:&quot;SUN_STANDARD&quot;},&quot;jnu&quot;:{&quot;encoding&quot;:&quot;Cp1251&quot;},&quot;management&quot;:{&quot;compiler&quot;:&quot;HotSpot 64-Bit Tiered Compilers&quot;},&quot;os&quot;:{&quot;patch&quot;:{&quot;level&quot;:&quot;&quot;}}},&quot;user&quot;:{&quot;country&quot;:&quot;RU&quot;,&quot;dir&quot;:&quot;P:\\Projects\\JetBrains\\IntelliJIDEA\\RPKS_2\\git_Clone\\JavaServiceFiltering&quot;,&quot;home&quot;:&quot;C:\\Users\\eliza&quot;,&quot;language&quot;:&quot;ru&quot;,&quot;name&quot;:&quot;eliza&quot;,&quot;script&quot;:&quot;&quot;,&quot;timezone&quot;:&quot;Europe/Moscow&quot;,&quot;variant&quot;:&quot;&quot;}}))
+01:31:54.567 [pool-1-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - CONSUMER_SETTINGS_WAS_READ: ConsumerSettings(bootstrapServers=PLAINTEXT://localhost:51064, groupId=test_group_consumer, autoOffsetReset=latest, topicIn=test_topic_in, updateIntervalSec=100)
+01:31:54.578 [pool-1-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - PRODUCER_SETTINGS_WAS_READ: ProducerSettings(bootstrapServers=PLAINTEXT://localhost:51064, topicOut=test_topic_out, updateIntervalSec=100)
+01:31:54.591 [pool-1-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - DB_SETTINGS_WAS_READ: DBSettings(jdbcUrl=jdbc:postgresql://localhost:51060/test_db?loggerLevel=OFF, user=user, password=password, driver=org.postgresql.Driver, tableName=filter_rules)
+01:31:54.601 [pool-2-thread-1] INFO  r.m.lessons.rpks.impl.WriterToKafka - START_WRITE_MESSAGE_IN_KAFKA_TOPIC test_topic_out
+01:31:54.603 [pool-2-thread-2] INFO  r.m.l.rpks.impl.ReaderFromKafka - KAFKA_CONSUMER_START_READING_FROM_TOPIC test_topic_in
+01:31:54.606 [pool-1-thread-1] INFO  r.mai.lessons.rpks.impl.ReaderFromDB - HIKARY_CREATE
+01:31:54.712 [pool-1-thread-1] INFO  r.mai.lessons.rpks.impl.ReaderFromDB - HIKARY_CREATE
+01:31:54.712 [pool-1-thread-1] INFO  r.mai.lessons.rpks.impl.ReaderFromDB - CONTEXT_MADE
+01:31:54.879 [pool-1-thread-1] INFO  r.mai.lessons.rpks.impl.ReaderFromDB - RULLES_CREATE:1
+01:31:54.883 [pool-1-thread-1] INFO  r.mai.lessons.rpks.impl.ReaderFromDB - FIND_RULE:Rule(filterId=1, ruleId=1, fieldName=name, filterFunctionName=equals, filterValue=alex)
+01:31:54.883 [pool-1-thread-1] INFO  r.mai.lessons.rpks.impl.ReaderFromDB - MAKE_RULES_FROM_DB
+01:31:54.906 [pool-1-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - ADD_RULE
+01:31:55.176 [pool-1-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+01:31:56.290 [pool-1-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 9
+01:31:57.412 [pool-1-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 8
+01:31:58.532 [pool-1-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 7
+01:31:59.658 [pool-1-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 6
+01:32:00.783 [pool-1-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 5
+01:32:01.903 [pool-1-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 4
+01:32:03.025 [pool-1-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 3
+01:32:04.150 [pool-1-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 2
+01:32:04.921 [pool-1-thread-1] INFO  r.mai.lessons.rpks.impl.ReaderFromDB - HIKARY_CREATE
+01:32:04.964 [pool-1-thread-1] INFO  r.mai.lessons.rpks.impl.ReaderFromDB - HIKARY_CREATE
+01:32:04.964 [pool-1-thread-1] INFO  r.mai.lessons.rpks.impl.ReaderFromDB - CONTEXT_MADE
+01:32:04.984 [pool-1-thread-1] INFO  r.mai.lessons.rpks.impl.ReaderFromDB - RULLES_CREATE:1
+01:32:04.984 [pool-1-thread-1] INFO  r.mai.lessons.rpks.impl.ReaderFromDB - FIND_RULE:Rule(filterId=1, ruleId=1, fieldName=name, filterFunctionName=equals, filterValue=alex)
+01:32:04.984 [pool-1-thread-1] INFO  r.mai.lessons.rpks.impl.ReaderFromDB - MAKE_RULES_FROM_DB
+01:32:04.985 [pool-1-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - ADD_RULE
+01:32:05.266 [pool-1-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 1
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 7.5.1</a> at 16 июн. 2023 г., 01:32:09</p>
+</div>
+</div>
+</body>
+</html>
