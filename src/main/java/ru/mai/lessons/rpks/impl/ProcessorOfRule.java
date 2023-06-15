@@ -12,7 +12,8 @@ import ru.mai.lessons.rpks.model.Rule;
 public class ProcessorOfRule implements RuleProcessor {
     @Override
     public Message processing(Message message, Rule[] rules) throws ParseException {
-        JSONObject jsonObject =( JSONObject) (new JSONParser().parse(message.getValue()));
+        String messageValue=message.getValue().replace(":,",":null").replace(":-",":null");
+        JSONObject jsonObject =( JSONObject) (new JSONParser().parse(messageValue));
         for (Rule rule : rules) {
             if (!isSatisfiedTheRule(jsonObject, rule)) {
                 message.setFilterState(false);

@@ -34,7 +34,7 @@ public class ReaderFromKafka implements KafkaReader {
         KafkaConsumer<String, String> kafkaConsumer = new KafkaConsumer<>(
                 Map.of(
                         ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, consumerSettings.getBootstrapServers(),
-                        ConsumerConfig.GROUP_ID_CONFIG, "tc-"+UUID.randomUUID(),
+                        ConsumerConfig.GROUP_ID_CONFIG, consumerSettings.getGroupId(),
                         ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, consumerSettings.getAutoOffsetReset()
                 ),
                 new StringDeserializer(),
