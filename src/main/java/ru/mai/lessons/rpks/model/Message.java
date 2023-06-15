@@ -5,15 +5,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 
-@Data
 @Builder
 @AllArgsConstructor
-@Getter
+@Data
 public class Message {
     private String value; // сообщение из Kafka в формате JSON
     private boolean filterState; // true - удовлетворены условиях всех правил (Rule), false - хотя бы одно условие не прошло проверку.
-
-    public boolean getFilterState() {
-        return filterState;
-    }
 }
