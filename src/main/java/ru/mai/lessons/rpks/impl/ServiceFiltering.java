@@ -19,7 +19,7 @@ public class ServiceFiltering implements Service {
 
     @Override
     public void start(Config config) {
-        log.info("CONFIG:"+config.toString());
+        log.debug("CONFIG:"+config.toString());
         AtomicBoolean isExit=new AtomicBoolean(false);
         ConcurrentLinkedQueue<Message> concurrentLinkedQueue=new ConcurrentLinkedQueue<>();
         ConcurrentLinkedQueue<Rule[]> rules=new ConcurrentLinkedQueue<>();
@@ -41,7 +41,7 @@ public class ServiceFiltering implements Service {
         ReaderFromDB readerFromDB=ReaderFromDB.builder().dbSettings(dbSettings).build();
         while(!isExit.get()) {
             rules.add(readerFromDB.readRulesFromDB());
-            log.info("ADD_RULE");
+            log.debug("ADD_RULE");
             if(rules.size()>1) {
                 rules.poll();
             }
@@ -62,10 +62,9 @@ public class ServiceFiltering implements Service {
                     .groupId(kafkaConfigConsumer.getString("group.id"))
                     .bootstrapServers(kafkaConfigConsumer.getString("bootstrap.servers"))
                     .autoOffsetReset(kafkaConfigConsumer.getString("auto.offset.reset"))
-                    //.updateIntervalSec(config.getConfig("application").getInt("updateIntervalSec"))
                     .updateIntervalSec(100)
                     .topicIn(kafkaConfigConsumer.getString("topicIn")).build();
-            log.info("CONSUMER_SETTINGS_WAS_READ: " + consumerSettings.toString());
+            log.debug("CONSUMER_SETTINGS_WAS_READ: " + consumerSettings.toString());
             return consumerSettings;
         }
 
@@ -75,7 +74,7 @@ public class ServiceFiltering implements Service {
                     .bootstrapServers(kafkaConfigProducer.getString("bootstrap.servers"))
                     .updateIntervalSec(100)
                     .topicOut(kafkaConfigProducer.getString("topicOut")).build();
-            log.info("PRODUCER_SETTINGS_WAS_READ: " + producerSettings.toString());
+            log.debug("PRODUCER_SETTINGS_WAS_READ: " + producerSettings.toString());
             return producerSettings;
         }
 
@@ -86,7 +85,7 @@ public class ServiceFiltering implements Service {
                     .user(dbConfig.getString("user"))
                     .password(dbConfig.getString("password"))
                     .tableName("filter_rules").build();
-            log.info("DB_SETTINGS_WAS_READ: " + dbSettings.toString());
+            log.debug("DB_SETTINGS_WAS_READ: " + dbSettings.toString());
             return dbSettings;
         }
     }

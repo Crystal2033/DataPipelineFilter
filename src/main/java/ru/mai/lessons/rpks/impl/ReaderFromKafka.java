@@ -30,8 +30,8 @@ public class ReaderFromKafka implements KafkaReader {
     ConcurrentLinkedQueue<Message> concurrentLinkedQueue;
     @Override
     public void processing() {
-        log.info("CONSUMER_SETTINGS:"+consumerSettings);
-        log.info("KAFKA_CONSUMER_START_READING_FROM_TOPIC {}", consumerSettings.getTopicIn());
+        log.debug("CONSUMER_SETTINGS:"+consumerSettings);
+        log.debug("KAFKA_CONSUMER_START_READING_FROM_TOPIC {}", consumerSettings.getTopicIn());
         KafkaConsumer<String, String> kafkaConsumer = new KafkaConsumer<>(
                 Map.of(
                         ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, consumerSettings.getBootstrapServers(),
@@ -46,16 +46,16 @@ public class ReaderFromKafka implements KafkaReader {
             while (!isExit.get()) {
                 ConsumerRecords<String, String> consumerRecords = kafkaConsumer.poll(Duration.ofMillis(100));
                 for (ConsumerRecord<String, String> consumerRecord : consumerRecords) {
-                    log.info("MASSAGE_FROM_KAFKA_TOPIC {} : {}", consumerRecord.topic(), consumerRecord.value());
+                    log.debug("MASSAGE_FROM_KAFKA_TOPIC {} : {}", consumerRecord.topic(), consumerRecord.value());
                     concurrentLinkedQueue.add(Message.builder().value(consumerRecord.value()).build());
                     if (consumerRecord.value().equals("$exit")) {
                         isExit.set(true);
                     } else {
-                        log.info("MASSAGE_FROM_KAFKA_TOPIC {} : {}", consumerRecord.topic(), consumerRecord.value());
+                        log.debug("MASSAGE_FROM_KAFKA_TOPIC {} : {}", consumerRecord.topic(), consumerRecord.value());
                     }
                 }
             }
-            log.info("READ_IS_DONE!");
+            log.debug("READ_IS_DONE!");
         }
     }
 

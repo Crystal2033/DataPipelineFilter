@@ -8,10 +8,8 @@ import ru.mai.lessons.rpks.ConfigReader;
 public class ConfigurationReader implements ConfigReader {
     @Override
     public Config loadConfig() {
-        Config config= ConfigFactory.load();
         log.debug("starting");
-        log.debug(config.getConfig("kafka").toString());
-        return config;
-         // написать код загрузки конфигураций сервиса фильтраций из файла *.conf
+        return ConfigFactory.load();
+        // написать код загрузки конфигураций сервиса фильтраций из файла *.conf
     }
 }

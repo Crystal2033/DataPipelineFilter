@@ -57,19 +57,19 @@ public class ProcessorOfRule implements RuleProcessor {
         }
     }
     boolean isEquals( String jsonValue, String filterValue){
-        log.info("EQUALS:");
+        log.debug("EQUALS:");
         return jsonValue.equals(filterValue);
     }
     boolean isContains(String jsonValue, String filterValue){
-        log.info("CONTAINS:");
+        log.debug("CONTAINS:");
         return jsonValue.contains(filterValue);
     }
     boolean isNotEquals( String jsonValue, String filterValue){
-        log.info("NOT_EQUALS:");
+        log.debug("NOT_EQUALS:");
        return !isEquals(jsonValue,filterValue);
     }
     boolean isNotContains( String jsonValue, String filterValue){
-        log.info("NOT_CONTAINS:");
+        log.debug("NOT_CONTAINS:");
        return !isContains(jsonValue, filterValue);
     }
 }
