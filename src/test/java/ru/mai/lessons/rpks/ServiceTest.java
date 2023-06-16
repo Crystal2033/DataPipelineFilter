@@ -115,6 +115,7 @@ class ServiceTest {
 
             getConsumerRecordsOutputTopic(consumer, 10, 1);
         } catch (ExecutionException | InterruptedException | TimeoutException e) {
+
             throw new RuntimeException(e);
         }
     }
@@ -195,6 +196,8 @@ class ServiceTest {
             fail();
         }
     }
+
+
 
     /**
      * Тест проверяет следующее правило фильтрации: field not_equals value.

@@ -53,7 +53,6 @@ public class WriterToKafka implements KafkaWriter {
                 new StringSerializer(),
                 new StringSerializer()
         );
-
         try (kafkaProducer){
             while(true){
                 if((!concurrentLinkedQueue.isEmpty())&&!(rules.isEmpty())) {

@@ -30,12 +30,13 @@ public class ReaderFromKafka implements KafkaReader {
     ConcurrentLinkedQueue<Message> concurrentLinkedQueue;
     @Override
     public void processing() {
+        log.info("CONSUMER_SETTINGS:"+consumerSettings);
         log.info("KAFKA_CONSUMER_START_READING_FROM_TOPIC {}", consumerSettings.getTopicIn());
         KafkaConsumer<String, String> kafkaConsumer = new KafkaConsumer<>(
                 Map.of(
                         ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, consumerSettings.getBootstrapServers(),
                         ConsumerConfig.GROUP_ID_CONFIG, consumerSettings.getGroupId(),
-                        ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, consumerSettings.getAutoOffsetReset()
+                        ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest"
                 ),
                 new StringDeserializer(),
                 new StringDeserializer()

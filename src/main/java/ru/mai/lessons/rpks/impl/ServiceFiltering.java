@@ -31,7 +31,8 @@ public class ServiceFiltering implements Service {
         int updateIntervalSec=config.getConfig("application").getInt("updateIntervalSec");
 
         WriterToKafka writerToKafka= WriterToKafka.builder().producerSettings(producerSettings)
-                .concurrentLinkedQueue(concurrentLinkedQueue).rules(rules).build();
+                .concurrentLinkedQueue(concurrentLinkedQueue).rules(rules)
+                .processorOfRule(new ProcessorOfRule()).build();
         ReaderFromKafka readerFromKafka= ReaderFromKafka.builder().consumerSettings(consumerSettings)
                 .concurrentLinkedQueue(concurrentLinkedQueue).isExit(isExit).build();
 
@@ -63,7 +64,7 @@ public class ServiceFiltering implements Service {
                     .autoOffsetReset(kafkaConfigConsumer.getString("auto.offset.reset"))
                     //.updateIntervalSec(config.getConfig("application").getInt("updateIntervalSec"))
                     .updateIntervalSec(100)
-                    .topicIn(config.getConfig("kafka").getString("topicIn")).build();
+                    .topicIn(kafkaConfigConsumer.getString("topicIn")).build();
             log.info("CONSUMER_SETTINGS_WAS_READ: " + consumerSettings.toString());
             return consumerSettings;
         }
@@ -72,9 +73,8 @@ public class ServiceFiltering implements Service {
             Config kafkaConfigProducer = config.getConfig("kafka").getConfig("producer");
             ProducerSettings producerSettings = ProducerSettings.builder()
                     .bootstrapServers(kafkaConfigProducer.getString("bootstrap.servers"))
-                    //.updateIntervalSec(config.getConfig("application").getInt("updateIntervalSec"))
                     .updateIntervalSec(100)
-                    .topicOut(config.getConfig("kafka").getString("topicOut")).build();
+                    .topicOut(kafkaConfigProducer.getString("topicOut")).build();
             log.info("PRODUCER_SETTINGS_WAS_READ: " + producerSettings.toString());
             return producerSettings;
         }
@@ -85,7 +85,6 @@ public class ServiceFiltering implements Service {
                     .driver(dbConfig.getString("driver"))
                     .user(dbConfig.getString("user"))
                     .password(dbConfig.getString("password"))
-                   // .updateIntervalSec(config.getConfig("application").getInt("updateIntervalSec"))
                     .tableName("filter_rules").build();
             log.info("DB_SETTINGS_WAS_READ: " + dbSettings.toString());
             return dbSettings;

@@ -12,20 +12,30 @@ import ru.mai.lessons.rpks.model.Rule;
 public class ProcessorOfRule implements RuleProcessor {
     @Override
     public Message processing(Message message, Rule[] rules) throws ParseException {
-        String messageValue=message.getValue().replace(":,",":null").replace(":-",":null");
+        String messageValue=message.getValue();
+        messageValue=messageValue.replace(":,",":null");
+        messageValue=messageValue.replace(":-,",":null,");
         JSONObject jsonObject =( JSONObject) (new JSONParser().parse(messageValue));
+        message.setFilterState(false);
         for (Rule rule : rules) {
-            if (!isSatisfiedTheRule(jsonObject, rule)) {
-                message.setFilterState(false);
-                return message;
-            }
+                if (!isSatisfiedTheRule(jsonObject, rule)) {
+                    return message;
+                }
         }
-        message.setFilterState(true);
+        if(rules.length>0){
+            message.setFilterState(true);
+        }
         return message;
     }
 
     private boolean isSatisfiedTheRule( JSONObject jsonObject, Rule rule){
-        String jsonValue=jsonObject.get(rule.getFieldName()).toString();
+        String jsonValue="null";
+        if(jsonObject.containsKey(rule.getFieldName())){
+            jsonValue=(jsonObject.get(rule.getFieldName())==null)?("null"):jsonObject.get(rule.getFieldName()).toString();
+        }
+        if(jsonValue.equals("null")){
+            return false;
+        }
         log.info("jsonValueOf"+rule.getFieldName()+": "+jsonValue);
         switch (rule.getFilterFunctionName().toUpperCase()) {
             case "EQUALS" -> {
