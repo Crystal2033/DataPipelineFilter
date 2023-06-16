@@ -18,6 +18,7 @@ public class ServiceFiltering implements Service {
 
     @Override
     public void start(Config config) {
+
         DBReaderImpl dbReaderImpl = new DBReaderImpl(config.getConfig("db"));
 
         Rule[] tempRules = dbReaderImpl.readRulesFromDB();
@@ -38,10 +39,10 @@ public class ServiceFiltering implements Service {
         schedulerExecutorService.scheduleWithFixedDelay(rulesUpdaterThread, 0, config.getLong("application.updateIntervalSec"), TimeUnit.SECONDS);
 
         MessageHandler messageHandler = new MessageHandler(producer, ruleProcessor, rules, rulesUpdaterThread);
-
         KafkaReaderImpl consumer = new KafkaReaderImpl(config.getString("kafka.consumer.topic.enter"),
                 config.getString("kafka.consumer.bootstrap.servers"),
                 config.getString("kafka.consumer.group.id"),
+                config.getString("kafka.consumer.auto.offset.reset"),
                 messageHandler);
         executorService.execute(consumer::processing);
 
