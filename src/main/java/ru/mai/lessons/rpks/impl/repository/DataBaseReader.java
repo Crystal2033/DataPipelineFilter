@@ -14,6 +14,7 @@ import ru.mai.lessons.rpks.model.Rule;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Optional;
 
 import static org.jooq.impl.DSL.field;
 
@@ -73,7 +74,7 @@ public class DataBaseReader implements DbReader, AutoCloseable {
                 .where(field(additionalDBConfig.getString("filter_column_name"))
                         .eq(additionalDBConfig.getInt(
                                 additionalDBConfig.getString("filter_column_name")))
-                        )
+                )
                 .fetch()
                 .stream()
                 .map(note -> Rule.builder()
@@ -88,6 +89,6 @@ public class DataBaseReader implements DbReader, AutoCloseable {
 
     @Override
     public void close() {
-        dataSource.close();
+        Optional.ofNullable(dataSource).ifPresent(HikariDataSource::close);
     }
 }

@@ -1,12 +1,27 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group 'ru.mai.lessons.rpks'
 version '1.0-SNAPSHOT'
 
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    manifest {
+        attributes 'Main-Class': application.mainClass
+    }
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
 repositories {
     mavenCentral()
+}
+
+application{
+    mainClass = 'ru.mai.lessons.rpks.ServiceFilteringMain'
 }
 
 dependencies {
@@ -19,6 +34,10 @@ dependencies {
 
     // logging
     implementation 'ch.qos.logback:logback-classic:1.4.5'
+
+// https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12
+    testImplementation 'org.slf4j:slf4j-log4j12:2.0.7'
+
 
     // code generator
     compileOnly 'org.projectlombok:lombok:1.18.26'
