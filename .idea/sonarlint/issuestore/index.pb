@@ -19,8 +19,6 @@ L
 gradlew.bat,2\a\2a45a911a8f1836b0b6c5b758962572012d8f8c3
 a
 1src/main/java/ru/mai/lessons/rpks/model/Rule.java,1\8\18062bf50ae937e2bc5df53c64b13687f1d60ab2
-q
-Asrc/main/java/ru/mai/lessons/rpks/impl/kafka/KafkaWriterImpl.java,b\f\bff6f39994d51afa6c95f27b4f45e62e781548b5
 ^
 .src/main/java/ru/mai/lessons/rpks/Service.java,d\1\d1a3ea2a4104e7c4b282edebb124a7f189a5c9df
 b
@@ -33,11 +31,5 @@ b
 2src/main/java/ru/mai/lessons/rpks/KafkaReader.java,a\3\a3f424bbcf25a85c93204d58f0870cf237ddbbd6
 k
 ;src/main/java/ru/mai/lessons/rpks/ServiceFilteringMain.java,9\9\99cce13b400d4e7444974040e44fb08fdae5deb7
-b
-2src/test/java/ru/mai/lessons/rpks/ServiceTest.java,0\1\013917df0bc9067734233ebb221e5d86f83a7212
-j
-:src/main/java/ru/mai/lessons/rpks/model/OperationName.java,c\9\c9a15a5a43fe1f4562c6db9aa16a372964bd53fc
-o
-?src/main/java/ru/mai/lessons/rpks/impl/ConfigurationReader.java,b\0\b03a9176534914f90d9ef9a164fcdb3ab753e9b2
 d
 4src/main/java/ru/mai/lessons/rpks/model/Message.java,7\6\76fa569d290029216e6010d8fcc02d733fb21523

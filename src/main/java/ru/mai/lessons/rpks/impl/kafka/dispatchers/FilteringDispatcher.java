@@ -36,11 +36,9 @@ public class FilteringDispatcher {
     }
 
     public void sendMessageIfCompatibleWithDBRules(String checkingMessage) throws UndefinedOperationException, ThreadWorkerNotFoundException {
-        log.info(checkingMessage);
         kafkaWriter = Optional.ofNullable(kafkaWriter).orElseGet(this::createKafkaWriterForSendingMessage);
         updateRules();
         if (rulesList.isEmpty()) {
-            log.info("No rules...");
             kafkaWriter.processing(getMessage(checkingMessage, false));
             return;
         }
@@ -61,7 +59,6 @@ public class FilteringDispatcher {
     }
 
     private boolean isCompatibleWithRule(String operation, String expected, String userValue) throws UndefinedOperationException {
-        log.info("operation={}, expected={}, userValue={}", operation, expected, userValue);
         try {
             OperationName operationName = OperationName.valueOf(operation.toUpperCase());
             return switch (operationName) {
