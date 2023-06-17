@@ -38,7 +38,7 @@ public class RuleProcessorImpl implements RuleProcessor {
 
         boolean state;
 
-        FUNCTIONNAME functionNameEnum = FUNCTIONNAME.valueOf(rule.getFieldName().toUpperCase());
+        FUNCTIONNAME functionNameEnum = FUNCTIONNAME.valueOf(rule.getFilterFunctionName().toUpperCase());
 
         switch (functionNameEnum) {
             case EQUALS -> state = filterValue.equals(fieldValue);
