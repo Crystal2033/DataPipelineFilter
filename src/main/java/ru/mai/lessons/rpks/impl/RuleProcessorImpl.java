@@ -38,11 +38,13 @@ public class RuleProcessorImpl implements RuleProcessor {
 
         boolean state;
 
-        switch (rule.getFilterFunctionName()) {
-            case "equals" -> state = filterValue.equals(fieldValue);
-            case "contains" -> state = fieldValue.contains(filterValue);
-            case "not_equals" -> state = !fieldValue.isEmpty() && !filterValue.equals(fieldValue);
-            case "not_contains" -> state = !fieldValue.isEmpty() && !fieldValue.contains(filterValue);
+        FUNCTIONNAME functionNameEnum = FUNCTIONNAME.valueOf(rule.getFieldName().toUpperCase());
+
+        switch (functionNameEnum) {
+            case EQUALS -> state = filterValue.equals(fieldValue);
+            case CONTAINS -> state = fieldValue.contains(filterValue);
+            case NOT_EQUALS -> state = !fieldValue.isEmpty() && !filterValue.equals(fieldValue);
+            case NOT_CONTAINS  -> state = !fieldValue.isEmpty() && !fieldValue.contains(filterValue);
             default -> state = false;
 
         }
@@ -62,6 +64,13 @@ public class RuleProcessorImpl implements RuleProcessor {
             return null;
         }
         return (map.get(fieldName) == null ? (null) : (map.get(fieldName).toString()));
+    }
+
+    private enum FUNCTIONNAME {
+        EQUALS,
+        CONTAINS,
+        NOT_EQUALS,
+        NOT_CONTAINS
     }
 
 }

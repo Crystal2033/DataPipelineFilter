@@ -74,7 +74,11 @@ public class DBReaderImpl implements DbReader, AutoCloseable {
     }
 
     private enum FIELDDBNAME {
-        FIELDNAME("field_name"), FILTERVALUE("filter_value"), RULEID("rule_id"), FILTERID("filter_id"), FUNCTIONNAME("filter_function_name");
+        FIELDNAME("field_name"),
+        FILTERVALUE("filter_value"),
+        RULEID("rule_id"),
+        FILTERID("filter_id"),
+        FUNCTIONNAME("filter_function_name");
 
         private final String nameField;
 
