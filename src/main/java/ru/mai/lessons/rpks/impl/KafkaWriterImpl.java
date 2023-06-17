@@ -29,10 +29,10 @@ public class KafkaWriterImpl implements KafkaWriter {
         if (!message.isFilterState()) {
             return;
         }
-        log.info("Sending message " + message.getValue());
+        log.debug("Sending message " + message.getValue());
         kafkaProducer.send(new ProducerRecord<>(topicOut,
             UUID.randomUUID().toString(),
             message.getValue())).get();
-        log.info("Sent message to output " + message.getValue());
+        log.debug("Sent message to output " + message.getValue());
     }
 }

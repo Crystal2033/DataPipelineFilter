@@ -22,7 +22,7 @@ public class RuleApplierImpl implements RuleApplier {
 
     @Override
     public boolean apply(ConsumerRecord<String, String> consumerRecord, Rule[] rules) {
-        log.info("Check rules for record {}", consumerRecord.value());
+        log.debug("Check rules for record {}", consumerRecord.value());
         if (rules == null || rules.length == 0) {
             return false;
         }
