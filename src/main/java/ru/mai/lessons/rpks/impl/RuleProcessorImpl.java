@@ -1,15 +1,13 @@
 package ru.mai.lessons.rpks.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.mai.lessons.rpks.RuleProcessor;
 import ru.mai.lessons.rpks.model.Message;
 import ru.mai.lessons.rpks.model.Rule;
 
-
-import java.util.List;
+import java.util.Objects;
 
 public class RuleProcessorImpl implements RuleProcessor {
     ObjectMapper mapper = new ObjectMapper();
@@ -28,16 +26,20 @@ public class RuleProcessorImpl implements RuleProcessor {
                 }
 
                 String value = temp.textValue();
-                if (rule.getFilterFunctionName() == "equals" && value == rule.getFilterValue()) {
+                if (Objects.equals(rule.getFilterFunctionName(), "equals")
+                        && Objects.equals(value, rule.getFilterValue())) {
                     message.setFilterState(true);
                 }
-                else if (rule.getFilterFunctionName() == "contains" && rule.getFilterValue().contains(value)) {
+                else if (Objects.equals(rule.getFilterFunctionName(), "contains")
+                        && rule.getFilterValue().contains(value)) {
                     message.setFilterState(true);
                 }
-                else if (rule.getFilterFunctionName() == "not_equals" && value != rule.getFilterValue()) {
+                else if (Objects.equals(rule.getFilterFunctionName(), "not_equals")
+                        && !Objects.equals(value, rule.getFilterValue())) {
                     message.setFilterState(true);
                 }
-                else if (rule.getFilterFunctionName() == "not_contains" && !rule.getFilterValue().contains(value)) {
+                else if (Objects.equals(rule.getFilterFunctionName(), "not_contains")
+                        && !rule.getFilterValue().contains(value)) {
                     message.setFilterState(true);
                 }
                 else{
