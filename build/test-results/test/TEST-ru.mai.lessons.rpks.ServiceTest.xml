@@ -1,0 +1,907 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.mai.lessons.rpks.ServiceTest" tests="18" skipped="0" failures="0" errors="0" timestamp="2023-06-18T10:17:52" hostname="NIKITA-DESKTOP" time="331.066">
+  <properties/>
+  <testcase name="testKafkaWriteReadMessage()" classname="ru.mai.lessons.rpks.ServiceTest" time="18.66"/>
+  <testcase name="testServiceFilteringNotEquals()" classname="ru.mai.lessons.rpks.ServiceTest" time="17.85"/>
+  <testcase name="testServiceFilteringNotRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="25.6"/>
+  <testcase name="testServiceFilteringContainsNotEqualsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="14.464"/>
+  <testcase name="testServiceFilteringAddNewRule()" classname="ru.mai.lessons.rpks.ServiceTest" time="37.024"/>
+  <testcase name="testServiceFilteringContainsNotContainsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="15.224"/>
+  <testcase name="testStartPostgreSQL()" classname="ru.mai.lessons.rpks.ServiceTest" time="12.991"/>
+  <testcase name="testServiceFilteringUpdateRule()" classname="ru.mai.lessons.rpks.ServiceTest" time="36.807"/>
+  <testcase name="testServiceFilteringNotContains()" classname="ru.mai.lessons.rpks.ServiceTest" time="18.783"/>
+  <testcase name="testServiceFilteringEqualsNotContainsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="14.211"/>
+  <testcase name="testServiceFilteringContains()" classname="ru.mai.lessons.rpks.ServiceTest" time="14.593"/>
+  <testcase name="testServiceFilteringEqualsContainsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="15.178"/>
+  <testcase name="testServiceFilteringEquals()" classname="ru.mai.lessons.rpks.ServiceTest" time="15.459"/>
+  <testcase name="testPostgreSQLReadValues()" classname="ru.mai.lessons.rpks.ServiceTest" time="12.691"/>
+  <testcase name="testServiceFilteringEqualsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="16.114"/>
+  <testcase name="testServiceFilteringEqualsNotEqualsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="16.628"/>
+  <testcase name="testServiceFilteringContainsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="16.176"/>
+  <testcase name="testStartKafka()" classname="ru.mai.lessons.rpks.ServiceTest" time="12.569"/>
+  <system-out><![CDATA[13:17:52,296 |-INFO in ch.qos.logback.classic.LoggerContext[default] - This is logback-classic version 1.4.6
+13:17:52,321 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.xml]
+13:17:52,324 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Found resource [logback.xml] at [file:/C:/Users/79832/IdeaProjects/JavaServiceFiltering/build/resources/test/logback.xml]
+13:17:52,475 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [CONSOLE]
+13:17:52,475 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
+13:17:52,531 |-WARN in ch.qos.logback.core.ConsoleAppender[CONSOLE] - This appender no longer admits a layout as a sub-component, set an encoder instead.
+13:17:52,531 |-WARN in ch.qos.logback.core.ConsoleAppender[CONSOLE] - To ensure compatibility, wrapping your layout in LayoutWrappingEncoder.
+13:17:52,532 |-WARN in ch.qos.logback.core.ConsoleAppender[CONSOLE] - See also http://logback.qos.ch/codes.html#layoutInsteadOfEncoder for details
+13:17:52,533 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting level of logger [ru.mai.lessons.rpks] to INFO
+13:17:52,537 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting additivity of logger [ru.mai.lessons.rpks] to false
+13:17:52,537 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [CONSOLE] to Logger[ru.mai.lessons.rpks]
+13:17:52,538 |-INFO in ch.qos.logback.classic.model.processor.RootLoggerModelHandler - Setting level of ROOT logger to ERROR
+13:17:52,538 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [CONSOLE] to Logger[ROOT]
+13:17:52,538 |-INFO in ch.qos.logback.core.model.processor.DefaultProcessor@18bc345 - End of configuration.
+13:17:52,539 |-INFO in ch.qos.logback.classic.joran.JoranConfigurator@42f8285e - Registering current configuration as safe fallback point
+
+13:18:05.651 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Bootstrap.servers: PLAINTEXT://localhost:61133
+13:18:05.655 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+13:18:05.959 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Creating topics
+13:18:06.812 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Created topics
+13:18:06.812 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Sending message
+13:18:06.981 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Sent message
+13:18:06.981 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Consumer subscribe
+13:18:06.981 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Consumer start reading
+13:18:07.090 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+13:18:08.203 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 9
+13:18:09.320 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 8
+13:18:10.338 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+13:18:24.521 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+13:18:25.829 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+13:18:26.280 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+13:18:26.332 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+13:18:26.528 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:18:26.534 [pool-3-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start Kafka reader
+13:18:26.542 [pool-3-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Kafka consumer created
+13:18:26.543 [pool-3-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Set kafka topic : test_topic_in
+13:18:26.545 [pool-5-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start consumer reading
+13:18:26.714 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 1 rules
+13:18:26.714 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:18:26.886 [pool-3-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+13:18:27.224 [pool-5-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : NOT_EQUALS, value : alex)
+13:18:27.224 [pool-5-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alex
+13:18:27.225 [pool-5-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alex"} rejected
+13:18:27.225 [pool-5-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:18:27.226 [pool-5-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alex", "age":, "sex":null} rejected
+13:18:27.226 [pool-5-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : NOT_EQUALS, value : alex)
+13:18:27.226 [pool-5-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alex
+13:18:27.226 [pool-5-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alex", "sex":"M"} rejected
+13:18:27.227 [pool-5-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : NOT_EQUALS, value : alex)
+13:18:27.227 [pool-5-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alex
+13:18:27.227 [pool-5-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alex", "age":null} rejected
+13:18:27.228 [pool-5-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : NOT_EQUALS, value : alex)
+13:18:27.228 [pool-5-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alex
+13:18:27.228 [pool-5-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alex", "age":19, "sex":"M"} rejected
+13:18:27.228 [pool-5-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : NOT_EQUALS, value : alex)
+13:18:27.228 [pool-5-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : no_alex
+13:18:27.229 [pool-5-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"no_alex", "age":18, "sex":"M"} accepted
+13:18:27.229 [pool-5-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Create kafka writer
+13:18:27.930 [pool-3-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+13:18:36.527 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:18:41.647 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+13:18:41.680 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+13:18:42.255 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:18:42.255 [pool-6-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start Kafka reader
+13:18:42.260 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:18:42.260 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:18:42.263 [pool-6-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Kafka consumer created
+13:18:42.263 [pool-6-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Set kafka topic : test_topic_in
+13:18:42.264 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start consumer reading
+13:18:42.538 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+13:18:42.718 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"", "age":"", "sex":"M"} rejected
+13:18:42.719 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"pushkin", "age":19, "sex":"M"} rejected
+13:18:42.720 [pool-8-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:18:42.720 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alex", "age":, "sex":"M"} rejected
+13:18:42.720 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"age":18, "sex":"M"} rejected
+13:18:42.722 [pool-8-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:18:42.722 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message  rejected
+13:18:42.723 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alex", "age":null, "sex":"M"} rejected
+13:18:42.723 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alex_ivanov", "age":20, "sex":"M"} rejected
+13:18:42.723 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":null, "sex":"M"} rejected
+13:18:43.649 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 9
+13:18:44.770 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 8
+13:18:45.894 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 7
+13:18:47.013 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 6
+13:18:48.133 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 5
+13:18:49.248 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 4
+13:18:50.364 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 3
+13:18:51.476 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 2
+13:18:52.257 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:18:52.263 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:18:52.263 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:18:52.598 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 1
+13:19:02.257 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:19:06.162 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+13:19:06.192 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+13:19:06.544 [pool-4-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-2 - Connection is not available, request timed out after 30009ms.
+13:19:06.544 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:19:06.544 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:19:06.544 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:19:06.674 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+13:19:06.695 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+13:19:06.699 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+13:19:06.726 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+13:19:06.757 [pool-9-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start Kafka reader
+13:19:06.758 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:19:06.764 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 2 rules
+13:19:06.764 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:19:06.764 [pool-9-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Kafka consumer created
+13:19:06.764 [pool-9-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Set kafka topic : test_topic_in
+13:19:06.765 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start consumer reading
+13:19:07.059 [pool-9-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+13:19:07.200 [pool-11-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : age, function : NOT_EQUALS, value : 20)
+13:19:07.200 [pool-11-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 18
+13:19:07.200 [pool-11-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:19:07.200 [pool-11-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alexander_pushkin
+13:19:07.201 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alexander_pushkin", "age":18, "sex":"M"} accepted
+13:19:07.201 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Create kafka writer
+13:19:07.223 [pool-11-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : age, function : NOT_EQUALS, value : 20)
+13:19:07.223 [pool-11-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 
+13:19:07.223 [pool-11-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:19:07.223 [pool-11-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 
+13:19:07.223 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"", "age":"", "sex":"M"} rejected
+13:19:07.223 [pool-11-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : age, function : NOT_EQUALS, value : 20)
+13:19:07.223 [pool-11-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 19
+13:19:07.223 [pool-11-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:19:07.224 [pool-11-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : pushkin
+13:19:07.224 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"pushkin", "age":19, "sex":"M"} rejected
+13:19:07.224 [pool-11-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:19:07.224 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alex", "age":, "sex":"M"} rejected
+13:19:07.224 [pool-11-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : age, function : NOT_EQUALS, value : 20)
+13:19:07.224 [pool-11-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 18
+13:19:07.226 [pool-11-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Message does not contain field name
+13:19:07.226 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"age":18, "sex":"M"} rejected
+13:19:07.226 [pool-11-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:19:07.226 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message  rejected
+13:19:07.227 [pool-11-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : age, function : NOT_EQUALS, value : 20)
+13:19:07.227 [pool-11-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:19:07.228 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alex", "age":null, "sex":"M"} rejected
+13:19:07.229 [pool-11-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : age, function : NOT_EQUALS, value : 20)
+13:19:07.229 [pool-11-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 20
+13:19:07.230 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alex_ivanov", "age":20, "sex":"M"} rejected
+13:19:07.230 [pool-11-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Message does not contain field age
+13:19:07.230 [pool-11-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":null, "sex":"M"} rejected
+13:19:08.081 [pool-9-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+13:19:16.767 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:19:23.068 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+13:19:23.105 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+13:19:23.604 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+13:19:23.623 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+13:19:23.653 [pool-12-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start Kafka reader
+13:19:23.654 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:19:23.661 [pool-12-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Kafka consumer created
+13:19:23.661 [pool-12-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Set kafka topic : test_topic_in
+13:19:23.662 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start consumer reading
+13:19:23.663 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 1 rules
+13:19:23.663 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:19:23.957 [pool-12-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+13:19:24.106 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:19:24.106 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":, "age":, "sex":"M"} rejected
+13:19:24.106 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:19:24.106 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 
+13:19:24.106 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"", "age":"", "sex":"M"} rejected
+13:19:24.106 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:19:24.106 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : pushkin
+13:19:24.107 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"pushkin", "age":19, "sex":"M"} rejected
+13:19:24.107 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Message does not contain field name
+13:19:24.108 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"age":17, "sex":"M"} rejected
+13:19:24.108 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:19:24.108 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alex_ivanov
+13:19:24.108 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alex_ivanov", "age":18, "sex":"M"} rejected
+13:19:24.108 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:19:24.109 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message  rejected
+13:19:24.109 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:19:24.109 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alex
+13:19:24.109 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alex", "age":null, "sex":"M"} rejected
+13:19:24.109 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:19:24.109 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:19:24.109 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":null, "sex":"M"} rejected
+13:19:24.109 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:19:24.110 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alexander
+13:19:24.110 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alexander", "age":18, "sex":"M"} accepted
+13:19:24.110 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Create kafka writer
+13:19:24.979 [pool-12-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+13:19:24.980 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+13:19:24.986 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+13:19:24.989 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Wait until application updated rules from DB
+13:19:32.262 [pool-7-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-4 - Connection is not available, request timed out after 30005ms.
+13:19:32.262 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:19:32.262 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:19:32.263 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:19:33.661 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:19:33.669 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 2 rules
+13:19:33.669 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:19:36.545 [pool-4-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-2 - Connection is not available, request timed out after 30000ms.
+13:19:36.545 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:19:36.545 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:19:36.545 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:19:43.655 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:19:43.661 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 2 rules
+13:19:43.662 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:19:45.002 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:19:45.003 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":, "age":, "sex":"M"} rejected
+13:19:45.008 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:19:45.009 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 
+13:19:45.009 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"", "age":"", "sex":"M"} rejected
+13:19:45.016 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:19:45.016 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : pushkin
+13:19:45.016 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"pushkin", "age":19, "sex":"M"} rejected
+13:19:45.023 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Message does not contain field name
+13:19:45.023 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"age":17, "sex":"M"} rejected
+13:19:45.031 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:19:45.031 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alex_ivanov
+13:19:45.031 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alex_ivanov", "age":18, "sex":"M"} rejected
+13:19:45.038 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:19:45.038 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message  rejected
+13:19:45.043 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:19:45.043 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alex
+13:19:45.044 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alex", "age":null, "sex":"M"} rejected
+13:19:45.048 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:19:45.049 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:19:45.049 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":null, "sex":"M"} rejected
+13:19:45.055 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:19:45.055 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alexander
+13:19:45.056 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : age, function : EQUALS, value : 18)
+13:19:45.056 [pool-14-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 18
+13:19:45.056 [pool-14-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alexander", "age":18, "sex":"M"} accepted
+13:19:45.066 [pool-12-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+13:19:46.780 [pool-10-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-6 - Connection is not available, request timed out after 30013ms.
+13:19:46.780 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:19:46.780 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:19:46.780 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:19:53.661 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:19:58.446 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+13:19:58.476 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+13:19:58.946 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+13:19:58.964 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+13:19:58.969 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+13:19:58.999 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+13:19:59.031 [pool-15-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start Kafka reader
+13:19:59.031 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:19:59.037 [pool-15-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Kafka consumer created
+13:19:59.037 [pool-15-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Set kafka topic : test_topic_in
+13:19:59.038 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 2 rules
+13:19:59.038 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:19:59.038 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start consumer reading
+13:19:59.420 [pool-15-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+13:19:59.554 [pool-17-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:19:59.555 [pool-17-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 
+13:19:59.555 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"", "age":18, "sex":"M"} rejected
+13:19:59.555 [pool-17-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Message does not contain field name
+13:19:59.555 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"age":18, "sex":"M"} rejected
+13:19:59.555 [pool-17-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:19:59.555 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message  rejected
+13:19:59.555 [pool-17-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:19:59.555 [pool-17-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : ivanov
+13:19:59.555 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"ivanov", "age":18, "sex":"M"} rejected
+13:19:59.556 [pool-17-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:19:59.556 [pool-17-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : pushkin
+13:19:59.556 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"pushkin", "age":18, "sex":"M"} rejected
+13:19:59.556 [pool-17-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:19:59.556 [pool-17-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:19:59.557 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":null, "age":18, "sex":"M"} rejected
+13:19:59.557 [pool-17-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:19:59.557 [pool-17-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alexander_ivanov
+13:19:59.557 [pool-17-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : NOT_CONTAINS, value : ivanov)
+13:19:59.557 [pool-17-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alexander_ivanov
+13:19:59.557 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alexander_ivanov", "age":18, "sex":"M"} rejected
+13:19:59.557 [pool-17-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:19:59.557 [pool-17-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alexander_pushkin
+13:19:59.557 [pool-17-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : NOT_CONTAINS, value : ivanov)
+13:19:59.557 [pool-17-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alexander_pushkin
+13:19:59.557 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alexander_pushkin", "age":18, "sex":"M"} accepted
+13:19:59.557 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Create kafka writer
+13:20:00.441 [pool-15-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+13:20:02.264 [pool-7-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-4 - Connection is not available, request timed out after 30000ms.
+13:20:02.264 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:20:02.264 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:20:02.264 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:20:06.547 [pool-4-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-2 - Connection is not available, request timed out after 30000ms.
+13:20:06.547 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:20:06.547 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:20:06.547 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:20:09.042 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:20:16.791 [pool-10-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-6 - Connection is not available, request timed out after 30009ms.
+13:20:16.791 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:20:16.791 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:20:16.791 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:20:23.666 [pool-13-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-8 - Connection is not available, request timed out after 30005ms.
+13:20:23.666 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:20:23.666 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:20:23.666 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:20:26.796 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+13:20:26.837 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+13:20:27.577 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+13:20:27.599 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+13:20:27.650 [pool-20-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start Kafka reader
+13:20:27.651 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:20:27.657 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 1 rules
+13:20:27.657 [pool-20-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Kafka consumer created
+13:20:27.657 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:20:27.657 [pool-20-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Set kafka topic : test_topic_in
+13:20:27.658 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start consumer reading
+13:20:28.057 [pool-20-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+13:20:28.228 [pool-22-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:20:28.228 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":, "age":, "sex":"M"} rejected
+13:20:28.229 [pool-22-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : EQUALS, value : alex)
+13:20:28.229 [pool-22-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alexander
+13:20:28.229 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alexander", "age":null, "sex":"M"} rejected
+13:20:28.229 [pool-22-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : EQUALS, value : alex)
+13:20:28.229 [pool-22-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : pushkin
+13:20:28.229 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"pushkin", "age":19, "sex":"M"} rejected
+13:20:28.229 [pool-22-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : EQUALS, value : alex)
+13:20:28.229 [pool-22-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 
+13:20:28.229 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"", "age":"", "sex":"M"} rejected
+13:20:28.230 [pool-22-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Message does not contain field name
+13:20:28.230 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"age":17, "sex":"M"} rejected
+13:20:28.230 [pool-22-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : EQUALS, value : alex)
+13:20:28.231 [pool-22-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alex_ivanov
+13:20:28.231 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alex_ivanov", "age":18, "sex":"M"} rejected
+13:20:28.231 [pool-22-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:20:28.231 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message  rejected
+13:20:28.231 [pool-22-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : EQUALS, value : alex)
+13:20:28.231 [pool-22-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:20:28.232 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":null, "sex":"M"} rejected
+13:20:28.232 [pool-22-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : EQUALS, value : alex)
+13:20:28.233 [pool-22-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alex
+13:20:28.233 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alex", "age":18, "sex":"M"} accepted
+13:20:28.233 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Create kafka writer
+13:20:29.086 [pool-20-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+13:20:29.092 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+13:20:29.098 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+13:20:29.101 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Wait until application updated rules from DB
+13:20:32.265 [pool-7-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-4 - Connection is not available, request timed out after 30000ms.
+13:20:32.265 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:20:32.265 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:20:32.265 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:20:36.549 [pool-4-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-2 - Connection is not available, request timed out after 30002ms.
+13:20:36.549 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:20:36.549 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:20:36.549 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:20:37.654 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:20:37.660 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 1 rules
+13:20:37.660 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:20:39.046 [pool-16-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-10 - Connection is not available, request timed out after 30004ms.
+13:20:39.046 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:20:39.046 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:20:39.046 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:20:46.804 [pool-10-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-6 - Connection is not available, request timed out after 30013ms.
+13:20:46.804 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:20:46.804 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:20:46.804 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:20:47.650 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:20:47.655 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 1 rules
+13:20:47.655 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:20:49.113 [pool-22-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:20:49.113 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":, "age":, "sex":"M"} rejected
+13:20:49.118 [pool-22-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:20:49.118 [pool-22-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 
+13:20:49.118 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"", "age":"", "sex":"M"} rejected
+13:20:49.125 [pool-22-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:20:49.125 [pool-22-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : pushkin
+13:20:49.126 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"pushkin", "age":19, "sex":"M"} rejected
+13:20:49.131 [pool-22-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Message does not contain field name
+13:20:49.132 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"age":17, "sex":"M"} rejected
+13:20:49.137 [pool-22-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:20:49.138 [pool-22-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alex_ivanov
+13:20:49.138 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alex_ivanov", "age":18, "sex":"M"} rejected
+13:20:49.144 [pool-22-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:20:49.144 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message  rejected
+13:20:49.150 [pool-22-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:20:49.150 [pool-22-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alex
+13:20:49.150 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alex", "age":null, "sex":"M"} rejected
+13:20:49.160 [pool-22-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:20:49.161 [pool-22-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:20:49.161 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":null, "sex":"M"} rejected
+13:20:49.167 [pool-22-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:20:49.168 [pool-22-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alexander
+13:20:49.168 [pool-22-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alexander", "age":18, "sex":"M"} accepted
+13:20:49.179 [pool-20-thread-1] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+13:20:53.678 [pool-13-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-8 - Connection is not available, request timed out after 30011ms.
+13:20:53.681 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:20:53.682 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:20:53.683 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:20:57.651 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:21:02.279 [pool-7-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-4 - Connection is not available, request timed out after 30013ms.
+13:21:02.279 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:21:02.279 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:21:02.279 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:21:06.558 [pool-4-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-2 - Connection is not available, request timed out after 30007ms.
+13:21:06.558 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:21:06.558 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:21:06.558 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:21:07.091 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+13:21:07.122 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+13:21:07.605 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+13:21:07.628 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+13:21:07.661 [pool-23-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start Kafka reader
+13:21:07.661 [pool-24-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:21:07.667 [pool-24-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 1 rules
+13:21:07.668 [pool-24-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:21:07.668 [pool-23-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Kafka consumer created
+13:21:07.668 [pool-23-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Set kafka topic : test_topic_in
+13:21:07.671 [pool-25-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start consumer reading
+13:21:07.944 [pool-23-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+13:21:08.082 [pool-25-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : NOT_CONTAINS, value : alexander)
+13:21:08.082 [pool-25-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alexander_pushkin
+13:21:08.082 [pool-25-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alexander_pushkin"} rejected
+13:21:08.082 [pool-25-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : NOT_CONTAINS, value : alexander)
+13:21:08.082 [pool-25-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alexander_pushkin
+13:21:08.082 [pool-25-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alexander_pushkin", "age":19, "sex":"M"} rejected
+13:21:08.082 [pool-25-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : NOT_CONTAINS, value : alexander)
+13:21:08.082 [pool-25-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alexander_pushkin
+13:21:08.082 [pool-25-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alexander_pushkin", "age":null} rejected
+13:21:08.082 [pool-25-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : NOT_CONTAINS, value : alexander)
+13:21:08.082 [pool-25-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alexander_pushkin
+13:21:08.082 [pool-25-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alexander_pushkin", "sex":"M"} rejected
+13:21:08.082 [pool-25-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:21:08.082 [pool-25-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alexander_pushkin", "age":, "sex":null} rejected
+13:21:08.082 [pool-25-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : NOT_CONTAINS, value : alexander)
+13:21:08.082 [pool-25-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alex_pushkin
+13:21:08.082 [pool-25-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alex_pushkin", "age":18, "sex":"M"} accepted
+13:21:08.084 [pool-25-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Create kafka writer
+13:21:08.968 [pool-23-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+13:21:09.058 [pool-16-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-10 - Connection is not available, request timed out after 30010ms.
+13:21:09.058 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:21:09.058 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:21:09.059 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:21:16.810 [pool-10-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-6 - Connection is not available, request timed out after 30005ms.
+13:21:16.810 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:21:16.810 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:21:16.810 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:21:17.674 [pool-24-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:21:21.141 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+13:21:21.171 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+13:21:21.710 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+13:21:21.729 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+13:21:21.734 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+13:21:21.762 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+13:21:21.795 [pool-26-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start Kafka reader
+13:21:21.798 [pool-27-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:21:21.801 [pool-26-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Kafka consumer created
+13:21:21.801 [pool-26-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Set kafka topic : test_topic_in
+13:21:21.803 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start consumer reading
+13:21:21.808 [pool-27-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 2 rules
+13:21:21.808 [pool-27-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:21:22.140 [pool-26-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+13:21:22.240 [pool-28-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : age, function : EQUALS, value : 18)
+13:21:22.241 [pool-28-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 
+13:21:22.241 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"", "age":"", "sex":"M"} rejected
+13:21:22.241 [pool-28-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : age, function : EQUALS, value : 18)
+13:21:22.241 [pool-28-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:21:22.241 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alexander", "age":null, "sex":"M"} rejected
+13:21:22.241 [pool-28-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : age, function : EQUALS, value : 18)
+13:21:22.241 [pool-28-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 19
+13:21:22.241 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"pushkin", "age":19, "sex":"M"} rejected
+13:21:22.241 [pool-28-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : age, function : EQUALS, value : 18)
+13:21:22.241 [pool-28-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 18
+13:21:22.241 [pool-28-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Message does not contain field name
+13:21:22.241 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"age":18, "sex":"M"} rejected
+13:21:22.242 [pool-28-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : age, function : EQUALS, value : 18)
+13:21:22.242 [pool-28-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 18
+13:21:22.242 [pool-28-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : NOT_CONTAINS, value : ivanov)
+13:21:22.242 [pool-28-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alex_ivanov
+13:21:22.242 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alex_ivanov", "age":18, "sex":"M"} rejected
+13:21:22.242 [pool-28-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:21:22.242 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message  rejected
+13:21:22.242 [pool-28-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:21:22.242 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alexander", "age":, "sex":"M"} rejected
+13:21:22.242 [pool-28-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Message does not contain field age
+13:21:22.242 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":null, "sex":"M"} rejected
+13:21:22.242 [pool-28-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : age, function : EQUALS, value : 18)
+13:21:22.242 [pool-28-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 18
+13:21:22.242 [pool-28-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : NOT_CONTAINS, value : ivanov)
+13:21:22.242 [pool-28-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alexander_pushkin
+13:21:22.242 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alexander_pushkin", "age":18, "sex":"M"} accepted
+13:21:22.242 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Create kafka writer
+13:21:23.163 [pool-26-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+13:21:23.693 [pool-13-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-8 - Connection is not available, request timed out after 30008ms.
+13:21:23.695 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:21:23.697 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:21:23.697 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:21:27.667 [pool-21-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-12 - Connection is not available, request timed out after 30014ms.
+13:21:27.667 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:21:27.667 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:21:27.667 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:21:31.809 [pool-27-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:21:32.291 [pool-7-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-4 - Connection is not available, request timed out after 30011ms.
+13:21:32.291 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:21:32.291 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:21:32.291 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:21:35.815 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+13:21:35.846 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+13:21:36.379 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+13:21:36.400 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+13:21:36.434 [pool-29-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start Kafka reader
+13:21:36.434 [pool-30-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:21:36.441 [pool-29-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Kafka consumer created
+13:21:36.441 [pool-29-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Set kafka topic : test_topic_in
+13:21:36.442 [pool-31-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start consumer reading
+13:21:36.444 [pool-30-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 1 rules
+13:21:36.444 [pool-30-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:21:36.564 [pool-4-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-2 - Connection is not available, request timed out after 30005ms.
+13:21:36.564 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:21:36.564 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:21:36.564 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:21:36.724 [pool-29-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+13:21:36.931 [pool-31-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Message does not contain field name
+13:21:36.931 [pool-31-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"age":18, "sex":"M"} rejected
+13:21:36.931 [pool-31-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:21:36.931 [pool-31-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : no_alex
+13:21:36.931 [pool-31-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"no_alex", "age":18, "sex":"M"} rejected
+13:21:36.931 [pool-31-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:21:36.931 [pool-31-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message  rejected
+13:21:36.931 [pool-31-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:21:36.931 [pool-31-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:21:36.931 [pool-31-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":null, "age":18, "sex":"M"} rejected
+13:21:36.932 [pool-31-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:21:36.932 [pool-31-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 
+13:21:36.932 [pool-31-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"", "age":18, "sex":"M"} rejected
+13:21:36.933 [pool-31-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:21:36.933 [pool-31-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alexander_pushkin
+13:21:36.933 [pool-31-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alexander_pushkin", "age":18, "sex":"M"} accepted
+13:21:36.933 [pool-31-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Create kafka writer
+13:21:37.750 [pool-29-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+13:21:39.070 [pool-16-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-10 - Connection is not available, request timed out after 30010ms.
+13:21:39.070 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:21:39.071 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:21:39.071 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:21:46.438 [pool-30-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:21:46.825 [pool-10-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-6 - Connection is not available, request timed out after 30014ms.
+13:21:46.825 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:21:46.825 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:21:46.825 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:21:47.690 [pool-24-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-14 - Connection is not available, request timed out after 30015ms.
+13:21:47.690 [pool-24-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:21:47.690 [pool-24-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:21:47.690 [pool-24-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:21:50.936 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+13:21:50.970 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+13:21:51.463 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+13:21:51.486 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+13:21:51.491 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+13:21:51.525 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+13:21:51.551 [pool-32-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start Kafka reader
+13:21:51.551 [pool-33-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:21:51.556 [pool-32-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Kafka consumer created
+13:21:51.556 [pool-32-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Set kafka topic : test_topic_in
+13:21:51.557 [pool-33-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 2 rules
+13:21:51.557 [pool-33-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:21:51.557 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start consumer reading
+13:21:51.950 [pool-32-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+13:21:52.068 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : age, function : EQUALS, value : 18)
+13:21:52.068 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 18
+13:21:52.069 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:21:52.069 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alexander_pushkin
+13:21:52.069 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alexander_pushkin", "age":18, "sex":"M"} accepted
+13:21:52.069 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Create kafka writer
+13:21:52.088 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:21:52.088 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alexander", "age":, "sex":"M"} rejected
+13:21:52.089 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : age, function : EQUALS, value : 18)
+13:21:52.089 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 18
+13:21:52.089 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:21:52.089 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alex_ivanov
+13:21:52.089 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alex_ivanov", "age":18, "sex":"M"} rejected
+13:21:52.089 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:21:52.089 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message  rejected
+13:21:52.089 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : age, function : EQUALS, value : 18)
+13:21:52.089 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 18
+13:21:52.089 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:21:52.089 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : pushkin
+13:21:52.089 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"pushkin", "age":18, "sex":"M"} rejected
+13:21:52.089 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : age, function : EQUALS, value : 18)
+13:21:52.090 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:21:52.090 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alexander", "age":null, "sex":"M"} rejected
+13:21:52.090 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : age, function : EQUALS, value : 18)
+13:21:52.090 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 18
+13:21:52.090 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:21:52.090 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:21:52.090 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":null, "age":18, "sex":"M"} rejected
+13:21:52.090 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : age, function : EQUALS, value : 18)
+13:21:52.090 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 
+13:21:52.090 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"", "age":"", "sex":"M"} rejected
+13:21:52.090 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : age, function : EQUALS, value : 18)
+13:21:52.090 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 18
+13:21:52.091 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Message does not contain field name
+13:21:52.091 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"age":18, "sex":"M"} rejected
+13:21:52.091 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : age, function : EQUALS, value : 18)
+13:21:52.091 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 18
+13:21:52.091 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:21:52.091 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : ivanov
+13:21:52.091 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"ivanov", "age":18, "sex":"M"} rejected
+13:21:52.091 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : age, function : EQUALS, value : 18)
+13:21:52.091 [pool-34-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 19
+13:21:52.091 [pool-34-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alexander", "age":19, "sex":"M"} rejected
+13:21:52.966 [pool-32-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+13:21:53.699 [pool-13-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-8 - Connection is not available, request timed out after 30001ms.
+13:21:53.699 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:21:53.699 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:21:53.699 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:21:57.682 [pool-21-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-12 - Connection is not available, request timed out after 30015ms.
+13:21:57.682 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:21:57.682 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:21:57.682 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:22:01.560 [pool-33-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:22:01.812 [pool-27-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-16 - Connection is not available, request timed out after 30002ms.
+13:22:01.812 [pool-27-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:22:01.812 [pool-27-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:22:01.812 [pool-27-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:22:02.299 [pool-7-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-4 - Connection is not available, request timed out after 30008ms.
+13:22:02.299 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:22:02.299 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:22:02.299 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:22:06.487 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+13:22:06.516 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+13:22:06.572 [pool-4-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-2 - Connection is not available, request timed out after 30008ms.
+13:22:06.573 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:22:06.573 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:22:06.573 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:22:07.024 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+13:22:07.043 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+13:22:07.070 [pool-35-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start Kafka reader
+13:22:07.071 [pool-36-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:22:07.077 [pool-36-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 1 rules
+13:22:07.077 [pool-35-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Kafka consumer created
+13:22:07.077 [pool-36-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:22:07.077 [pool-35-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Set kafka topic : test_topic_in
+13:22:07.079 [pool-37-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start consumer reading
+13:22:07.376 [pool-35-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+13:22:07.528 [pool-37-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Message does not contain field name
+13:22:07.528 [pool-37-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"age":18, "sex":"M"} rejected
+13:22:07.528 [pool-37-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : EQUALS, value : alex)
+13:22:07.528 [pool-37-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : no_alex
+13:22:07.528 [pool-37-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"no_alex", "age":18, "sex":"M"} rejected
+13:22:07.528 [pool-37-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:22:07.528 [pool-37-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message  rejected
+13:22:07.528 [pool-37-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : EQUALS, value : alex)
+13:22:07.529 [pool-37-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:22:07.529 [pool-37-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":null, "age":18, "sex":"M"} rejected
+13:22:07.529 [pool-37-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : EQUALS, value : alex)
+13:22:07.529 [pool-37-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 
+13:22:07.529 [pool-37-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"", "age":18, "sex":"M"} rejected
+13:22:07.529 [pool-37-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : EQUALS, value : alex)
+13:22:07.529 [pool-37-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alex
+13:22:07.529 [pool-37-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alex", "age":18, "sex":"M"} accepted
+13:22:07.529 [pool-37-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Create kafka writer
+13:22:08.397 [pool-35-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+13:22:09.084 [pool-16-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-10 - Connection is not available, request timed out after 30012ms.
+13:22:09.084 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:22:09.084 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:22:09.084 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:22:16.453 [pool-30-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-18 - Connection is not available, request timed out after 30014ms.
+13:22:16.453 [pool-30-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:22:16.453 [pool-30-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:22:16.453 [pool-30-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:22:16.831 [pool-10-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-6 - Connection is not available, request timed out after 30005ms.
+13:22:16.831 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:22:16.831 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:22:16.831 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:22:17.082 [pool-36-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:22:17.694 [pool-24-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-14 - Connection is not available, request timed out after 30002ms.
+13:22:17.694 [pool-24-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:22:17.694 [pool-24-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:22:17.694 [pool-24-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:22:21.130 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+13:22:21.149 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+13:22:23.704 [pool-13-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-8 - Connection is not available, request timed out after 30004ms.
+13:22:23.704 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:22:23.704 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:22:23.704 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:22:27.694 [pool-21-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-12 - Connection is not available, request timed out after 30011ms.
+13:22:27.694 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:22:27.694 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:22:27.694 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:22:31.572 [pool-33-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-20 - Connection is not available, request timed out after 30012ms.
+13:22:31.573 [pool-33-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:22:31.573 [pool-33-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:22:31.573 [pool-33-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:22:31.824 [pool-27-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-16 - Connection is not available, request timed out after 30011ms.
+13:22:31.824 [pool-27-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:22:31.824 [pool-27-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:22:31.824 [pool-27-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:22:32.300 [pool-7-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-4 - Connection is not available, request timed out after 30000ms.
+13:22:32.300 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:22:32.300 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:22:32.300 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:22:35.240 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+13:22:35.269 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+13:22:35.778 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+13:22:35.804 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+13:22:35.808 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+13:22:35.831 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+13:22:35.858 [pool-40-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start Kafka reader
+13:22:35.858 [pool-41-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:22:35.864 [pool-40-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Kafka consumer created
+13:22:35.864 [pool-40-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Set kafka topic : test_topic_in
+13:22:35.864 [pool-41-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 2 rules
+13:22:35.864 [pool-41-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:22:35.865 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start consumer reading
+13:22:36.145 [pool-40-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+13:22:36.297 [pool-42-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : EQUALS, value : alex)
+13:22:36.297 [pool-42-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alex
+13:22:36.297 [pool-42-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : age, function : EQUALS, value : 18)
+13:22:36.297 [pool-42-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 19
+13:22:36.297 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alex", "age":19, "sex":"F"} rejected
+13:22:36.297 [pool-42-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : EQUALS, value : alex)
+13:22:36.297 [pool-42-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:22:36.297 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":null, "age":null, "sex":"M"} rejected
+13:22:36.298 [pool-42-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : EQUALS, value : alex)
+13:22:36.298 [pool-42-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 
+13:22:36.298 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"", "age":-, "sex":"M"} rejected
+13:22:36.298 [pool-42-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Message does not contain field name
+13:22:36.298 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"age":18, "sex":"M"} rejected
+13:22:36.298 [pool-42-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : EQUALS, value : alex)
+13:22:36.298 [pool-42-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:22:36.298 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":null, "age":"", "sex":"M"} rejected
+13:22:36.298 [pool-42-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:22:36.298 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message  rejected
+13:22:36.298 [pool-42-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : EQUALS, value : alex)
+13:22:36.298 [pool-42-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : no_alex
+13:22:36.298 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"no_alex", "age":18, "sex":"M"} rejected
+13:22:36.298 [pool-42-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : EQUALS, value : alex)
+13:22:36.298 [pool-42-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alex
+13:22:36.298 [pool-42-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : age, function : EQUALS, value : 18)
+13:22:36.298 [pool-42-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 18
+13:22:36.298 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alex", "age":18, "sex":"M"} accepted
+13:22:36.298 [pool-42-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Create kafka writer
+13:22:36.580 [pool-4-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-2 - Connection is not available, request timed out after 30006ms.
+13:22:36.580 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:22:36.580 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:22:36.580 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:22:37.164 [pool-40-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+13:22:39.092 [pool-16-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-10 - Connection is not available, request timed out after 30007ms.
+13:22:39.092 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:22:39.092 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:22:39.092 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:22:45.859 [pool-41-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:22:46.454 [pool-30-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-18 - Connection is not available, request timed out after 30001ms.
+13:22:46.454 [pool-30-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:22:46.454 [pool-30-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:22:46.454 [pool-30-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:22:46.846 [pool-10-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-6 - Connection is not available, request timed out after 30014ms.
+13:22:46.846 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:22:46.846 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:22:46.846 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:22:47.095 [pool-36-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-22 - Connection is not available, request timed out after 30012ms.
+13:22:47.095 [pool-36-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:22:47.095 [pool-36-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:22:47.095 [pool-36-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:22:47.708 [pool-24-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-14 - Connection is not available, request timed out after 30013ms.
+13:22:47.708 [pool-24-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:22:47.708 [pool-24-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:22:47.708 [pool-24-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:22:51.140 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+13:22:51.254 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+13:22:52.375 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+13:22:52.395 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+13:22:52.398 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+13:22:52.422 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+13:22:52.449 [pool-43-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start Kafka reader
+13:22:52.450 [pool-44-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:22:52.454 [pool-43-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Kafka consumer created
+13:22:52.454 [pool-43-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Set kafka topic : test_topic_in
+13:22:52.457 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start consumer reading
+13:22:52.460 [pool-44-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 2 rules
+13:22:52.460 [pool-44-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:22:52.814 [pool-43-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+13:22:52.987 [pool-45-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : EQUALS, value : alex)
+13:22:52.987 [pool-45-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:22:52.987 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":null, "age":null, "sex":"M"} rejected
+13:22:52.988 [pool-45-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : EQUALS, value : alex)
+13:22:52.988 [pool-45-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 
+13:22:52.988 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"", "age":-, "sex":"M"} rejected
+13:22:52.988 [pool-45-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Message does not contain field name
+13:22:52.988 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"age":18, "sex":"M"} rejected
+13:22:52.988 [pool-45-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : EQUALS, value : alex)
+13:22:52.988 [pool-45-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:22:52.988 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":null, "age":"", "sex":"M"} rejected
+13:22:52.988 [pool-45-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : EQUALS, value : alex)
+13:22:52.988 [pool-45-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alex
+13:22:52.988 [pool-45-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : age, function : NOT_EQUALS, value : 18)
+13:22:52.988 [pool-45-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 18
+13:22:52.988 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alex", "age":18, "sex":"M"} rejected
+13:22:52.988 [pool-45-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:22:52.988 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message  rejected
+13:22:52.989 [pool-45-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : EQUALS, value : alex)
+13:22:52.989 [pool-45-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : no_alex
+13:22:52.989 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"no_alex", "age":18, "sex":"M"} rejected
+13:22:52.989 [pool-45-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : EQUALS, value : alex)
+13:22:52.989 [pool-45-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alex
+13:22:52.989 [pool-45-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : age, function : NOT_EQUALS, value : 18)
+13:22:52.989 [pool-45-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 20
+13:22:52.989 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alex", "age":20, "sex":"M"} accepted
+13:22:52.989 [pool-45-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Create kafka writer
+13:22:53.720 [pool-13-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-8 - Connection is not available, request timed out after 30015ms.
+13:22:53.720 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:22:53.720 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:22:53.720 [pool-13-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:22:53.838 [pool-43-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+13:22:57.703 [pool-21-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-12 - Connection is not available, request timed out after 30008ms.
+13:22:57.703 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:22:57.703 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:22:57.703 [pool-21-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:23:01.575 [pool-33-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-20 - Connection is not available, request timed out after 30002ms.
+13:23:01.575 [pool-33-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:23:01.575 [pool-33-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:23:01.575 [pool-33-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:23:01.826 [pool-27-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-16 - Connection is not available, request timed out after 30002ms.
+13:23:01.826 [pool-27-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:23:01.826 [pool-27-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:23:01.826 [pool-27-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:23:02.313 [pool-7-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-4 - Connection is not available, request timed out after 30012ms.
+13:23:02.313 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:23:02.313 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:23:02.313 [pool-7-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:23:02.451 [pool-44-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:23:06.596 [pool-4-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-2 - Connection is not available, request timed out after 30015ms.
+13:23:06.596 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:23:06.596 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:23:06.596 [pool-4-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:23:08.134 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+13:23:08.164 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+13:23:08.642 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+13:23:08.663 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+13:23:08.666 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+13:23:08.689 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+13:23:08.716 [pool-46-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start Kafka reader
+13:23:08.716 [pool-47-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:23:08.721 [pool-46-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Kafka consumer created
+13:23:08.721 [pool-46-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Set kafka topic : test_topic_in
+13:23:08.721 [pool-48-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Start consumer reading
+13:23:08.725 [pool-47-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 2 rules
+13:23:08.725 [pool-47-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:23:09.032 [pool-46-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+13:23:09.092 [pool-16-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-10 - Connection is not available, request timed out after 30000ms.
+13:23:09.092 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:23:09.092 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:23:09.092 [pool-16-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:23:09.135 [pool-48-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Message does not contain field name
+13:23:09.135 [pool-48-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"age":18, "sex":"M"} rejected
+13:23:09.136 [pool-48-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:23:09.136 [pool-48-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message  rejected
+13:23:09.136 [pool-48-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:23:09.136 [pool-48-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alexander
+13:23:09.136 [pool-48-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : pushkin)
+13:23:09.136 [pool-48-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alexander
+13:23:09.136 [pool-48-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alexander", "age":18, "sex":"M"} rejected
+13:23:09.136 [pool-48-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:23:09.136 [pool-48-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : pushkin
+13:23:09.136 [pool-48-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"pushkin", "age":18, "sex":"M"} rejected
+13:23:09.136 [pool-48-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:23:09.136 [pool-48-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : 
+13:23:09.136 [pool-48-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"", "age":18, "sex":"M"} rejected
+13:23:09.136 [pool-48-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:23:09.136 [pool-48-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - An error occurred while processing message
+13:23:09.136 [pool-48-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":null, "age":18, "sex":"M"} rejected
+13:23:09.136 [pool-48-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : alexander)
+13:23:09.136 [pool-48-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alexander_pushkin
+13:23:09.136 [pool-48-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Check rule (field : name, function : CONTAINS, value : pushkin)
+13:23:09.136 [pool-48-thread-1] INFO  r.m.l.rpks.impl.RuleProcessorImpl - Checked message field value : alexander_pushkin
+13:23:09.137 [pool-48-thread-1] INFO  r.m.l.rpks.impl.KafkaReaderImpl - Message {"name":"alexander_pushkin", "age":18, "sex":"M"} accepted
+13:23:09.137 [pool-48-thread-1] INFO  r.m.l.rpks.impl.KafkaWriterImpl - Create kafka writer
+13:23:10.059 [pool-46-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+13:23:15.869 [pool-41-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-25 - Connection is not available, request timed out after 30009ms.
+13:23:15.869 [pool-41-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:23:15.869 [pool-41-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:23:15.869 [pool-41-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:23:16.458 [pool-30-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-18 - Connection is not available, request timed out after 30003ms.
+13:23:16.458 [pool-30-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:23:16.458 [pool-30-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:23:16.458 [pool-30-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:23:16.852 [pool-10-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-6 - Connection is not available, request timed out after 30005ms.
+13:23:16.852 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:23:16.852 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:23:16.852 [pool-10-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:23:17.101 [pool-36-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-22 - Connection is not available, request timed out after 30005ms.
+13:23:17.101 [pool-36-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:23:17.101 [pool-36-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:23:17.101 [pool-36-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:23:17.713 [pool-24-thread-1] INFO  r.mai.lessons.rpks.impl.DbReaderImpl - SQL error HikariPool-14 - Connection is not available, request timed out after 30004ms.
+13:23:17.713 [pool-24-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Read 0 rules
+13:23:17.713 [pool-24-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - End load rules from DB
+13:23:17.713 [pool-24-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+13:23:18.717 [pool-47-thread-1] INFO  r.m.l.rpks.impl.ServiceFiltering - Start loading rules from DB
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
