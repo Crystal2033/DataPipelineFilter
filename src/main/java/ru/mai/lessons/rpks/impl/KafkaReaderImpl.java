@@ -50,9 +50,10 @@ public final class KafkaReaderImpl implements KafkaReader {
             log.info("Start consumer reading");
             while (true) {
                 ConsumerRecords<String, String> consumerRecords = kafkaConsumer.poll(Duration.ofMillis(500));
+                Rule[] curRules = rulesGetter.get();
                 for (ConsumerRecord<String, String> consumerRecord : consumerRecords) {
                     Message curMessage = Message.builder().value(consumerRecord.value()).build();
-                    if (ruleProcessor.processing(curMessage, rulesGetter.get()).isFilterState()) {
+                    if (ruleProcessor.processing(curMessage, curRules).isFilterState()) {
                         log.info("Message " + curMessage.getValue() + " accepted");
                         kafkaWriter.processing(curMessage);
                     } else {
