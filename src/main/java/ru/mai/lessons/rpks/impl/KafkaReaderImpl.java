@@ -2,7 +2,6 @@ package ru.mai.lessons.rpks.impl;
 
 import com.typesafe.config.Config;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.consumer.CommitFailedException;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
@@ -66,7 +65,7 @@ public class KafkaReaderImpl implements KafkaReader {
             consumer.subscribe(Collections.singletonList(appConfig.getString("kafka.consumer.topic")));
 
             while (true) {
-                ConsumerRecords<String, String> records = consumer.poll(Long.MAX_VALUE);
+                ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(1000));
                 for (var localRecord : records) {
                     log.info("msg: {}", localRecord.value());
                     var msg = ruleProcessor.processing(new Message(localRecord.value(), false), rules);

@@ -1,6 +1,5 @@
 package ru.mai.lessons.rpks.impl;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +12,24 @@ import java.util.Objects;
 @Slf4j
 public class RuleProcessorImpl implements RuleProcessor {
     ObjectMapper mapper = new ObjectMapper();
+
+    boolean compare(String value, Rule rule){
+        if (Objects.equals(rule.getFilterFunctionName(), "equals")
+                && Objects.equals(value, rule.getFilterValue())) {
+            return true;
+        }
+        else if (Objects.equals(rule.getFilterFunctionName(), "contains")
+                && value.contains(rule.getFilterValue())) {
+            return true;
+        }
+        else if (Objects.equals(rule.getFilterFunctionName(), "not_equals")
+                && !Objects.equals(value, rule.getFilterValue())) {
+            return true;
+        }
+        else return Objects.equals(rule.getFilterFunctionName(), "not_contains")
+                    && !value.contains(rule.getFilterValue());
+    }
+
     @Override
     public Message processing(Message message, Rule[] rules) {
 
@@ -43,26 +60,12 @@ public class RuleProcessorImpl implements RuleProcessor {
                     message.setFilterState(false);
                     return message;
                 }
-                if (Objects.equals(rule.getFilterFunctionName(), "equals")
-                        && Objects.equals(value, rule.getFilterValue())) {
-                    message.setFilterState(true);
-                }
-                else if (Objects.equals(rule.getFilterFunctionName(), "contains")
-                        && value.contains(rule.getFilterValue())) {
-                    message.setFilterState(true);
-                }
-                else if (Objects.equals(rule.getFilterFunctionName(), "not_equals")
-                        && !Objects.equals(value, rule.getFilterValue())) {
-                    message.setFilterState(true);
-                }
-                else if (Objects.equals(rule.getFilterFunctionName(), "not_contains")
-                        && !value.contains(rule.getFilterValue())) {
-                    message.setFilterState(true);
-                }
-                else{
+                if (!compare(value, rule)) {
                     message.setFilterState(false);
-                    return  message;
+                    return message;
                 }
+
+                message.setFilterState(true);
             }
         } catch (Exception e){
             log.info("Json error :{}", e.toString());
