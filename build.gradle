@@ -9,6 +9,12 @@ repositories {
     mavenCentral()
 }
 
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
 dependencies {
     // logging
     implementation 'ch.qos.logback:logback-classic:1.4.5'
@@ -23,7 +29,7 @@ dependencies {
     // databases
     implementation 'org.postgresql:postgresql:42.5.4'
     implementation 'com.zaxxer:HikariCP:5.0.1'
-    implementation 'org.jooq:jooq:3.17.8'
+    implementation 'org.jooq:jooq:3.18.0'
 
     // json
     implementation 'com.fasterxml.jackson.core:jackson-core:2.14.2'
