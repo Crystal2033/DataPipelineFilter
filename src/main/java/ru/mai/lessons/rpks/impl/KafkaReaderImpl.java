@@ -66,19 +66,19 @@ public class KafkaReaderImpl implements KafkaReader {
             consumer.subscribe(Collections.singletonList(appConfig.getString("kafka.consumer.topic")));
 
             while (true) {
-                ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(1000));
+                ConsumerRecords<String, String> records = consumer.poll(Long.MAX_VALUE);
                 for (var localRecord : records) {
                     log.info("msg: {}", localRecord.value());
-                    var msg = ruleProcessor.processing(new Message(localRecord.value(), true), rules);
-                    producer.processing(msg);
-                }
-                try {
-                    consumer.commitSync();
-                } catch (CommitFailedException e) {
-                    log.error("KafkaReaderException: {}", e.toString());
+                    var msg = ruleProcessor.processing(new Message(localRecord.value(), false), rules);
+                    if (msg.isFilterState()) {
+                        log.info("try to send msg: {}", msg.getValue());
+                        producer.processing(msg);
+                    }
                 }
             }
         }
-
+        catch (Exception e) {
+            log.info("some kafka exc: {}", e.toString());
+        }
     }
 }
