@@ -54,10 +54,7 @@ public final class KafkaReaderImpl implements KafkaReader {
                 for (ConsumerRecord<String, String> consumerRecord : consumerRecords) {
                     Message curMessage = Message.builder().value(consumerRecord.value()).build();
                     if (ruleProcessor.processing(curMessage, curRules).isFilterState()) {
-                        log.info("Message " + curMessage.getValue() + " accepted");
                         kafkaWriter.processing(curMessage);
-                    } else {
-                        log.info("Message " + curMessage.getValue() + " rejected");
                     }
                 }
             }

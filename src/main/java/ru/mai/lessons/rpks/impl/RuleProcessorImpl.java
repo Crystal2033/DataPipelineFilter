@@ -15,34 +15,39 @@ import java.util.stream.Collectors;
 
 @Slf4j
 public final class RuleProcessorImpl implements RuleProcessor {
-    public static class FilterFunctions {
-        private FilterFunctions() {
+
+    public enum FilterFunctions {
+        EQUALS_OPERATION("EQUALS"),
+        NOT_EQUALS("NOT_EQUALS"),
+        CONTAINS("CONTAINS"),
+        NOT_CONTAINS("NOT_CONTAINS");
+
+        private final String func;
+
+        FilterFunctions(String func) {
+            this.func = func;
         }
 
-        public static final String EQUALS_OPERATION = "EQUALS";
-        public static final String NOT_EQUALS = "NOT_EQUALS";
-        public static final String CONTAINS = "CONTAINS";
-        public static final String NOT_CONTAINS = "NOT_CONTAINS";
+        @Override
+        public String toString() {
+            return func;
+        }
     }
 
     private final Map<String, BiPredicate<String, String>> filterFunctionsProcesses = Map.of(
-            FilterFunctions.EQUALS_OPERATION, String::equals,
-            FilterFunctions.NOT_EQUALS, (messageValue, filterValue) -> !messageValue.equals(filterValue),
-            FilterFunctions.CONTAINS, String::contains,
-            FilterFunctions.NOT_CONTAINS, (messageValue, filterValue) -> !messageValue.contains(filterValue));
+            FilterFunctions.EQUALS_OPERATION.toString(), String::equals,
+            FilterFunctions.NOT_EQUALS.toString(), (messageValue, filterValue) -> !messageValue.equals(filterValue),
+            FilterFunctions.CONTAINS.toString(), String::contains,
+            FilterFunctions.NOT_CONTAINS.toString(), (messageValue, filterValue) -> !messageValue.contains(filterValue));
 
 
     private Message processMessage(Message message, JsonObject jsonMessage, List<Rule> groupedRules) {
         for (Rule rule : groupedRules) {
             if (jsonMessage.has(rule.getFieldName())) {
-                log.info("Check rule (field : %s, function : %s, value : %s)".formatted(rule.getFieldName(), rule.getFilterFunctionName(),
-                        rule.getFilterValue()));
                 String curMessageField = jsonMessage.get(rule.getFieldName()).getAsString();
-                log.info("Checked message field value : " + curMessageField);
                 boolean checkRes = filterFunctionsProcesses.get(rule.getFilterFunctionName()).test(curMessageField, rule.getFilterValue());
                 message.setFilterState(checkRes);
             } else {
-                log.info("Message does not contain field " + rule.getFieldName());
                 message.setFilterState(false);
             }
             if (!message.isFilterState()) {
@@ -55,10 +60,8 @@ public final class RuleProcessorImpl implements RuleProcessor {
     @Override
     public Message processing(Message message, Rule[] rules) {
         if (message == null) {
-            log.info("Passed null message");
             return null;
         } else if (message.getValue() == null) {
-            log.info("Passed message has null value");
             message.setFilterState(false);
             return message;
         } else {
@@ -70,9 +73,8 @@ public final class RuleProcessorImpl implements RuleProcessor {
                         break;
                     }
                 }
-
             } catch (Exception ex) {
-                log.info("An error occurred while processing message");
+                log.error("An error occurred while processing message");
                 message.setFilterState(false);
             }
             return message;
