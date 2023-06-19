@@ -14,17 +14,15 @@ public class ServiceFiltering implements Service {
     List<Rule> rules = new ArrayList<>();
     private Config config;
     private ConfigurationReader reader = new ConfigurationReader();
-    private DataBaseReader dataBaseReader = new DataBaseReader();
     private KafkaReaderRealization kafkaReader = new KafkaReaderRealization();
     @Override
     public void start(Config config) {
-        config = reader.loadConfig();
+
 
         // написать код реализации сервиса фильтрации
         kafkaReader.setConfig(config);
         kafkaReader.setRuleList(rules);
         kafkaReader.processing();
-
     }
 
 

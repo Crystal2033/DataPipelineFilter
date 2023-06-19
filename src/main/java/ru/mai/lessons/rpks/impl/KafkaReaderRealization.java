@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.serialization.StringDeserializer;
 import ru.mai.lessons.rpks.KafkaReader;
 import ru.mai.lessons.rpks.model.Message;
 import ru.mai.lessons.rpks.model.Rule;
@@ -13,8 +14,9 @@ import ru.mai.lessons.rpks.scheduler.RulesScheduler;
 
 import java.sql.SQLException;
 import java.time.Duration;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
+import java.util.Objects;
 import java.util.Properties;
 
 @Slf4j
@@ -25,10 +27,13 @@ public class KafkaReaderRealization implements KafkaReader {
 
     private List<Rule> ruleList;
     private KafkaConsumer<String, String> kafkaConsumer;
+    private KafkaWriterRealization kafkaWriter = new KafkaWriterRealization();
+    private KafkaRuleProcessor ruleProcessor = new KafkaRuleProcessor();
     public Config config;
     @Override
     public void processing() {
         createKafkaConsumer();
+        kafkaWriter.createProducer(config);
 
         // Run DataBase reader
         RulesScheduler rulesScheduler = new RulesScheduler();
@@ -37,20 +42,23 @@ public class KafkaReaderRealization implements KafkaReader {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        Object locker = rulesScheduler.getChecker().getLock();
 
         log.info("Start consumer cycle");
         while (true) {
             ConsumerRecords<String, String> consumerRecords = kafkaConsumer.poll(Duration.ofMillis(500));
-            ruleList = rulesScheduler.getRules();
+            synchronized (locker) {
+                ruleList = rulesScheduler.getRules();
 
             for (ConsumerRecord<String, String> consumerRecord : consumerRecords) {
                 Message curMessage = Message.builder().value(consumerRecord.value()).build();
-//                if (ruleProcessor.processing(curMessage, curRules).isFilterState()) {
-//                    log.info("Message " + curMessage.getValue() + " accepted");
-//                    kafkaWriter.processing(curMessage);
-//                } else {
-//                    log.info("Message " + curMessage.getValue() + " rejected");
-//                }
+                if (ruleProcessor.processing(curMessage, ruleList.toArray(Rule[]::new)).isFilterState()) {
+                    log.info("Message " + curMessage.getValue() + " satisfies rules");
+                    kafkaWriter.processing(curMessage);
+                } else {
+                    log.info("Message " + curMessage.getValue() + " does not satisfies current rules");
+                }
+            }
             }
         }
     }
@@ -67,6 +75,7 @@ public class KafkaReaderRealization implements KafkaReader {
         properties.put("bootstrap.servers", config.getString("kafka.consumer.bootstrap.servers"));
         properties.put("auto.offset.reset", config.getString("kafka.consumer.auto.offset.reset"));
 
-        kafkaConsumer = new KafkaConsumer<>(properties);
+        kafkaConsumer = new KafkaConsumer<>(properties, new StringDeserializer(), new StringDeserializer());
+        kafkaConsumer.subscribe(Collections.singletonList(config.getString("kafka.consumer.topic")));
     }
 }

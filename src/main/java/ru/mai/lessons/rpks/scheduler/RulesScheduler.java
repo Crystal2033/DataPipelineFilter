@@ -1,6 +1,7 @@
 package ru.mai.lessons.rpks.scheduler;
 
 import com.typesafe.config.Config;
+import lombok.Getter;
 import ru.mai.lessons.rpks.model.Rule;
 
 import java.sql.SQLException;
@@ -10,14 +11,14 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+@Getter
 public class RulesScheduler {
     private ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
     private RulesUpdater checker = new RulesUpdater();
 
     public void runScheduler(Config config) throws SQLException {
         checker.rules = new ArrayList<>();
-        checker.setDBParams(config);
-        checker.initReader();
+        checker.initReader(config);
         service.scheduleAtFixedRate(checker, 0,
                 config.getInt("application.updateIntervalSec"), TimeUnit.SECONDS);
     }

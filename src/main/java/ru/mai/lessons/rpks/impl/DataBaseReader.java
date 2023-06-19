@@ -1,9 +1,8 @@
 package ru.mai.lessons.rpks.impl;
 
+import com.typesafe.config.Config;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.jooq.DSLContext;
 import org.jooq.SQLDialect;
@@ -14,20 +13,22 @@ import ru.mai.lessons.rpks.model.Rule;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-@Getter
-@Setter
 @Slf4j
 public class DataBaseReader implements DbReader {
 
-    // DB params
-    private String url;
-    private String pass;
-    private String user;
-    private String driver;
-
     // Hikari
-    private final HikariConfig config = new HikariConfig();
+    private HikariConfig hikariConfig = new HikariConfig();
     private static HikariDataSource hikariDataSource = new HikariDataSource();
+
+    public DataBaseReader(Config config) {
+        //hikariConfig.setJdbcUrl(config.getString("db.jdbcUrl"));
+        hikariConfig.setJdbcUrl(config.getString("db.jdbcUrl"));
+        hikariConfig.setUsername(config.getString("db.user"));
+        hikariConfig.setPassword(config.getString("db.password"));
+        hikariConfig.setDriverClassName(config.getString("db.driver"));
+        log.info("Init HikariDataSource");
+        hikariDataSource = new HikariDataSource(hikariConfig);
+    }
 
     // JOOQ to make requests
     private DSLContext dslContext;
@@ -36,16 +37,7 @@ public class DataBaseReader implements DbReader {
     public Rule[] readRulesFromDB() {
         return dslContext.select().from("public.filter_rules").fetchInto(Rule.class).toArray(Rule[]::new);
     }
-
-    public void setHikariParams() {
-        config.setJdbcUrl(url);
-        config.setUsername(user);
-        config.setPassword(pass);
-        //config.setDriverClassName(driver);
-    }
     public boolean connectToDataBase() throws SQLException {
-        log.info("Init HikariDataSource");
-        hikariDataSource = new HikariDataSource(config);
         log.info("Init DSL");
         dslContext = DSL.using(hikariDataSource, SQLDialect.POSTGRES);
 
