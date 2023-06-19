@@ -1,421 +1,454 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ru.mai.lessons.rpks.ServiceTest" tests="18" skipped="0" failures="0" errors="0" timestamp="2023-06-19T17:12:49" hostname="MSK01-WS779279" time="231.616">
+<testsuite name="ru.mai.lessons.rpks.ServiceTest" tests="18" skipped="0" failures="0" errors="0" timestamp="2023-06-19T17:44:54" hostname="MSK01-WS779279" time="224.965">
   <properties/>
-  <testcase name="testKafkaWriteReadMessage()" classname="ru.mai.lessons.rpks.ServiceTest" time="12.448"/>
-  <testcase name="testServiceFilteringNotEquals()" classname="ru.mai.lessons.rpks.ServiceTest" time="10.518"/>
-  <testcase name="testServiceFilteringNotRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="19.476"/>
-  <testcase name="testServiceFilteringContainsNotEqualsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="10.115"/>
-  <testcase name="testServiceFilteringAddNewRule()" classname="ru.mai.lessons.rpks.ServiceTest" time="30.296"/>
-  <testcase name="testServiceFilteringContainsNotContainsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="9.834"/>
-  <testcase name="testStartPostgreSQL()" classname="ru.mai.lessons.rpks.ServiceTest" time="8.516"/>
-  <testcase name="testServiceFilteringUpdateRule()" classname="ru.mai.lessons.rpks.ServiceTest" time="30.329"/>
-  <testcase name="testServiceFilteringNotContains()" classname="ru.mai.lessons.rpks.ServiceTest" time="10.147"/>
-  <testcase name="testServiceFilteringEqualsNotContainsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="10.513"/>
-  <testcase name="testServiceFilteringContains()" classname="ru.mai.lessons.rpks.ServiceTest" time="10.431"/>
-  <testcase name="testServiceFilteringEqualsContainsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="10.51"/>
-  <testcase name="testServiceFilteringEquals()" classname="ru.mai.lessons.rpks.ServiceTest" time="9.857"/>
-  <testcase name="testPostgreSQLReadValues()" classname="ru.mai.lessons.rpks.ServiceTest" time="8.947"/>
-  <testcase name="testServiceFilteringEqualsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="10.604"/>
-  <testcase name="testServiceFilteringEqualsNotEqualsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="10.316"/>
-  <testcase name="testServiceFilteringContainsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="10.459"/>
-  <testcase name="testStartKafka()" classname="ru.mai.lessons.rpks.ServiceTest" time="8.293"/>
-  <system-out><![CDATA[20:12:49,340 |-INFO in ch.qos.logback.classic.LoggerContext[default] - This is logback-classic version 1.4.5
-20:12:49,358 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.xml]
-20:12:49,360 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Found resource [logback.xml] at [file:/C:/Users/n.petrov/IdeaProjects/JavaServiceFiltering/build/resources/test/logback.xml]
-20:12:49,446 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [CONSOLE]
-20:12:49,446 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
-20:12:49,478 |-WARN in ch.qos.logback.core.ConsoleAppender[CONSOLE] - This appender no longer admits a layout as a sub-component, set an encoder instead.
-20:12:49,478 |-WARN in ch.qos.logback.core.ConsoleAppender[CONSOLE] - To ensure compatibility, wrapping your layout in LayoutWrappingEncoder.
-20:12:49,478 |-WARN in ch.qos.logback.core.ConsoleAppender[CONSOLE] - See also http://logback.qos.ch/codes.html#layoutInsteadOfEncoder for details
-20:12:49,479 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting level of logger [ru.mai.lessons.rpks] to INFO
-20:12:49,482 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting additivity of logger [ru.mai.lessons.rpks] to false
-20:12:49,482 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [CONSOLE] to Logger[ru.mai.lessons.rpks]
-20:12:49,483 |-INFO in ch.qos.logback.classic.model.processor.RootLoggerModelHandler - Setting level of ROOT logger to ERROR
-20:12:49,483 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [CONSOLE] to Logger[ROOT]
-20:12:49,483 |-INFO in ch.qos.logback.core.model.processor.DefaultProcessor@1c3b9394 - End of configuration.
-20:12:49,484 |-INFO in ch.qos.logback.classic.joran.JoranConfigurator@6f2cfcc2 - Registering current configuration as safe fallback point
+  <testcase name="testKafkaWriteReadMessage()" classname="ru.mai.lessons.rpks.ServiceTest" time="12.593"/>
+  <testcase name="testServiceFilteringNotEquals()" classname="ru.mai.lessons.rpks.ServiceTest" time="10.269"/>
+  <testcase name="testServiceFilteringNotRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="19.312"/>
+  <testcase name="testServiceFilteringContainsNotEqualsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="9.442"/>
+  <testcase name="testServiceFilteringAddNewRule()" classname="ru.mai.lessons.rpks.ServiceTest" time="29.612"/>
+  <testcase name="testServiceFilteringContainsNotContainsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="9.647"/>
+  <testcase name="testStartPostgreSQL()" classname="ru.mai.lessons.rpks.ServiceTest" time="8.243"/>
+  <testcase name="testServiceFilteringUpdateRule()" classname="ru.mai.lessons.rpks.ServiceTest" time="29.919"/>
+  <testcase name="testServiceFilteringNotContains()" classname="ru.mai.lessons.rpks.ServiceTest" time="9.702"/>
+  <testcase name="testServiceFilteringEqualsNotContainsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="9.771"/>
+  <testcase name="testServiceFilteringContains()" classname="ru.mai.lessons.rpks.ServiceTest" time="9.773"/>
+  <testcase name="testServiceFilteringEqualsContainsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="9.926"/>
+  <testcase name="testServiceFilteringEquals()" classname="ru.mai.lessons.rpks.ServiceTest" time="9.932"/>
+  <testcase name="testPostgreSQLReadValues()" classname="ru.mai.lessons.rpks.ServiceTest" time="8.367"/>
+  <testcase name="testServiceFilteringEqualsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="9.97"/>
+  <testcase name="testServiceFilteringEqualsNotEqualsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="9.811"/>
+  <testcase name="testServiceFilteringContainsTwoRules()" classname="ru.mai.lessons.rpks.ServiceTest" time="10.088"/>
+  <testcase name="testStartKafka()" classname="ru.mai.lessons.rpks.ServiceTest" time="8.583"/>
+  <system-out><![CDATA[20:44:54,732 |-INFO in ch.qos.logback.classic.LoggerContext[default] - This is logback-classic version 1.4.5
+20:44:54,753 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.xml]
+20:44:54,756 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Found resource [logback.xml] at [file:/C:/Users/n.petrov/IdeaProjects/JavaServiceFiltering/build/resources/test/logback.xml]
+20:44:54,853 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [CONSOLE]
+20:44:54,853 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
+20:44:54,889 |-WARN in ch.qos.logback.core.ConsoleAppender[CONSOLE] - This appender no longer admits a layout as a sub-component, set an encoder instead.
+20:44:54,889 |-WARN in ch.qos.logback.core.ConsoleAppender[CONSOLE] - To ensure compatibility, wrapping your layout in LayoutWrappingEncoder.
+20:44:54,889 |-WARN in ch.qos.logback.core.ConsoleAppender[CONSOLE] - See also http://logback.qos.ch/codes.html#layoutInsteadOfEncoder for details
+20:44:54,890 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting level of logger [ru.mai.lessons.rpks] to INFO
+20:44:54,892 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting additivity of logger [ru.mai.lessons.rpks] to false
+20:44:54,893 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [CONSOLE] to Logger[ru.mai.lessons.rpks]
+20:44:54,894 |-INFO in ch.qos.logback.classic.model.processor.RootLoggerModelHandler - Setting level of ROOT logger to ERROR
+20:44:54,894 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [CONSOLE] to Logger[ROOT]
+20:44:54,894 |-INFO in ch.qos.logback.core.model.processor.DefaultProcessor@1c3b9394 - End of configuration.
+20:44:54,894 |-INFO in ch.qos.logback.classic.joran.JoranConfigurator@6f2cfcc2 - Registering current configuration as safe fallback point
 
-20:12:58.048 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Bootstrap.servers: PLAINTEXT://localhost:51297
-20:12:58.050 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-20:12:58.257 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Creating topics
-20:12:58.756 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Created topics
-20:12:58.756 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Sending message
-20:12:58.836 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Sent message
-20:12:58.836 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Consumer subscribe
-20:12:58.837 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Consumer start reading
-20:12:58.939 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-20:13:00.041 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 9
-20:13:01.057 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-20:13:09.321 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-20:13:10.000 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
-20:13:10.289 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-20:13:10.314 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-20:13:10.386 [pool-2-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Create new consumer
-20:13:10.397 [pool-2-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init HikariDataSource
-20:13:10.412 [pool-2-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init DSL
-20:13:10.414 [pool-2-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Start consumer cycle
-20:13:10.587 [pool-2-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-20:13:10.778 [pool-2-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "sex":"M"} does not satisfies current rules
-20:13:10.778 [pool-2-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":null} does not satisfies current rules
-20:13:10.779 [pool-2-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":19, "sex":"M"} does not satisfies current rules
-20:13:10.780 [pool-2-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex"} does not satisfies current rules
-20:13:10.781 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":"alex", "age":, "sex":null} have uncorrected data
-20:13:10.781 [pool-2-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":, "sex":null} does not satisfies current rules
-20:13:10.781 [pool-2-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"no_alex", "age":18, "sex":"M"} satisfies rules
-20:13:10.781 [pool-2-thread-1] INFO  r.m.l.r.impl.KafkaWriterRealization - send message - {"name":"no_alex", "age":18, "sex":"M"}
-20:13:11.593 [pool-2-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-20:13:19.712 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-20:13:19.729 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
-20:13:20.030 [pool-4-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Create new consumer
-20:13:20.039 [pool-4-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init HikariDataSource
-20:13:20.054 [pool-4-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init DSL
-20:13:20.056 [pool-4-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Start consumer cycle
-20:13:20.230 [pool-4-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-20:13:20.269 [pool-4-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message  have uncorrected data
-20:13:20.270 [pool-4-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message  does not satisfies current rules
-20:13:20.270 [pool-4-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":null, "sex":"M"} does not satisfies current rules
-20:13:20.273 [pool-4-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex_ivanov", "age":20, "sex":"M"} does not satisfies current rules
-20:13:20.274 [pool-4-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "sex":"M"} does not satisfies current rules
-20:13:20.274 [pool-4-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"", "age":"", "sex":"M"} does not satisfies current rules
-20:13:20.275 [pool-4-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"pushkin", "age":19, "sex":"M"} does not satisfies current rules
-20:13:20.275 [pool-4-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":"alex", "age":, "sex":"M"} have uncorrected data
-20:13:20.276 [pool-4-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":, "sex":"M"} does not satisfies current rules
-20:13:20.276 [pool-4-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"age":18, "sex":"M"} does not satisfies current rules
-20:13:21.334 [pool-4-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 9
-20:13:22.436 [pool-4-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 8
-20:13:23.538 [pool-4-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 7
-20:13:24.641 [pool-4-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 6
-20:13:25.743 [pool-4-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 5
-20:13:26.846 [pool-4-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 4
-20:13:27.947 [pool-4-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 3
-20:13:29.049 [pool-4-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 2
-20:13:30.152 [pool-4-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 1
-20:13:39.509 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-20:13:39.524 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
-20:13:39.831 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-20:13:39.845 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-20:13:39.847 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-20:13:39.867 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-20:13:39.869 [pool-6-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Create new consumer
-20:13:39.876 [pool-6-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init HikariDataSource
-20:13:39.891 [pool-6-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init DSL
-20:13:39.893 [pool-6-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Start consumer cycle
-20:13:40.076 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-20:13:40.141 [pool-6-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander_pushkin", "age":18, "sex":"M"} satisfies rules
-20:13:40.141 [pool-6-thread-1] INFO  r.m.l.r.impl.KafkaWriterRealization - send message - {"name":"alexander_pushkin", "age":18, "sex":"M"}
-20:13:40.148 [pool-6-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message  have uncorrected data
-20:13:40.148 [pool-6-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message  does not satisfies current rules
-20:13:40.149 [pool-6-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":"alex", "age":null, "sex":"M"} have uncorrected data in field age
-20:13:40.149 [pool-6-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":null, "sex":"M"} does not satisfies current rules
-20:13:40.150 [pool-6-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex_ivanov", "age":20, "sex":"M"} does not satisfies current rules
-20:13:40.150 [pool-6-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":null, "sex":"M"} have uncorrected data in field age
-20:13:40.150 [pool-6-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "sex":"M"} does not satisfies current rules
-20:13:40.151 [pool-6-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"", "age":"", "sex":"M"} does not satisfies current rules
-20:13:40.151 [pool-6-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"pushkin", "age":19, "sex":"M"} does not satisfies current rules
-20:13:40.152 [pool-6-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":"alex", "age":, "sex":"M"} have uncorrected data
-20:13:40.152 [pool-6-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":, "sex":"M"} does not satisfies current rules
-20:13:40.152 [pool-6-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"age":18, "sex":"M"} have uncorrected data in field name
-20:13:40.153 [pool-6-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"age":18, "sex":"M"} does not satisfies current rules
-20:13:41.077 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-20:13:49.613 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-20:13:49.630 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
-20:13:50.214 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-20:13:50.228 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-20:13:50.231 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Create new consumer
-20:13:50.238 [pool-8-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init HikariDataSource
-20:13:50.256 [pool-8-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init DSL
-20:13:50.257 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Start consumer cycle
-20:13:50.441 [pool-8-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-20:13:50.485 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message  have uncorrected data
-20:13:50.485 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message  does not satisfies current rules
-20:13:50.485 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":null, "sex":"M"} does not satisfies current rules
-20:13:50.486 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":null, "sex":"M"} have uncorrected data in field name
-20:13:50.486 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "sex":"M"} does not satisfies current rules
-20:13:50.486 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":, "age":, "sex":"M"} have uncorrected data
-20:13:50.486 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":, "age":, "sex":"M"} does not satisfies current rules
-20:13:50.487 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"", "age":"", "sex":"M"} does not satisfies current rules
-20:13:50.487 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"pushkin", "age":19, "sex":"M"} does not satisfies current rules
-20:13:50.488 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"age":17, "sex":"M"} have uncorrected data in field name
-20:13:50.488 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"age":17, "sex":"M"} does not satisfies current rules
-20:13:50.488 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex_ivanov", "age":18, "sex":"M"} does not satisfies current rules
-20:13:50.488 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander", "age":18, "sex":"M"} satisfies rules
-20:13:50.488 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaWriterRealization - send message - {"name":"alexander", "age":18, "sex":"M"}
-20:13:51.450 [pool-8-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-20:13:51.450 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-20:13:51.454 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-20:13:51.455 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Wait until application updated rules from DB
-20:14:11.463 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message  have uncorrected data
-20:14:11.463 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message  does not satisfies current rules
-20:14:11.465 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":null, "sex":"M"} does not satisfies current rules
-20:14:11.467 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":null, "sex":"M"} have uncorrected data in field name
-20:14:11.467 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "sex":"M"} does not satisfies current rules
-20:14:11.471 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":, "age":, "sex":"M"} have uncorrected data
-20:14:11.471 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":, "age":, "sex":"M"} does not satisfies current rules
-20:14:11.473 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"", "age":"", "sex":"M"} does not satisfies current rules
-20:14:11.476 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"pushkin", "age":19, "sex":"M"} does not satisfies current rules
-20:14:11.479 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"age":17, "sex":"M"} have uncorrected data in field name
-20:14:11.479 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"age":17, "sex":"M"} does not satisfies current rules
-20:14:11.482 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex_ivanov", "age":18, "sex":"M"} does not satisfies current rules
-20:14:11.484 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander", "age":18, "sex":"M"} satisfies rules
-20:14:11.484 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaWriterRealization - send message - {"name":"alexander", "age":18, "sex":"M"}
-20:14:11.489 [pool-8-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-20:14:19.652 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-20:14:19.668 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
-20:14:19.963 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-20:14:19.975 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-20:14:19.978 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-20:14:19.997 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-20:14:20.000 [pool-10-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Create new consumer
-20:14:20.008 [pool-10-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init HikariDataSource
-20:14:20.026 [pool-10-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init DSL
-20:14:20.027 [pool-10-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Start consumer cycle
-20:14:20.201 [pool-10-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-20:14:20.229 [pool-10-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander_pushkin", "age":18, "sex":"M"} satisfies rules
-20:14:20.229 [pool-10-thread-1] INFO  r.m.l.r.impl.KafkaWriterRealization - send message - {"name":"alexander_pushkin", "age":18, "sex":"M"}
-20:14:20.235 [pool-10-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message  have uncorrected data
-20:14:20.235 [pool-10-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message  does not satisfies current rules
-20:14:20.236 [pool-10-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"ivanov", "age":18, "sex":"M"} does not satisfies current rules
-20:14:20.236 [pool-10-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"pushkin", "age":18, "sex":"M"} does not satisfies current rules
-20:14:20.236 [pool-10-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":null, "age":18, "sex":"M"} have uncorrected data in field name
-20:14:20.236 [pool-10-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "age":18, "sex":"M"} does not satisfies current rules
-20:14:20.236 [pool-10-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander_ivanov", "age":18, "sex":"M"} does not satisfies current rules
-20:14:20.237 [pool-10-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"", "age":18, "sex":"M"} does not satisfies current rules
-20:14:20.237 [pool-10-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"age":18, "sex":"M"} have uncorrected data in field name
-20:14:20.237 [pool-10-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"age":18, "sex":"M"} does not satisfies current rules
-20:14:21.203 [pool-10-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-20:14:38.241 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-20:14:38.257 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
-20:14:38.577 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-20:14:38.590 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-20:14:38.593 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Create new consumer
-20:14:38.598 [pool-13-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init HikariDataSource
-20:14:38.612 [pool-13-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init DSL
-20:14:38.614 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Start consumer cycle
-20:14:38.790 [pool-13-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-20:14:38.836 [pool-13-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message  have uncorrected data
-20:14:38.836 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message  does not satisfies current rules
-20:14:38.837 [pool-13-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":null, "sex":"M"} have uncorrected data in field name
-20:14:38.837 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "sex":"M"} does not satisfies current rules
-20:14:38.837 [pool-13-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":, "age":, "sex":"M"} have uncorrected data
-20:14:38.837 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":, "age":, "sex":"M"} does not satisfies current rules
-20:14:38.838 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander", "age":null, "sex":"M"} does not satisfies current rules
-20:14:38.838 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"pushkin", "age":19, "sex":"M"} does not satisfies current rules
-20:14:38.838 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"", "age":"", "sex":"M"} does not satisfies current rules
-20:14:38.838 [pool-13-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"age":17, "sex":"M"} have uncorrected data in field name
-20:14:38.838 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"age":17, "sex":"M"} does not satisfies current rules
-20:14:38.839 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex_ivanov", "age":18, "sex":"M"} does not satisfies current rules
-20:14:38.839 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":18, "sex":"M"} satisfies rules
-20:14:38.839 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaWriterRealization - send message - {"name":"alex", "age":18, "sex":"M"}
-20:14:39.792 [pool-13-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-20:14:39.800 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-20:14:39.803 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-20:14:39.804 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Wait until application updated rules from DB
-20:14:59.818 [pool-13-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message  have uncorrected data
-20:14:59.818 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message  does not satisfies current rules
-20:14:59.820 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":null, "sex":"M"} does not satisfies current rules
-20:14:59.825 [pool-13-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":null, "sex":"M"} have uncorrected data in field name
-20:14:59.825 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "sex":"M"} does not satisfies current rules
-20:14:59.827 [pool-13-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":, "age":, "sex":"M"} have uncorrected data
-20:14:59.827 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":, "age":, "sex":"M"} does not satisfies current rules
-20:14:59.829 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"", "age":"", "sex":"M"} does not satisfies current rules
-20:14:59.832 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"pushkin", "age":19, "sex":"M"} does not satisfies current rules
-20:14:59.835 [pool-13-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"age":17, "sex":"M"} have uncorrected data in field name
-20:14:59.835 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"age":17, "sex":"M"} does not satisfies current rules
-20:14:59.837 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex_ivanov", "age":18, "sex":"M"} does not satisfies current rules
-20:14:59.839 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander", "age":18, "sex":"M"} satisfies rules
-20:14:59.840 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaWriterRealization - send message - {"name":"alexander", "age":18, "sex":"M"}
-20:14:59.843 [pool-13-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-20:15:08.748 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-20:15:08.764 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
-20:15:09.088 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-20:15:09.102 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-20:15:09.105 [pool-15-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Create new consumer
-20:15:09.111 [pool-15-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init HikariDataSource
-20:15:09.127 [pool-15-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init DSL
-20:15:09.129 [pool-15-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Start consumer cycle
-20:15:09.295 [pool-15-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-20:15:09.335 [pool-15-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander_pushkin", "sex":"M"} does not satisfies current rules
-20:15:09.335 [pool-15-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":"alexander_pushkin", "age":, "sex":null} have uncorrected data
-20:15:09.335 [pool-15-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander_pushkin", "age":, "sex":null} does not satisfies current rules
-20:15:09.336 [pool-15-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander_pushkin"} does not satisfies current rules
-20:15:09.336 [pool-15-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander_pushkin", "age":19, "sex":"M"} does not satisfies current rules
-20:15:09.336 [pool-15-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander_pushkin", "age":null} does not satisfies current rules
-20:15:09.336 [pool-15-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex_pushkin", "age":18, "sex":"M"} satisfies rules
-20:15:09.336 [pool-15-thread-1] INFO  r.m.l.r.impl.KafkaWriterRealization - send message - {"name":"alex_pushkin", "age":18, "sex":"M"}
-20:15:10.297 [pool-15-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-20:15:18.692 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-20:15:18.706 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
-20:15:19.558 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-20:15:19.570 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-20:15:19.573 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-20:15:19.592 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-20:15:19.594 [pool-17-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Create new consumer
-20:15:19.599 [pool-17-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init HikariDataSource
-20:15:19.613 [pool-17-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init DSL
-20:15:19.615 [pool-17-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Start consumer cycle
-20:15:19.808 [pool-17-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-20:15:19.867 [pool-17-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander_pushkin", "age":18, "sex":"M"} satisfies rules
-20:15:19.868 [pool-17-thread-1] INFO  r.m.l.r.impl.KafkaWriterRealization - send message - {"name":"alexander_pushkin", "age":18, "sex":"M"}
-20:15:19.875 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message  have uncorrected data
-20:15:19.875 [pool-17-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message  does not satisfies current rules
-20:15:19.876 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":"alexander", "age":, "sex":"M"} have uncorrected data
-20:15:19.876 [pool-17-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander", "age":, "sex":"M"} does not satisfies current rules
-20:15:19.876 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":null, "sex":"M"} have uncorrected data in field age
-20:15:19.876 [pool-17-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "sex":"M"} does not satisfies current rules
-20:15:19.876 [pool-17-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"", "age":"", "sex":"M"} does not satisfies current rules
-20:15:19.877 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":"alexander", "age":null, "sex":"M"} have uncorrected data in field age
-20:15:19.877 [pool-17-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander", "age":null, "sex":"M"} does not satisfies current rules
-20:15:19.877 [pool-17-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"pushkin", "age":19, "sex":"M"} does not satisfies current rules
-20:15:19.877 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"age":18, "sex":"M"} have uncorrected data in field name
-20:15:19.877 [pool-17-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"age":18, "sex":"M"} does not satisfies current rules
-20:15:19.877 [pool-17-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex_ivanov", "age":18, "sex":"M"} does not satisfies current rules
-20:15:20.813 [pool-17-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-20:15:29.662 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-20:15:29.678 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
-20:15:29.996 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-20:15:30.013 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-20:15:30.015 [pool-19-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Create new consumer
-20:15:30.020 [pool-19-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init HikariDataSource
-20:15:30.033 [pool-19-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init DSL
-20:15:30.034 [pool-19-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Start consumer cycle
-20:15:30.207 [pool-19-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-20:15:30.241 [pool-19-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander_pushkin", "age":18, "sex":"M"} satisfies rules
-20:15:30.241 [pool-19-thread-1] INFO  r.m.l.r.impl.KafkaWriterRealization - send message - {"name":"alexander_pushkin", "age":18, "sex":"M"}
-20:15:30.248 [pool-19-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message  have uncorrected data
-20:15:30.248 [pool-19-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message  does not satisfies current rules
-20:15:30.248 [pool-19-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":null, "age":18, "sex":"M"} have uncorrected data in field name
-20:15:30.248 [pool-19-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "age":18, "sex":"M"} does not satisfies current rules
-20:15:30.249 [pool-19-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"", "age":18, "sex":"M"} does not satisfies current rules
-20:15:30.249 [pool-19-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"age":18, "sex":"M"} have uncorrected data in field name
-20:15:30.249 [pool-19-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"age":18, "sex":"M"} does not satisfies current rules
-20:15:30.249 [pool-19-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"no_alex", "age":18, "sex":"M"} does not satisfies current rules
-20:15:31.210 [pool-19-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-20:15:40.091 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-20:15:40.106 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
-20:15:40.425 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-20:15:40.437 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-20:15:40.440 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-20:15:40.460 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-20:15:40.462 [pool-21-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Create new consumer
-20:15:40.467 [pool-21-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init HikariDataSource
-20:15:40.484 [pool-21-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init DSL
-20:15:40.485 [pool-21-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Start consumer cycle
-20:15:40.672 [pool-21-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-20:15:40.713 [pool-21-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message  have uncorrected data
-20:15:40.713 [pool-21-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message  does not satisfies current rules
-20:15:40.713 [pool-21-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"pushkin", "age":18, "sex":"M"} does not satisfies current rules
-20:15:40.714 [pool-21-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":"alexander", "age":null, "sex":"M"} have uncorrected data in field age
-20:15:40.714 [pool-21-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander", "age":null, "sex":"M"} does not satisfies current rules
-20:15:40.714 [pool-21-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":null, "age":18, "sex":"M"} have uncorrected data in field name
-20:15:40.714 [pool-21-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "age":18, "sex":"M"} does not satisfies current rules
-20:15:40.714 [pool-21-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"", "age":"", "sex":"M"} does not satisfies current rules
-20:15:40.714 [pool-21-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"age":18, "sex":"M"} have uncorrected data in field name
-20:15:40.714 [pool-21-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"age":18, "sex":"M"} does not satisfies current rules
-20:15:40.715 [pool-21-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"ivanov", "age":18, "sex":"M"} does not satisfies current rules
-20:15:40.715 [pool-21-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander", "age":19, "sex":"M"} does not satisfies current rules
-20:15:40.715 [pool-21-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":"alexander", "age":, "sex":"M"} have uncorrected data
-20:15:40.715 [pool-21-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander", "age":, "sex":"M"} does not satisfies current rules
-20:15:40.715 [pool-21-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex_ivanov", "age":18, "sex":"M"} does not satisfies current rules
-20:15:40.716 [pool-21-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander_pushkin", "age":18, "sex":"M"} satisfies rules
-20:15:40.716 [pool-21-thread-1] INFO  r.m.l.r.impl.KafkaWriterRealization - send message - {"name":"alexander_pushkin", "age":18, "sex":"M"}
-20:15:41.674 [pool-21-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-20:15:50.152 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-20:15:50.168 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
-20:15:50.494 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-20:15:50.507 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-20:15:50.510 [pool-23-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Create new consumer
-20:15:50.515 [pool-23-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init HikariDataSource
-20:15:50.532 [pool-23-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init DSL
-20:15:50.533 [pool-23-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Start consumer cycle
-20:15:50.700 [pool-23-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-20:15:50.739 [pool-23-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message  have uncorrected data
-20:15:50.739 [pool-23-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message  does not satisfies current rules
-20:15:50.739 [pool-23-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":null, "age":18, "sex":"M"} have uncorrected data in field name
-20:15:50.739 [pool-23-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "age":18, "sex":"M"} does not satisfies current rules
-20:15:50.740 [pool-23-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"", "age":18, "sex":"M"} does not satisfies current rules
-20:15:50.740 [pool-23-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"age":18, "sex":"M"} have uncorrected data in field name
-20:15:50.740 [pool-23-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"age":18, "sex":"M"} does not satisfies current rules
-20:15:50.740 [pool-23-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"no_alex", "age":18, "sex":"M"} does not satisfies current rules
-20:15:50.740 [pool-23-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":18, "sex":"M"} satisfies rules
-20:15:50.740 [pool-23-thread-1] INFO  r.m.l.r.impl.KafkaWriterRealization - send message - {"name":"alex", "age":18, "sex":"M"}
-20:15:51.702 [pool-23-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-20:16:00.449 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-20:16:00.462 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-20:16:09.430 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-20:16:09.447 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
-20:16:09.777 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-20:16:09.790 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-20:16:09.792 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-20:16:09.812 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-20:16:09.814 [pool-26-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Create new consumer
-20:16:09.819 [pool-26-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init HikariDataSource
-20:16:09.834 [pool-26-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init DSL
-20:16:09.836 [pool-26-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Start consumer cycle
-20:16:10.024 [pool-26-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-20:16:10.063 [pool-26-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":null, "age":"", "sex":"M"} have uncorrected data in field name
-20:16:10.063 [pool-26-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "age":"", "sex":"M"} does not satisfies current rules
-20:16:10.063 [pool-26-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message  have uncorrected data
-20:16:10.063 [pool-26-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message  does not satisfies current rules
-20:16:10.064 [pool-26-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"no_alex", "age":18, "sex":"M"} does not satisfies current rules
-20:16:10.064 [pool-26-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":19, "sex":"F"} does not satisfies current rules
-20:16:10.064 [pool-26-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":null, "age":null, "sex":"M"} have uncorrected data in field name
-20:16:10.064 [pool-26-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "age":null, "sex":"M"} does not satisfies current rules
-20:16:10.065 [pool-26-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":"", "age":-, "sex":"M"} have uncorrected data
-20:16:10.066 [pool-26-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"", "age":-, "sex":"M"} does not satisfies current rules
-20:16:10.066 [pool-26-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"age":18, "sex":"M"} have uncorrected data in field name
-20:16:10.066 [pool-26-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"age":18, "sex":"M"} does not satisfies current rules
-20:16:10.066 [pool-26-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":18, "sex":"M"} satisfies rules
-20:16:10.066 [pool-26-thread-1] INFO  r.m.l.r.impl.KafkaWriterRealization - send message - {"name":"alex", "age":18, "sex":"M"}
-20:16:11.025 [pool-26-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-20:16:19.840 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-20:16:19.860 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
-20:16:20.192 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-20:16:20.205 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-20:16:20.208 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-20:16:20.227 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-20:16:20.229 [pool-28-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Create new consumer
-20:16:20.234 [pool-28-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init HikariDataSource
-20:16:20.251 [pool-28-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init DSL
-20:16:20.252 [pool-28-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Start consumer cycle
-20:16:20.432 [pool-28-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-20:16:20.480 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":null, "age":"", "sex":"M"} have uncorrected data in field name
-20:16:20.480 [pool-28-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "age":"", "sex":"M"} does not satisfies current rules
-20:16:20.480 [pool-28-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":18, "sex":"M"} does not satisfies current rules
-20:16:20.480 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message  have uncorrected data
-20:16:20.480 [pool-28-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message  does not satisfies current rules
-20:16:20.480 [pool-28-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"no_alex", "age":18, "sex":"M"} does not satisfies current rules
-20:16:20.481 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":null, "age":null, "sex":"M"} have uncorrected data in field name
-20:16:20.481 [pool-28-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "age":null, "sex":"M"} does not satisfies current rules
-20:16:20.481 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":"", "age":-, "sex":"M"} have uncorrected data
-20:16:20.481 [pool-28-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"", "age":-, "sex":"M"} does not satisfies current rules
-20:16:20.481 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"age":18, "sex":"M"} have uncorrected data in field name
-20:16:20.481 [pool-28-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"age":18, "sex":"M"} does not satisfies current rules
-20:16:20.481 [pool-28-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":20, "sex":"M"} satisfies rules
-20:16:20.481 [pool-28-thread-1] INFO  r.m.l.r.impl.KafkaWriterRealization - send message - {"name":"alex", "age":20, "sex":"M"}
-20:16:21.435 [pool-28-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
-20:16:30.038 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
-20:16:30.055 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
-20:16:30.378 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-20:16:30.391 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-20:16:30.393 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
-20:16:30.412 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
-20:16:30.414 [pool-30-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Create new consumer
-20:16:30.418 [pool-30-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init HikariDataSource
-20:16:30.433 [pool-30-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init DSL
-20:16:30.434 [pool-30-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Start consumer cycle
-20:16:30.610 [pool-30-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
-20:16:30.642 [pool-30-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message  have uncorrected data
-20:16:30.642 [pool-30-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message  does not satisfies current rules
-20:16:30.642 [pool-30-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander", "age":18, "sex":"M"} does not satisfies current rules
-20:16:30.643 [pool-30-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"pushkin", "age":18, "sex":"M"} does not satisfies current rules
-20:16:30.644 [pool-30-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"", "age":18, "sex":"M"} does not satisfies current rules
-20:16:30.644 [pool-30-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":null, "age":18, "sex":"M"} have uncorrected data in field name
-20:16:30.644 [pool-30-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "age":18, "sex":"M"} does not satisfies current rules
-20:16:30.644 [pool-30-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"age":18, "sex":"M"} have uncorrected data in field name
-20:16:30.644 [pool-30-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"age":18, "sex":"M"} does not satisfies current rules
-20:16:30.645 [pool-30-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander_pushkin", "age":18, "sex":"M"} satisfies rules
-20:16:30.645 [pool-30-thread-1] INFO  r.m.l.r.impl.KafkaWriterRealization - send message - {"name":"alexander_pushkin", "age":18, "sex":"M"}
-20:16:31.611 [pool-30-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+20:45:03.552 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Bootstrap.servers: PLAINTEXT://localhost:56382
+20:45:03.555 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+20:45:03.798 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Creating topics
+20:45:04.330 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Created topics
+20:45:04.330 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Sending message
+20:45:04.413 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Sent message
+20:45:04.414 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Consumer subscribe
+20:45:04.414 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Consumer start reading
+20:45:04.517 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+20:45:05.618 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 9
+20:45:06.628 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+20:45:14.681 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+20:45:15.395 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+20:45:15.651 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+20:45:15.678 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+20:45:15.753 [pool-2-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Create new consumer
+20:45:15.765 [pool-2-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init HikariDataSource
+20:45:15.780 [pool-2-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init DSL
+20:45:15.782 [pool-2-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Start consumer cycle
+20:45:15.954 [pool-2-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+20:45:16.139 [pool-2-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":"alex", "age":, "sex":null} have uncorrected data
+20:45:16.139 [pool-2-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":, "sex":null} does not satisfies current rules
+20:45:16.140 [pool-2-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "sex":"M"} does not satisfies current rules
+20:45:16.140 [pool-2-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":null} does not satisfies current rules
+20:45:16.141 [pool-2-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":19, "sex":"M"} does not satisfies current rules
+20:45:16.142 [pool-2-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex"} does not satisfies current rules
+20:45:16.142 [pool-2-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"no_alex", "age":18, "sex":"M"} satisfies rules
+20:45:16.142 [pool-2-thread-1] INFO  r.m.l.r.impl.KafkaWriterRealization - send message - {"name":"no_alex", "age":18, "sex":"M"}
+20:45:16.959 [pool-2-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+20:45:24.886 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+20:45:24.902 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+20:45:25.181 [pool-4-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Create new consumer
+20:45:25.189 [pool-4-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init HikariDataSource
+20:45:25.205 [pool-4-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init DSL
+20:45:25.207 [pool-4-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Start consumer cycle
+20:45:25.381 [pool-4-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+20:45:25.431 [pool-4-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"pushkin", "age":19, "sex":"M"} does not satisfies current rules
+20:45:25.432 [pool-4-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":"alex", "age":, "sex":"M"} have uncorrected data
+20:45:25.432 [pool-4-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":, "sex":"M"} does not satisfies current rules
+20:45:25.432 [pool-4-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"age":18, "sex":"M"} does not satisfies current rules
+20:45:25.433 [pool-4-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message  have uncorrected data
+20:45:25.433 [pool-4-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message  does not satisfies current rules
+20:45:25.433 [pool-4-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":null, "sex":"M"} does not satisfies current rules
+20:45:25.433 [pool-4-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex_ivanov", "age":20, "sex":"M"} does not satisfies current rules
+20:45:25.434 [pool-4-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "sex":"M"} does not satisfies current rules
+20:45:25.434 [pool-4-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"", "age":"", "sex":"M"} does not satisfies current rules
+20:45:26.484 [pool-4-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 9
+20:45:27.585 [pool-4-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 8
+20:45:28.688 [pool-4-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 7
+20:45:29.790 [pool-4-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 6
+20:45:30.890 [pool-4-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 5
+20:45:31.992 [pool-4-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 4
+20:45:33.096 [pool-4-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 3
+20:45:34.197 [pool-4-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 2
+20:45:35.298 [pool-4-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 1
+20:45:44.150 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+20:45:44.166 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+20:45:44.436 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+20:45:44.450 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+20:45:44.453 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+20:45:44.472 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+20:45:44.474 [pool-6-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Create new consumer
+20:45:44.479 [pool-6-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init HikariDataSource
+20:45:44.494 [pool-6-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init DSL
+20:45:44.496 [pool-6-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Start consumer cycle
+20:45:44.680 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+20:45:44.719 [pool-6-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"pushkin", "age":19, "sex":"M"} does not satisfies current rules
+20:45:44.720 [pool-6-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":"alex", "age":, "sex":"M"} have uncorrected data
+20:45:44.720 [pool-6-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":, "sex":"M"} does not satisfies current rules
+20:45:44.720 [pool-6-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"age":18, "sex":"M"} have uncorrected data in field name
+20:45:44.720 [pool-6-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"age":18, "sex":"M"} does not satisfies current rules
+20:45:44.721 [pool-6-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message  have uncorrected data
+20:45:44.721 [pool-6-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message  does not satisfies current rules
+20:45:44.721 [pool-6-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":"alex", "age":null, "sex":"M"} have uncorrected data in field age
+20:45:44.721 [pool-6-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":null, "sex":"M"} does not satisfies current rules
+20:45:44.721 [pool-6-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex_ivanov", "age":20, "sex":"M"} does not satisfies current rules
+20:45:44.722 [pool-6-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":null, "sex":"M"} have uncorrected data in field age
+20:45:44.722 [pool-6-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "sex":"M"} does not satisfies current rules
+20:45:44.722 [pool-6-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"", "age":"", "sex":"M"} does not satisfies current rules
+20:45:44.722 [pool-6-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander_pushkin", "age":18, "sex":"M"} satisfies rules
+20:45:44.722 [pool-6-thread-1] INFO  r.m.l.r.impl.KafkaWriterRealization - send message - {"name":"alexander_pushkin", "age":18, "sex":"M"}
+20:45:45.682 [pool-6-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+20:45:53.793 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+20:45:53.809 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+20:45:54.103 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+20:45:54.117 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+20:45:54.119 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Create new consumer
+20:45:54.127 [pool-8-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init HikariDataSource
+20:45:54.143 [pool-8-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init DSL
+20:45:54.144 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Start consumer cycle
+20:45:54.338 [pool-8-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+20:45:54.384 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"pushkin", "age":19, "sex":"M"} does not satisfies current rules
+20:45:54.384 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"age":17, "sex":"M"} have uncorrected data in field name
+20:45:54.384 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"age":17, "sex":"M"} does not satisfies current rules
+20:45:54.385 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex_ivanov", "age":18, "sex":"M"} does not satisfies current rules
+20:45:54.385 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message  have uncorrected data
+20:45:54.385 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message  does not satisfies current rules
+20:45:54.385 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":null, "sex":"M"} does not satisfies current rules
+20:45:54.386 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":null, "sex":"M"} have uncorrected data in field name
+20:45:54.386 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "sex":"M"} does not satisfies current rules
+20:45:54.386 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":, "age":, "sex":"M"} have uncorrected data
+20:45:54.386 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":, "age":, "sex":"M"} does not satisfies current rules
+20:45:54.386 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"", "age":"", "sex":"M"} does not satisfies current rules
+20:45:54.387 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander", "age":18, "sex":"M"} satisfies rules
+20:45:54.387 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaWriterRealization - send message - {"name":"alexander", "age":18, "sex":"M"}
+20:45:55.344 [pool-8-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+20:45:55.344 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+20:45:55.347 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+20:45:55.349 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Wait until application updated rules from DB
+20:45:55.783 [pool-3-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:46:15.207 [pool-5-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:46:15.356 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"pushkin", "age":19, "sex":"M"} does not satisfies current rules
+20:46:15.359 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"age":17, "sex":"M"} have uncorrected data in field name
+20:46:15.359 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"age":17, "sex":"M"} does not satisfies current rules
+20:46:15.362 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex_ivanov", "age":18, "sex":"M"} does not satisfies current rules
+20:46:15.364 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message  have uncorrected data
+20:46:15.364 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message  does not satisfies current rules
+20:46:15.367 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":null, "sex":"M"} does not satisfies current rules
+20:46:15.370 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":null, "sex":"M"} have uncorrected data in field name
+20:46:15.370 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "sex":"M"} does not satisfies current rules
+20:46:15.372 [pool-8-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":, "age":, "sex":"M"} have uncorrected data
+20:46:15.372 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":, "age":, "sex":"M"} does not satisfies current rules
+20:46:15.375 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"", "age":"", "sex":"M"} does not satisfies current rules
+20:46:15.378 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander", "age":18, "sex":"M"} satisfies rules
+20:46:15.378 [pool-8-thread-1] INFO  r.m.l.r.impl.KafkaWriterRealization - send message - {"name":"alexander", "age":18, "sex":"M"}
+20:46:15.382 [pool-8-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+20:46:23.444 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+20:46:23.462 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+20:46:23.728 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+20:46:23.742 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+20:46:23.745 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+20:46:23.764 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+20:46:23.766 [pool-10-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Create new consumer
+20:46:23.772 [pool-10-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init HikariDataSource
+20:46:23.787 [pool-10-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init DSL
+20:46:23.788 [pool-10-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Start consumer cycle
+20:46:23.966 [pool-10-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+20:46:24.003 [pool-10-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"", "age":18, "sex":"M"} does not satisfies current rules
+20:46:24.003 [pool-10-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"age":18, "sex":"M"} have uncorrected data in field name
+20:46:24.003 [pool-10-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"age":18, "sex":"M"} does not satisfies current rules
+20:46:24.003 [pool-10-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message  have uncorrected data
+20:46:24.003 [pool-10-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message  does not satisfies current rules
+20:46:24.003 [pool-10-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"ivanov", "age":18, "sex":"M"} does not satisfies current rules
+20:46:24.003 [pool-10-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"pushkin", "age":18, "sex":"M"} does not satisfies current rules
+20:46:24.004 [pool-10-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":null, "age":18, "sex":"M"} have uncorrected data in field name
+20:46:24.004 [pool-10-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "age":18, "sex":"M"} does not satisfies current rules
+20:46:24.004 [pool-10-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander_ivanov", "age":18, "sex":"M"} does not satisfies current rules
+20:46:24.005 [pool-10-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander_pushkin", "age":18, "sex":"M"} satisfies rules
+20:46:24.005 [pool-10-thread-1] INFO  r.m.l.r.impl.KafkaWriterRealization - send message - {"name":"alexander_pushkin", "age":18, "sex":"M"}
+20:46:24.497 [pool-7-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:46:24.968 [pool-10-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+20:46:25.783 [pool-3-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:46:41.452 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+20:46:41.469 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+20:46:41.793 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+20:46:41.808 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+20:46:41.810 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Create new consumer
+20:46:41.816 [pool-13-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init HikariDataSource
+20:46:41.830 [pool-13-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init DSL
+20:46:41.832 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Start consumer cycle
+20:46:42.018 [pool-13-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+20:46:42.054 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"pushkin", "age":19, "sex":"M"} does not satisfies current rules
+20:46:42.054 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"", "age":"", "sex":"M"} does not satisfies current rules
+20:46:42.055 [pool-13-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"age":17, "sex":"M"} have uncorrected data in field name
+20:46:42.055 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"age":17, "sex":"M"} does not satisfies current rules
+20:46:42.055 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex_ivanov", "age":18, "sex":"M"} does not satisfies current rules
+20:46:42.055 [pool-13-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message  have uncorrected data
+20:46:42.055 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message  does not satisfies current rules
+20:46:42.056 [pool-13-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":null, "sex":"M"} have uncorrected data in field name
+20:46:42.056 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "sex":"M"} does not satisfies current rules
+20:46:42.056 [pool-13-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":, "age":, "sex":"M"} have uncorrected data
+20:46:42.056 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":, "age":, "sex":"M"} does not satisfies current rules
+20:46:42.056 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander", "age":null, "sex":"M"} does not satisfies current rules
+20:46:42.056 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":18, "sex":"M"} satisfies rules
+20:46:42.056 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaWriterRealization - send message - {"name":"alex", "age":18, "sex":"M"}
+20:46:43.025 [pool-13-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+20:46:43.029 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+20:46:43.032 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+20:46:43.034 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Wait until application updated rules from DB
+20:46:45.208 [pool-5-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:46:54.144 [pool-9-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:46:54.497 [pool-7-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:46:55.783 [pool-3-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:47:03.044 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"pushkin", "age":19, "sex":"M"} does not satisfies current rules
+20:47:03.046 [pool-13-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"age":17, "sex":"M"} have uncorrected data in field name
+20:47:03.046 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"age":17, "sex":"M"} does not satisfies current rules
+20:47:03.048 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex_ivanov", "age":18, "sex":"M"} does not satisfies current rules
+20:47:03.051 [pool-13-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message  have uncorrected data
+20:47:03.051 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message  does not satisfies current rules
+20:47:03.054 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":null, "sex":"M"} does not satisfies current rules
+20:47:03.055 [pool-13-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":null, "sex":"M"} have uncorrected data in field name
+20:47:03.055 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "sex":"M"} does not satisfies current rules
+20:47:03.058 [pool-13-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":, "age":, "sex":"M"} have uncorrected data
+20:47:03.058 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":, "age":, "sex":"M"} does not satisfies current rules
+20:47:03.061 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"", "age":"", "sex":"M"} does not satisfies current rules
+20:47:03.064 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander", "age":18, "sex":"M"} satisfies rules
+20:47:03.064 [pool-13-thread-1] INFO  r.m.l.r.impl.KafkaWriterRealization - send message - {"name":"alexander", "age":18, "sex":"M"}
+20:47:03.067 [pool-13-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+20:47:03.789 [pool-11-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:47:11.271 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+20:47:11.287 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+20:47:11.594 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+20:47:11.607 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+20:47:11.609 [pool-15-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Create new consumer
+20:47:11.614 [pool-15-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init HikariDataSource
+20:47:11.628 [pool-15-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init DSL
+20:47:11.629 [pool-15-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Start consumer cycle
+20:47:11.801 [pool-15-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+20:47:11.840 [pool-15-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander_pushkin", "age":19, "sex":"M"} does not satisfies current rules
+20:47:11.840 [pool-15-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander_pushkin", "age":null} does not satisfies current rules
+20:47:11.841 [pool-15-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander_pushkin", "sex":"M"} does not satisfies current rules
+20:47:11.841 [pool-15-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":"alexander_pushkin", "age":, "sex":null} have uncorrected data
+20:47:11.841 [pool-15-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander_pushkin", "age":, "sex":null} does not satisfies current rules
+20:47:11.841 [pool-15-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander_pushkin"} does not satisfies current rules
+20:47:11.842 [pool-15-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex_pushkin", "age":18, "sex":"M"} satisfies rules
+20:47:11.842 [pool-15-thread-1] INFO  r.m.l.r.impl.KafkaWriterRealization - send message - {"name":"alex_pushkin", "age":18, "sex":"M"}
+20:47:12.803 [pool-15-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+20:47:15.208 [pool-5-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:47:20.964 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+20:47:20.979 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+20:47:21.291 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+20:47:21.305 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+20:47:21.307 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+20:47:21.326 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+20:47:21.328 [pool-17-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Create new consumer
+20:47:21.334 [pool-17-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init HikariDataSource
+20:47:21.348 [pool-17-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init DSL
+20:47:21.349 [pool-17-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Start consumer cycle
+20:47:21.534 [pool-17-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+20:47:21.579 [pool-17-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"pushkin", "age":19, "sex":"M"} does not satisfies current rules
+20:47:21.580 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"age":18, "sex":"M"} have uncorrected data in field name
+20:47:21.580 [pool-17-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"age":18, "sex":"M"} does not satisfies current rules
+20:47:21.580 [pool-17-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex_ivanov", "age":18, "sex":"M"} does not satisfies current rules
+20:47:21.580 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message  have uncorrected data
+20:47:21.580 [pool-17-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message  does not satisfies current rules
+20:47:21.580 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":"alexander", "age":, "sex":"M"} have uncorrected data
+20:47:21.581 [pool-17-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander", "age":, "sex":"M"} does not satisfies current rules
+20:47:21.581 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":null, "sex":"M"} have uncorrected data in field age
+20:47:21.581 [pool-17-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "sex":"M"} does not satisfies current rules
+20:47:21.581 [pool-17-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"", "age":"", "sex":"M"} does not satisfies current rules
+20:47:21.581 [pool-17-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":"alexander", "age":null, "sex":"M"} have uncorrected data in field age
+20:47:21.581 [pool-17-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander", "age":null, "sex":"M"} does not satisfies current rules
+20:47:21.582 [pool-17-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander_pushkin", "age":18, "sex":"M"} satisfies rules
+20:47:21.582 [pool-17-thread-1] INFO  r.m.l.r.impl.KafkaWriterRealization - send message - {"name":"alexander_pushkin", "age":18, "sex":"M"}
+20:47:22.534 [pool-17-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+20:47:24.144 [pool-9-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:47:24.497 [pool-7-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:47:25.783 [pool-3-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:47:30.835 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+20:47:30.851 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+20:47:31.168 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+20:47:31.182 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+20:47:31.184 [pool-19-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Create new consumer
+20:47:31.190 [pool-19-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init HikariDataSource
+20:47:31.209 [pool-19-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init DSL
+20:47:31.210 [pool-19-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Start consumer cycle
+20:47:31.374 [pool-19-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+20:47:31.413 [pool-19-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander_pushkin", "age":18, "sex":"M"} satisfies rules
+20:47:31.413 [pool-19-thread-1] INFO  r.m.l.r.impl.KafkaWriterRealization - send message - {"name":"alexander_pushkin", "age":18, "sex":"M"}
+20:47:31.418 [pool-19-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message  have uncorrected data
+20:47:31.418 [pool-19-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message  does not satisfies current rules
+20:47:31.419 [pool-19-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":null, "age":18, "sex":"M"} have uncorrected data in field name
+20:47:31.419 [pool-19-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "age":18, "sex":"M"} does not satisfies current rules
+20:47:31.419 [pool-19-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"", "age":18, "sex":"M"} does not satisfies current rules
+20:47:31.419 [pool-19-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"age":18, "sex":"M"} have uncorrected data in field name
+20:47:31.419 [pool-19-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"age":18, "sex":"M"} does not satisfies current rules
+20:47:31.420 [pool-19-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"no_alex", "age":18, "sex":"M"} does not satisfies current rules
+20:47:32.374 [pool-19-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+20:47:33.790 [pool-11-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:47:40.695 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+20:47:40.710 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+20:47:41.022 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+20:47:41.036 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+20:47:41.038 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+20:47:41.058 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+20:47:41.061 [pool-21-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Create new consumer
+20:47:41.067 [pool-21-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init HikariDataSource
+20:47:41.083 [pool-21-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init DSL
+20:47:41.084 [pool-21-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Start consumer cycle
+20:47:41.285 [pool-21-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+20:47:41.352 [pool-21-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex_ivanov", "age":18, "sex":"M"} does not satisfies current rules
+20:47:41.353 [pool-21-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message  have uncorrected data
+20:47:41.353 [pool-21-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message  does not satisfies current rules
+20:47:41.353 [pool-21-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"pushkin", "age":18, "sex":"M"} does not satisfies current rules
+20:47:41.353 [pool-21-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":"alexander", "age":null, "sex":"M"} have uncorrected data in field age
+20:47:41.354 [pool-21-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander", "age":null, "sex":"M"} does not satisfies current rules
+20:47:41.354 [pool-21-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":null, "age":18, "sex":"M"} have uncorrected data in field name
+20:47:41.354 [pool-21-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "age":18, "sex":"M"} does not satisfies current rules
+20:47:41.354 [pool-21-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"", "age":"", "sex":"M"} does not satisfies current rules
+20:47:41.354 [pool-21-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"age":18, "sex":"M"} have uncorrected data in field name
+20:47:41.354 [pool-21-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"age":18, "sex":"M"} does not satisfies current rules
+20:47:41.355 [pool-21-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"ivanov", "age":18, "sex":"M"} does not satisfies current rules
+20:47:41.355 [pool-21-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander", "age":19, "sex":"M"} does not satisfies current rules
+20:47:41.355 [pool-21-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":"alexander", "age":, "sex":"M"} have uncorrected data
+20:47:41.355 [pool-21-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander", "age":, "sex":"M"} does not satisfies current rules
+20:47:41.356 [pool-21-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander_pushkin", "age":18, "sex":"M"} satisfies rules
+20:47:41.356 [pool-21-thread-1] INFO  r.m.l.r.impl.KafkaWriterRealization - send message - {"name":"alexander_pushkin", "age":18, "sex":"M"}
+20:47:41.832 [pool-14-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:47:42.294 [pool-21-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+20:47:45.208 [pool-5-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:47:50.679 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+20:47:50.695 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+20:47:50.995 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+20:47:51.008 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+20:47:51.010 [pool-23-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Create new consumer
+20:47:51.015 [pool-23-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init HikariDataSource
+20:47:51.028 [pool-23-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init DSL
+20:47:51.029 [pool-23-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Start consumer cycle
+20:47:51.196 [pool-23-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+20:47:51.343 [pool-23-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message  have uncorrected data
+20:47:51.343 [pool-23-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message  does not satisfies current rules
+20:47:51.343 [pool-23-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":null, "age":18, "sex":"M"} have uncorrected data in field name
+20:47:51.343 [pool-23-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "age":18, "sex":"M"} does not satisfies current rules
+20:47:51.343 [pool-23-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"", "age":18, "sex":"M"} does not satisfies current rules
+20:47:51.343 [pool-23-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"age":18, "sex":"M"} have uncorrected data in field name
+20:47:51.343 [pool-23-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"age":18, "sex":"M"} does not satisfies current rules
+20:47:51.343 [pool-23-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"no_alex", "age":18, "sex":"M"} does not satisfies current rules
+20:47:51.344 [pool-23-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":18, "sex":"M"} satisfies rules
+20:47:51.344 [pool-23-thread-1] INFO  r.m.l.r.impl.KafkaWriterRealization - send message - {"name":"alex", "age":18, "sex":"M"}
+20:47:51.630 [pool-16-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:47:52.220 [pool-23-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+20:47:54.144 [pool-9-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:47:54.496 [pool-7-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:47:55.783 [pool-3-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:48:00.512 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+20:48:00.524 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+20:48:01.350 [pool-18-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:48:03.789 [pool-11-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:48:08.835 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+20:48:08.868 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+20:48:09.201 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+20:48:09.217 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+20:48:09.221 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+20:48:09.240 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+20:48:09.242 [pool-26-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Create new consumer
+20:48:09.248 [pool-26-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init HikariDataSource
+20:48:09.265 [pool-26-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init DSL
+20:48:09.267 [pool-26-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Start consumer cycle
+20:48:09.474 [pool-26-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+20:48:09.511 [pool-26-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":18, "sex":"M"} satisfies rules
+20:48:09.511 [pool-26-thread-1] INFO  r.m.l.r.impl.KafkaWriterRealization - send message - {"name":"alex", "age":18, "sex":"M"}
+20:48:09.517 [pool-26-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":19, "sex":"F"} does not satisfies current rules
+20:48:09.517 [pool-26-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":null, "age":null, "sex":"M"} have uncorrected data in field name
+20:48:09.517 [pool-26-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "age":null, "sex":"M"} does not satisfies current rules
+20:48:09.518 [pool-26-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":"", "age":-, "sex":"M"} have uncorrected data
+20:48:09.519 [pool-26-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"", "age":-, "sex":"M"} does not satisfies current rules
+20:48:09.519 [pool-26-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"age":18, "sex":"M"} have uncorrected data in field name
+20:48:09.519 [pool-26-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"age":18, "sex":"M"} does not satisfies current rules
+20:48:09.519 [pool-26-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":null, "age":"", "sex":"M"} have uncorrected data in field name
+20:48:09.519 [pool-26-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "age":"", "sex":"M"} does not satisfies current rules
+20:48:09.519 [pool-26-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message  have uncorrected data
+20:48:09.519 [pool-26-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message  does not satisfies current rules
+20:48:09.519 [pool-26-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"no_alex", "age":18, "sex":"M"} does not satisfies current rules
+20:48:10.476 [pool-26-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+20:48:11.212 [pool-20-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:48:11.831 [pool-14-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:48:15.207 [pool-5-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:48:18.850 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+20:48:18.865 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+20:48:19.169 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+20:48:19.182 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+20:48:19.184 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+20:48:19.203 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+20:48:19.205 [pool-28-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Create new consumer
+20:48:19.210 [pool-28-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init HikariDataSource
+20:48:19.225 [pool-28-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init DSL
+20:48:19.226 [pool-28-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Start consumer cycle
+20:48:19.407 [pool-28-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+20:48:19.441 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":null, "age":null, "sex":"M"} have uncorrected data in field name
+20:48:19.441 [pool-28-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "age":null, "sex":"M"} does not satisfies current rules
+20:48:19.441 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":"", "age":-, "sex":"M"} have uncorrected data
+20:48:19.441 [pool-28-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"", "age":-, "sex":"M"} does not satisfies current rules
+20:48:19.441 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"age":18, "sex":"M"} have uncorrected data in field name
+20:48:19.441 [pool-28-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"age":18, "sex":"M"} does not satisfies current rules
+20:48:19.442 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":null, "age":"", "sex":"M"} have uncorrected data in field name
+20:48:19.442 [pool-28-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "age":"", "sex":"M"} does not satisfies current rules
+20:48:19.442 [pool-28-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":18, "sex":"M"} does not satisfies current rules
+20:48:19.442 [pool-28-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message  have uncorrected data
+20:48:19.442 [pool-28-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message  does not satisfies current rules
+20:48:19.442 [pool-28-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"no_alex", "age":18, "sex":"M"} does not satisfies current rules
+20:48:19.442 [pool-28-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alex", "age":20, "sex":"M"} satisfies rules
+20:48:19.442 [pool-28-thread-1] INFO  r.m.l.r.impl.KafkaWriterRealization - send message - {"name":"alex", "age":20, "sex":"M"}
+20:48:20.413 [pool-28-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+20:48:21.086 [pool-22-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:48:21.630 [pool-16-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:48:24.143 [pool-9-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:48:24.497 [pool-7-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:48:25.784 [pool-3-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:48:28.714 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topics: [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)], replica factor 1, partitions 3
+20:48:28.728 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Topic not exist. Create topics [(name=test_topic_in, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null), (name=test_topic_out, numPartitions=3, replicationFactor=1, replicasAssignments=null, configs=null)]
+20:48:29.199 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+20:48:29.211 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+20:48:29.212 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Create filtering rule 1
+20:48:29.233 [Test worker] INFO  ru.mai.lessons.rpks.ServiceTest - Check rule from DB
+20:48:29.234 [pool-30-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Create new consumer
+20:48:29.240 [pool-30-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init HikariDataSource
+20:48:29.261 [pool-30-thread-1] INFO  r.m.lessons.rpks.impl.DataBaseReader - Init DSL
+20:48:29.262 [pool-30-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Start consumer cycle
+20:48:29.429 [pool-30-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Remaining attempts 10
+20:48:29.466 [pool-30-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"age":18, "sex":"M"} have uncorrected data in field name
+20:48:29.466 [pool-30-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"age":18, "sex":"M"} does not satisfies current rules
+20:48:29.466 [pool-30-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message  have uncorrected data
+20:48:29.466 [pool-30-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message  does not satisfies current rules
+20:48:29.466 [pool-30-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander", "age":18, "sex":"M"} does not satisfies current rules
+20:48:29.467 [pool-30-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"pushkin", "age":18, "sex":"M"} does not satisfies current rules
+20:48:29.467 [pool-30-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"", "age":18, "sex":"M"} does not satisfies current rules
+20:48:29.467 [pool-30-thread-1] INFO  r.m.l.rpks.impl.KafkaRuleProcessor - Message {"name":null, "age":18, "sex":"M"} have uncorrected data in field name
+20:48:29.467 [pool-30-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":null, "age":18, "sex":"M"} does not satisfies current rules
+20:48:29.468 [pool-30-thread-1] INFO  r.m.l.r.impl.KafkaReaderRealization - Message {"name":"alexander_pushkin", "age":18, "sex":"M"} satisfies rules
+20:48:29.468 [pool-30-thread-1] INFO  r.m.l.r.impl.KafkaWriterRealization - send message - {"name":"alexander_pushkin", "age":18, "sex":"M"}
+20:48:30.431 [pool-30-thread-2] INFO  ru.mai.lessons.rpks.ServiceTest - Read messages 1
+20:48:31.029 [pool-24-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:48:31.351 [pool-18-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
+20:48:33.789 [pool-11-thread-1] ERROR r.m.l.rpks.scheduler.RulesUpdater - Cannot get rules from sql
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

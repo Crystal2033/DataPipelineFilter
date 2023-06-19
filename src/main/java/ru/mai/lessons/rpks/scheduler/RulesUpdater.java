@@ -16,7 +16,7 @@ import java.util.List;
 public class RulesUpdater implements Runnable{
 
     DataBaseReader reader;
-    Object lock = new Object();
+    final Object lock = new Object();
     List<Rule> rules;
     @Override
     public void run() {
@@ -24,12 +24,9 @@ public class RulesUpdater implements Runnable{
             synchronized (lock) {
                 if (reader.isConnected())
                     rules = new ArrayList<>(Arrays.stream(reader.readRulesFromDB()).toList());
-                else {
-                    // throw exception
-                }
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            log.error("Trying get rules from sql");
         }
     }
 

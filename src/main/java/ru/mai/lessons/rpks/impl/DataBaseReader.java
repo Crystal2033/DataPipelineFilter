@@ -16,16 +16,16 @@ import java.sql.SQLException;
 @Slf4j
 public class DataBaseReader implements DbReader {
 
-    // Hikari
-    private HikariConfig hikariConfig = new HikariConfig();
-    private static HikariDataSource hikariDataSource = new HikariDataSource();
+    private HikariDataSource hikariDataSource;
 
     public DataBaseReader(Config config) {
-        //hikariConfig.setJdbcUrl(config.getString("db.jdbcUrl"));
+        // Hikari
+        HikariConfig hikariConfig = new HikariConfig();
         hikariConfig.setJdbcUrl(config.getString("db.jdbcUrl"));
         hikariConfig.setUsername(config.getString("db.user"));
         hikariConfig.setPassword(config.getString("db.password"));
         hikariConfig.setDriverClassName(config.getString("db.driver"));
+
         log.info("Init HikariDataSource");
         hikariDataSource = new HikariDataSource(hikariConfig);
     }
@@ -44,8 +44,11 @@ public class DataBaseReader implements DbReader {
         return isConnected();
     }
 
-    public static Connection getConnection() throws SQLException {
-        return hikariDataSource.getConnection();
+    public Connection getConnection() throws SQLException {
+        if (hikariDataSource != null)
+            return hikariDataSource.getConnection();
+        else
+            return null;
     }
 
     public boolean isConnected() throws SQLException {

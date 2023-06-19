@@ -13,8 +13,8 @@ import java.util.concurrent.TimeUnit;
 
 @Getter
 public class RulesScheduler {
-    private ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
-    private RulesUpdater checker = new RulesUpdater();
+    private final ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+    private final RulesUpdater checker = new RulesUpdater();
 
     public void runScheduler(Config config) throws SQLException {
         checker.rules = new ArrayList<>();

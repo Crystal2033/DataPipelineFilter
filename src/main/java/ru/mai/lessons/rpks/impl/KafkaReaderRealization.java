@@ -16,7 +16,6 @@ import java.sql.SQLException;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.Properties;
 
 @Slf4j
@@ -29,7 +28,7 @@ public class KafkaReaderRealization implements KafkaReader {
     private KafkaConsumer<String, String> kafkaConsumer;
     private KafkaWriterRealization kafkaWriter = new KafkaWriterRealization();
     private KafkaRuleProcessor ruleProcessor = new KafkaRuleProcessor();
-    public Config config;
+    private Config config;
     @Override
     public void processing() {
         createKafkaConsumer();
@@ -40,9 +39,9 @@ public class KafkaReaderRealization implements KafkaReader {
         try {
             rulesScheduler.runScheduler(config);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            log.error("Cannot run scheduler");
         }
-        Object locker = rulesScheduler.getChecker().getLock();
+        Object locker = rulesScheduler.getChecker().getLock().getClass();
 
         log.info("Start consumer cycle");
         while (true) {
@@ -66,11 +65,8 @@ public class KafkaReaderRealization implements KafkaReader {
     public void createKafkaConsumer() {
         log.info("Create new consumer");
 
-        if (config == null) {
-            //throw exception
-        }
-
-        Properties properties = new Properties();
+        Properties properties;
+        properties = new Properties();
         properties.put("group.id", config.getString("kafka.consumer.group.id"));
         properties.put("bootstrap.servers", config.getString("kafka.consumer.bootstrap.servers"));
         properties.put("auto.offset.reset", config.getString("kafka.consumer.auto.offset.reset"));
