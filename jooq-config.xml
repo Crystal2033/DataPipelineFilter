@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-               xsi:schemaLocation="http://www.jooq.org/xsd/jooq-codegen-3.18.0.xsd ">
+<configuration xmlns="http://www.jooq.org/xsd/jooq-codegen-3.13.0.xsd">
 
     <jdbc>
         <driver>org.postgresql.Driver</driver>
-        <url>jdbc:postgresql://127.0.0.1:5433/rpks</url>
+        <url>jdbc:postgresql://127.0.0.1:5433/dacs</url>
         <user>postgres</user>
         <password>123</password>
     </jdbc>

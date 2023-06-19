@@ -1,21 +1,31 @@
 package ru.mai.lessons.rpks;
 
 import lombok.extern.slf4j.Slf4j;
-import org.jooq;
+
+
+import org.jooq.codegen.GenerationTool;
+import org.jooq.codegen.JavaGenerator;
+import org.jooq.meta.jaxb.*;
+
+import org.jooq.meta.postgres.PostgresDatabase;
 import ru.mai.lessons.rpks.impl.ConfigurationReader;
 import ru.mai.lessons.rpks.impl.ServiceFiltering;
 
 @Slf4j
 public class ServiceFilteringMain {
     public static void main(String[] args) {
-//        log.info("Start service Filtering");
-//        ConfigReader configReader = new ConfigurationReader();
-//        Service service = new ServiceFiltering(); // ваша реализация service
-//        service.start(configReader.loadConfig());
-//        log.info("Terminate service Filtering");
-        try {
-            jooq.
-
-        }
+        log.info("Start service Filtering");
+        ConfigReader configReader = new ConfigurationReader();
+        Service service = new ServiceFiltering(); // ваша реализация service
+        service.start(configReader.loadConfig());
+        log.info("Terminate service Filtering");
+//        try код для генерации
+//        {
+//            GenerationTool.main(new String[] {"./jooq-config.xml"});
+//        }
+//        catch (Exception e)
+//        {
+//            System.out.println(e.getMessage());
+//        }
     }
 }
