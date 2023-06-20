@@ -31,12 +31,14 @@ public class DbReaderImpl implements DbReader {
 
     @Override
     public Rule[] readRulesFromDB() {
+        log.debug("start reading rules in db");
         try (Connection connection = hikari.getConnection()) {
             DSLContext dsl = DSL.using(connection, SQLDialect.POSTGRES);
+            log.debug("end reading rules in db");
             return dsl.select().from(Tables.FILTER_RULES).fetchInto(Rule.class).toArray(Rule[]::new);
         } catch (SQLException e) {
-            log.info("SQLException %s.".formatted(e.getMessage()));
+            log.debug("SQLException %s.".formatted(e.getMessage()));
         }
-        return null;
+        return new Rule[0];
     }
 }

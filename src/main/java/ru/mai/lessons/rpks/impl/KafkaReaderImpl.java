@@ -1,7 +1,6 @@
 package ru.mai.lessons.rpks.impl;
 
 import lombok.Builder;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -10,7 +9,6 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import ru.mai.lessons.rpks.KafkaReader;
 import ru.mai.lessons.rpks.KafkaWriter;
-import ru.mai.lessons.rpks.RuleProcessor;
 import ru.mai.lessons.rpks.model.Message;
 import ru.mai.lessons.rpks.model.Rule;
 
@@ -26,7 +24,6 @@ import java.util.function.Supplier;
 public class KafkaReaderImpl implements KafkaReader {
     private final KafkaWriter kafkaWriter;
     private final Supplier<Rule[]> rulesGetter;
-    private final RuleProcessor ruleProcessor;
     private final String topic;
     private final String kafkaOffset;
     private final String groupId;
@@ -39,13 +36,13 @@ public class KafkaReaderImpl implements KafkaReader {
     public void processing() {
         log.info("Start Kafka KafkaReaderImpl");
         kafkaConsumer = new KafkaConsumer<>(
-            Map.of(
-                ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, this.bootstrapServers,
-                ConsumerConfig.GROUP_ID_CONFIG, this.groupId,
-                ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, this.kafkaOffset
-            ),
-            new StringDeserializer(),
-            new StringDeserializer()
+                Map.of(
+                        ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, this.bootstrapServers,
+                        ConsumerConfig.GROUP_ID_CONFIG, this.groupId,
+                        ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, this.kafkaOffset
+                ),
+                new StringDeserializer(),
+                new StringDeserializer()
         );
 
         kafkaConsumer.subscribe(Collections.singletonList(topic));
@@ -53,8 +50,7 @@ public class KafkaReaderImpl implements KafkaReader {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.submit(() -> {
             while (true) {
-                ConsumerRecords<String, String> consumerRecords = kafkaConsumer.poll(Duration.ofMillis(100));
-                Rule[] curRules = rulesGetter.get();
+                ConsumerRecords<String, String> consumerRecords = kafkaConsumer.poll(Duration.ofMillis(500));
                 for (ConsumerRecord<String, String> consumerRecord : consumerRecords) {
                     kafkaWriter.processing(Message.builder().value(consumerRecord.value()).build());
                 }

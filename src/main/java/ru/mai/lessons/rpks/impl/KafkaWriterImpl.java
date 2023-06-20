@@ -1,7 +1,6 @@
 package ru.mai.lessons.rpks.impl;
 
 import lombok.Builder;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -12,7 +11,6 @@ import ru.mai.lessons.rpks.RuleProcessor;
 import ru.mai.lessons.rpks.model.Message;
 import ru.mai.lessons.rpks.model.Rule;
 
-import javax.management.ConstructorParameters;
 import java.util.Map;
 import java.util.UUID;
 import java.util.function.Supplier;
@@ -21,20 +19,26 @@ import java.util.function.Supplier;
 @Slf4j
 public class KafkaWriterImpl implements KafkaWriter {
     private final RuleProcessor ruleProcessor;
-    private final Supplier<Rule[]> rulesGetter;
     private final String topic;
     private final String bootstrapServers;
+    private final Supplier<Rule[]> rulesGetter;
     private KafkaProducer<String, String> kafkaProducer;
 
     @Override
     public void processing(Message message) {
-        log.info("Process %s".formatted(message.getValue()));
-        send(message);
+        if (message != null) {
+            log.info("Process %s".formatted(message.getValue()));
+            ruleProcessor.processing(message, rulesGetter.get());
+            if (message.isFilterState()) {
+                send(message);
+            }
+        }
     }
 
     private void send(Message message) {
         if (kafkaProducer == null)
             init();
+        log.info("sending %s".formatted(message.getValue()));
         kafkaProducer.send(new ProducerRecord<>(topic, message.getValue()));
     }
 

@@ -1,8 +1,10 @@
 package ru.mai.lessons.rpks.model;
 
-import lombok.Getter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
+@Data
+@NoArgsConstructor
 public class Rule {
     private Long filterId; // id фильтра
     private Long ruleId; // id правила

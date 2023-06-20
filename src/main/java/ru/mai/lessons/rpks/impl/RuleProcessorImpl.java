@@ -2,7 +2,6 @@ package ru.mai.lessons.rpks.impl;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import ru.mai.lessons.rpks.RuleProcessor;
 import ru.mai.lessons.rpks.model.Message;
@@ -21,49 +20,45 @@ public class RuleProcessorImpl implements RuleProcessor {
             log.info("Passed null message.");
         } else if (rules == null || rules.length == 0) {
             log.info("Passed message %s with no rules".formatted(message.getValue()));
-            message.setFilterState(true); // вот тут момент, что можем пропустить, можем нет. Как правильно не знаю.
+            message.setFilterState(false);
         } else {
             Map<Long, List<Rule>> groupRules = Arrays.stream(rules).collect(Collectors.groupingBy(Rule::getRuleId));
             for (Map.Entry<Long, List<Rule>> groupedRule : groupRules.entrySet()) {
-                if (!processMessage(message, groupedRule.getValue())) {
-                    break;
+                processMessage(message, groupedRule.getValue());
+                if (!message.isFilterState()) {
+                    return message;
                 }
             }
         }
         return message;
     }
 
-    private boolean processMessage(@NonNull Message message, List<Rule> rules) {
-        boolean result = false;
-        JsonObject messageInJson = JsonParser.parseString(message.getValue()).getAsJsonObject();
-        for (Rule rule : rules) {
-            if (messageInJson.has(rule.getFieldName())) {
-                log.info(
-                        "Check rule (ruleId : %d, field : %s, function : %s, value : %s) on message %s.".formatted(
-                                rule.getRuleId(),
-                                rule.getFieldName(),
-                                rule.getFilterFunctionName(),
-                                rule.getFilterValue(),
-                                message.getValue())
-                );
-                if (rule.getFilterFunctionName().equals("equals")) {
-                    message.setFilterState(messageInJson.get(rule.getFieldName()).toString().equals(rule.getFilterValue().toString()));
-                    result = true;
-                } else if (rule.getFilterFunctionName().equals("contains")) {
-                    message.setFilterState(messageInJson.get(rule.getFieldName()).toString().contains(rule.getFilterValue().toString()));
-                    result = true;
-                } else if (rule.getFilterFunctionName().equals("not_equals")) {
-                    message.setFilterState(!messageInJson.get(rule.getFieldName()).toString().equals(rule.getFilterValue().toString()));
-                    result = true;
-                } else if (rule.getFilterFunctionName().equals("not_contains")) {
-                    message.setFilterState(!messageInJson.get(rule.getFieldName()).toString().contains(rule.getFilterValue().toString()));
-                    result = true;
+    private void processMessage(Message message, List<Rule> rules) {
+        try {
+            JsonObject messageInJson = JsonParser.parseString(message.getValue()).getAsJsonObject();
+            for (Rule rule : rules) {
+                if (messageInJson.has(rule.getFieldName())) {
+                    log.info("Check rule (ruleId : %d, field : %s, function : %s, value : %s) on message %s.".formatted(rule.getRuleId(), rule.getFieldName(), rule.getFilterFunctionName(), rule.getFilterValue(), message.getValue()));
+                    switch (rule.getFilterFunctionName()) {
+                        case "equals" ->
+                                message.setFilterState(!messageInJson.get(rule.getFieldName()).isJsonNull() && messageInJson.get(rule.getFieldName()).getAsString().equals(rule.getFilterValue()));
+                        case "contains" ->
+                                message.setFilterState(!messageInJson.get(rule.getFieldName()).isJsonNull() && messageInJson.get(rule.getFieldName()).getAsString().contains(rule.getFilterValue()));
+                        case "not_equals" ->
+                                message.setFilterState(!messageInJson.get(rule.getFieldName()).isJsonNull() && !messageInJson.get(rule.getFieldName()).getAsString().equals(rule.getFilterValue()));
+                        case "not_contains" ->
+                                message.setFilterState(!messageInJson.get(rule.getFieldName()).isJsonNull() && !messageInJson.get(rule.getFieldName()).getAsString().contains(rule.getFilterValue()));
+                        default -> log.error("Unexpected rule filter function name.");
+                    }
+                } else {
+                    message.setFilterState(false);
+                }
+                if (!message.isFilterState()) {
+                    return;
                 }
             }
-            if (message.isFilterState()) {
-                break;
-            }
+        } catch (Exception e) {
+            log.error(e.getMessage());
         }
-        return result;
     }
 }

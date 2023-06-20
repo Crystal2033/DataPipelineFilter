@@ -6,7 +6,7 @@ group 'ru.mai.lessons.rpks'
 version '1.0-SNAPSHOT'
 apply plugin: 'java'
 
-compileJava {options.encoding = "UTF-8"}
+compileJava { options.encoding = "UTF-8" }
 
 repositories {
     mavenCentral()
@@ -29,8 +29,6 @@ dependencies {
     implementation 'com.zaxxer:HikariCP:5.0.1'
     implementation 'org.jooq:jooq:3.18.0'
     implementation 'org.jooq:jooq-codegen:3.18.4'
-    implementation 'com.h2database:h2:2.1.214'
-
 
     // json
     implementation 'com.google.code.gson:gson:2.10.1'
