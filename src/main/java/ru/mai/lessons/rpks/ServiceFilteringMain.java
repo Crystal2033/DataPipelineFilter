@@ -10,7 +10,6 @@ public class ServiceFilteringMain {
         log.info("Start service Filtering");
         ConfigReader configReader = new ConfigurationReader();
         Service service = new ServiceFiltering(); // ваша реализация service
-        System.out.println("Hallo world");
         service.start(configReader.loadConfig());
         log.info("Terminate service Filtering");
     }
