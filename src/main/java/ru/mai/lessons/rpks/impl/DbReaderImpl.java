@@ -33,7 +33,7 @@ public class DbReaderImpl implements DbReader {
     @Override
     public Rule[] readRulesFromDB() {
         log.debug("Start reading rules from the database");
-        try (Connection ignored = hikari.getConnection()) {
+        try (Connection connection = hikari.getConnection()) {
             return dslContext.select().from(Tables.FILTER_RULES).fetchInto(Rule.class).toArray(Rule[]::new);
         } catch (SQLException e) {
             log.error("An error occurred while reading rules from the database: {}", e.getMessage());
