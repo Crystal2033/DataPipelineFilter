@@ -33,6 +33,5 @@ public class KafkaWriterImpl implements KafkaWriter {
                 new ProducerRecord<>(topic, message.getValue());
 
         producer.send(producerRecord);
-        producer.flush();
     }
 }

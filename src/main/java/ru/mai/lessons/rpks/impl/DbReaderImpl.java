@@ -63,6 +63,7 @@ public class DbReaderImpl implements DbReader, AutoCloseable {
                 });
             }
         } catch (SQLException e) {
+            log.info("Error in DB rules!");
             e.printStackTrace();
         }
         return result.toArray(new Rule[0]);

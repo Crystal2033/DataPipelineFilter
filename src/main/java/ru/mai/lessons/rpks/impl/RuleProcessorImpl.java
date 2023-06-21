@@ -14,13 +14,14 @@ import java.util.Objects;
 
 @Slf4j
 public class RuleProcessorImpl implements RuleProcessor {
-
+    ObjectMapper mapper;
     @Override
     public Message processing(Message msg, Rule[] rules) {
         msg.setFilterState(false);
         String filterValue;
         String fieldValue;
         boolean state;
+        mapper = new ObjectMapper();
         for (Rule rule : Objects.requireNonNull(rules)) {
             filterValue = rule.getFilterValue();
             fieldValue = getFieldValue(msg.getValue(), rule.getFieldName());
@@ -30,11 +31,13 @@ public class RuleProcessorImpl implements RuleProcessor {
                 msg.setFilterState(false);
             }
             else {
-                switch (rule.getFilterFunctionName()) {
-                    case "equals" -> state = filterValue.equals(fieldValue);
-                    case "not_equals" -> state = !fieldValue.isEmpty() && !filterValue.equals(fieldValue);
-                    case "contains" -> state = fieldValue.contains(filterValue);
-                    case "not_contains" -> state = !fieldValue.isEmpty() && !fieldValue.contains(filterValue);
+                FunctionNames functionNames = FunctionNames.valueOf(rule.getFilterFunctionName().toUpperCase());
+
+                switch (functionNames) {
+                    case EQUALS-> state = filterValue.equals(fieldValue);
+                    case NOT_EQUALS -> state = !fieldValue.isEmpty() && !filterValue.equals(fieldValue);
+                    case CONTAINS -> state = fieldValue.contains(filterValue);
+                    case NOT_CONTAINS -> state = !fieldValue.isEmpty() && !fieldValue.contains(filterValue);
                 }
             }
             msg.setFilterState(state);
@@ -47,9 +50,14 @@ public class RuleProcessorImpl implements RuleProcessor {
         return msg;
     }
 
-    private String getFieldValue(String value, String fieldName) {
-        ObjectMapper mapper = new ObjectMapper();
+    private enum FunctionNames {
+        EQUALS,
+        CONTAINS,
+        NOT_EQUALS,
+        NOT_CONTAINS
+    }
 
+    private String getFieldValue(String value, String fieldName) {
         Map map = null;
         try {
             map = mapper.readValue(value, Map.class);
