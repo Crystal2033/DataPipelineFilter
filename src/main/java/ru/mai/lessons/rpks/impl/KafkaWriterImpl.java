@@ -27,7 +27,7 @@ public class KafkaWriterImpl implements KafkaWriter {
     @Override
     public void processing(Message message) {
         if (message != null) {
-            log.info("Process %s".formatted(message.getValue()));
+            log.debug("Process %s".formatted(message.getValue()));
             ruleProcessor.processing(message, rulesGetter.get());
             if (message.isFilterState()) {
                 send(message);
@@ -38,7 +38,7 @@ public class KafkaWriterImpl implements KafkaWriter {
     private void send(Message message) {
         if (kafkaProducer == null)
             init();
-        log.info("sending %s".formatted(message.getValue()));
+        log.debug("sending %s".formatted(message.getValue()));
         kafkaProducer.send(new ProducerRecord<>(topic, message.getValue()));
     }
 

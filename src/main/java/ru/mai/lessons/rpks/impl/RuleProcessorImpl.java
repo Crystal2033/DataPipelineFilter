@@ -17,9 +17,9 @@ public class RuleProcessorImpl implements RuleProcessor {
     @Override
     public Message processing(Message message, Rule[] rules) {
         if (message == null) {
-            log.info("Passed null message.");
+            log.debug("Passed null message.");
         } else if (rules == null || rules.length == 0) {
-            log.info("Passed message %s with no rules".formatted(message.getValue()));
+            log.debug("Passed message %s with no rules".formatted(message.getValue()));
             message.setFilterState(false);
         } else {
             Map<Long, List<Rule>> groupRules = Arrays.stream(rules).collect(Collectors.groupingBy(Rule::getRuleId));
