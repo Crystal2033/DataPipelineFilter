@@ -13,7 +13,7 @@ import ru.mai.lessons.rpks.model.Rule;
 public final class RuleProcessorImpl implements RuleProcessor {
     @Override
     public Message processing(Message message, Rule[] rules) {
-        if (rules == null) {
+        if (rules == null || rules.length == 0) {
             message.setFilterState(false);
             return message;
         }
@@ -26,9 +26,9 @@ public final class RuleProcessorImpl implements RuleProcessor {
 
             try {
                 node = mapper.readTree(message.getValue());
-                if (node.path(rule.getFieldName()) != null)
+                if (node.path(rule.getFieldName()) != null) {
                     value = node.path(rule.getFieldName()).asText();
-
+                }else value = "";
             } catch (JsonProcessingException e) {
                 message.setFilterState(false);
             }
@@ -44,18 +44,13 @@ public final class RuleProcessorImpl implements RuleProcessor {
     }
 
     private boolean ruleChecker(String value, String checkValue, String rule) {
-        if (rule.equals("equals")) {
-            return value.equals(checkValue);
-        }
-        if (rule.equals("contains")) {
-            return value.contains(checkValue);
-        }
-        if (rule.equals("not_equals")) {
-            return (!value.equals(checkValue));
-        }
-        if (rule.equals("not_contains")) {
-            return !value.contains(checkValue);
-        }
-        return false;
+        return switch (rule) {
+            case "equals" -> value.equals(checkValue);
+            case "contains" -> value.contains(checkValue);
+            case "not_equals" -> (!value.equals(checkValue));
+            case "not_contains" -> (!value.contains(checkValue));
+            default -> false;
+        };
+
     }
 }
