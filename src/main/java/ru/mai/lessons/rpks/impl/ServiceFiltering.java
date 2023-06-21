@@ -22,12 +22,13 @@ public class ServiceFiltering implements Service {
     @Override
     public void start(Config config) {
         dbReader = new DbReaderImpl(config);
+
         Config prodConf = config.getConfig("kafka").getConfig("producer");
         Config consConf = config.getConfig("kafka").getConfig("consumer");
         Config appConf = config.getConfig("application");
 
         exec.scheduleAtFixedRate(this::rulesUpdater,
-                1,
+                0,
                 Integer.parseInt(appConf.getString("updateIntervalSec")),
                 TimeUnit.SECONDS
         );

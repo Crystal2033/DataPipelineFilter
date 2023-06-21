@@ -46,9 +46,9 @@ public final class RuleProcessorImpl implements RuleProcessor {
     private boolean ruleChecker(String value, String checkValue, String rule) {
         return switch (rule) {
             case "equals" -> value.equals(checkValue);
-            case "contains" -> value.contains(checkValue);
-            case "not_equals" -> (!value.equals(checkValue));
-            case "not_contains" -> (!value.contains(checkValue));
+            case "contains" -> value != null && value.contains(checkValue);
+            case "not_equals" -> value != null && !value.equals("") && (!value.equals(checkValue));
+            case "not_contains" -> value != null && !value.equals("") &&(!value.contains(checkValue));
             default -> false;
         };
 
