@@ -50,7 +50,6 @@ public class WriterToKafka implements KafkaWriter {
                 new StringSerializer(),
                 new StringSerializer()
         );
-        kafkaProducer.send(new ProducerRecord<>(producerSettings.getTopicOut(), message.getValue()));
         try (kafkaProducer) {
             kafkaProducer.send(new ProducerRecord<>(producerSettings.getTopicOut(), message.getValue()));
         }
