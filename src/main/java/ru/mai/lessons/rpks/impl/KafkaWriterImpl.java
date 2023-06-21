@@ -15,6 +15,7 @@ import ru.mai.lessons.rpks.model.Rule;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.function.Supplier;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -23,13 +24,13 @@ public final class KafkaWriterImpl implements KafkaWriter {
     private final String topic;
     private final String bootstrapServers;
     private final RuleProcessor ruleChecker;
-    private final Rule[] rules;
+    private final Supplier<Rule[]> rules;
 
     private KafkaProducer<String, String> kafkaProducer;
 
     @Override
     public void processing(Message message) {
-        Message checkedMessage = ruleChecker.processing(message, rules);
+        Message checkedMessage = ruleChecker.processing(message, rules.get());
         if (checkedMessage.isFilterState()) {
             if (Optional.ofNullable(kafkaProducer).isEmpty()) {
                 log.info("init writerImpl");

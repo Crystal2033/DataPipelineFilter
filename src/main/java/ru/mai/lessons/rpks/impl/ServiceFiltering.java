@@ -33,11 +33,10 @@ public class ServiceFiltering implements Service {
                 TimeUnit.SECONDS
         );
 
-        rules = readDbRules();
 
         KafkaWriter kafkaWriter = new KafkaWriterImpl(prodConf.getString("topic"),
                 prodConf.getString("bootstrap.servers"),
-                ruleChecker, rules);
+                ruleChecker, this::readDbRules);
 
         KafkaReader kafkaReader = new KafkaReaderImpl(consConf.getString("topic"),
                 consConf.getString("bootstrap.servers"),
