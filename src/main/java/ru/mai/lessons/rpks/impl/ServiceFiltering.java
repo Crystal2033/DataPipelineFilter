@@ -21,22 +21,18 @@ public class ServiceFiltering implements Service {
     public void start(Config config) {
         log.debug("CONFIG:" + config.toString());
         AtomicBoolean isExit = new AtomicBoolean(false);
-        ConcurrentLinkedQueue<Message> concurrentLinkedQueue = new ConcurrentLinkedQueue<>();
         ConcurrentLinkedQueue<Rule[]> rules = new ConcurrentLinkedQueue<>();
-        ExecutorService executorService = Executors.newFixedThreadPool(2);
+        ExecutorService executorService = Executors.newFixedThreadPool(1);
 
         ConsumerSettings consumerSettings = Settings.makeConsumerSettings(config);
         ProducerSettings producerSettings = Settings.makeProducerSettings(config);
         DBSettings dbSettings = Settings.makeDBSettings(config);
         int updateIntervalSec = config.getConfig("application").getInt("updateIntervalSec");
 
-        WriterToKafka writerToKafka = WriterToKafka.builder().producerSettings(producerSettings)
-                .concurrentLinkedQueue(concurrentLinkedQueue).isExit(isExit).rules(rules)
+        WriterToKafka writerToKafka = WriterToKafka.builder().producerSettings(producerSettings).rules(rules)
                 .processorOfRule(new ProcessorOfRule()).build();
         ReaderFromKafka readerFromKafka = ReaderFromKafka.builder().consumerSettings(consumerSettings)
-                .concurrentLinkedQueue(concurrentLinkedQueue).isExit(isExit).build();
-
-        executorService.submit(writerToKafka::startWriter);
+                .writerToKafka(writerToKafka).isExit(isExit).build();
         executorService.submit(readerFromKafka::processing);
         ReaderFromDB readerFromDB = ReaderFromDB.builder().dbSettings(dbSettings).build();
         while (!isExit.get()) {

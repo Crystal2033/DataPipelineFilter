@@ -52,6 +52,7 @@ public class ReaderFromDB implements DbReader {
         return new Rule[0];
     }
 
+
     HikariConfig makeHikariConfig() {
         HikariConfig hikariConfig = new HikariConfig();
         hikariConfig.setJdbcUrl(dbSettings.getJdbcUrl());

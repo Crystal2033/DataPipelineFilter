@@ -27,10 +27,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class ReaderFromKafka implements KafkaReader {
     private AtomicBoolean isExit;
     private ConsumerSettings consumerSettings;
-    ConcurrentLinkedQueue<Message> concurrentLinkedQueue;
+    WriterToKafka writerToKafka;
 
     @Override
     public void processing() {
+        assert writerToKafka != null;
+        writerToKafka.createKafkaProducer();
         log.debug("CONSUMER_SETTINGS:" + consumerSettings);
         log.debug("KAFKA_CONSUMER_START_READING_FROM_TOPIC {}", consumerSettings.getTopicIn());
         KafkaConsumer<String, String> kafkaConsumer = new KafkaConsumer<>(
@@ -48,11 +50,10 @@ public class ReaderFromKafka implements KafkaReader {
                 ConsumerRecords<String, String> consumerRecords = kafkaConsumer.poll(Duration.ofMillis(100));
                 for (ConsumerRecord<String, String> consumerRecord : consumerRecords) {
                     log.debug("MASSAGE_FROM_KAFKA_TOPIC {} : {}", consumerRecord.topic(), consumerRecord.value());
-                    concurrentLinkedQueue.add(Message.builder().value(consumerRecord.value()).build());
+                    writerToKafka.processing(Message.builder().value(consumerRecord.value()).build());
                 }
             }
             log.debug("READ_IS_DONE!");
         }
     }
-
 }
