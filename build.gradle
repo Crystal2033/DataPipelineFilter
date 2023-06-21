@@ -4,6 +4,9 @@ plugins {
 
 group 'ru.mai.lessons.rpks'
 version '1.0-SNAPSHOT'
+apply plugin: 'java'
+
+compileJava { options.encoding = "UTF-8" }
 
 repositories {
     mavenCentral()
@@ -11,7 +14,8 @@ repositories {
 
 dependencies {
     // logging
-    implementation 'ch.qos.logback:logback-classic:1.4.5'
+    implementation 'ch.qos.logback:logback-classic:1.4.7'
+    implementation 'org.apache.kafka:kafka-clients:3.4.0'
 
     // code generator
     compileOnly 'org.projectlombok:lombok:1.18.26'
@@ -24,11 +28,10 @@ dependencies {
     implementation 'org.postgresql:postgresql:42.5.4'
     implementation 'com.zaxxer:HikariCP:5.0.1'
     implementation 'org.jooq:jooq:3.18.0'
-
-    //kafka
-    implementation 'org.apache.kafka:kafka-clients:3.4.0'
+    implementation 'org.jooq:jooq-codegen:3.18.4'
 
     // json
+    implementation 'com.google.code.gson:gson:2.10.1'
     implementation 'com.fasterxml.jackson.core:jackson-core:2.14.2'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.1'
 
@@ -39,11 +42,12 @@ dependencies {
     testImplementation "org.testcontainers:postgresql:1.17.6"
     testCompileOnly "org.projectlombok:lombok:1.18.26"
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.26'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-    testImplementation 'org.apache.kafka:kafka-clients:3.4.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+
 }
 
 test {
     useJUnitPlatform()
 }
+ext['jooq.version'] = '3.11.2'

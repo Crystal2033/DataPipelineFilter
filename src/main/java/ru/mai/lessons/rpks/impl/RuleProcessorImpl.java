@@ -9,7 +9,7 @@ import ru.mai.lessons.rpks.model.Message;
 import ru.mai.lessons.rpks.model.Rule;
 
 @Slf4j
-public class RuleProcessor_impl implements RuleProcessor {
+public class RuleProcessorImpl implements RuleProcessor {
     private final ObjectMapper mapper = new ObjectMapper();
 
     @Override
@@ -52,17 +52,12 @@ public class RuleProcessor_impl implements RuleProcessor {
         String filterFunctionName = rule.getFilterFunctionName();
         String filterValue = rule.getFilterValue();
 
-        switch (filterFunctionName.toLowerCase()) {
-            case "equals":
-                return fieldValue.equals(filterValue);
-            case "not_equals":
-                return !fieldValue.equals(filterValue);
-            case "contains":
-                return fieldValue.contains(filterValue);
-            case "not_contains":
-                return !fieldValue.contains(filterValue);
-            default:
-                return false;
-        }
+        return switch (filterFunctionName.toLowerCase()) {
+            case "equals" -> fieldValue.equals(filterValue);
+            case "not_equals" -> !fieldValue.equals(filterValue);
+            case "contains" -> fieldValue.contains(filterValue);
+            case "not_contains" -> !fieldValue.contains(filterValue);
+            default -> false;
+        };
     }
 }
