@@ -21,6 +21,5 @@ public class ServiceFiltering implements Service {
         kafkaReader.setRuleList(rules);
         kafkaReader.processing();
     }
-
-
 }
+
