@@ -57,7 +57,7 @@ public class WriterToKafka implements KafkaWriter {
     }
 
     void startWriter() {
-        while (isExit.get()) {
+        while (!isExit.get()) {
             if ((!concurrentLinkedQueue.isEmpty()) && !(rules.isEmpty())) {
                 Message message = concurrentLinkedQueue.poll();
                 log.debug("KAFKA_PRODUCER_START_PROCESSING_MASSAGE: " + message.getValue());
