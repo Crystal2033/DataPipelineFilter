@@ -29,7 +29,7 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.shaded.com.google.common.collect.ImmutableMap;
 import org.testcontainers.utility.DockerImageName;
-import ru.mai.lessons.rpks.impl.ServiceFiltering;
+import ru.mai.lessons.rpks.impl.ServiceFilteringClass;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
@@ -69,7 +69,7 @@ class ServiceTest {
 
     private final String tableName = "filter_rules";
 
-    private final Service serviceFiltering = new ServiceFiltering();
+    private final Service serviceFiltering = new ServiceFilteringClass();
 
     /**
      * Проверяет готовность Kafka
