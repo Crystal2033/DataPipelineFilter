@@ -28,9 +28,10 @@ public class ReaderFromKafka implements KafkaReader {
     private AtomicBoolean isExit;
     private ConsumerSettings consumerSettings;
     ConcurrentLinkedQueue<Message> concurrentLinkedQueue;
+
     @Override
     public void processing() {
-        log.debug("CONSUMER_SETTINGS:"+consumerSettings);
+        log.debug("CONSUMER_SETTINGS:" + consumerSettings);
         log.debug("KAFKA_CONSUMER_START_READING_FROM_TOPIC {}", consumerSettings.getTopicIn());
         KafkaConsumer<String, String> kafkaConsumer = new KafkaConsumer<>(
                 Map.of(
@@ -48,11 +49,6 @@ public class ReaderFromKafka implements KafkaReader {
                 for (ConsumerRecord<String, String> consumerRecord : consumerRecords) {
                     log.debug("MASSAGE_FROM_KAFKA_TOPIC {} : {}", consumerRecord.topic(), consumerRecord.value());
                     concurrentLinkedQueue.add(Message.builder().value(consumerRecord.value()).build());
-                    if (consumerRecord.value().equals("$exit")) {
-                        isExit.set(true);
-                    } else {
-                        log.debug("MASSAGE_FROM_KAFKA_TOPIC {} : {}", consumerRecord.topic(), consumerRecord.value());
-                    }
                 }
             }
             log.debug("READ_IS_DONE!");

@@ -7,7 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.jooq.tools.json.ParseException;
 import ru.mai.lessons.rpks.KafkaWriter;
@@ -16,13 +15,9 @@ import ru.mai.lessons.rpks.model.Message;
 import ru.mai.lessons.rpks.model.Rule;
 
 import java.util.Map;
-import java.util.Optional;
-import java.util.Scanner;
 import java.util.UUID;
-import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Slf4j
 @Getter
@@ -30,6 +25,7 @@ import java.util.concurrent.Future;
 @Builder
 public class WriterToKafka implements KafkaWriter {
     ProducerSettings producerSettings;
+    private AtomicBoolean isExit;
     ConcurrentLinkedQueue<Message> concurrentLinkedQueue;
     ConcurrentLinkedQueue<Rule[]> rules;
     ProcessorOfRule processorOfRule;
@@ -38,12 +34,13 @@ public class WriterToKafka implements KafkaWriter {
     public void processing(Message message) {
         try {
             assert rules.peek() != null;
-            processorOfRule.processing(message,rules.peek());
+            processorOfRule.processing(message, rules.peek());
         } catch (ParseException e) {
-            log.warn("NOT_CORRECT_MASSAGE:"+message.getValue());
+            log.warn("NOT_CORRECT_MASSAGE:" + message.getValue());
         }
     }
-    void startWriter(){
+
+    void writeMessage(Message message) {
         log.debug("START_WRITE_MESSAGE_IN_KAFKA_TOPIC {}", producerSettings.getTopicOut());
         KafkaProducer<String, String> kafkaProducer = new KafkaProducer<>(
                 Map.of(
@@ -53,20 +50,21 @@ public class WriterToKafka implements KafkaWriter {
                 new StringSerializer(),
                 new StringSerializer()
         );
-        try (kafkaProducer){
-            while(true){
-                if((!concurrentLinkedQueue.isEmpty())&&!(rules.isEmpty())) {
-                    Message message=concurrentLinkedQueue.poll();
-                    log.debug("KAFKA_PRODUCER_START_PROCESSING_MASSAGE: "+message.getValue());
-                    if(message.getValue().equals("$exit")) {
-                        break;
-                    }
-                    processing(message);
-                    log.debug("KAFKA_PRODUCER_END_PROCESSING_MASSAGE: "+message.getValue());
-                    if(message.isFilterState()){
-                        kafkaProducer.send(new ProducerRecord<>(producerSettings.getTopicOut(), message.getValue()));
-                        log.debug("KAFKA_PRODUCER_SEND_MASSAGE: "+message.getValue());
-                    }
+        kafkaProducer.send(new ProducerRecord<>(producerSettings.getTopicOut(), message.getValue()));
+        try (kafkaProducer) {
+            kafkaProducer.send(new ProducerRecord<>(producerSettings.getTopicOut(), message.getValue()));
+        }
+    }
+
+    void startWriter() {
+        while (isExit.get()) {
+            if ((!concurrentLinkedQueue.isEmpty()) && !(rules.isEmpty())) {
+                Message message = concurrentLinkedQueue.poll();
+                log.debug("KAFKA_PRODUCER_START_PROCESSING_MASSAGE: " + message.getValue());
+                processing(message);
+                if (message.isFilterState()) {
+                    writeMessage(message);
+                    log.debug("KAFKA_PRODUCER_SEND_MASSAGE: " + message.getValue());
                 }
             }
         }

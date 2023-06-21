@@ -12,5 +12,5 @@ import lombok.ToString;
 public class ProducerSettings {
     private String bootstrapServers;
     private String topicOut;
-    private  int  updateIntervalSec;
+    private int updateIntervalSec;
 }

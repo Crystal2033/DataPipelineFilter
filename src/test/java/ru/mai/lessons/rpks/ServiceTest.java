@@ -48,10 +48,8 @@ import static org.junit.jupiter.api.Assertions.*;
 @Slf4j
 @Testcontainers
 class ServiceTest {
-
     @Container
     private final KafkaContainer kafka = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka"));
-
     @Container
     private final JdbcDatabaseContainer<?> postgreSQL = new PostgreSQLContainer(DockerImageName.parse("postgres"))
             .withDatabaseName("test_db")
@@ -196,7 +194,6 @@ class ServiceTest {
             fail();
         }
     }
-
 
 
     /**

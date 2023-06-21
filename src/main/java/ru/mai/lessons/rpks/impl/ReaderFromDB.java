@@ -24,34 +24,36 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 @Getter
 public class ReaderFromDB implements DbReader {
     DBSettings dbSettings;
+
     @Override
     public Rule[] readRulesFromDB() {
-        try (HikariDataSource hikariDataSource=new HikariDataSource(makeHikariConfig())){
+        try (HikariDataSource hikariDataSource = new HikariDataSource(makeHikariConfig())) {
             log.debug("HIKARY_CREATE");
             DSLContext context = DSL.using(hikariDataSource.getConnection(), SQLDialect.POSTGRES);
             log.debug("CONTEXT_MADE");
-            Result<Record> information= context.select().from(dbSettings.getTableName()).fetch();
-            Rule[] rules=new Rule[information.size()];
-            log.debug("RULLES_CREATE:"+information.size());
-            int currentRuleIndex=0;
-            for(Record ruleInformation:information){
-                rules[currentRuleIndex]=Rule.builder().filterId((Long) ruleInformation.get("filter_id"))
+            Result<Record> information = context.select().from(dbSettings.getTableName()).fetch();
+            Rule[] rules = new Rule[information.size()];
+            log.debug("RULLES_CREATE:" + information.size());
+            int currentRuleIndex = 0;
+            for (Record ruleInformation : information) {
+                rules[currentRuleIndex] = Rule.builder().filterId((Long) ruleInformation.get("filter_id"))
                         .ruleId((Long) ruleInformation.get("rule_id"))
                         .fieldName((String) ruleInformation.get("field_name"))
                         .filterFunctionName((String) ruleInformation.get("filter_function_name"))
                         .filterValue((String) ruleInformation.get("filter_value")).build();
-                log.debug("FIND_RULE:"+rules[currentRuleIndex].toString());
+                log.debug("FIND_RULE:" + rules[currentRuleIndex].toString());
                 currentRuleIndex++;
             }
             log.debug("MAKE_RULES_FROM_DB");
             return rules;
         } catch (SQLException e) {
-            log.debug("SQLException "+e.getMessage());
+            log.debug("SQLException " + e.getMessage());
         }
         return new Rule[0];
     }
-    HikariConfig makeHikariConfig(){
-        HikariConfig hikariConfig=new HikariConfig();
+
+    HikariConfig makeHikariConfig() {
+        HikariConfig hikariConfig = new HikariConfig();
         hikariConfig.setJdbcUrl(dbSettings.getJdbcUrl());
         hikariConfig.setUsername(dbSettings.getUser());
         hikariConfig.setPassword(dbSettings.getPassword());

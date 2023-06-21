@@ -19,36 +19,36 @@ public class ServiceFiltering implements Service {
 
     @Override
     public void start(Config config) {
-        log.debug("CONFIG:"+config.toString());
-        AtomicBoolean isExit=new AtomicBoolean(false);
-        ConcurrentLinkedQueue<Message> concurrentLinkedQueue=new ConcurrentLinkedQueue<>();
-        ConcurrentLinkedQueue<Rule[]> rules=new ConcurrentLinkedQueue<>();
-        ExecutorService executorService= Executors.newFixedThreadPool(2);
+        log.debug("CONFIG:" + config.toString());
+        AtomicBoolean isExit = new AtomicBoolean(false);
+        ConcurrentLinkedQueue<Message> concurrentLinkedQueue = new ConcurrentLinkedQueue<>();
+        ConcurrentLinkedQueue<Rule[]> rules = new ConcurrentLinkedQueue<>();
+        ExecutorService executorService = Executors.newFixedThreadPool(2);
 
-        ConsumerSettings consumerSettings=Settings.makeConsumerSettings(config);
-        ProducerSettings producerSettings=Settings.makeProducerSettings(config);
-        DBSettings dbSettings=Settings.makeDBSettings(config);
-        int updateIntervalSec=config.getConfig("application").getInt("updateIntervalSec");
+        ConsumerSettings consumerSettings = Settings.makeConsumerSettings(config);
+        ProducerSettings producerSettings = Settings.makeProducerSettings(config);
+        DBSettings dbSettings = Settings.makeDBSettings(config);
+        int updateIntervalSec = config.getConfig("application").getInt("updateIntervalSec");
 
-        WriterToKafka writerToKafka= WriterToKafka.builder().producerSettings(producerSettings)
-                .concurrentLinkedQueue(concurrentLinkedQueue).rules(rules)
+        WriterToKafka writerToKafka = WriterToKafka.builder().producerSettings(producerSettings)
+                .concurrentLinkedQueue(concurrentLinkedQueue).isExit(isExit).rules(rules)
                 .processorOfRule(new ProcessorOfRule()).build();
-        ReaderFromKafka readerFromKafka= ReaderFromKafka.builder().consumerSettings(consumerSettings)
+        ReaderFromKafka readerFromKafka = ReaderFromKafka.builder().consumerSettings(consumerSettings)
                 .concurrentLinkedQueue(concurrentLinkedQueue).isExit(isExit).build();
 
         executorService.submit(writerToKafka::startWriter);
         executorService.submit(readerFromKafka::processing);
-        ReaderFromDB readerFromDB=ReaderFromDB.builder().dbSettings(dbSettings).build();
-        while(!isExit.get()) {
+        ReaderFromDB readerFromDB = ReaderFromDB.builder().dbSettings(dbSettings).build();
+        while (!isExit.get()) {
             rules.add(readerFromDB.readRulesFromDB());
             log.debug("ADD_RULE");
-            if(rules.size()>1) {
+            if (rules.size() > 1) {
                 rules.poll();
             }
             try {
-                Thread.sleep(updateIntervalSec* 1000L);
+                Thread.sleep(updateIntervalSec * 1000L);
             } catch (InterruptedException e) {
-                log.warn("CANT_SLEEP:"+e.getMessage());
+                log.warn("CANT_SLEEP:" + e.getMessage());
                 Thread.currentThread().interrupt();
                 break;
             }
@@ -56,7 +56,8 @@ public class ServiceFiltering implements Service {
         executorService.shutdown();
         // написать код реализации сервиса фильтрации
     }
-    private  record Settings() {
+
+    private record Settings() {
         private static ConsumerSettings makeConsumerSettings(Config config) {
             Config kafkaConfigConsumer = config.getConfig("kafka").getConfig("consumer");
             ConsumerSettings consumerSettings = ConsumerSettings.builder()
@@ -69,7 +70,7 @@ public class ServiceFiltering implements Service {
             return consumerSettings;
         }
 
-        private static  ProducerSettings makeProducerSettings(Config config) {
+        private static ProducerSettings makeProducerSettings(Config config) {
             Config kafkaConfigProducer = config.getConfig("kafka").getConfig("producer");
             ProducerSettings producerSettings = ProducerSettings.builder()
                     .bootstrapServers(kafkaConfigProducer.getString("bootstrap.servers"))

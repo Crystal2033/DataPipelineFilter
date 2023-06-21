@@ -10,9 +10,9 @@ import lombok.ToString;
 @Builder
 @ToString
 public class ConsumerSettings {
-    private  String bootstrapServers;
+    private String bootstrapServers;
     private String groupId;
     private String autoOffsetReset;
     private String topicIn;
-    private  int  updateIntervalSec;
+    private int updateIntervalSec;
 }
