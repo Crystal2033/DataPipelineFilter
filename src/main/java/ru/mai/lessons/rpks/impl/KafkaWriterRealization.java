@@ -24,7 +24,7 @@ public class KafkaWriterRealization implements KafkaWriter {
 
     public void createProducer(Config config) {
         Properties properties = new Properties();
-        properties.put("bootstrap.servers", config.getString("kafka.producer.bootstrap.servers"));
+        properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, config.getString("kafka.producer.bootstrap.servers"));
         properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         topic = config.getString("kafka.producer.topic");
