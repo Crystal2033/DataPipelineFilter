@@ -14,20 +14,23 @@ public class RuleProcessorImpl implements RuleProcessor {
     ObjectMapper mapper = new ObjectMapper();
 
     boolean compare(String value, Rule rule){
-        if (Objects.equals(rule.getFilterFunctionName(), "equals")
-                && Objects.equals(value, rule.getFilterValue())) {
-            return true;
+        switch (rule.getFilterFunctionName()) {
+            case "equals" -> {
+                return Objects.equals(value, rule.getFilterValue());
+            }
+            case "not_equals" -> {
+                return value.contains(rule.getFilterValue());
+            }
+            case "contains" -> {
+                return !Objects.equals(value, rule.getFilterValue());
+            }
+            case "not_contains" -> {
+                return !value.contains(rule.getFilterValue());
+            }
+            default -> {
+                return false;
+            }
         }
-        else if (Objects.equals(rule.getFilterFunctionName(), "contains")
-                && value.contains(rule.getFilterValue())) {
-            return true;
-        }
-        else if (Objects.equals(rule.getFilterFunctionName(), "not_equals")
-                && !Objects.equals(value, rule.getFilterValue())) {
-            return true;
-        }
-        else return Objects.equals(rule.getFilterFunctionName(), "not_contains")
-                    && !value.contains(rule.getFilterValue());
     }
 
     @Override
@@ -68,7 +71,7 @@ public class RuleProcessorImpl implements RuleProcessor {
                 message.setFilterState(true);
             }
         } catch (Exception e){
-            log.info("Json error :{}", e.toString());
+            log.error("Json error :{}", e.toString());
         }
 
         return message;

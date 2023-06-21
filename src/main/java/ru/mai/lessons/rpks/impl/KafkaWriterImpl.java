@@ -15,7 +15,7 @@ public class KafkaWriterImpl implements KafkaWriter {
     String topic;
     public KafkaWriterImpl(Config appConfig){
         Properties config = new Properties();
-        config.put("bootstrap.servers", appConfig.getString("kafka.producer.bootstrap.servers"));
+        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, appConfig.getString("kafka.producer.bootstrap.servers"));
         config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         topic = appConfig.getString("kafka.producer.topic");
