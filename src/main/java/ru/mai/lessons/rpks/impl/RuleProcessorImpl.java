@@ -11,17 +11,20 @@ import ru.mai.lessons.rpks.model.Rule;
 
 @RequiredArgsConstructor
 public final class RuleProcessorImpl implements RuleProcessor {
+    public enum rulesMode {
+        EQUALS, NOT_EQUALS, CONTAINS, NOT_CONTAINS
+    }
     @Override
     public Message processing(Message message, Rule[] rules) {
         if (rules == null || rules.length == 0) {
             message.setFilterState(false);
             return message;
         }
+        ObjectMapper mapper = new ObjectMapper();
 
         for (Rule rule : rules) {
 
             String value = "";
-            ObjectMapper mapper = new ObjectMapper();
             JsonNode node;
 
             try {
@@ -44,12 +47,12 @@ public final class RuleProcessorImpl implements RuleProcessor {
     }
 
     private boolean ruleChecker(String value, String checkValue, String rule) {
-        return switch (rule) {
-            case "equals" -> value.equals(checkValue);
-            case "contains" -> value != null && value.contains(checkValue);
-            case "not_equals" -> value != null && !value.equals("") && (!value.equals(checkValue));
-            case "not_contains" -> value != null && !value.equals("") &&(!value.contains(checkValue));
-            default -> false;
+        rulesMode ruleMode = rulesMode.valueOf(rule.toUpperCase());
+        return switch (ruleMode) {
+            case EQUALS -> value.equals(checkValue);
+            case CONTAINS -> value != null && value.contains(checkValue);
+            case NOT_EQUALS -> value != null && !value.equals("") && (!value.equals(checkValue));
+            case NOT_CONTAINS -> value != null && !value.equals("") &&(!value.contains(checkValue));
         };
 
     }

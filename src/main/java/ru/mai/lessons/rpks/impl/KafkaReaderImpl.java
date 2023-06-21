@@ -31,7 +31,6 @@ public final class KafkaReaderImpl implements KafkaReader {
 
     private KafkaConsumer<String, String> kafkaConsumer;
     private ExecutorService executor;
-    private boolean isExit;
 
     @Override
     public void processing() {
@@ -50,21 +49,13 @@ public final class KafkaReaderImpl implements KafkaReader {
 
         executor = Executors.newSingleThreadExecutor();
         executor.submit(() -> {
-            while (!isExit) {
+            while (true) {
                 ConsumerRecords<String, String> consumerRecords = kafkaConsumer.poll(Duration.ofMillis(100));
                 for (ConsumerRecord<String, String> consumerRecord : consumerRecords) {
-                    if (consumerRecord.value().equals("$exit")) {
-                        isExit = true;
-                    } else {
-                        log.info("Message from Kafka topic {} : {}", consumerRecord.topic(), consumerRecord.value());
-                        kafkaWriter.processing(new Message(consumerRecord.value()));
-                    }
+                    kafkaWriter.processing(new Message(consumerRecord.value()));
                 }
             }
-            log.info("Read is done!");
-
-            kafkaConsumer.close();
-            executor.shutdown();
         });
+        executor.shutdown();
     }
 }
