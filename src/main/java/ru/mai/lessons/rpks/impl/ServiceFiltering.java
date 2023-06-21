@@ -59,12 +59,11 @@ public class ServiceFiltering implements Service {
     private Rule[] readDbRules() {
         synchronized (synchronizer) {
             log.debug("Now in synchronized");
-            Rule[] ruleDB = null;
             if (rules == null) {
-                ruleDB = dbReader.readRulesFromDB();
+                rules = dbReader.readRulesFromDB();
             }
             log.info("Read rules from DB");
-            return ruleDB;
+            return rules;
         }
 
     }
