@@ -37,5 +37,3 @@ S
 #src/main/resources/application.conf,3\5\3583a03abc61f9a983b67fd3810cb1f4192490b6
 _
 /src/main/java/ru/mai/lessons/rpks/DbReader.java,6\f\6f0142a0881a68180c4fddb66eb92c7bc9df8a2f
-9
-	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d

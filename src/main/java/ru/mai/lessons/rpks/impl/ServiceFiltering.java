@@ -10,12 +10,9 @@ import java.util.List;
 public class ServiceFiltering implements Service {
 
     List<Rule> rules = new ArrayList<>();
-    private Config config;
-    private KafkaReaderRealization kafkaReader = new KafkaReaderRealization();
+    private final KafkaReaderRealization kafkaReader = new KafkaReaderRealization();
     @Override
     public void start(Config config) {
-
-
         // написать код реализации сервиса фильтрации
         kafkaReader.setConfig(config);
         kafkaReader.setRuleList(rules);
