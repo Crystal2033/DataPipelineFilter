@@ -10,39 +10,47 @@ import org.jooq.impl.DSL;
 import ru.mai.lessons.rpks.DbReader;
 import ru.mai.lessons.rpks.model.Rule;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 
 @Slf4j
 public class DbReaderImpl implements DbReader {
-    private static final HikariConfig hikariConfig = new HikariConfig();
-    private final HikariDataSource ds;
-    public DbReaderImpl(Config config) {
-        hikariConfig.setJdbcUrl(config.getString("db.jdbcUrl"));
-        hikariConfig.setUsername(config.getString("db.user"));
-        hikariConfig.setPassword(config.getString("db.password"));
-        hikariConfig.setDriverClassName(config.getString("db.driver"));
-        ds = new HikariDataSource(hikariConfig);
-    }
+    Rule[] rules;
+    String username;
+    String password;
+    String jdbcUrl;
+    String driver;
+    private static HikariConfig config;
+    private static HikariDataSource ds;
 
+
+    public DbReaderImpl(Config conf){
+        username = conf.getConfig("db").getString("user");
+        password = conf.getConfig("db").getString("password");
+        jdbcUrl = conf.getConfig("db").getString("jdbcUrl");
+        driver = conf.getConfig("db").getString("driver");
+    }
     @Override
     public Rule[] readRulesFromDB() {
-        try {
-            var con = ds.getConnection();
-            DSLContext context = DSL.using(con, SQLDialect.POSTGRES);
-            return context.select().from("public.filter_rules").
-                    fetch().
-                    stream().
-                    map(re ->Rule.builder().
-                            filterId((Long) re.getValue("filter_id")).
-                            ruleId((Long) re.getValue("rule_id")).
-                            fieldName((String) re.getValue("field_name")).
-                            filterFunctionName((String) re.getValue("filter_function_name")).
-                            filterValue((String) re.getValue("filter_value")).build()
-                    ).toList().toArray(Rule[]::new);
-            
-        } catch (SQLException e) {
-            log.error("can't read from db error: {}", e.toString());
+        config = new HikariConfig();
+        config.setJdbcUrl( jdbcUrl );
+        config.setUsername( username );
+        config.setPassword( password );
+        ds = new HikariDataSource(config);
+        try(Connection connection = ds.getConnection()){
+            DSLContext dslcontext = DSL.using(connection, SQLDialect.POSTGRES);
+            log.debug("Created a new datasource");
+            rules = dslcontext
+                    .select()
+                    .from("filter_rules")
+                    .fetchInto(Rule.class)
+                    .toArray(Rule[]::new);
+            log.debug("Got rules");
+        } catch(SQLException e){
+            log.error("An error occurred while reading rules from the database: {}", e.getMessage());
         }
-        return new Rule[0];
+
+
+        return rules;
     }
 }

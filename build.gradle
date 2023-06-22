@@ -10,11 +10,11 @@ repositories {
 }
 
 dependencies {
-    //kafka
-    implementation 'org.apache.kafka:kafka-clients:3.4.0'
-
     // logging
     implementation 'ch.qos.logback:logback-classic:1.4.5'
+    implementation 'org.apache.kafka:kafka-clients:3.4.0'
+    annotationProcessor 'com.zaxxer:HikariCP:5.0.1'
+
 
     // code generator
     compileOnly 'org.projectlombok:lombok:1.18.26'
@@ -30,7 +30,7 @@ dependencies {
 
     // json
     implementation 'com.fasterxml.jackson.core:jackson-core:2.14.2'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.1'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.10.0'
 
     // test
     testImplementation 'org.testcontainers:testcontainers:1.17.6'

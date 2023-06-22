@@ -7,6 +7,6 @@ import ru.mai.lessons.rpks.ConfigReader;
 public class ConfigurationReader implements ConfigReader {
     @Override
     public Config loadConfig() {
-        return ConfigFactory.load();
+        return ConfigFactory.parseResources("application.conf"); // написать код загрузки конфигураций сервиса фильтраций из файла *.conf
     }
 }
