@@ -24,6 +24,26 @@ public class DbReaderImpl implements DbReader {
         ds = new HikariDataSource(hikariConfig);
     }
 
+    private Rule.FunctionName setMsgType(String type){
+        switch (type) {
+            case "equals" -> {
+                return Rule.FunctionName.EQUALS;
+            }
+            case "contains" -> {
+                return Rule.FunctionName.CONTAINS;
+            }
+            case "not_equals" -> {
+                return Rule.FunctionName.NOT_EQUALS;
+            }
+            case "not_contains" -> {
+                return Rule.FunctionName.NOT_CONTAINS;
+            }
+            default -> {
+                return Rule.FunctionName.OTHER;
+            }
+        }
+    }
+
     @Override
     public Rule[] readRulesFromDB() {
         try {
@@ -32,12 +52,14 @@ public class DbReaderImpl implements DbReader {
             return context.select().from("public.filter_rules").
                     fetch().
                     stream().
-                    map(re ->Rule.builder().
-                            filterId((Long) re.getValue("filter_id")).
-                            ruleId((Long) re.getValue("rule_id")).
-                            fieldName((String) re.getValue("field_name")).
-                            filterFunctionName((String) re.getValue("filter_function_name")).
-                            filterValue((String) re.getValue("filter_value")).build()
+                    map(re ->Rule.builder()
+                            .filterId((Long) re.getValue("filter_id"))
+                            .ruleId((Long) re.getValue("rule_id"))
+                            .fieldName((String) re.getValue("field_name"))
+                            .filterFunctionName((String) re.getValue("filter_function_name"))
+                            .filterValue((String) re.getValue("filter_value"))
+                            .filterFunctionNameEnum(setMsgType((String) re.getValue("filter_function_name")))
+                            .build()
                     ).toList().toArray(Rule[]::new);
             
         } catch (SQLException e) {

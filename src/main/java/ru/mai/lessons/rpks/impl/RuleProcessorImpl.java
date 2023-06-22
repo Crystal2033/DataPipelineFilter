@@ -14,17 +14,17 @@ public class RuleProcessorImpl implements RuleProcessor {
     ObjectMapper mapper = new ObjectMapper();
 
     boolean compare(String value, Rule rule){
-        switch (rule.getFilterFunctionName()) {
-            case "equals" -> {
+        switch (rule.getFilterFunctionNameEnum()){
+            case EQUALS -> {
                 return Objects.equals(value, rule.getFilterValue());
             }
-            case "not_equals" -> {
+            case CONTAINS -> {
                 return !Objects.equals(value, rule.getFilterValue());
             }
-            case "contains" -> {
+            case NOT_EQUALS -> {
                 return value.contains(rule.getFilterValue());
             }
-            case "not_contains" -> {
+            case NOT_CONTAINS -> {
                 return !value.contains(rule.getFilterValue());
             }
             default -> {
