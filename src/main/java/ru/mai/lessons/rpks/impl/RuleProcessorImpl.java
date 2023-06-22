@@ -12,6 +12,13 @@ import ru.mai.lessons.rpks.model.Rule;
 public class RuleProcessorImpl implements RuleProcessor {
     private final ObjectMapper mapper = new ObjectMapper();
 
+    private enum FilterFunction {
+        EQUALS,
+        NOT_EQUALS,
+        CONTAINS,
+        NOT_CONTAINS
+    }
+
     @Override
     public Message processing(Message message, Rule[] rules) {
         message.setFilterState(true);
@@ -49,15 +56,14 @@ public class RuleProcessorImpl implements RuleProcessor {
     }
 
     private boolean checkRule(Rule rule, String fieldValue) {
-        String filterFunctionName = rule.getFilterFunctionName();
+        FilterFunction filterFunction = FilterFunction.valueOf(rule.getFilterFunctionName().toUpperCase());
         String filterValue = rule.getFilterValue();
 
-        return switch (filterFunctionName.toLowerCase()) {
-            case "equals" -> fieldValue.equals(filterValue);
-            case "not_equals" -> !fieldValue.equals(filterValue);
-            case "contains" -> fieldValue.contains(filterValue);
-            case "not_contains" -> !fieldValue.contains(filterValue);
-            default -> false;
+        return switch (filterFunction) {
+            case EQUALS -> fieldValue.equals(filterValue);
+            case NOT_EQUALS -> !fieldValue.equals(filterValue);
+            case CONTAINS -> fieldValue.contains(filterValue);
+            case NOT_CONTAINS -> !fieldValue.contains(filterValue);
         };
     }
 }
