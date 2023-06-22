@@ -19,10 +19,10 @@ public class RuleProcessorImpl implements RuleProcessor {
                 return Objects.equals(value, rule.getFilterValue());
             }
             case CONTAINS -> {
-                return !Objects.equals(value, rule.getFilterValue());
+                return value.contains(rule.getFilterValue());
             }
             case NOT_EQUALS -> {
-                return value.contains(rule.getFilterValue());
+                return !Objects.equals(value, rule.getFilterValue());
             }
             case NOT_CONTAINS -> {
                 return !value.contains(rule.getFilterValue());
