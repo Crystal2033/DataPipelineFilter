@@ -35,8 +35,7 @@ public class RulesUpdater implements Runnable{
             reader = new DataBaseReader(config);
         }
         catch (Exception e) {
-            String str = e.toString();
-            log.error(str);
+            log.error(e.getMessage());
         }
 
         if (!reader.connectToDataBase()) {

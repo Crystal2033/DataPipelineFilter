@@ -15,8 +15,6 @@ X
 (gradle/wrapper/gradle-wrapper.properties,f\b\fbe448ebfc3eb2d4e308f6b8b043666f5b57235e
 L
 .github/workflows/gradle.yml,c\3\c36c878e4a824e41b1b476ece36b9a80ca94ffec
-c
-3src/main/java/ru/mai/lessons/rpks/ConfigReader.java,a\6\a63d6f135ac04befd116d8e1f31aa21b752441da
 ^
 .src/main/java/ru/mai/lessons/rpks/Service.java,d\1\d1a3ea2a4104e7c4b282edebb124a7f189a5c9df
 b
@@ -35,5 +33,3 @@ a
 1src/main/java/ru/mai/lessons/rpks/model/Rule.java,1\8\18062bf50ae937e2bc5df53c64b13687f1d60ab2
 b
 2src/main/java/ru/mai/lessons/rpks/RuleApplier.java,1\6\16a11f479215e2d71939f44dce743499d0ac348b
-l
-<src/main/java/ru/mai/lessons/rpks/impl/ServiceFiltering.java,9\7\97a4aa82a2231676d67354c4c83e9ba0cb80aeb0
