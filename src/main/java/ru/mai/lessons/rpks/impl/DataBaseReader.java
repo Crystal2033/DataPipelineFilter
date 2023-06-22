@@ -52,6 +52,11 @@ public class DataBaseReader implements DbReader {
     }
 
     public boolean isConnected() throws SQLException {
-        return getConnection().isValid(0);
+        if (getConnection() == null) {
+            return false;
+        }
+        else {
+            return getConnection().isValid(0);
+        }
     }
 }
