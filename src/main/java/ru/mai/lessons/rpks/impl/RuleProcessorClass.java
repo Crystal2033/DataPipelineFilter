@@ -10,19 +10,38 @@ import java.util.Map;
 @Slf4j
 public class RuleProcessorClass implements ru.mai.lessons.rpks.RuleProcessor {
 
+    private ObjectMapper mapper;
+
+
+    enum FilterFunction {
+        CONTAINS,
+        NOT_CONTAINS,
+        EQUALS,
+        NOT_EQUALS;
+    }
+
+    public RuleProcessorClass(){
+        this.mapper = new ObjectMapper();
+    }
+
+
+
     private boolean checkRules(String filterFunctionName, String filterValue, String fieldValue) {
-        switch (filterFunctionName.toLowerCase()) {
-            case "contains":
-                log.info("contains " + fieldValue.contains(filterValue));
+
+        FilterFunction function = FilterFunction.valueOf(filterFunctionName.toUpperCase());
+
+        switch (function) {
+            case CONTAINS:
+                log.info("Rule \"contains\" " + fieldValue.contains(filterValue));
                 return fieldValue.contains(filterValue);
-            case "not_contains":
-                log.info("not_contains " + !fieldValue.contains(filterValue));
+            case NOT_CONTAINS:
+                log.info("Rule \"not_contains\" " + !fieldValue.contains(filterValue));
                 return !fieldValue.contains(filterValue);
-            case "equals":
-                log.info("equals " + fieldValue.equals(filterValue));
+            case EQUALS:
+                log.info("Rule \"equals\" " + fieldValue.equals(filterValue));
                 return fieldValue.equals(filterValue);
-            case "not_equals":
-                log.info("not_equals " + !fieldValue.equals(filterValue));
+            case NOT_EQUALS:
+                log.info("Rule \"not_equals\" " + !fieldValue.equals(filterValue));
                 return !fieldValue.equals(filterValue);
             default:
                 return false;
@@ -31,7 +50,6 @@ public class RuleProcessorClass implements ru.mai.lessons.rpks.RuleProcessor {
 
     @Override
     public Message processing(Message message, Rule[] rules) {
-        ObjectMapper mapper = new ObjectMapper();
         message.setFilterState(true);
         try {
             Map<Object, Object> map = mapper.readValue(message.getValue(), Map.class);
@@ -40,10 +58,9 @@ public class RuleProcessorClass implements ru.mai.lessons.rpks.RuleProcessor {
             } else {
                 for (Rule rule : rules) {
                     if (map.containsKey(rule.getFieldName())) {
-                        String filterFunctionName = rule.getFilterFunctionName();
-                        String filterValue = rule.getFilterValue();
-                        String fieldValue = map.get(rule.getFieldName()).toString();
-                        message.setFilterState(checkRules(filterFunctionName, filterValue, fieldValue));
+                        message.setFilterState(checkRules(rule.getFilterFunctionName(),
+                                rule.getFilterValue(),
+                                map.get(rule.getFieldName()).toString()));
                         if (!message.isFilterState()) {
                             return message;
                         }

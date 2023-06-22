@@ -6,7 +6,7 @@ import ru.mai.lessons.rpks.ConfigReader;
 
 public class ConfigurationReaderClass implements ConfigReader {
     @Override
-    public Config loadConfig() {
-        return ConfigFactory.parseResources("application.conf");
-    }
+        public Config loadConfig() {
+            return ConfigFactory.load();
+        }
 }
