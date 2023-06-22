@@ -23,15 +23,11 @@ public class ServiceFiltering implements Service {
         rules = myDbReader.readRulesFromDB();
 
         MyKafkaReader myKafkaReader = new MyKafkaReader(
-                config.getString("kafka.consumer.topic"),
-                config.getString("kafka.producer.topic"),
-                config.getString("kafka.consumer.bootstrap.servers"),
-                config.getString("kafka.producer.bootstrap.servers"),
+                config,
                 rules
         );
 
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
-
         Runnable task = () -> {
             rules = myDbReader.readRulesFromDB();
             myKafkaReader.setRules(rules);
@@ -41,5 +37,6 @@ public class ServiceFiltering implements Service {
         executorService.scheduleAtFixedRate(task, 0, updateIntervalSec, TimeUnit.SECONDS);
         myKafkaReader.processing();
         Runtime.getRuntime().addShutdownHook(new Thread(executorService::shutdown));
+
     }
 }

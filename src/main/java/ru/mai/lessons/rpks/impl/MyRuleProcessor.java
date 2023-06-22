@@ -47,20 +47,21 @@ public class MyRuleProcessor implements RuleProcessor {
     }
 
     private boolean checkRules(String filterFunctionName, String filterValue, String fieldValue) {
-        switch (filterFunctionName.toLowerCase()) {
-            case "equals" -> {
+        FuncName funcName = FuncName.valueOf(filterFunctionName.toUpperCase());
+        switch (funcName) {
+            case EQUALS -> {
                 log.info("equals " + fieldValue.equals(filterValue));
                 return fieldValue.equals(filterValue);
             }
-            case "not_equals" -> {
+            case NOT_EQUALS -> {
                 log.info("not_equals " + !fieldValue.equals(filterValue));
                 return !fieldValue.equals(filterValue);
             }
-            case "contains" -> {
+            case CONTAINS -> {
                 log.info("contains " + fieldValue.contains(filterValue));
                 return fieldValue.contains(filterValue);
             }
-            case "not_contains" -> {
+            case NOT_CONTAINS -> {
                 log.info("not_contains " + !fieldValue.contains(filterValue));
                 return !fieldValue.contains(filterValue);
             }
@@ -68,5 +69,11 @@ public class MyRuleProcessor implements RuleProcessor {
                 return false;
             }
         }
+    }
+    private enum FuncName {
+        EQUALS,
+        NOT_EQUALS,
+        CONTAINS,
+        NOT_CONTAINS
     }
 }

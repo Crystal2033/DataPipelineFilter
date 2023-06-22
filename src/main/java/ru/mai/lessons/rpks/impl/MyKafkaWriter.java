@@ -18,21 +18,24 @@ import java.util.Properties;
 public class MyKafkaWriter implements KafkaWriter {
     String topic;
     String bootstrapServers;
+    KafkaProducer<String, String> kafkaProducer;
+    public MyKafkaWriter(String topic, String bootstrapServers){
+        this.topic = topic;
+        this.bootstrapServers = bootstrapServers;
+        Properties props = new Properties();
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        kafkaProducer = new KafkaProducer<>(props);
+    }
     @Override
     public void processing(Message message) {
-        try(KafkaProducer<String, String> kafkaProducer = createProducer()) {
+        try{
             ProducerRecord<String, String> producerRecord = new ProducerRecord<>(topic, message.getValue());
             kafkaProducer.send(producerRecord);
         }
         catch (Exception e){
             log.error("Create producer exception");
         }
-    }
-    public KafkaProducer<String, String> createProducer(){
-        Properties props = new Properties();
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-        return new KafkaProducer<>(props);
     }
 }
